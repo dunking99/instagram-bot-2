@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ffcc1a" />
+<title>Postroom · Departures</title>
+<link rel="stylesheet" href="../fonts/a.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Design A: Departures. Static prototype with real data from ../data.js. The shipping app in ui/ is untouched. -->
+<div class="shell" id="shell">
+  <aside class="rail" aria-label="Pages">
+    <button class="brand" data-go="search" aria-label="Postroom, home">
+      <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Postroom</span>
+    </button>
+    <nav class="line" id="nav"></nav>
+    <div class="rail-foot">
+      <button class="rail-btn" id="open-board" aria-pressed="true"><span>Departures</span><b id="board-count"></b></button>
+      <button class="rail-btn" id="open-palette"><span>Go to…</span><kbd>⌘K</kbd></button>
+    </div>
+  </aside>
+
+  <div class="work">
+    <header class="band">
+      <div class="band-title">
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+      <div class="band-tools">
+        <div class="seg on-yellow" role="tablist" aria-label="Search model" id="model">
+          <button role="tab" data-m="siglip">SigLIP</button>
+          <button role="tab" data-m="clip">CLIP</button>
+        </div>
+        <button class="chip-y" id="open-storage"></button>
+        <button class="chip-y" id="open-session"></button>
+      </div>
+    </header>
+    <main id="page" tabindex="-1"></main>
+  </div>
+
+  <aside class="board" id="board" aria-label="Jobs"></aside>
+</div>
+
+<div id="overlay" hidden></div>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

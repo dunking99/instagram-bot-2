@@ -1,0 +1,461 @@
+
+=== Preparing nottrebeca_ ===
+Using photo index: 464 posts.
+Looking inside 338 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /nottrebeca_/p/Dd42YDojYqz/: 5 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DdhhXZFD9cC/: 8 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DdFfG85DdCF/: 5 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DchMgoxD3EG/: 5 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DctrTpYIJF1/: 10 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DboZNByEtsA/: 12 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/Db7DpzPm1za/: 11 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DcPLAEdD_EZ/: 7 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/Ddom8owoF0t/: 11 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DbUDEyxj5uI/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DbZhC7wjTU2/: 10 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DbR404lDYum/: 9 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DbL85z7jxpH/: 10 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/DbCaENFCJqW/: 2 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DbHLPHnD5ki/: 11 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/Da8pvpVD0CZ/: 8 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/Da308IkDeiX/: 12 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/DaGxv4zjyNK/: 5 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/Dai9mvoj6uh/: 6 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/DZ8YV9MD7-C/: 14 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/DZ-8m_ZD3il/: 11 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/DZilqXEjyR7/: 11 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/DZx93RgD-Q6/: 10 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/DZA_dAQj4EA/: 8 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/DZGSM2Wj7rf/: 5 photo(s) [page data]
+Progress: 25 / 338 posts opened, 185 extra photos indexed so far (~25 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791073596.771399 1141029 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 185 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791073596.892795 1141208 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791073596.903130 1141208 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...185 / 185
+  [w1 1/13] /nottrebeca_/p/DWkPXwGDYQf/: 6 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DYvMYZzDUdH/: 6 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DY2iwNKDcf0/: 8 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DYkWz1ODjmd/: 7 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DYm9femDxDt/: 10 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/DYf_TY1j9Gr/: 6 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DYh_vxoD_XR/: 7 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/DXVAgboj6iB/: 11 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DYBPlx2jfLs/: 5 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DXDGkjPjxqX/: 10 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DXH-cunD_G1/: 8 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DXArP8FjZuz/: 7 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DW61r0_lMcc/: 5 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DWNGbZiDTEO/: 8 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/DWKbLgoDwsA/: 9 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/DWpl0NajXd8/: 3 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/DVuF9eADbGx/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/DVjsiU3D8YM/: 3 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/DVrVMYPj9rX/: 9 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/DVRXaFjj7KJ/: 7 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/DVUJizaD_Yw/: 9 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/DUodsaPk28C/: 2 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/DVM6VepDQzX/: 6 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/DTOYg1vj4Zu/: 5 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/DUbSs67D-ZW/: 14 photo(s) [page data]
+Progress: 50 / 338 posts opened, 334 extra photos indexed so far (~22 min left).
+Processing 149 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...149 / 149
+  [w1 1/13] /nottrebeca_/p/DSX-pIvD37q/: 7 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DNEccbhSHX_/: 6 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DSN9XD-jYWa/: 6 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DSBE-MvDxdr/: 11 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DR-hFQ8j32J/: 5 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/DRniDh2DWqR/: 13 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DR5XxHJjz2t/: 16 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DRdFN4ejzMD/: 5 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/DRIktjnEixd/: 8 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DQfCSeiErPn/: 10 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DQ2qd0OEqqX/: 13 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DQPyUeID_DN/: 13 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DQU5QcHk6Tq/: 9 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/DPj4OJgjSaQ/: 7 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DQDBG0AjWWJ/: 11 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/DO4R1lZjdxB/: 6 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/DO1kW4Ij-5O/: 8 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/DOeR0G-jcMv/: 8 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/DOwd_2Xjz7G/: 9 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/DOZL2h3DW0l/: 8 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/DObzX8yjWFt/: 13 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/DOMrpcDjGSe/: 6 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/DOUHzYNDbR_/: 7 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/DM_Mi41yWDq/: 9 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/DNOxvLOhL-1/: 5 photo(s) [page data]
+Progress: 75 / 338 posts opened, 528 extra photos indexed so far (~19 min left).
+Processing 194 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...194 / 194
+  [w1 1/13] /nottrebeca_/p/DMbIDIzSudH/: 9 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DMLt8UVS17Y/: 12 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DL5yYrdyrFs/: 6 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DLV3cTrv7C3/: 9 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DLGGJd7Sm5h/: 5 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/DK5IQ8mvgiA/: 4 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DLBH8MPSPGr/: 11 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/DKpzbS7yhGS/: 4 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DK0kQ7xIGkL/: 13 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DKiIEEayHRV/: 5 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DKVWvQwSeCg/: 14 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DKIFHzjIFwK/: 6 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DKSBwIuIMq_/: 8 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/DJ2x6JfRYcW/: 6 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DKBCshTxCPn/: 2 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/DJpYNf8yFLc/: 4 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/DJ0I6wDPBRl/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/DJLA8L3Pj2O/: 3 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/DJcbQTVveyP/: 2 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/DI2i4WQxyPP/: 2 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/DJC4z5bzrtd/: 9 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/DIb5SV7RmRm/: 8 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/DIhSdDszc83/: 4 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/DIXGqTQyJLm/: 5 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/DIXtUQwRRyR/: 8 photo(s) [page data]
+Progress: 100 / 338 posts opened, 665 extra photos indexed so far (~17 min left).
+Processing 137 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...137 / 137
+  [w1 1/13] /nottrebeca_/p/DIMqeG9TBEH/: 14 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DICiIvNIKLX/: 5 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DIAPFSwviAp/: 5 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DH62-bgOvW7/: 5 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DHzCWH2POHj/: 8 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DHjeVPbv9sV/: 6 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/DHepnHAPOa3/: 7 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DHHY2YHPO4w/: 5 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/DHEoTjWP2qR/: 5 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DG_heMJv_gU/: 10 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DG6aKuKv5mv/: 3 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DG1SevQv3Qb/: 4 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DGzL1NCx8wp/: 6 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/DGQ4E_ZyNPY/: 4 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DGi8u5WSE5P/: 20 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/DGLzaH4yAWH/: 4 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/DFs72USvTrf/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/DFLnXDnSljW/: 4 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/DFoBA0dyEfz/: 8 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/DFGXUgsOeyP/: 3 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/DE5lqvESSBz/: 8 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/DEatAE9ykm7/: 3 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/DElJDKZy1jl/: 8 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/DEOBdkkvAPx/: 6 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/DD5XDHyvDYA/: 9 photo(s) [page data]
+Progress: 125 / 338 posts opened, 803 extra photos indexed so far (~15 min left).
+Processing 138 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...138 / 138
+  [w1 1/13] /nottrebeca_/p/DDqOPIRvEKF/: 12 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/DC-BDSlOZnQ/: 3 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/DCptV33Pj0C/: 3 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/DCfXmmlvUxO/: 6 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/DCXf8GUyrhh/: 4 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/DCSNL-hy8nl/: 3 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/DCNOZezOoq-/: 7 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/DB10JE9TwDy/: 6 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/DBo3gmiyqoo/: 7 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/DBmtYNoSeNA/: 5 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/DBHpsXYydyy/: 4 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/DAuWdh3OPqW/: 5 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/DAUMynGPeJE/: 5 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/DAewob8PgZ4/: 14 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/C_6Z5pKyYLy/: 2 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/C_vlEi1Ooho/: 7 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/C_q-k2EPQLi/: 6 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/C_oXiL4vrA2/: 7 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/C_JSolTPtUD/: 10 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/C_RQTqzvx3W/: 10 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/C--5LXcSPWN/: 5 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/C_CABQZSLi6/: 9 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/C-yCg43y5w3/: 2 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/C-5_9-GyDZd/: 6 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/C-dcn3UOcyY/: 7 photo(s) [page data]
+Progress: 150 / 338 posts opened, 933 extra photos indexed so far (~13 min left).
+Processing 130 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...130 / 130
+  [w1 1/13] /nottrebeca_/p/C-QhRImupyI/: 8 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/C-Bu2FPP6RZ/: 4 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/C97-cEev7ZW/: 6 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/C926e3PPxhe/: 10 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/C9vSldEvavC/: 4 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/C9VWcvFR3Cz/: 6 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/C9gN4YMP-pc/: 9 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/C9DpbeQvtY5/: 8 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/C9GME_syz-m/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/C85bVfdSOH-/: 7 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/C9AzfSavXtp/: 4 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/C8k-JhRonJO/: 6 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/C8xZGCcPWTK/: 8 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/C8X21qzviRF/: 4 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/C8VGqlzPyOh/: 9 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/C8StWFtPVRJ/: 6 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/C8KzI1SvuJJ/: 5 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/C72RyhRvs-f/: 4 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/C77dUvrvZfh/: 6 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/C7r4pt2utYR/: 3 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/C7m3bj0PtcU/: 5 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/C7cYK6jvK3K/: 5 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/C7kVIsZPvY3/: 5 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/C7XQE5vO3ul/: 6 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/C7STYY4IJZW/: 9 photo(s) [page data]
+Progress: 175 / 338 posts opened, 1059 extra photos indexed so far (~11 min left).
+Processing 126 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...126 / 126
+  [w1 1/13] /nottrebeca_/p/C7O9RMmouWm/: 7 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/C7DMvGxLT8a/: 6 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/C610CBnrEG2/: 7 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/C6W4O2oP_Pk/: 7 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/C6PFPKBucV3/: 9 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/C6KCKXJv2-k/: 7 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/C6ABDjGL4JN/: 3 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/C56g6B7vQq4/: 8 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/C51cLBCyO1j/: 8 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/C5yztsSvKnE/: 6 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/C5wiCECrPSj/: 3 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/C5mwTMALvTv/: 7 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/C48wX0ePcmC/: 9 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/C4tXldtPCFs/: 8 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/C4l1SGVuimJ/: 5 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/C4YvyQRP8NG/: 5 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/C4RNXF8PFhs/: 4 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/C3tKI3rvbzy/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/C3lzqkfLxRV/: 3 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/C2nXbB0OrQZ/: 10 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/C2il61gLXHe/: 8 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/C2F0cSPrDS5/: 4 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/C17vbhAvz5A/: 3 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/C1-qA2JLLKC/: 6 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/C1hxwBMracj/: 9 photo(s) [page data]
+Progress: 200 / 338 posts opened, 1189 extra photos indexed so far (~9 min left).
+Processing 130 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...130 / 130
+  [w1 1/13] /nottrebeca_/p/C0aNbUzLP7r/: 7 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/CzFHO5BL_JA/: 7 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/Cy1chx_vlDj/: 4 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/Cy6xbztrW_I/: 8 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/CybeRbtOhc1/: 6 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/CyhBjJ1rJo6/: 6 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/CxRO95Frpmv/: 5 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/Cx1QRt9Lo18/: 3 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/CwtSyLwL-Z1/: 4 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/Cw_JClMrOxY/: 4 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/CwLwy6wrZOj/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/CwV-2GCLLRP/: 5 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/CvLE0BHPvnB/: 5 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/CvYExnxv2mx/: 3 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/CuX3T08LUtG/: 5 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/CunFOgxvwHk/: 4 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/CtphB-nr1qU/: 2 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/CuIHbS7Pl2A/: 8 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/CtNIDjyrAzi/: 4 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/CtfKc_rrKnl/: 4 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/Csr4MEGLdum/: 4 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/Cs4xfuxL1pp/: 4 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/CreNswrvE6C/: 5 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/CsR9C3TLjwM/: 4 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/CrT9g9CP5nf/: 6 photo(s) [page data]
+Progress: 225 / 338 posts opened, 1285 extra photos indexed so far (~7 min left).
+Processing 96 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...96 / 96
+  [w1 1/13] /nottrebeca_/p/CrRdtDiL1nr/: 6 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/CrOzaXtPrcz/: 6 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/CpbMfpbrP7u/: 3 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/CpDxrCIPPq5/: 2 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/Co5ibZBv1b2/: 3 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/CoVuHO9sArM/: 2 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/Cn7q5j0PHzW/: 7 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/Cnxdy6EvGMv/: 3 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/CniShZNr9y2/: 2 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/CnSvrvTrwSj/: 7 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/Cmy8zAFLHl8/: 6 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/Cmo7iA3LsMy/: 3 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/CmXJT1jPKsl/: 3 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/CmKRzAqvpRI/: 4 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/CmC_oo5rlyj/: 2 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/Cl11oNHvCjW/: 3 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/Cle-fCCPsQW/: 2 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/ClCm1b2rVc3/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/CkMfJ1KrHIT/: 3 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/CkFAIUSDcWb/: 3 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/Cj8-k5Or4Z3/: 4 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/Cj6eq29j3re/: 7 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/CjoThR_rFM3/: 5 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/Cjd-r1oLFwe/: 3 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/CjGq3J6v9uq/: 4 photo(s) [page data]
+Progress: 250 / 338 posts opened, 1356 extra photos indexed so far (~6 min left).
+Processing 71 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...71 / 71
+  [w2 1/12] /nottrebeca_/p/CilQYY2OGTG/: 2 photo(s) [page data]
+  [w1 1/13] /nottrebeca_/p/Ci8asoYrGv9/: 8 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/CiJFTdlLjkF/: 5 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/Ch8RJsnLoW0/: 3 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/Ch5cygive6s/: 4 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/Chxrdz1uXb0/: 6 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/Chngm5yPy5h/: 6 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/ChfZsnjJjIo/: 10 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/ChV4t4YD42i/: 3 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/ChDV4CpvLyt/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/Cg-T8AKLrr6/: 2 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/Cgz6g-Dvzu3/: 3 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/CgvJOhaD9Yv/: 3 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/Cghz3HfP_ng/: 5 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/CgfpgePrYjI/: 4 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/CgSbV8YvFwj/: 3 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/CgDczHRDp2z/: 7 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/Cfz2fi_rRVB/: 2 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/CfuhjIqriGU/: 6 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/Cfm3jQerEDr/: 7 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/CfaZan6slcW/: 6 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/CfXo1C-j1s-/: 2 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/CfMwMfmvwy8/: 6 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/CfIhDRWLlzv/: 5 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/CfCebYnvJLG/: 3 photo(s) [page data]
+Progress: 275 / 338 posts opened, 1446 extra photos indexed so far (~4 min left).
+Processing 90 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...90 / 90
+  [w1 1/13] /nottrebeca_/p/Ce7yNmerQ8A/: 7 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/Cemu9_sjyW1/: 4 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/CeXDZ-kLDLV/: 3 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/CeCErVsu2nM/: 5 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/CeSN3QLDkYp/: 5 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/Cdlsdx5rrRf/: 4 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/Cd4YK9VjZyc/: 10 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/CdPP7yhDZAV/: 3 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/CdbkkkQOpoy/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/CcbYA44LPJW/: 3 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/Cc35wi3L7f5/: 2 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/Cb3OKQwrJ0A/: 2 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/CcOb6hErLLk/: 3 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/Cbk4y6hrX_Z/: 2 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/CboHnH0LQpU/: 3 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/CbQfcwCOZ2B/: 4 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/CbVwCkClBwS/: 3 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/CavMzRDPFPO/: 3 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/CaiKMxqPhK9/: 2 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/Ca0klNULi2X/: 5 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/CZ-D5FEPpqo/: 3 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/CakF6gyL6HG/: 8 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/CZ2N3rNuGmm/: 3 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/CaLNsTyrevC/: 3 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/CZ7u8iSPQDY/: 3 photo(s) [page data]
+Progress: 300 / 338 posts opened, 1518 extra photos indexed so far (~2 min left).
+Processing 72 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...72 / 72
+  [w1 1/13] /nottrebeca_/p/CZP61c8vvpt/: 5 photo(s) [page data]
+  [w2 1/12] /nottrebeca_/p/CZDLCnurFI3/: 4 photo(s) [page data]
+  [w1 2/13] /nottrebeca_/p/CYMx0eIvkGX/: 10 photo(s) [page data]
+  [w2 2/12] /nottrebeca_/p/CYH7aAJrajN/: 3 photo(s) [page data]
+  [w1 3/13] /nottrebeca_/p/CXwh-ZtPZ8X/: 4 photo(s) [page data]
+  [w2 3/12] /nottrebeca_/p/CW35-oCPpnn/: 3 photo(s) [page data]
+  [w1 4/13] /nottrebeca_/p/CWl85MFLnkT/: 2 photo(s) [page data]
+  [w2 4/12] /nottrebeca_/p/CWEey6FLOxy/: 4 photo(s) [page data]
+  [w1 5/13] /nottrebeca_/p/CV1ATBUriSv/: 5 photo(s) [page data]
+  [w2 5/12] /nottrebeca_/p/CVmB7ETjux2/: 4 photo(s) [page data]
+  [w1 6/13] /nottrebeca_/p/CVGwpgYLA-Z/: 3 photo(s) [page data]
+  [w2 6/12] /nottrebeca_/p/CU52GLPDBln/: 4 photo(s) [page data]
+  [w1 7/13] /nottrebeca_/p/CUvXSbwrMZa/: 4 photo(s) [page data]
+  [w2 7/12] /nottrebeca_/p/CUNqaC8rXhD/: 4 photo(s) [page data]
+  [w1 8/13] /nottrebeca_/p/CTVNkHFLqUE/: 4 photo(s) [page data]
+  [w2 8/12] /nottrebeca_/p/CTS-3Hjj5hi/: 4 photo(s) [page data]
+  [w1 9/13] /nottrebeca_/p/CTId9IZLxxC/: 3 photo(s) [page data]
+  [w2 9/12] /nottrebeca_/p/CTA800BL5DF/: 5 photo(s) [page data]
+  [w1 10/13] /nottrebeca_/p/CS-SQ2orOLM/: 5 photo(s) [page data]
+  [w2 10/12] /nottrebeca_/p/CS96PgRrEFj/: 2 photo(s) [page data]
+  [w1 11/13] /nottrebeca_/p/CSurE4qLQYI/: 3 photo(s) [page data]
+  [w2 11/12] /nottrebeca_/p/CSpotSPrJB2/: 5 photo(s) [page data]
+  [w1 12/13] /nottrebeca_/p/CSZlXBtshR7/: 3 photo(s) [page data]
+  [w2 12/12] /nottrebeca_/p/CSPdzqfLvdP/: 4 photo(s) [page data]
+  [w1 13/13] /nottrebeca_/p/CR2GL31DaH_/: 3 photo(s) [page data]
+Progress: 325 / 338 posts opened, 1593 extra photos indexed so far (~0 min left).
+Processing 75 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...75 / 75
+  [w1 1/7] /nottrebeca_/p/CQ9J1CuDJQ6/: 2 photo(s) [page data]
+  [w2 1/6] /nottrebeca_/p/CPePBHDDu-6/: 3 photo(s) [page data]
+  [w1 2/7] /nottrebeca_/p/CPMXUE5jsvP/: 2 photo(s) [page data]
+  [w2 2/6] /nottrebeca_/p/CNda5BKjiSI/: 4 photo(s) [page data]
+  [w1 3/7] /nottrebeca_/p/CNN1CcEDm1G/: 3 photo(s) [page data]
+  [w2 3/6] /nottrebeca_/p/CMwx_ykDnua/: 3 photo(s) [page data]
+  [w1 4/7] /nottrebeca_/p/CMm7BONDkuk/: 3 photo(s) [page data]
+  [w2 4/6] /nottrebeca_/p/CKkJbALD-PR/: 2 photo(s) [page data]
+  [w1 5/7] /nottrebeca_/p/CKQAsbPj_nX/: 3 photo(s) [page data]
+  [w2 5/6] /nottrebeca_/p/CIwbSQTjldW/: 4 photo(s) [page data]
+  [w1 6/7] /nottrebeca_/p/CG0eT4KjrAT/: 2 photo(s) [page data]
+  [w2 6/6] /nottrebeca_/p/CGYo3n5jtV8/: 3 photo(s) [page data]
+  [w1 7/7] /nottrebeca_/p/CExnM87D6rs/: 3 photo(s) [page data]
+Progress: 338 / 338 posts opened, 1617 extra photos indexed so far (~0 min left).
+Processing 24 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...24 / 24
+Added 1617 slide image(s) to the index.
+Using photo index: 2081 posts.
+
+nottrebeca_: 343 photo posts + 121 reels; 338 of the photo posts are carousels (338 looked inside, 1617 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    259  beach
+    194  party or club
+    186  city street
+    134  boat or sea
+    108  restaurant or cafe
+     86  car
+     69  bedroom
+     46  studio
+     40  nature
+     35  stadium
+     29  pool
+     24  bathroom
+     14  gym
+     14  living room
+      8  hotel room
+      1  snow or mountains
+    713  (no confident tag)
+
+outfit:
+    305  jeans and top
+    287  bikini
+    169  activewear
+    104  one-piece swimsuit
+     89  skirt
+     70  dress
+     34  jacket or coat
+     31  formal wear
+     19  sportswear kit
+    852  (no confident tag)
+
+shot:
+    708  full-body photo
+    219  mirror selfie
+    138  text or graphic
+     82  group photo
+     81  selfie
+     56  landscape without people
+     53  pet or animal
+     40  food
+     33  close-up portrait
+    550  (no confident tag)
+
+pose:
+    793  standing
+    312  upper body only
+    125  sitting
+     44  bending over
+     20  lying down
+     10  kneeling
+      7  leaning
+      2  on all fours
+    647  (no confident tag)
+
+arms:
+    176  arms up
+Using photo index: 2081 posts.
+Library for nottrebeca_: 1960 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/nottrebeca_
+
+nottrebeca_: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

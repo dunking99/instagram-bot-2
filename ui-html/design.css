@@ -1,0 +1,128 @@
+/* Design layer for the static copy. Loaded after style.css; every rule here overrides the original.
+   Tokens come from style.css (--ink, --panel, --signal, ...). */
+
+:root {
+  --h-ctl: 34px;      /* standard control height: buttons, selects, number boxes */
+  --h-chip: 28px;     /* chips, segmented buttons, tiny buttons */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --faint: #8c8278;   /* was #6f655c: 3.5:1 on the page background, now above 4.5:1 */
+}
+.query textarea::placeholder { color: #8c8278; }
+
+/* ---------- controls: one height scale instead of five ---------- */
+.btn { min-height: var(--h-ctl); padding: 0 15px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn.tiny { min-height: var(--h-chip); padding: 0 11px; }
+.btn.primary { min-height: 38px; padding: 0 18px; }
+.btn:focus-visible, .chip:focus-visible, .signal:focus-visible { outline-offset: 2px; }
+.chip, .signal { min-height: var(--h-chip); display: inline-flex; align-items: center; padding: 0 11px; }
+.chip:hover, .signal:hover { color: var(--cream); border-color: rgba(244, 236, 224, 0.32); }
+.signal.on:hover { border-color: rgba(255, 92, 51, 0.6); }
+.chip.on:hover { color: var(--signal-ink); border-color: transparent; }
+.seg button { min-height: 26px; padding: 0 12px; }
+.seg button:not(.on):hover { color: var(--cream); }
+.inline-num input, .inline-num select { min-height: var(--h-chip); }
+.lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+
+/* ---------- top bar: the model is a setting, the rest is status ---------- */
+.topbar-inner { padding: 9px 28px; }
+.top-actions { flex-wrap: nowrap; gap: 6px; }
+.model-pick { display: inline-flex; align-items: center; gap: 10px; }
+.top-sep { width: 1px; height: 18px; background: var(--line-strong); margin: 0 6px; }
+.topbar .session-chip { border-color: transparent; color: var(--dust); padding: 5px 9px 5px 8px; font-size: 12.5px; }
+.topbar .session-chip:hover { color: var(--cream); border-color: var(--line-strong); }
+.topbar .session-chip svg { opacity: 0.8; }
+.topbar .jobs-toggle { gap: 8px; }
+.topbar .jobs-toggle .dot { width: 6px; height: 6px; }
+.topbar .jobs-toggle[aria-expanded="true"] { background: var(--cream); color: var(--signal-ink); }
+
+/* ---------- jobs: a one-line status bar, details on demand ---------- */
+.tray { position: sticky; bottom: 0; z-index: 30; background: rgba(12, 11, 10, 0.94); backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
+.tray-bar { width: min(1480px, 100%); margin: 0 auto; padding: 0 28px; min-height: 38px; display: flex; align-items: center; gap: 12px; }
+.tray-bar .dot { flex: none; }
+.tray-bar .now { min-width: 0; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; }
+.tray-bar .hint { flex: none; }
+.tray-bar .show-jobs { margin-left: auto; }
+.tray-drawer {
+  position: absolute; right: 28px; bottom: calc(100% + 8px);
+  width: min(560px, calc(100vw - 120px)); max-height: min(60vh, 520px);
+  display: flex; flex-direction: column;
+  background: var(--raise); border: 1px solid var(--line-strong); border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: drawer-in 0.28s var(--ease);
+}
+.tray-drawer[hidden] { display: none; }
+@keyframes drawer-in { from { opacity: 0; transform: translateY(8px); } }
+.drawer-head, .drawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; }
+.drawer-head { border-bottom: 1px solid var(--line); }
+.drawer-head strong { font-family: var(--serif); font-size: 17px; font-weight: 560; letter-spacing: -0.02em; }
+.drawer-foot { border-top: 1px solid var(--line); color: var(--faint); }
+.job-list { overflow: auto; padding: 6px; display: grid; gap: 2px; }
+.job { display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; border: 0; background: transparent; color: var(--dust); border-radius: 10px; padding: 9px 10px; font-size: 13px; }
+.job:hover { background: rgba(244, 236, 224, 0.05); color: var(--cream); }
+.job.on { background: rgba(255, 92, 51, 0.12); color: var(--cream); }
+.job .dot { flex: none; }
+.job-list .more { padding: 8px 10px; }
+
+/* ---------- search: say what you want, tune it only when you need to ---------- */
+.search-intro { margin-bottom: 18px; }
+.footbar { align-items: center; margin-top: 14px; }
+.opts-toggle { display: inline-flex; align-items: center; gap: 12px; min-height: var(--h-ctl); padding: 0 12px 0 0; background: none; border: 0; color: var(--dust); border-radius: 999px; }
+.opts-toggle:hover { color: var(--cream); }
+.opts-toggle .opts-sum { font-size: 13px; }
+.opts-toggle svg { transition: transform 0.25s var(--ease); }
+.opts-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.opts { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 28px; margin-top: 10px; padding: 14px 16px; border-radius: 14px; background: #0e0c0b; border: 1px solid var(--line); animation: opts-in 0.28s var(--ease); }
+.opts[hidden] { display: none; }
+@keyframes opts-in { from { opacity: 0; transform: translateY(-4px); } }
+.opt { display: grid; gap: 7px; }
+.opt:has(.inline-num) { grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: 10px; }
+.opt:has(.inline-num) > .lbl { grid-column: 1 / -1; }
+.opt .inline-num input { width: 72px; }
+.opts .hint { flex-basis: 100%; }
+
+/* ---------- library: status as one line, indexing tucked away, tags get the room ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 4px 30px; margin: 18px 0 14px; padding: 0; }
+.stat { display: flex; align-items: baseline; gap: 9px; background: none; border: 0; border-radius: 0; padding: 0; }
+.stat b { display: inline; font-size: 30px; }
+.stat span { font-size: 13px; }
+.meter { height: 6px; }
+details.idx { padding: 0; }
+details.idx > summary { list-style: none; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 12px 16px; cursor: pointer; border-radius: 16px; }
+details.idx > summary::-webkit-details-marker { display: none; }
+details.idx > summary::after { content: ""; width: 8px; height: 8px; border-right: 1.5px solid var(--dust); border-bottom: 1.5px solid var(--dust); transform: rotate(45deg) translateY(-2px); transition: transform 0.25s var(--ease); }
+details.idx[open] > summary::after { transform: rotate(-135deg); }
+details.idx > summary:hover { background: rgba(244, 236, 224, 0.03); }
+.idx-t { display: flex; flex-direction: column; }
+.idx-t b { font-weight: 560; }
+.idx-t span { color: var(--dust); font-size: 12.5px; }
+.idx-p { height: 4px; border-radius: 99px; background: #2a2622; overflow: hidden; min-width: 80px; }
+.idx-p i { display: block; height: 100%; background: var(--sage); }
+details.idx[open] > summary { border-bottom: 1px solid var(--line); border-radius: 16px 16px 0 0; }
+details.idx > :not(summary) { margin-left: 16px; margin-right: 16px; }
+details.idx > .spread { margin-top: 12px; }
+details.idx > .progress { display: none; }
+details.idx > .row { margin-bottom: 14px; }
+.tag-col { max-height: calc(100vh - 150px); overflow: auto; padding-right: 8px; top: 68px; }
+
+/* ---------- links: the embedded tool fills the page area, not the whole window ---------- */
+.view[data-view="links"] .stage { padding: 0; width: 100%; max-width: none; }
+.links-frame { display: block; width: 100%; height: calc(100vh - 57px - 38px); border: 0; background: var(--ink-2); }
+
+/* ---------- small screens ---------- */
+@media (max-width: 980px) {
+  .model-pick .lbl, .top-sep { display: none; }
+  .top-actions { flex-wrap: wrap; }
+  .opts { gap: 14px 20px; }
+}
+@media (max-width: 760px) {
+  .tray-bar { padding: 0 16px; }
+  .tray-drawer { right: 8px; left: 8px; width: auto; }
+  .stats { gap: 2px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tray-drawer, .opts, .opts-toggle svg, details.idx > summary::after { animation: none; transition: none; }
+}
+
+/* ---------- legibility floor: nothing functional below 11px ---------- */
+.tag-label, .field label, .nav-key, .brand-name { font-size: 11px; }
+.nav-btn span { font-size: 11px; }

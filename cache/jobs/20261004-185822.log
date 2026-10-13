@@ -1,0 +1,405 @@
+
+=== Preparing madisonbeer ===
+Using photo index: 655 posts.
+Looking inside 288 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /madisonbeer/p/Ddos8uHm8pu/: 6 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/DbV8JJoFN2Y/: 11 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/DbEX-zZknWp/: 17 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/Da3OUWsmJLr/: 2 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/DaszXHVEdk5/: 3 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/DaqSjLhEadq/: 10 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/DaGS6daGl9D/: 8 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/DZ8NwMmkv6_/: 9 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/DZsrIIpD2Vt/: 9 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/DZAzeiiGPqw/: 5 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/DZFkZX7FJzK/: 12 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/DYz3A0WjP3y/: 11 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/DYpTVN3kTeF/: 3 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/DYPu_3wETd-/: 6 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/DYfE5eVDLfB/: 7 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/DWE48AZD6O3/: 2 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/DWPWKxckn1j/: 2 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/DVhCz1QEmBm/: 4 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/DWCKxKyFKiA/: 10 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/DURV3rUkmfJ/: 10 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/DU1PyXukjcO/: 12 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/DTgWNv5kVTQ/: 8 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/DToY9BcDO-T/: 12 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/DSVdUJSkrUx/: 9 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/DTTWNAmEjLF/: 10 photo(s) [page data]
+Progress: 25 / 288 posts opened, 173 extra photos indexed so far (~7 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791136755.060736 1893107 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 173 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791136755.263446 1893356 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791136755.274409 1893356 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...173 / 173
+  [w1 1/13] /madisonbeer/p/DRDD42Pku8r/: 6 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/DQFJRsTD-_B/: 9 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/DP6wdMbj6mQ/: 8 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/DP4LqRyESav/: 3 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/DOyzuFID0BA/: 6 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/DLQU30xSlbW/: 6 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/DJADLLuzHyD/: 4 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/DIR2O6MBlub/: 3 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/DHJkaxcSY3R/: 6 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/DGwFy6JyR8V/: 8 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/DGoUPHAyLNj/: 9 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/DCJmJFjv1qU/: 4 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/C_g5eusyAm7/: 5 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/DARXSLuyLs-/: 8 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/C_J1CdSSsce/: 6 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/C-6M9ZSsmId/: 9 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/C-Ll0LSypAd/: 6 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/C9nQ63jPb5_/: 6 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/C9Nv0rpStBt/: 7 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/C8xPotJPA7d/: 7 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/C8C96BSSxtx/: 4 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/C8P3FNpyjvg/: 7 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/C7kvLR1MqXs/: 5 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/C7ubnrsPcXN/: 7 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/C7ce79BvUQ8/: 6 photo(s) [page data]
+Progress: 50 / 288 posts opened, 303 extra photos indexed so far (~9 min left).
+Processing 130 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...130 / 130
+  [w1 1/13] /madisonbeer/p/C7UlfGhP1Bt/: 3 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/C7M6mo5Py13/: 4 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/C67A1lDPUgP/: 9 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/C6wkv-4Pq8k/: 4 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/C6UXGA5PNl1/: 5 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/C533bxUvVDy/: 6 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/C5jZZkvS-ER/: 5 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/C4yUHznsN3i/: 6 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/C5B0DnlPQoa/: 8 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/C4tHsF9szvb/: 5 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/C4oDFYhR7lj/: 8 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/C4L0xOOv-WA/: 8 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/C4GpgofMnCn/: 10 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/C3-2BdLssAB/: 8 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/C37-wJ2sbWp/: 8 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/C3x63BTR1GV/: 7 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/C3HT_ruuQoQ/: 4 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/C2-pSLQvUCm/: 6 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/C2-nbmRvllg/: 5 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/C2iffrqSZXq/: 2 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/C2aoTquSmik/: 5 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/C2QQ7SVvvSV/: 4 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/C0-Ar_wyNMw/: 8 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/C0hs7DUyCQW/: 4 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/CzefNfNvws2/: 4 photo(s) [page data]
+Progress: 75 / 288 posts opened, 424 extra photos indexed so far (~8 min left).
+Processing 121 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...121 / 121
+  [w1 1/13] /madisonbeer/p/CzHUO1DP3ES/: 6 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/CyjWpFDSmsd/: 8 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CybtHJRy8zo/: 2 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CyWhKScyRN7/: 6 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CyEc_sDsucW/: 5 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/Cxi6AzRvPLR/: 6 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/Cxd0P3TSO_d/: 2 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CxGnycXPjad/: 4 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CxQ6jSqvbDA/: 6 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/Cw8R9crPIHx/: 5 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/Cw0u_kqSclH/: 4 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/Cwn766WyF1D/: 2 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/Cwf9GvivxFK/: 3 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CwN-biiPgcH/: 6 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CwGKp8cPKdO/: 9 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/Cv0LRjkPNOn/: 2 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/CvDXZ8bSAM5/: 3 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/Cu4-MhDPaJT/: 2 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CusFmdqvW6-/: 8 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CuAbP3ESRPD/: 2 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CtZwRk3PdGS/: 4 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CtAAvpmPZPD/: 3 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CryzuPJvbcg/: 4 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CrjP5eEPrr0/: 2 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/Crgmy_JPJ8o/: 10 photo(s) [page data]
+Progress: 100 / 288 posts opened, 513 extra photos indexed so far (~8 min left).
+Processing 89 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...89 / 89
+  [w1 1/13] /madisonbeer/p/Cosg3ihvD9E/: 3 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/Cop5x3tP9wM/: 3 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CoGIp7QSzQq/: 2 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/Cm7aGCqye9r/: 4 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/Cn5LEUByOy5/: 7 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CmH1j6ySwcj/: 7 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CmFN3_vyte5/: 4 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CkjOJ8mPpIH/: 2 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/Ckyi1jlvT52/: 2 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CkJrrABygql/: 5 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CkOwUTFy1YG/: 7 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/CjtMDxZvpHo/: 4 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/CjMDAvcv5Bt/: 3 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CiaoGbFpqaG/: 2 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CiLczFlvTYD/: 4 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/Ch0Lilss-5I/: 6 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/Chu-xUTPbMZ/: 4 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/ChkvemGPcvW/: 1 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/Cg5FfgKP6L5/: 2 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CgNJnEuvtpf/: 5 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CgnKul2Pt14/: 2 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CfXDtqmFUXd/: 2 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CeeQ4JdpyGC/: 9 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/Cdd7pEQJ9Cr/: 6 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CeRTP5glKCH/: 5 photo(s) [page data]
+Progress: 125 / 288 posts opened, 589 extra photos indexed so far (~7 min left).
+Processing 76 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...76 / 76
+  [w1 1/13] /madisonbeer/p/CdL7VqivSDD/: 9 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/Cc5tbXIOxmo/: 3 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/Cc3shFiFfOn/: 4 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CcyiI_kFOlg/: 5 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CclYKoSsu8o/: 7 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/Ccqy3EzsZmk/: 4 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CcgRyl9P83n/: 4 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CcbIdPLMRW4/: 6 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CcTWzNwML20/: 7 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CcOMOhzFiKG/: 3 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CcJAWVisonr/: 4 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/Cb_AmT4MCjk/: 5 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/Cb2zUrLuBTi/: 4 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/Cb5j3dCv0tb/: 3 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/CbYKx7WvFv1/: 3 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CbiNJLUu8ED/: 3 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/CaxvMPivnOT/: 2 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/Ca0VN7ePsLE/: 4 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CZaIfoGvp1c/: 8 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CZkYt5AvQST/: 4 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CY2ECoLvS34/: 4 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CZSB9n-JzJP/: 4 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CYNB8dRP1wS/: 3 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CYmmL4rvstC/: 5 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/CX1sP--vsox/: 4 photo(s) [page data]
+Progress: 150 / 288 posts opened, 676 extra photos indexed so far (~6 min left).
+Processing 87 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...87 / 87
+  [w1 1/13] /madisonbeer/p/CXuHPsgvM1x/: 7 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/CXjwUK9PDEx/: 5 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CW6eCNbh8Pg/: 3 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CW39PPTPDt-/: 6 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CW37QJxBnix/: 4 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CW34HdohOmu/: 3 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CW1bNCAPIje/: 6 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CWtjn25Pb8l/: 3 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CWtqh7mvm1w/: 3 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CWofm6AvvCV/: 6 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CWq8PL-vSEL/: 5 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/CWgnx91lwWI/: 4 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/CWWgATfFQvo/: 5 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CWPDG8dMdyT/: 4 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CWUFKgjlWcz/: 3 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/CWHSOqIMk1H/: 4 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/CWOzDKGl905/: 6 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CV_QwhglAYx/: 5 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/CWB68oiF0U_/: 3 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CVyNBGvlwbM/: 2 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CV8k739FEBc/: 3 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CVvmTgFlLND/: 5 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CViqnuClwbR/: 3 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CVgNIzYF-17/: 2 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/CVgKtrnlpLz/: 2 photo(s) [page data]
+Progress: 175 / 288 posts opened, 753 extra photos indexed so far (~5 min left).
+Processing 77 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...77 / 77
+  [w1 1/13] /madisonbeer/p/CVdl4k5Foww/: 3 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/CVdcCxeFCEj/: 2 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CVOWjMkFN-P/: 2 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CVOH43uFYRJ/: 3 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CUN0t4Hvfym/: 5 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CT0GMpLlvvy/: 3 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CTz78g0ledN/: 1 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CTvswK0MFHr/: 3 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CTvrqI7Mt4C/: 4 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CTQf599vEel/: 2 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/CSsIee5lxXH/: 2 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CSzjSDsF5Bp/: 10 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CR9juiepiAY/: 1 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/CSNFrdBFjl5/: 5 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/CRmij4llk93/: 2 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CRpJC_WFYJw/: 4 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/CRUqnYslDcr/: 1 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/CRj4EPKlPB0/: 3 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CQtrjfRMP7G/: 4 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CRFOOY3liYX/: 6 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CQboYb8l90y/: 2 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CQtqNOYFq4k/: 5 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/COvnnCgFGzD/: 4 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CPtN3jCFYAc/: 2 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/COtG_i3lwhp/: 5 photo(s) [page data]
+Progress: 200 / 288 posts opened, 812 extra photos indexed so far (~4 min left).
+Processing 59 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...59 / 59
+  [w1 1/13] /madisonbeer/p/COqef4BFJ23/: 2 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/COOIfUglLVu/: 3 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CNnpK4Gl2-D/: 2 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CNYGSvZlp1W/: 3 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CNDi7WdlpDW/: 5 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CM7uGEZFGQB/: 3 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CM2g2YalcaR/: 1 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CMu5z6ylFwY/: 5 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CMNjvOLlJqh/: 2 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CMIqHullsON/: 1 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CMDuBPwlwtM/: 4 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/CL70EEplFrY/: 1 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/CL4443pFCiY/: 2 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CL2nNtvllve/: 9 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CL0F0NhlAwv/: 4 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/CLyVQPQFbmc/: 3 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/CLxO6g6FLmi/: 2 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/CLsCPL0lCoI/: 5 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CLm5CcCFNdD/: 4 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CLfJMS1FgH5/: 1 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CLZ9yd5lE6q/: 1 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CLUzYEfFOKV/: 1 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CLSRaR6lq9O/: 4 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CLPfdl5FCDB/: 1 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/CLKe0JEFT6s/: 1 photo(s) [page data]
+Progress: 225 / 288 posts opened, 857 extra photos indexed so far (~2 min left).
+Processing 45 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...45 / 45
+  [w1 1/13] /madisonbeer/p/CLCwBroFlLz/: 1 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/CK9rF9pl_zK/: 2 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CK7WPCyF6er/: 1 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CKe1hGpFAsa/: 2 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CKzeeNflhO-/: 8 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CI1Z53JFM-0/: 1 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CJKBtoWlqHB/: 2 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/CIjTNKdlaVm/: 2 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/CIq6TfuF0hl/: 3 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/CIY7_2hlQCP/: 4 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/CIOW-3tFq1f/: 7 photo(s) [page data]
+  [w1 7/13] /madisonbeer/p/CHWB_w9lckT/: 3 photo(s) [page data]
+  [w2 6/12] /madisonbeer/p/CH6H3VGlMGv/: 4 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/CGDbMSslk-B/: 3 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/CGvO7KSF6fr/: 2 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/CFu28CDlVtB/: 4 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/CF2mlHBFmsw/: 4 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/CFVn-rIFLDl/: 1 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/CFnOPEBl0th/: 3 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/CEPks9Hl7Ey/: 2 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/CEuarAdFV3t/: 2 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/CDmShDPFXrT/: 2 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/CCmXakVFvMb/: 2 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/CCbfwcTFr1a/: 2 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/CCWi9yDF__e/: 6 photo(s) [page data]
+Progress: 250 / 288 posts opened, 905 extra photos indexed so far (~1 min left).
+Processing 48 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...48 / 48
+  [w1 1/13] /madisonbeer/p/CCRe1cdlUIJ/: 2 photo(s) [page data]
+  [w2 1/12] /madisonbeer/p/CCE47C7lUGp/: 2 photo(s) [page data]
+  [w1 2/13] /madisonbeer/p/CCB_y3PFNxo/: 3 photo(s) [page data]
+  [w2 2/12] /madisonbeer/p/CB3qn0yl_Ux/: 2 photo(s) [page data]
+  [w1 3/13] /madisonbeer/p/CAyBesmFCMC/: 6 photo(s) [page data]
+  [w2 3/12] /madisonbeer/p/CAquvBZFCla/: 3 photo(s) [page data]
+  [w1 4/13] /madisonbeer/p/CAodp1WF9XH/: 5 photo(s) [page data]
+  [w2 4/12] /madisonbeer/p/B_xtiaJl3-4/: 2 photo(s) [page data]
+  [w1 5/13] /madisonbeer/p/B_u8NRUFyeS/: 3 photo(s) [page data]
+  [w2 5/12] /madisonbeer/p/B-P0JF9llhw/: 1 photo(s) [page data]
+  [w1 6/13] /madisonbeer/p/B-ATaLmFIGm/: page timed out, will retry later
+  [w2 6/12] /madisonbeer/p/B9fEhANF39g/: page timed out, will retry later
+  [w1 7/13] /madisonbeer/p/B9Z9t28F5cw/: 1 photo(s) [page data]
+  [w2 7/12] /madisonbeer/p/B9VGPO4lnji/: 3 photo(s) [page data]
+  [w2 8/12] /madisonbeer/p/B7_wrZ6FMSc/: 3 photo(s) [page data]
+  [w1 8/13] /madisonbeer/p/B8wvZ2iFJ-q/: 2 photo(s) [page data]
+  [w2 9/12] /madisonbeer/p/By9v0QslXUG/: 1 photo(s) [page data]
+  [w1 9/13] /madisonbeer/p/B4lZNXSFF9I/: 2 photo(s) [page data]
+  [w2 10/12] /madisonbeer/p/BynwkGHFzFp/: 1 photo(s) [page data]
+  [w1 10/13] /madisonbeer/p/Byn22JhlKd2/: 2 photo(s) [page data]
+  [w2 11/12] /madisonbeer/p/Bxk-j2AFYgS/: 3 photo(s) [page data]
+  [w1 11/13] /madisonbeer/p/ByQkiW4l6Ee/: 2 photo(s) [page data]
+  [w2 12/12] /madisonbeer/p/BwPwkzWFcty/: 1 photo(s) [page data]
+  [w1 12/13] /madisonbeer/p/Bxk9nJOFvut/: 1 photo(s) [page data]
+  [w1 13/13] /madisonbeer/p/BvPYlsuBIeH/: 7 photo(s) [page data]
+Progress: 275 / 288 posts opened, 940 extra photos indexed so far (~0 min left).
+Processing 35 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...35 / 35
+  [w1 1/7] /madisonbeer/p/Bsd61onBsLQ/: 2 photo(s) [page data]
+  [w2 1/6] /madisonbeer/p/BsBezqFBpYQ/: 2 photo(s) [page data]
+  [w1 2/7] /madisonbeer/p/BqnVUcKBEbO/: 2 photo(s) [page data]
+  [w2 2/6] /madisonbeer/p/Bpscwdeh18B/: 4 photo(s) [page data]
+  [w1 3/7] /madisonbeer/p/Boza7aJB9nv/: 2 photo(s) [page data]
+  [w1 4/7] /madisonbeer/p/Bk8r2Umhr__/: 1 photo(s) [page data]
+  [w2 3/6] /madisonbeer/p/Bn9lR9KHwXy/: 2 photo(s) [page data]
+  [w1 5/7] /madisonbeer/p/BiIHVZ6h4BI/: 3 photo(s) [page data]
+  [w2 4/6] /madisonbeer/p/BiUrXzRh4kW/: 6 photo(s) [page data]
+  [w1 6/7] /madisonbeer/p/BgzE_P5h7Vd/: 4 photo(s) [page data]
+  [w2 5/6] /madisonbeer/p/BhFQrwUhyPz/: 2 photo(s) [page data]
+  [w1 7/7] /madisonbeer/p/BYgi1pqDQXr/: 1 photo(s) [page data]
+  [w2 6/6] /madisonbeer/p/Bd6plrRjONT/: 1 photo(s) [page data]
+Progress: 288 / 288 posts opened, 959 extra photos indexed so far (~0 min left).
+Processing 19 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...19 / 19
+Added 959 slide image(s) to the index.
+Using photo index: 1614 posts.
+
+madisonbeer: 518 photo posts + 137 reels; 288 of the photo posts are carousels (286 looked inside, 959 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    431  party or club
+    102  bedroom
+     69  studio
+     46  stadium
+     35  restaurant or cafe
+     35  living room
+     27  city street
+     25  car
+     22  bathroom
+     22  nature
+     18  pool
+     14  beach
+     13  gym
+     11  hotel room
+      6  snow or mountains
+      3  boat or sea
+    598  (no confident tag)
+
+outfit:
+    141  jeans and top
+     94  activewear
+     83  skirt
+     81  dress
+     81  formal wear
+     45  sportswear kit
+     25  jacket or coat
+     23  bikini
+     23  one-piece swimsuit
+    881  (no confident tag)
+
+shot:
+    280  full-body photo
+    225  group photo
+    224  text or graphic
+    187  mirror selfie
+     98  pet or animal
+     52  selfie
+     25  food
+     21  close-up portrait
+     15  landscape without people
+    350  (no confident tag)
+
+pose:
+    375  standing
+    190  upper body only
+     88  sitting
+     29  bending over
+     23  lying down
+      5  on all fours
+      4  kneeling
+      3  leaning
+    760  (no confident tag)
+
+arms:
+    111  arms up
+Using photo index: 1614 posts.
+Library for madisonbeer: 1477 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/madisonbeer
+
+madisonbeer: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

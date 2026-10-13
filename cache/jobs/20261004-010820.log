@@ -1,0 +1,94 @@
+
+=== Preparing luciaaferrato ===
+Using photo index: 372 posts.
+Looking inside 10 post(s) for more photos...
+  [1/10] /luciaaferrato/p/DVRaGcljFSo/: 10 photo(s) [page data]
+  [2/10] /luciaaferrato/p/DVJSDGGDE7x/: 9 photo(s) [page data]
+  [3/10] /luciaaferrato/p/DU03HkkDMO7/: 4 photo(s) [page data]
+  [4/10] /luciaaferrato/p/DUdoHhQDEoM/: 3 photo(s) [page data]
+  [5/10] /luciaaferrato/p/DULep7AjBM7/: 3 photo(s) [page data]
+  [6/10] /luciaaferrato/p/DT0Ka5SDPLC/: 3 photo(s) [page data]
+  [7/10] /luciaaferrato/p/DTdqe_RjCRF/: 10 photo(s) [page data]
+  [8/10] /luciaaferrato/p/DS5GXK3jIOf/: 14 photo(s) [page data]
+  [9/10] /luciaaferrato/p/DSkTD4RjC2i/: 3 photo(s) [page data]
+  [10/10] /luciaaferrato/p/DSfTVGEjLFx/: 4 photo(s) [page data]
+Progress: 10 / 10 posts opened, 53 extra photos indexed so far (~0 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791072556.680312 1121086 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 53 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791072556.818931 1121245 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791072556.833169 1121247 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...53 / 53
+Added 53 slide image(s) to the index.
+Using photo index: 425 posts.
+
+luciaaferrato: 111 photo posts + 77 reels; 101 of the photo posts are carousels (36 looked inside, 237 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     54  party or club
+     45  city street
+     25  restaurant or cafe
+     17  car
+     14  snow or mountains
+     13  boat or sea
+     11  bedroom
+     11  studio
+      8  stadium
+      8  bathroom
+      7  beach
+      5  hotel room
+      4  pool
+      2  nature
+      2  living room
+      1  gym
+    121  (no confident tag)
+
+outfit:
+     44  jeans and top
+     32  formal wear
+     23  dress
+     22  bikini
+     21  jacket or coat
+     18  activewear
+      9  one-piece swimsuit
+      9  skirt
+      8  sportswear kit
+    162  (no confident tag)
+
+shot:
+    111  full-body photo
+     46  mirror selfie
+     28  text or graphic
+     21  selfie
+     18  group photo
+     15  close-up portrait
+      8  food
+      3  pet or animal
+      2  landscape without people
+     96  (no confident tag)
+
+pose:
+    114  standing
+     65  upper body only
+     34  sitting
+     10  bending over
+      6  lying down
+      2  on all fours
+      2  leaning
+      1  kneeling
+    114  (no confident tag)
+
+arms:
+     24  arms up
+Using photo index: 425 posts.
+Library for luciaaferrato: 348 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/luciaaferrato
+
+luciaaferrato: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

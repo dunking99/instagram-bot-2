@@ -1,0 +1,302 @@
+
+=== Preparing sadieemckennaa ===
+Using photo index: 290 posts.
+Looking inside 197 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /sadieemckennaa/p/DdIUeJ8G95V/: 9 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/Dc2JU_BDqRw/: 5 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/Dayj3Z5AQGn/: 5 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/Dchm-40G3zK/: 6 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/DWFdTbEDoPa/: 7 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/DXKduMUkZQR/: 6 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/DZY1h_5jtFl/: 5 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/DXAlUrNgYOG/: 9 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/DcuEFLgkTQn/: 5 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/DU_1HBFkoP5/: 9 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/DVoya_xEvoo/: 10 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/DZjBwMyDr4G/: 7 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/DU9vHdLkela/: 15 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/DV9bzz2kaWe/: 4 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/DS59PXciMUP/: 9 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/DUR4xvDEUP9/: 10 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/DNZifaKuNSr/: 5 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/DMJOp2zOmS0/: 9 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/DMMB3rVukZO/: 4 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/DRyTmLeEeAt/: 6 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/DR5b6OvErs_/: 15 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/DQe3GtzkYdL/: 12 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/DRD41yRDgYr/: 12 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/DNUEowjRMXf/: 6 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/DNRVtpqxW16/: 8 photo(s) [page data]
+Progress: 25 / 197 posts opened, 173 extra photos indexed so far (~8 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791075014.228452 1171102 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 173 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791075014.502961 1171351 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791075014.545250 1171351 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...173 / 173
+  [w1 1/13] /sadieemckennaa/p/DN3N_SoXObb/: 5 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/DNOaRpLxHxS/: 8 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/DMGmIn5ROoX/: 5 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/DL3v4qhOeGs/: 6 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/DKXle5JRohw/: 3 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/DKS9YuvuoUK/: 6 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/DKQb3Dku9kb/: 6 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/DJiW2zYOqM9/: 6 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/DKNuce0uc7u/: 8 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/DI7jf9uTJQM/: 5 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/DI6pPtmpc8O/: 6 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/DIrhTs9TJh-/: 7 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/DH2Fus9udRf/: 5 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/DHmei-sAws7/: 6 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/DHrnkthuAqg/: 3 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/DHcERAeuu5T/: 5 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/DGPEMl8uqWh/: 7 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/DGLwiucxehC/: 5 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/DGELFW-xqRm/: 5 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/DEVlzvkRhrT/: 4 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/DCvTn3uup80/: 6 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/DCnEaC1uJYv/: 5 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/DCXsX8dOjw1/: 4 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/DB9tURwRaMp/: 4 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/DBMnApDp2r4/: 7 photo(s) [page data]
+Progress: 50 / 197 posts opened, 285 extra photos indexed so far (~8 min left).
+Processing 112 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...112 / 112
+  [w1 1/13] /sadieemckennaa/p/DAujC4Nu7ca/: 4 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/DAhGoDdO_Oq/: 6 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/DAXUsgYOqF3/: 5 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/DAUwajluARJ/: 4 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/DAEIoNWOzC4/: 5 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/C__n_LpOPQH/: 3 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/C_6yohsuyv2/: 6 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/C_q-A-Oud1t/: 4 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/C_nqOciOA2X/: 7 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/C-tBfkYRu_0/: 4 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/C98TIwDOVvb/: 3 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/C-EKYITSd6v/: 5 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/C9gLtR2ORIX/: 6 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/C9LdQWeOK1Q/: 6 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/C8nXQU5OYM5/: 3 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/C9DwJpvOYuy/: 10 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/C6cbDObOW-m/: 3 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/C6kNtL5uFHB/: 4 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/C5j4pzsPOHn/: 5 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/C5wbvieOHNt/: 3 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/C4lfqmNOal_/: 4 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/C5fDv0YLcH5/: 6 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/C3lzxMsReFP/: 3 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/C4Mlg7ZLXu_/: 6 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/C3YrmnduvCk/: 4 photo(s) [page data]
+Progress: 75 / 197 posts opened, 379 extra photos indexed so far (~7 min left).
+Processing 94 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...94 / 94
+  [w1 1/13] /sadieemckennaa/p/C3T6Dthu8JR/: 4 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/C3BwB3PulsQ/: 4 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/C3HWI-2OAUr/: 5 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/C2_GXoKuE1S/: 4 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/C2rexhQuLoF/: 4 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/C1koYpwSisa/: 4 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/C2bP73nRTeK/: 4 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/C024LONrcz3/: 3 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/C1ObxIguM_L/: 9 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/C0DVUqkrwFC/: 6 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/C0IJyX-vaqp/: 3 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/CyUpAefuGmO/: 2 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/CzPK5uhvtmY/: 4 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/CxJYWFHO_jT/: 3 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/Cxg-SEKuInI/: 4 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/CwTrtJwuU2o/: 5 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/Cw_UT7eOO_P/: 4 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/CwQ6Hd7OS0F/: 3 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/CwOLfn1u4It/: 4 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/Cu-gn8oOVx2/: 4 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/CvYWIlOvVH9/: 4 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/CugAS2gRllu/: 4 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/CuaQvZISGRk/: 3 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/CtxVnwfvb81/: 4 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/CtudK8cP0BM/: 4 photo(s) [page data]
+Progress: 100 / 197 posts opened, 456 extra photos indexed so far (~5 min left).
+Processing 77 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...77 / 77
+  [w1 1/13] /sadieemckennaa/p/Ctcgf4nS5Tg/: 3 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/CtP-LDoJs13/: 3 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/CsXdKdoR3gG/: 3 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/CsPkx58v0bY/: 4 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/Cr6ajDKPlJS/: 3 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/Cr4YEWnP5Nb/: 4 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/CrooEw_v22A/: 4 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/CrCknpELfhP/: 3 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/Cp4NKTAOuPf/: 3 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/CpyYPTvvKNp/: 3 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/Cpvv33AP9jy/: 4 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/CpQxGAPvMZB/: 3 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/CotFsozpAW2/: 5 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/CoTYOM1JP-O/: 3 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/CoOWz7kLmBN/: 4 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/CoJHK8NJvbR/: 3 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/Cn6MgItuh3X/: 4 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/CnS4r79PSlf/: 5 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/Cl9attaPoX6/: 3 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/CkjozYJv6O3/: 4 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/CkEb5rcSaNW/: 6 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/CkCmPT8L566/: 3 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/Cj_efY7PrqN/: 4 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/CjrPu8IpAqL/: 4 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/Cjl0tJ5PSI9/: 5 photo(s) [page data]
+Progress: 125 / 197 posts opened, 524 extra photos indexed so far (~4 min left).
+Processing 68 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...68 / 68
+  [w1 1/13] /sadieemckennaa/p/CjRezKMLiY5/: 4 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/CjIylE2uzIa/: 2 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/Ci3Z3ibuLZy/: 4 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/CiHIP9sOJ1N/: 4 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/CitwqoJu7VJ/: 10 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/Ch0F-3LuTfF/: 3 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/Ch20ILJOFHF/: 5 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/ChkrOiovTg3/: 4 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/ChfXr9QphpX/: 5 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/ChnbJJQum_J/: 5 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/CgpU3w6OP5T/: 4 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/Chi8X8qrj7V/: 8 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/Cge7NgGut92/: 5 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/Cg5vbu9uS9p/: 9 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/CfuSN7ruXUa/: 2 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/CfSEm-zOs0f/: 6 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/Cgnp9YJORVd/: 4 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/CfzDnMjOVFD/: 3 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/Cey-mL1PdxE/: 3 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/CfsZ-IjOJSM/: 7 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/CepbIh3uS6J/: 4 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/Ce0BHFAOSN4/: 3 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/CdvsSNIul-v/: 3 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/CexBoaCJTQ5/: 2 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/Cdy8yxHu1V0/: 3 photo(s) [page data]
+Progress: 150 / 197 posts opened, 611 extra photos indexed so far (~2 min left).
+Processing 87 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...87 / 87
+  [w1 1/13] /sadieemckennaa/p/CdtA0YbOrq_/: 6 photo(s) [page data]
+  [w2 1/12] /sadieemckennaa/p/CdrU_WputAV/: 4 photo(s) [page data]
+  [w1 2/13] /sadieemckennaa/p/CdpTHtcOjsp/: 4 photo(s) [page data]
+  [w2 2/12] /sadieemckennaa/p/Cdjhgq6OWYt/: 4 photo(s) [page data]
+  [w1 3/13] /sadieemckennaa/p/Ccbhzv_OmPf/: 5 photo(s) [page data]
+  [w2 3/12] /sadieemckennaa/p/CcbhXdfukQf/: 7 photo(s) [page data]
+  [w1 4/13] /sadieemckennaa/p/CcYzVZaOb8F/: 8 photo(s) [page data]
+  [w2 4/12] /sadieemckennaa/p/CcJcByoOxs4/: 5 photo(s) [page data]
+  [w1 5/13] /sadieemckennaa/p/Cbao6Nyu9jG/: 6 photo(s) [page data]
+  [w2 5/12] /sadieemckennaa/p/CayDpMcOrd7/: 4 photo(s) [page data]
+  [w1 6/13] /sadieemckennaa/p/CaPscgwu8Hi/: 10 photo(s) [page data]
+  [w2 6/12] /sadieemckennaa/p/CZ-fZAQuF9c/: 4 photo(s) [page data]
+  [w2 7/12] /sadieemckennaa/p/CZdflK7ue00/: 2 photo(s) [page data]
+  [w1 7/13] /sadieemckennaa/p/CZ2z0ZcOIEe/: 9 photo(s) [page data]
+  [w2 8/12] /sadieemckennaa/p/CW0KJvPro3_/: 5 photo(s) [page data]
+  [w1 8/13] /sadieemckennaa/p/CXtsFDgJ8As/: 5 photo(s) [page data]
+  [w2 9/12] /sadieemckennaa/p/CVy-q3Mj16k/: 4 photo(s) [page data]
+  [w1 9/13] /sadieemckennaa/p/CWT2k5cJBQj/: 10 photo(s) [page data]
+  [w2 10/12] /sadieemckennaa/p/CVLjCblpPRp/: 5 photo(s) [page data]
+  [w1 10/13] /sadieemckennaa/p/CVYkd5cpWOH/: 2 photo(s) [page data]
+  [w2 11/12] /sadieemckennaa/p/CTXr6aRp13_/: 2 photo(s) [page data]
+  [w1 11/13] /sadieemckennaa/p/CVLVJgXpqZf/: 2 photo(s) [page data]
+  [w2 12/12] /sadieemckennaa/p/CRua-WlBB0k/: 6 photo(s) [page data]
+  [w1 12/13] /sadieemckennaa/p/CRxKfROhMW1/: 3 photo(s) [page data]
+  [w1 13/13] /sadieemckennaa/p/CQH58_3huWn/: 2 photo(s) [page data]
+Progress: 175 / 197 posts opened, 710 extra photos indexed so far (~1 min left).
+Processing 99 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...99 / 99
+  [w1 1/11] /sadieemckennaa/p/CP0u-gRBaJq/: 5 photo(s) [page data]
+  [w2 1/11] /sadieemckennaa/p/CONxgGlhmVe/: 6 photo(s) [page data]
+  [w1 2/11] /sadieemckennaa/p/COENuQ9BJvj/: 4 photo(s) [page data]
+  [w2 2/11] /sadieemckennaa/p/CFnEJOohuuK/: 4 photo(s) [page data]
+  [w1 3/11] /sadieemckennaa/p/CEmoSlKBBGG/: 3 photo(s) [page data]
+  [w1 4/11] /sadieemckennaa/p/CDR3uzTB5xu/: 3 photo(s) [page data]
+  [w2 3/11] /sadieemckennaa/p/CDebwHUBkEh/: 3 photo(s) [page data]
+  [w1 5/11] /sadieemckennaa/p/B_vsdCXhbC2/: 2 photo(s) [page data]
+  [w2 4/11] /sadieemckennaa/p/CAL3tBNB8KV/: 4 photo(s) [page data]
+  [w1 6/11] /sadieemckennaa/p/B4v2BCKB7Iq/: 2 photo(s) [page data]
+  [w2 5/11] /sadieemckennaa/p/B_k30SiBxAq/: 3 photo(s) [page data]
+  [w1 7/11] /sadieemckennaa/p/B0ZU4pDB0TH/: 2 photo(s) [page data]
+  [w2 6/11] /sadieemckennaa/p/B1XXqPKhdug/: 3 photo(s) [page data]
+  [w1 8/11] /sadieemckennaa/p/BzOx9sChnaU/: 2 photo(s) [page data]
+  [w2 7/11] /sadieemckennaa/p/BzbtixcBG46/: 2 photo(s) [page data]
+  [w1 9/11] /sadieemckennaa/p/BukZKzEhe4I/: 2 photo(s) [page data]
+  [w2 8/11] /sadieemckennaa/p/Bx0VPW_h7LY/: 3 photo(s) [page data]
+  [w1 10/11] /sadieemckennaa/p/BqLWAMKh7ag/: 2 photo(s) [page data]
+  [w2 9/11] /sadieemckennaa/p/Bsjh_UZBBka/: 2 photo(s) [page data]
+  [w1 11/11] /sadieemckennaa/p/BoEhQSMDuM3/: 2 photo(s) [page data]
+  [w2 10/11] /sadieemckennaa/p/BpuN65XBAIQ/: 1 photo(s) [page data]
+  [w2 11/11] /sadieemckennaa/p/BaZqvRQBLOQ/: 2 photo(s) [page data]
+Progress: 197 / 197 posts opened, 750 extra photos indexed so far (~0 min left).
+Processing 40 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...40 / 40
+Added 750 slide image(s) to the index.
+Using photo index: 1040 posts.
+
+sadieemckennaa: 284 photo posts + 6 reels; 197 of the photo posts are carousels (197 looked inside, 750 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    119  beach
+     90  bedroom
+     90  car
+     78  party or club
+     52  studio
+     36  boat or sea
+     27  bathroom
+     25  pool
+     24  city street
+     21  nature
+     13  restaurant or cafe
+     12  hotel room
+     11  stadium
+     10  living room
+      7  snow or mountains
+      5  gym
+    414  (no confident tag)
+
+outfit:
+    245  jeans and top
+    166  bikini
+    106  activewear
+     76  one-piece swimsuit
+     19  dress
+      9  jacket or coat
+      9  sportswear kit
+      8  skirt
+      6  formal wear
+    390  (no confident tag)
+
+shot:
+    420  full-body photo
+    137  mirror selfie
+     70  selfie
+     26  landscape without people
+     23  group photo
+     20  text or graphic
+     15  close-up portrait
+     14  pet or animal
+      3  food
+    306  (no confident tag)
+
+pose:
+    476  standing
+    140  upper body only
+     66  sitting
+     26  bending over
+     20  kneeling
+      9  lying down
+      6  leaning
+      3  on all fours
+    288  (no confident tag)
+
+arms:
+    126  arms up
+Using photo index: 1040 posts.
+Library for sadieemckennaa: 1034 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/sadieemckennaa
+
+sadieemckennaa: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

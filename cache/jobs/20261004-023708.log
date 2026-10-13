@@ -1,0 +1,238 @@
+
+=== Preparing lilyrowland1 ===
+Using photo index: 988 posts.
+Looking inside 658 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /lilyrowland1/p/DeAgDcSkRAj/: 5 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/Dd9sJB7kdfX/: 5 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/Dd4hpknkgG3/: 7 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/Dd2A1hNkS4y/: 5 photo(s) [page data]
+  [w1 3/13] /lilyrowland1/p/DdzSK5fkj4I/: 5 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/Ddw6J9Hkly5/: 4 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/Ddmn2LcEcJx/: 6 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/DdpaaatEdWc/: 6 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DdZ7UAPCtls/: 4 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/Ddhil6BkXzy/: 7 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DdZRiZhCrYA/: 6 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DdWpX2ikVVD/: 6 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DdR_oNPEdCE/: 10 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DdPIyGSEc-H/: 9 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DdC25NICt9K/: 5 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/DdAH4tFCnpv/: 8 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/Dc1ayvWkWu1/: 10 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DcwtA5DijqZ/: 10 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/DcruF2ICs4Z/: 6 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/Dco57ZnkWBu/: 8 photo(s) [page data]
+  [w1 11/13] /lilyrowland1/p/DcmI4EzkVJ5/: 10 photo(s) [page data]
+  [w1 12/13] /tommyjeans/p/DclOf2wAt5H/: 2 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/Dcl9ueQEbbS/: 12 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DcRnREgEYqK/: 9 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DcUQQ9JET9u/: 4 photo(s) [page data]
+Progress: 25 / 658 posts opened, 144 extra photos indexed so far (~43 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791077945.179122 1235438 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 144 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791077945.397359 1235683 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791077945.420618 1235683 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...144 / 144
+  [w1 1/13] /lilyrowland1/p/DcMa0MfEUOq/: 6 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/DcKBc11EcLM/: 4 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/DcES3d5Cg_3/: 5 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DcB3rkYCjMt/: 7 photo(s) [page data]
+  [w1 3/13] /lilyrowland1/p/Db_ioNzEYz5/: 6 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/Db9A81BEYu0/: 8 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/Dbyvqn6EdCh/: 7 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/DbtHHSeCuHT/: 3 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/DbwR761EdVk/: 11 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DbOHrYkChxJ/: 7 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DbQ_ckdCuBu/: 14 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DbLz94Rilka/: 13 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DbMFj4REWyL/: 4 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DbEOtVtEXw7/: 4 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/DatV1SKEfUG/: 5 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DbJluC7EUwT/: 14 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/Dant_E6Ct4U/: 4 photo(s) [page data]
+  [w1 11/13] /glamouruk/p/DadLA1CDMEn/: 8 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/Da_vntBEa-g/: 10 photo(s) [page data]
+  [w1 12/13] /lilyrowland1/p/DaTkHWrkahT/: 5 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DaqEWTDCnE5/: 9 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DaNhSJMij9D/: 6 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/DagS79GEQsB/: 6 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/DadJWXnittb/: 6 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DaOdKrTCuFu/: 3 photo(s) [page data]
+Progress: 50 / 658 posts opened, 294 extra photos indexed so far (~50 min left).
+Processing 150 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...150 / 150
+  [w2 1/12] /lilyrowland1/p/DZ3OwRckRsW/: 4 photo(s) [page data]
+  [w1 1/13] /lilyrowland1/p/DaJIAmwEZhj/: 11 photo(s) [page data]
+  [w1 2/13] /nudeproject/p/DZ2Q0cmDPMq/: 4 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DZyKI7JCrYr/: 6 photo(s) [page data]
+  [w1 3/13] /lilyrowland1/p/DZvC4qTiqcD/: 6 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/DZlKa78EULv/: 6 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/DZijuw2EZJL/: 7 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/DZdNNflkc6-/: 14 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/DZajVEGio5N/: 10 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DZYUd5gEeuq/: 5 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DZVtvsIkTRn/: 5 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DZSzLrjio6q/: 10 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DZM7bpnCiu0/: 5 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DY0QxT8kREP/: 6 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DYxdLrSERMX/: 5 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/DYxArX0CjVc/: 7 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/DYsma4_il8b/: 7 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DYftGndiPMT/: 10 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/DYczmNUilvL/: 9 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/DYaXCvGEZQ6/: 8 photo(s) [page data]
+  [w1 11/13] /lilyrowland1/p/DYX5LxKERaJ/: 8 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/DYSy_waCgdI/: 5 photo(s) [page data]
+  [w1 12/13] /lilyrowland1/p/DYNcIwfkUiu/: 10 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DYK4TUHET1V/: 7 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DYDLL8QkZYs/: 8 photo(s) [page data]
+Progress: 75 / 658 posts opened, 452 extra photos indexed so far (~50 min left).
+Processing 158 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...158 / 158
+  [w1 1/13] /lilyrowland1/p/DX7Twe4iju2/: 5 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/DXxTtKXCnX_/: 4 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/DXpduHckWbr/: 10 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DXhhzOHihOH/: 5 photo(s) [page data]
+  [w1 3/13] /lilyrowland1/p/DXZXk6cCiVf/: 7 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/DXSUP2RkdWm/: 4 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/DXKUlfGmn18/: 9 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/DXHvO-ZFAoP/: 9 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/DXC--ebiuAE/: 12 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DXCsY8uCsSz/: 2 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DW7OVXhiiBn/: 9 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DW2ND0vCovR/: 14 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DWj9UqMkbo1/: 5 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DWhqawHCPKH/: 7 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DWevryKEeJO/: 3 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/DWcDbtqCn3h/: 5 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/DWZYAITijR6/: 5 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/DWHw0Vwii0p/: 4 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DWM9u0-CrUd/: 8 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/DV1t3jNCuyN/: 4 photo(s) [page data]
+  [w1 11/13] /lilyrowland1/p/DVzNVLtinGu/: 3 photo(s) [page data]
+  [w1 12/13] /lilyrowland1/p/DVeuDiwirEQ/: 7 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/DVhSDl6CtLf/: 8 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DVW46TqipCZ/: 7 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DVZfhfSisKS/: 3 photo(s) [page data]
+Progress: 100 / 658 posts opened, 586 extra photos indexed so far (~44 min left).
+Processing 134 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...134 / 134
+  [w1 1/13] /lilyrowland1/p/DVQ2p-YipUx/: 5 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/DVPPaZJihKG/: 4 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/DVModttijDV/: 10 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DVB_lqAiqF4/: 4 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/DUxtSOkiv_2/: 4 photo(s) [page data]
+  [w1 3/13] /meller/p/DU3oCEvDKfX/: 7 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/DUguXWnCnvv/: 4 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/DUoXUUFCoY9/: 14 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DUbpCDeCDRb/: 3 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DUWdYhCkcmM/: 4 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/DUeBCeoipWq/: 4 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DUZRWGcipu3/: 5 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DURJS9GEsjZ/: 5 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DUTtTahkgTV/: 8 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/DUG7NC2CsrL/: 11 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DUMGyWWCudO/: 4 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DT8zLtHiuGr/: 4 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/DUBatavCpeQ/: 4 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/DTyFxrjEbpx/: 3 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/DT0-wePCEG_/: 4 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/DTgS4vmCvgw/: 3 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DTYpcGWkZjJ/: 2 photo(s) [page data]
+  [w1 11/13] /lilyrowland1/p/DTse7ocirxO/: 6 photo(s) [page data]
+  [w1 12/13] /lilyrowland1/p/DTbMx4yit4h/: 3 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DTTX76tipx5/: 3 photo(s) [page data]
+Progress: 125 / 658 posts opened, 689 extra photos indexed so far (~41 min left).
+Processing 103 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...103 / 103
+  [w1 1/13] /lilyrowland1/p/DTQh_OdCid3/: 6 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/DTJUHJDCnCS/: 13 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/DTGuSwBCqHd/: 18 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DTA8caWirfu/: 20 photo(s) [page data]
+  [w1 3/13] /lilyrowland1/p/DTAoso-ClwU/: 19 photo(s) [page data]
+  [w2 3/12] /lilyrowland1/p/DSvdHxVCuRv/: 10 photo(s) [page data]
+  [w1 4/13] /lilyrowland1/p/DSk9SiYitq8/: 3 photo(s) [page data]
+  [w2 4/12] /lilyrowland1/p/DSYLD0iinxi/: 6 photo(s) [page data]
+  [w1 5/13] /lilyrowland1/p/DSQlBvLCgqc/: 3 photo(s) [page data]
+  [w2 5/12] /lilyrowland1/p/DSNr_Q1imgM/: 10 photo(s) [page data]
+  [w1 6/13] /lilyrowland1/p/DR-dhROChmU/: 11 photo(s) [page data]
+  [w2 6/12] /lilyrowland1/p/DR5BUYUCprQ/: 4 photo(s) [page data]
+  [w1 7/13] /lilyrowland1/p/DR2n14tCoRy/: 16 photo(s) [page data]
+  [w2 7/12] /lilyrowland1/p/DR2WrkeilsF/: 10 photo(s) [page data]
+  [w2 8/12] /lilyrowland1/p/DRk8nFuCv2U/: 4 photo(s) [page data]
+  [w1 8/13] /lilyrowland1/p/DRxJoANilSl/: 11 photo(s) [page data]
+  [w1 9/13] /lilyrowland1/p/DRiQXmCCmaj/: 3 photo(s) [page data]
+  [w2 9/12] /lilyrowland1/p/DRacgaECnMU/: 11 photo(s) [page data]
+  [w1 10/13] /lilyrowland1/p/DRXuajhCv1w/: 3 photo(s) [page data]
+  [w2 10/12] /lilyrowland1/p/DRS56azivgT/: 5 photo(s) [page data]
+  [w1 11/13] /lilyrowland1/p/DRAp_rMCiIa/: 8 photo(s) [page data]
+  [w1 12/13] /lilyrowland1/p/DQsFbyyiusN/: 13 photo(s) [page data]
+  [w2 11/12] /lilyrowland1/p/DQuwHLkii4e/: 16 photo(s) [page data]
+  [w1 13/13] /lilyrowland1/p/DQhw96HCj-y/: 13 photo(s) [page data]
+  [w2 12/12] /lilyrowland1/p/DQkQJgACjNg/: 4 photo(s) [page data]
+Progress: 150 / 658 posts opened, 904 extra photos indexed so far (~40 min left).
+Processing 215 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  [w1 1/13] /lilyrowland1/p/DQZvRRtinAD/: 4 photo(s) [page data]
+  [w2 1/12] /lilyrowland1/p/DQVErNJCjsi/: 9 photo(s) [page data]
+  [w1 2/13] /lilyrowland1/p/DQSKOqtCgBX/: 8 photo(s) [page data]
+  [w2 2/12] /lilyrowland1/p/DQPz4d1Cq_Q/: 4 photo(s) [page data]
+node:events:487
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write EPIPE
+    at afterWriteDispatched (node:internal/stream_base_commons:159:15)
+    at writeGeneric (node:internal/stream_base_commons:150:3)
+    at Socket._writeGeneric (node:net:1025:11)
+    at Socket._write (node:net:1037:8)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at Writable.write (node:internal/streams/writable:508:10)
+    at PipeTransport.send (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:33552:25)
+    at dispatcherConnection.onmessage (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:64282:59)
+    at DispatcherConnection.sendEvent (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:24104:14)
+Emitted 'error' event on Socket instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -32,
+  code: 'EPIPE',
+  syscall: 'write'
+}
+
+Node.js v24.15.0
+node:events:487
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write EPIPE
+    at afterWriteDispatched (node:internal/stream_base_commons:159:15)
+    at writeGeneric (node:internal/stream_base_commons:150:3)
+    at Socket._writeGeneric (node:net:1025:11)
+    at Socket._write (node:net:1037:8)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at Writable.write (node:internal/streams/writable:508:10)
+    at PipeTransport.send (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:33552:25)
+    at dispatcherConnection.onmessage (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:64282:59)
+    at DispatcherConnection.sendEvent (/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/playwright/driver/package/lib/coreBundle.js:24104:14)
+Emitted 'error' event on Socket instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -32,
+  code: 'EPIPE',
+  syscall: 'write'
+}
+
+Node.js v24.15.0
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

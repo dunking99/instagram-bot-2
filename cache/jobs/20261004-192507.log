@@ -1,0 +1,331 @@
+
+=== Preparing livvydunne ===
+Using photo index: 590 posts.
+Looking inside 223 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /livvydunne/p/Dd9dDGOlAkc/: 5 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/Dc6t_5oj5Hg/: 6 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/Ddr0S8XD_vf/: 10 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/Dbt0ZHrD17h/: 10 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/DcloFMekUIx/: 10 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/DaTm0Ddj9Io/: 9 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/Da1Hfr-D7kD/: 8 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/DYvWRSdj8o8/: 7 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/DYUvYYIDYQg/: 7 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/DWM3IdTD_vz/: 9 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/DXurrQWj0Et/: 8 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/DYQO7HCDwp7/: 5 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/DWzjoYzDyBh/: 7 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/DV1rmRPjwyz/: 4 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/DSGl947D4bO/: 6 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/DU8pl94kdyz/: 4 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/DT9BdZGD_Uy/: 7 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/DTq827OD3sx/: 11 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/DS3XgyvD0j8/: 13 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/DRXlxWRktfb/: 2 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/DUmQ29xDySH/: 12 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/DP18uwbjVVD/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/DRA_E_ojxU8/: 9 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/DPRnVaTDxis/: 5 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/DPFQGGNj_G_/: 12 photo(s) [page data]
+Progress: 25 / 223 posts opened, 163 extra photos indexed so far (~7 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791138371.005046 1930735 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 163 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791138371.167365 1930913 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791138371.181641 1930913 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...163 / 163
+  [w1 1/13] /livvydunne/p/DOmhdVCDzjn/: 9 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/DOWz1lXD6nY/: 8 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/DNf9jOkN2hx/: 2 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/DNbtKqlPaGr/: 11 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/DMRF6Z5v-JA/: 8 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/DLu7Ig_Rmar/: 3 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/DML8hAeP8Nz/: 9 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/DLOAiExvo2a/: 3 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/DLBbGrkP_P2/: 11 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/DKYIPcbPdPz/: 3 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/DKsksVHvrmC/: 13 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/DJu8_snP-6v/: 10 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/DKPv35jvN8B/: 7 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/DI-B-lfPU_O/: 7 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/DJPyEz6vXB5/: 10 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/DIMCwvkxbHB/: 2 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/DDxreskRSej/: 7 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/DHjwkOVvZPL/: 8 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/DH9ZbBjvEo6/: 6 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/DGt-OooPnCc/: 9 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/DG1Rf6-PNzN/: 3 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/DGg_wUHvAms/: 4 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/DF6ZiHzvcqn/: 10 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/DEQEjQ6vQ1n/: 4 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/DFJdZbzv7no/: 8 photo(s) [page data]
+Progress: 50 / 223 posts opened, 313 extra photos indexed so far (~8 min left).
+Processing 150 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...150 / 150
+  [w1 1/13] /livvydunne/p/DDYIC4wPaFQ/: 4 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/DDDvWoSPg9b/: 8 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/DC9wD8PvtIH/: 9 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/DCk2aIxPeFm/: 6 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/DCQIk7KP-eb/: 7 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/DCAr-gLPWHI/: 2 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/DBzmoU9POoA/: 3 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/DBXMVqWPnho/: 6 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/DA_d84qPn6S/: 4 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/DA4d4G-vCND/: 7 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/DAlrWmKPb6p/: 4 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/DAg5cEgvKuR/: 5 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/C_q0PKSPuK4/: 7 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/C-5eAbJRnr6/: 6 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/C-Y09FUPKQl/: 4 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/C-GPOadNWhm/: 6 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/C9iqzDKP-d_/: 8 photo(s) [page data]
+  [w2 9/12] /espn/p/C9TQ4h_uIkM/: 4 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/C9DLsk-vXWH/: 9 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/C8k35I9PkR-/: 3 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/C7fRnOFP6Wr/: 4 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/C8A0VdEvYgl/: 7 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/C69a0I3vyxQ/: 2 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/C7NSV8Mv8E9/: 10 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/C64rigTvku9/: 3 photo(s) [page data]
+Progress: 75 / 223 posts opened, 426 extra photos indexed so far (~8 min left).
+Processing 113 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...113 / 113
+  [w1 1/13] /livvydunne/p/C6bvjxSL3PQ/: 2 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/C5hY5cKLgAd/: 3 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/C6FHKlZvvgQ/: 8 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/C4ovjxULyNq/: 5 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/C3yglrzvUTe/: 2 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/C46xrcxrR70/: 8 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/C28pzqMriZw/: 2 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/C4Wq3W1rN1I/: 3 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/C18LVHALsP2/: 4 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/C3YKCUzv4GQ/: 3 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/C2qoQEarMC1/: 3 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/C1YTwYWrv7o/: 3 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/C1lEwFdLMXb/: 2 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/C0xl6lnLKrF/: 4 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/C1QddJ7LKI4/: 3 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/C0abg4brXhn/: 2 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/CzSG8ieLQl_/: 3 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/C0h_-YdLsW_/: 2 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/Cz2cDS2AKj6/: 2 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/Cyw0NzErZWM/: 10 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/CzHziwgLq4T/: 3 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/CyPUCCCL4zY/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/CycIJ79L6ho/: 4 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/CxtyN0BLDOL/: 1 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/Cx4Ey6mLwlK/: 5 photo(s) [page data]
+Progress: 100 / 223 posts opened, 490 extra photos indexed so far (~7 min left).
+Processing 64 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...64 / 64
+  [w1 1/13] /livvydunne/p/CxUDsyvrDoH/: 4 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/CwWQ6_NLTkv/: 5 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/CxB9t06LDEc/: 7 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/CvYgKroLXT9/: 3 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/CwL5bXmLSJx/: 10 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/Cu4kaeornwR/: 2 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/CvIqo1jP-zQ/: 3 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/CuSyEhmvjrL/: 3 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/CuqFVBXPi7X/: 3 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/CtZpNQav9Ro/: 3 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/Ct2dXOWvA1y/: 3 photo(s) [page data]
+  [w1 7/13] /si_swimsuit/p/CrlKnbiO_6G/: 3 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/CsKa1FUrmbR/: 3 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/Cq_2QRQrN1t/: 2 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/Creoh1arpFI/: 2 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/CpJaXYer3w9/: 4 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/CpbfVgYrhE_/: 4 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/CoQ0eq6LqMV/: 3 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/CoqoEULrQGH/: 3 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/CnLbUxhLOM1/: 2 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/CoBaxeZrSYL/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/Cm5XbtYLvyQ/: 2 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/CmkrcJmLn3E/: 3 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/CmLBcMaLNVK/: 2 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/ClpcVzRLcFu/: 2 photo(s) [page data]
+Progress: 125 / 223 posts opened, 548 extra photos indexed so far (~5 min left).
+Processing 58 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...58 / 58
+  [w1 1/13] /livvydunne/p/ClKRBH5PJii/: 5 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/Ckrd3fXrF6S/: 2 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/CkW-aBzr_ry/: 3 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/Cj6eqCtrfqe/: 2 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/CjZBUvQLcFt/: 4 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/CjMEriXL39T/: 4 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/Ci1CAj_LpwM/: 2 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/ChyABl4rYq5/: 3 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/ChV6jxELouP/: 4 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/ChI83chLKD6/: 2 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/Cgfdjf_Pzve/: 2 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/CgIZ4O1v3PP/: 2 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/Cfr99swv2Q0/: 3 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/Ce4sULZrD51/: 2 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/CfC5BHQrzWf/: 4 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/CeZux0TvUR4/: 2 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/CeuDSjnvb2h/: 4 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/Cd4ErEJv-VL/: 4 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/CeKKR6TPx_J/: 5 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/CdW5RmKJSyi/: 2 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/CdmTYgyLsPO/: 2 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/CcogZtUL9Bq/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/Cc6uG6DLFvC/: 4 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/Cbgf3LUrOEG/: 3 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/Cb6QDqhLA-K/: 10 photo(s) [page data]
+Progress: 150 / 223 posts opened, 605 extra photos indexed so far (~4 min left).
+Processing 57 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...57 / 57
+  [w1 1/13] /livvydunne/p/CbWU--5r-5m/: 2 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/CaGYmOBL8B6/: 2 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/CbBmTjEridG/: 2 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/CZqP2wnLg61/: 3 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/CZ5f31-rjxr/: 2 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/CYz2mskrKmP/: 3 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/CZVWRGKrlu9/: 3 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/CYfZWfzLyPu/: 2 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/CYNVI4ZL83M/: 2 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/CXkDLX-rnVn/: 2 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/CXXEYk2vlHC/: 2 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/CXFVb3SLIWc/: 2 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/CWZh0U7rI1G/: 3 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/CVt0C6fL1Rz/: 2 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/CWCWFk2LIK5/: 2 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/CT0dubRLTb-/: 2 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/CUgdC_mL_cF/: 4 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/CRPugZjLMKP/: 3 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/CSvHsXhrlMl/: 3 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/CO3wHixrLhr/: 2 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/CQyyG1vLtPP/: 1 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/CMsupcWLzI0/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/CNJb1jBr0Ka/: 3 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/CLDaqcgr9L7/: 2 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/CLiJ6s2LzPz/: 3 photo(s) [page data]
+Progress: 175 / 223 posts opened, 639 extra photos indexed so far (~2 min left).
+Processing 34 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...34 / 34
+  [w1 1/13] /livvydunne/p/CKKkKAcrPiS/: 3 photo(s) [page data]
+  [w2 1/12] /livvydunne/p/CGtZs52gM8L/: 3 photo(s) [page data]
+  [w1 2/13] /livvydunne/p/CGgL8vRAio-/: 2 photo(s) [page data]
+  [w2 2/12] /livvydunne/p/CF_AzC7AfMI/: 3 photo(s) [page data]
+  [w1 3/13] /livvydunne/p/CE2_Pf6gKIR/: 3 photo(s) [page data]
+  [w1 4/13] /livvydunne/p/CCXQLFDAHEz/: 2 photo(s) [page data]
+  [w2 3/12] /livvydunne/p/CDkg_jOgm6P/: 2 photo(s) [page data]
+  [w1 5/13] /livvydunne/p/B_lpJZUAia7/: 2 photo(s) [page data]
+  [w2 4/12] /livvydunne/p/CCCofgyg8KM/: 3 photo(s) [page data]
+  [w1 6/13] /livvydunne/p/B-8K5oaAhUz/: 1 photo(s) [page data]
+  [w2 5/12] /livvydunne/p/B_OcHzWAOB0/: 3 photo(s) [page data]
+  [w1 7/13] /livvydunne/p/B-Lb2zpAG59/: 2 photo(s) [page data]
+  [w2 6/12] /livvydunne/p/B-x4Pv8guZx/: 2 photo(s) [page data]
+  [w1 8/13] /livvydunne/p/B9r7rO-gpGq/: 2 photo(s) [page data]
+  [w2 7/12] /livvydunne/p/B9z7BPOg9PK/: 2 photo(s) [page data]
+  [w1 9/13] /livvydunne/p/B87WJP1A-tx/: 1 photo(s) [page data]
+  [w2 8/12] /livvydunne/p/B9cD1nQgQRF/: 3 photo(s) [page data]
+  [w1 10/13] /livvydunne/p/B63VE8Ugc_y/: 6 photo(s) [page data]
+  [w2 9/12] /livvydunne/p/B8eq_Whl-pq/: 3 photo(s) [page data]
+  [w1 11/13] /livvydunne/p/B40VMTxgRBr/: 2 photo(s) [page data]
+  [w2 10/12] /livvydunne/p/B51NQA4gARi/: 3 photo(s) [page data]
+  [w1 12/13] /livvydunne/p/B4JBtf8AhQl/: 2 photo(s) [page data]
+  [w1 13/13] /livvydunne/p/B0LrjPlgcre/: 2 photo(s) [page data]
+  [w2 11/12] /livvydunne/p/B4TXtn0A5Pk/: 2 photo(s) [page data]
+  [w2 12/12] /livvydunne/p/B0XIRl5A6r8/: 2 photo(s) [page data]
+Progress: 200 / 223 posts opened, 675 extra photos indexed so far (~1 min left).
+Processing 36 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...36 / 36
+  [w1 1/12] /livvydunne/p/BzjBBRJgHl_/: 2 photo(s) [page data]
+  [w2 1/11] /livvydunne/p/BzEeyobgEvw/: 2 photo(s) [page data]
+  [w1 2/12] /livvydunne/p/ByobDFXAAbv/: 2 photo(s) [page data]
+  [w2 2/11] /livvydunne/p/ByJhqb9goXb/: 2 photo(s) [page data]
+  [w1 3/12] /livvydunne/p/ByBImOVgcuM/: 2 photo(s) [page data]
+  [w2 3/11] /livvydunne/p/Bv9agYaATh6/: 2 photo(s) [page data]
+  [w1 4/12] /livvydunne/p/Bvk3xoeg5ik/: 2 photo(s) [page data]
+  [w2 4/11] /livvydunne/p/Btg64kTAMKS/: 2 photo(s) [page data]
+  [w1 5/12] /livvydunne/p/Bs_4xamhHER/: 2 photo(s) [page data]
+  [w2 5/11] /livvydunne/p/Bry336rBYsQ/: 2 photo(s) [page data]
+  [w1 6/12] /livvydunne/p/BmuMtq7hgiE/: 2 photo(s) [page data]
+  [w2 6/11] /livvydunne/p/Bl0YGyOhtrd/: 2 photo(s) [page data]
+  [w1 7/12] /livvydunne/p/BkjNacrnQC8/: 2 photo(s) [page data]
+  [w1 8/12] /livvydunne/p/Bhe9BjhB3dS/: 2 photo(s) [page data]
+  [w2 7/11] /livvydunne/p/Bhm7db8h8DQ/: 2 photo(s) [page data]
+  [w1 9/12] /livvydunne/p/BhSvQzWhEdp/: 2 photo(s) [page data]
+  [w2 8/11] /livvydunne/p/BhcQ0_eBBno/: 2 photo(s) [page data]
+  [w1 10/12] /livvydunne/p/BgH2nCFh9ji/: 3 photo(s) [page data]
+  [w2 9/11] /livvydunne/p/BgppMKHBRXV/: 3 photo(s) [page data]
+  [w1 11/12] /livvydunne/p/BbU0QxZhydy/: 2 photo(s) [page data]
+  [w2 10/11] /livvydunne/p/BfpKXTEheLy/: 2 photo(s) [page data]
+  [w1 12/12] /livvydunne/p/BXWURfXh9av/: 3 photo(s) [page data]
+  [w2 11/11] /livvydunne/p/BZHgWsmh-Mu/: 5 photo(s) [page data]
+Progress: 223 / 223 posts opened, 704 extra photos indexed so far (~0 min left).
+Processing 29 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...29 / 29
+Added 704 slide image(s) to the index.
+Using photo index: 1294 posts.
+
+livvydunne: 457 photo posts + 133 reels; 223 of the photo posts are carousels (223 looked inside, 704 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    233  stadium
+    185  party or club
+     92  beach
+     71  gym
+     51  studio
+     42  car
+     35  bedroom
+     34  boat or sea
+     18  pool
+     17  city street
+     16  living room
+     14  nature
+     13  restaurant or cafe
+      8  snow or mountains
+      3  hotel room
+      1  bathroom
+    328  (no confident tag)
+
+outfit:
+    320  activewear
+    171  jeans and top
+    128  bikini
+     55  one-piece swimsuit
+     45  formal wear
+     31  dress
+     30  sportswear kit
+     18  skirt
+      5  jacket or coat
+    358  (no confident tag)
+
+shot:
+    426  full-body photo
+    137  group photo
+     74  mirror selfie
+     51  text or graphic
+     44  selfie
+     40  pet or animal
+     14  close-up portrait
+      8  food
+      5  landscape without people
+    362  (no confident tag)
+
+pose:
+    590  standing
+    147  upper body only
+    133  sitting
+     31  bending over
+     21  lying down
+     11  leaning
+      7  kneeling
+      1  on all fours
+    220  (no confident tag)
+
+arms:
+    144  arms up
+Using photo index: 1294 posts.
+Library for livvydunne: 1161 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/livvydunne
+
+livvydunne: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

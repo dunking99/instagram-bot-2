@@ -1,0 +1,285 @@
+
+=== Preparing lexibrookerivera ===
+Using photo index: 326 posts.
+Looking inside 180 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /lexibrookerivera/p/Dd9k-xJDyWK/: 5 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/DdUYMCtj6eP/: 5 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/DdCW1uaj0AA/: 15 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/DcO2YHImGU7/: 8 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/DbY7YeLAac8/: 5 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/Da54P_SmIyz/: 9 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/DYfXBXdGsgF/: 5 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/DYU-2Z-GPkv/: 6 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/DX9ycx0icmq/: 9 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/DWj4f4gAYo7/: 4 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/DWRxY3BD7sM/: 16 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/DVbxS-0Eudv/: 7 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/DUqkO0TAMr6/: 17 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/DU6aebZEka8/: 19 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/DUCag0wEejN/: 6 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/DUJUf3ggXE7/: 5 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/DTtDaoFkrNY/: 5 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/DT3XXgWElh_/: 7 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/DTQxDPIEnU4/: 7 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/DTLjxokEjlW/: 11 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/DS5cN4jAfw_/: 12 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/DTGX18nEkKp/: 18 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/DR0_3czEdVr/: 5 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/DRuu3vSkQtK/: 8 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/DQ2ExjXkczr/: 8 photo(s) [page data]
+Progress: 25 / 180 posts opened, 197 extra photos indexed so far (~9 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791076802.867591 1206458 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 197 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791076803.200212 1206656 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791076803.234491 1206653 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  [w1 1/13] /lexibrookerivera/p/DQLTYVJkQGp/: 7 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/DPxgtVykf7z/: 6 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/DPQGcL3kSEI/: 5 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/DOrP7voEp-l/: 7 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/DNGYefVx7fD/: 8 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/DOJm0ukAC5Z/: 14 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/DMQaTvfAPDd/: 5 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/DL20ivavnni/: 5 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/DK5Hi5hy5ng/: 6 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/DLJTgO4ofBY/: 10 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/DISobn_RpAg/: 9 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/DJKTXG0S7Bj/: 5 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/DHY3H4Fvz3Z/: 7 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/DIFthdlxeHp/: 11 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/DGR3uFIJ9us/: 5 photo(s) [page data]
+  ...197 / 197
+  [w1 8/13] /lexibrookerivera/p/DG1LsvfSwT7/: 6 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/DF1l7B7R_p4/: 10 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/DERaU7YRYcT/: 20 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/DC4o4qxyn-a/: 6 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/DDLmUptpHeZ/: 9 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/DAWZbGDymmr/: 7 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/DCNF0cBzf04/: 8 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/C90ItSSIIR_/: 5 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/C-LQAALPGgV/: 10 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/C9ZA2fjRetL/: 3 photo(s) [page data]
+Progress: 50 / 180 posts opened, 366 extra photos indexed so far (~9 min left).
+Processing 169 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  [w1 1/13] /lexibrookerivera/p/C78Adx3pQlI/: 6 photo(s) [page data]
+  ...169 / 169
+  [w2 1/12] /lexibrookerivera/p/C7FFTIgveH0/: 10 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/C6PA9E-v5kv/: 4 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/C54zjIpLJGc/: 7 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/C5liOLUpTUf/: 10 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/C4zaNnpOAip/: 4 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/C3b0aAduuxe/: 8 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/C2GGJ6wyCbU/: 7 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/C1H_OWpPFFt/: 8 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/C0YN0Pdgu2U/: 9 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/CzzC_qKvYzg/: 8 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/CyEMch3JMJA/: 8 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/CxBR2JQJtrh/: 3 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/CwLVkGDPpgh/: 7 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/CvVPHHyJnZx/: 8 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/CtvMBaqr3D6/: 7 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/CtN0wQqOLSp/: 2 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/Cr945-jLJYk/: 3 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/Cs2nlv6gaxh/: 10 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/Cqj2YlvudQ5/: 9 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/CrU32RhghgP/: 9 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/CpEp7TaOfi7/: 7 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/CprRNEYOpzu/: 6 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/Cm5kZFOOEjX/: 7 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/Cn_WEx1OX3A/: 6 photo(s) [page data]
+Progress: 75 / 180 posts opened, 514 extra photos indexed so far (~7 min left).
+Processing 148 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...148 / 148
+  [w1 1/13] /lexibrookerivera/p/CmhS9O6PaYZ/: 5 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/Cl9NwbIPeU5/: 5 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/ClP8U6wLBqH/: 5 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/Ck3oLF2p627/: 6 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/CkBcDu6Ji_L/: 8 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/CjOAR9MpAR_/: 2 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/CiF7lzzPKui/: 5 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/Ch0cHVQJbTh/: 4 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/ChQlooPo2co/: 6 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/ChhSXEqueTO/: 8 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/Cfj8LmKvTxV/: 2 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/CgZx8vdJ4nF/: 5 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/CegySIrJ2_9/: 7 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/CesZah9u-D0/: 7 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/Cc_cplqvV11/: 2 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/CdSZRKZO6FZ/: 3 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/CbVbka_pWJf/: 4 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/CcKIn_MuXb3/: 2 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/CZ6QpLQL7Zp/: 2 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/CawO5VerD0A/: 2 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/CYJ3lstlqvT/: 3 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/CZEGyLuLYjm/: 3 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/CWP3g8Lr3GX/: 2 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/CXX9cZkLl1I/: 2 photo(s) [page data]
+  [w1 13/13] /brentrivera/p/CVpL3hGrg73/: 2 photo(s) [page data]
+Progress: 100 / 180 posts opened, 591 extra photos indexed so far (~5 min left).
+Processing 77 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...77 / 77
+  [w1 1/13] /lexibrookerivera/p/CU1uws4ryOA/: 2 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/CURsbx7LU3h/: 2 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/CT_tcp6LudX/: 2 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/CTtnq_xLE0W/: 2 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/CS3hzoBrcaK/: 2 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/CTbs5YeLu2p/: 2 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/CRvfe-3AiEO/: 3 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/CSTZV4PrD_y/: 4 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/CQnd2I3HdP5/: 1 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/CRLYuHfAoHZ/: 3 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/CPfKGjKgRh6/: 4 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/CPz2rk0g0IQ/: 2 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/COXFsIvA0hj/: 3 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/CPNJE3Tgzx5/: 2 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/CNPAYiHATbB/: 3 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/CNzGrhpgj7C/: 4 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/CMq_8ugneHG/: 2 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/CM9AzNgAlyE/: 2 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/CL0-e4FApHR/: 2 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/CMY_1Qpgb_C/: 2 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/CKs2_fPghwL/: 1 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/CLQ8bzJA8OV/: 1 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/CKI5uaxA3yq/: 3 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/CKa1P6jARoL/: 2 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/CJkydurAduJ/: 3 photo(s) [page data]
+Progress: 125 / 180 posts opened, 625 extra photos indexed so far (~3 min left).
+Processing 34 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...34 / 34
+  [w1 1/13] /lexibrookerivera/p/CJAwgO4g_H7/: 2 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/CIctZoSAhqJ/: 2 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/CIKpVKkAT0y/: 2 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/CHmpCoggiSN/: 4 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/CG_7T4ugO6I/: 3 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/CGwdYsJA6vn/: 3 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/CGeaE_MApZe/: 2 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/CF6XoFkgYov/: 3 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/CFWUO2lgnTu/: 2 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/CFESwBgAEsi/: 3 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/CEyRqFkgolK/: 2 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/CDqNg7sgahG/: 3 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/CD8NRA3gIhK/: 3 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/CDGHD0rACbX/: 2 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/CC0E9PMgcqs/: 3 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/CCiD5JvAW4v/: 2 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/CB-AV0GAbfn/: 2 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/CBr95FMA7ou/: 2 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/CBZ-U-3Azat/: 3 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/CAR2snEgd4m/: 2 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/CBIF-IFggQ9/: 2 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/B_bwnb7gTeu/: 2 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/B_tzY8JgazO/: 2 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/B-3xgO2gKlU/: 2 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/B-lsvWSAuAN/: 2 photo(s) [page data]
+Progress: 150 / 180 posts opened, 660 extra photos indexed so far (~2 min left).
+Processing 35 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...35 / 35
+  [w1 1/13] /lexibrookerivera/p/B-Tr5VtA1N7/: 2 photo(s) [page data]
+  [w2 1/12] /lexibrookerivera/p/B-Bp1ifAysU/: 2 photo(s) [page data]
+  [w1 2/13] /lexibrookerivera/p/B9vodZTgpAA/: 2 photo(s) [page data]
+  [w1 3/13] /lexibrookerivera/p/B9LrpFgAlzx/: 2 photo(s) [page data]
+  [w2 2/12] /lexibrookerivera/p/B9XMpKTgPNr/: 2 photo(s) [page data]
+  [w1 4/13] /lexibrookerivera/p/B8Vpnmzgd5g/: 2 photo(s) [page data]
+  [w2 3/12] /lexibrookerivera/p/B8lFDbcgbYD/: 2 photo(s) [page data]
+  [w1 5/13] /lexibrookerivera/p/B7fkwRfARd-/: 3 photo(s) [page data]
+  [w2 4/12] /lexibrookerivera/p/B8DlEv6A0H8/: 2 photo(s) [page data]
+  [w2 5/12] /lexibrookerivera/p/B7HK9UgA0Ch/: 2 photo(s) [page data]
+  [w1 6/13] /lexibrookerivera/p/B6pk3v_AMM0/: 2 photo(s) [page data]
+  [w1 7/13] /lexibrookerivera/p/B5hZ_j-gKRL/: 2 photo(s) [page data]
+  [w2 6/12] /lexibrookerivera/p/B6gltf_ARKK/: 2 photo(s) [page data]
+  [w1 8/13] /lexibrookerivera/p/B49Xj_WAoGS/: 2 photo(s) [page data]
+  [w2 7/12] /lexibrookerivera/p/B5PXNTbgLB6/: 3 photo(s) [page data]
+  [w1 9/13] /lexibrookerivera/p/B4HJOEvgt_G/: 2 photo(s) [page data]
+  [w2 8/12] /lexibrookerivera/p/B4rUb5TA1iU/: 2 photo(s) [page data]
+  [w1 10/13] /lexibrookerivera/p/B2he5RuAmyp/: 2 photo(s) [page data]
+  [w2 9/12] /lexibrookerivera/p/B3OgiTCg1Tf/: 3 photo(s) [page data]
+  [w2 10/12] /lexibrookerivera/p/B2GaYD_gyXR/: 2 photo(s) [page data]
+  [w1 11/13] /lexibrookerivera/p/B1_9H8lgbHI/: 2 photo(s) [page data]
+  [w2 11/12] /lexibrookerivera/p/B1QRpJUARZP/: 2 photo(s) [page data]
+  [w1 12/13] /lexibrookerivera/p/B034EMbgfhi/: 2 photo(s) [page data]
+  [w1 13/13] /lexibrookerivera/p/BzL5aVJAfUl/: 2 photo(s) [page data]
+  [w2 12/12] /lexibrookerivera/p/B0rEkbFgc4Z/: 2 photo(s) [page data]
+Progress: 175 / 180 posts opened, 688 extra photos indexed so far (~0 min left).
+Processing 28 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...28 / 28
+  [w1 1/3] /lexibrookerivera/p/BytBEuuACqS/: 2 photo(s) [page data]
+  [w2 1/2] /lexibrookerivera/p/ByI3ZMEAmj4/: 2 photo(s) [page data]
+  [w1 2/3] /lexibrookerivera/p/Bx20qGjgbAP/: 2 photo(s) [page data]
+  [w2 2/2] /lexibrookerivera/p/Bm6rw44hl0b/: 2 photo(s) [page data]
+  [w1 3/3] /lexibrookerivera/p/Baj8RgfBzD-/: 2 photo(s) [page data]
+Progress: 180 / 180 posts opened, 693 extra photos indexed so far (~0 min left).
+Processing 5 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...5 / 5
+Added 693 slide image(s) to the index.
+Using photo index: 1019 posts.
+
+lexibrookerivera: 316 photo posts + 10 reels; 180 of the photo posts are carousels (180 looked inside, 693 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    147  beach
+    104  party or club
+     98  boat or sea
+     62  car
+     48  city street
+     41  snow or mountains
+     40  bedroom
+     33  restaurant or cafe
+     25  pool
+     20  nature
+     18  studio
+     17  living room
+     13  gym
+     13  stadium
+      7  hotel room
+      3  bathroom
+    320  (no confident tag)
+
+outfit:
+    204  bikini
+    110  one-piece swimsuit
+     94  jeans and top
+     69  activewear
+     60  formal wear
+     40  jacket or coat
+     27  dress
+      8  skirt
+      6  sportswear kit
+    391  (no confident tag)
+
+shot:
+    339  full-body photo
+     89  mirror selfie
+     66  group photo
+     55  text or graphic
+     52  landscape without people
+     34  selfie
+     19  pet or animal
+     11  food
+      5  close-up portrait
+    339  (no confident tag)
+
+pose:
+    448  standing
+    188  upper body only
+     91  sitting
+     26  bending over
+     23  lying down
+     16  leaning
+      3  on all fours
+      2  kneeling
+    212  (no confident tag)
+
+arms:
+    117  arms up
+Using photo index: 1019 posts.
+Library for lexibrookerivera: 1009 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/lexibrookerivera
+
+lexibrookerivera: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

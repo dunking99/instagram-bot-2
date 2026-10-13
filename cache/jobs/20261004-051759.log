@@ -1,0 +1,83 @@
+
+=== Preparing minnarosaweber ===
+Profile reports 114 posts.
+  ...72 posts loaded / 114
+Post types seen: 102 carousels, 3 reels/videos, 9 single photos.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791087522.520615 1367209 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 114 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791087522.684725 1368315 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791087522.702726 1368321 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...114 / 114
+Using photo index: 114 posts.
+
+minnarosaweber: 111 photo posts + 3 reels; 102 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     16  bedroom
+     14  party or club
+     11  city street
+      8  boat or sea
+      6  beach
+      5  restaurant or cafe
+      4  bathroom
+      2  pool
+      2  car
+      1  gym
+      1  nature
+      1  snow or mountains
+      1  studio
+      1  living room
+      0  stadium
+      0  hotel room
+     38  (no confident tag)
+
+outfit:
+     19  jeans and top
+     13  bikini
+     11  activewear
+      8  formal wear
+      6  dress
+      4  jacket or coat
+      2  skirt
+      1  one-piece swimsuit
+      0  sportswear kit
+     47  (no confident tag)
+
+shot:
+     30  full-body photo
+     20  mirror selfie
+     11  group photo
+     10  selfie
+      3  landscape without people
+      2  text or graphic
+      0  close-up portrait
+      0  food
+      0  pet or animal
+     35  (no confident tag)
+
+pose:
+     39  standing
+     17  upper body only
+     14  sitting
+      2  lying down
+      2  on all fours
+      2  bending over
+      0  kneeling
+      0  leaning
+     35  (no confident tag)
+
+arms:
+      8  arms up
+Using photo index: 114 posts.
+Library for minnarosaweber: 111 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/minnarosaweber
+
+minnarosaweber: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

@@ -1,0 +1,133 @@
+
+=== Preparing paigeinsco ===
+Using photo index: 55 posts.
+Looking inside 46 post(s) for more photos...
+  [1/25] /paigeinsco/p/DZfnLQckdD1/: 2 photo(s) [page data]
+  [2/25] /paigeinsco/p/DW1XSQOjaF5/: 3 photo(s) [page data]
+  [3/25] /paigeinsco/p/DWjX3uaDSyc/: 6 photo(s) [page data]
+  [4/25] /paigeinsco/p/DWRUPwkDdPK/: 10 photo(s) [page data]
+  [5/25] /paigeinsco/p/DTLJ0-ajcaE/: 11 photo(s) [page data]
+  [6/25] /paigeinsco/p/DRNA0cqjXj9/: 11 photo(s) [page data]
+  [7/25] /paigeinsco/p/DOvzWhCjSL0/: 1 photo(s) [page data]
+  [8/25] /paigeinsco/p/DNBGJ9tugVF/: 6 photo(s) [page data]
+  [9/25] /paigeinsco/p/DMx40poN0CZ/: 4 photo(s) [page data]
+  [10/25] /paigeinsco/p/DLAi3v-unKm/: 5 photo(s) [page data]
+  [11/25] /paigeinsco/p/DKZyQlcOD9U/: 6 photo(s) [page data]
+  [12/25] /paigeinsco/p/DJ4dumGuKMR/: 9 photo(s) [page data]
+  [13/25] /paigeinsco/p/DJzEGbROlzD/: 1 photo(s) [page data]
+  [14/25] /paigeinsco/p/DIcOZd8BvoP/: 9 photo(s) [page data]
+  [15/25] /paigeinsco/p/DHbQ7x-OCTu/: 2 photo(s) [page data]
+  [16/25] /paigeinsco/p/DHWBzlQxN83/: 7 photo(s) [page data]
+  [17/25] /paigeinsco/p/DFYkqxqSYD8/: 6 photo(s) [page data]
+  [18/25] /paigeinsco/p/DFDUs1pOtR2/: 11 photo(s) [page data]
+  [19/25] /paigeinsco/p/DEh5qLOuqH4/: 1 photo(s) [page data]
+  [20/25] /paigeinsco/p/DD7XsfuOH9o/: 6 photo(s) [page data]
+  [21/25] /paigeinsco/p/DDFcmvgSvQP/: 2 photo(s) [page data]
+  [22/25] /paigeinsco/p/DC1mCgepyvQ/: 10 photo(s) [page data]
+  [23/25] /paigeinsco/p/DBwKKsFu03h/: 5 photo(s) [page data]
+  [24/25] /paigeinsco/p/DABY2bXx0fs/: 1 photo(s) [page data]
+  [25/25] /paigeinsco/p/C_LTk3hxuJW/: 7 photo(s) [page data]
+Progress: 25 / 46 posts opened, 117 extra photos indexed so far (~1 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791089576.876055 1406826 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 117 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791089577.386073 1407722 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791089577.448152 1407727 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...117 / 117
+  [1/21] /paigeinsco/p/C-DTS6HuHWm/: 2 photo(s) [page data]
+  [2/21] /paigeinsco/p/C8UftmyxEOl/: 2 photo(s) [page data]
+  [3/21] /paigeinsco/p/C7UHk3zMiwN/: 8 photo(s) [page data]
+  [4/21] /paigeinsco/p/C684_GBuyK0/: 2 photo(s) [page data]
+  [5/21] /paigeinsco/p/C4f4vHwr-zC/: 3 photo(s) [page data]
+  [6/21] /paigeinsco/p/C327I-jrJzj/: 3 photo(s) [page data]
+  [7/21] /paigeinsco/p/C3VLccOLSgJ/: 7 photo(s) [page data]
+  [8/21] /paigeinsco/p/C2ur-VuMuuk/: 1 photo(s) [page data]
+  [9/21] /paigeinsco/p/C14n4QYrRKx/: 1 photo(s) [page data]
+  [10/21] /paigeinsco/p/C1UoiOHLscL/: 2 photo(s) [page data]
+  [11/21] /paigeinsco/p/CxvSxZFLD1e/: 1 photo(s) [page data]
+  [12/21] /paigeinsco/p/CwiCs9ALnLv/: 1 photo(s) [page data]
+  [13/21] /paigeinsco/p/CtZM5MLr8nE/: 2 photo(s) [page data]
+  [14/21] /paigeinsco/p/CpaWr7wLD79/: 3 photo(s) [page data]
+  [15/21] /paigeinsco/p/CnCl4C2rABf/: 1 photo(s) [page data]
+  [16/21] /paigeinsco/p/Cm7eVsZvhus/: 1 photo(s) [page data]
+  [17/21] /paigeinsco/p/ChYjAgJMeud/: 1 photo(s) [page data]
+  [18/21] /paigeinsco/p/ChLe1ThLTvD/: 1 photo(s) [page data]
+  [19/21] /paigeinsco/p/CgMoPJhLgSV/: 2 photo(s) [page data]
+  [20/21] /paigeinsco/p/Cf1t3JqrRb7/: 1 photo(s) [page data]
+  [21/21] /paigeinsco/p/CZzPZdmLFGY/: 1 photo(s) [page data]
+Progress: 46 / 46 posts opened, 142 extra photos indexed so far (~0 min left).
+Processing 25 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...25 / 25
+Added 142 slide image(s) to the index.
+Using photo index: 197 posts.
+
+paigeinsco: 55 photo posts + 0 reels; 46 of the photo posts are carousels (46 looked inside, 142 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     40  beach
+     22  bedroom
+     12  pool
+     12  party or club
+     10  restaurant or cafe
+      9  boat or sea
+      7  city street
+      7  car
+      6  snow or mountains
+      3  bathroom
+      2  gym
+      2  stadium
+      2  living room
+      1  hotel room
+      0  nature
+      0  studio
+     62  (no confident tag)
+
+outfit:
+     92  bikini
+     19  one-piece swimsuit
+     16  activewear
+     11  jeans and top
+      5  jacket or coat
+      3  skirt
+      2  formal wear
+      1  sportswear kit
+      0  dress
+     48  (no confident tag)
+
+shot:
+     68  full-body photo
+     26  mirror selfie
+     16  landscape without people
+      9  group photo
+      9  text or graphic
+      6  selfie
+      4  food
+      3  pet or animal
+      1  close-up portrait
+     55  (no confident tag)
+
+pose:
+     79  standing
+     31  upper body only
+     10  lying down
+     10  bending over
+      9  sitting
+      3  leaning
+      0  kneeling
+      0  on all fours
+     55  (no confident tag)
+
+arms:
+     22  arms up
+Using photo index: 197 posts.
+Library for paigeinsco: 197 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/paigeinsco
+
+paigeinsco: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

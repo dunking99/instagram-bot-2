@@ -1,0 +1,86 @@
+
+=== Preparing leahhalton ===
+Profile reports 234 posts.
+  ...60 posts loaded / 234
+  ...156 posts loaded / 234
+  ...233 posts loaded / 234
+Post types seen: 188 carousels, 35 reels/videos, 10 single photos.
+Warning: loaded 233 of 234 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791071652.414182 1106350 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 233 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791071652.645689 1107532 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791071652.651072 1107534 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...233 / 233
+Using photo index: 233 posts.
+
+leahhalton: 198 photo posts + 35 reels; 188 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     25  party or club
+     24  bedroom
+     19  car
+     13  beach
+      8  restaurant or cafe
+      7  bathroom
+      5  city street
+      4  pool
+      4  boat or sea
+      3  hotel room
+      3  studio
+      2  gym
+      2  snow or mountains
+      1  stadium
+      1  nature
+      1  living room
+     76  (no confident tag)
+
+outfit:
+     30  jeans and top
+     24  bikini
+     14  one-piece swimsuit
+     13  formal wear
+     12  activewear
+      7  dress
+      4  skirt
+      1  jacket or coat
+      0  sportswear kit
+     93  (no confident tag)
+
+shot:
+     59  full-body photo
+     33  mirror selfie
+     17  selfie
+     10  close-up portrait
+     10  text or graphic
+      4  pet or animal
+      2  group photo
+      1  food
+      1  landscape without people
+     61  (no confident tag)
+
+pose:
+     78  standing
+     36  upper body only
+     12  sitting
+      7  bending over
+      1  lying down
+      1  leaning
+      0  kneeling
+      0  on all fours
+     63  (no confident tag)
+
+arms:
+     22  arms up
+Using photo index: 233 posts.
+Library for leahhalton: 198 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/leahhalton
+
+leahhalton: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

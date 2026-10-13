@@ -1,0 +1,124 @@
+# Library cleanup 20261008-233114
+
+Undo with: `python3 library_cleanup.py --undo 20261008-233114`
+
+- copied 1 thumbnail(s) from `thumbs/ari_kytsya` to `thumbs/ari-kytsya`
+- copied 15 thumbnail(s) from `thumbs/gina_valentina` to `thumbs/gina-valentina`
+- copied 38 thumbnail(s) from `thumbs/hannah_jo` to `thumbs/hannah-jo`
+- copied 9 thumbnail(s) from `thumbs/hope_heaven` to `thumbs/hope-heaven`
+- copied 8 thumbnail(s) from `thumbs/izzy_rae` to `thumbs/izzy-rae`
+- copied 13 thumbnail(s) from `thumbs/kinsley_wyatt` to `thumbs/kinsley-wyatt`
+- copied 4 thumbnail(s) from `thumbs/kylie_rocket` to `thumbs/kylie-rocket`
+- copied 11 thumbnail(s) from `thumbs/lilou_danero` to `thumbs/lilou-danero`
+- copied 9 thumbnail(s) from `thumbs/lily_larimar` to `thumbs/lily-larimar`
+- copied 67 thumbnail(s) from `thumbs/lucy_mochi` to `thumbs/lucy-mochi`
+- copied 20 thumbnail(s) from `thumbs/myra_moans` to `thumbs/myra-moans`
+- copied 4 thumbnail(s) from `thumbs/rara-knupps` to `thumbs/raraknupps`
+- copied 10 thumbnail(s) from `thumbs/ryan_reid` to `thumbs/ryan-reid`
+- copied 18 thumbnail(s) from `thumbs/sky_bri` to `thumbs/sky-bri`
+- copied 2 thumbnail(s) from `thumbs/spiraling_spirit` to `thumbs/spiraling-spirit`
+- moved `Ari Kytsya/Arikytsya Has Sex With Her Boss.mp4` -> `ari-kytsya/Arikytsya Has Sex With Her Boss.mp4`
+- Postroom record `ari_kytsya` merged into `ari-kytsya`: 1 video record(s)
+- removed empty folder `Ari Kytsya`
+- Postroom record `della_cate` merged into `della-cate`: 0 video record(s)
+- created Postroom record `della-cate` for `della-cate` (0 video record(s))
+- Postroom record `gina_valentina` merged into `gina-valentina`: 0 video record(s)
+- moved `hannah_jo/Hannah Jo Strips Naked And Gets Pounded.mp4` -> `hannah-jo/Hannah Jo Strips Naked And Gets Pounded.mp4`
+- moved `hannah_jo/Hannah Jo Rides Her Boyfriends Cock.mp4` -> `hannah-jo/Hannah Jo Rides Her Boyfriends Cock.mp4`
+- moved `hannah_jo/Hannah Jo Elly Clutch Slurps Their Boyfriends Cocks.mp4` -> `hannah-jo/Hannah Jo Elly Clutch Slurps Their Boyfriends Cocks.mp4`
+- moved `hannah_jo/Hannah Jo Gets Creampied By Her BFs BWC.mp4` -> `hannah-jo/Hannah Jo Gets Creampied By Her BFs BWC.mp4`
+- moved `hannah_jo/Hannah Jo Bounces On A Cock On Her Bed.mp4` -> `hannah-jo/Hannah Jo Bounces On A Cock On Her Bed.mp4`
+- moved `hannah_jo/Whoa Hannah Jo Lets A Fat Cock Use Her Pussy.mp4` -> `hannah-jo/Whoa Hannah Jo Lets A Fat Cock Use Her Pussy.mp4`
+- moved `hannah_jo/Hannah Jo Bounces On A Cock.mp4` -> `hannah-jo/Hannah Jo Bounces On A Cock.mp4`
+- Postroom record `hannah_jo` merged into `hannah-jo`: 7 video record(s)
+- removed empty folder `hannah_jo`
+- moved `hope_heaven/Hope Heavens Red Lingerie Creampie Sex Tape.mp4` -> `hope-heaven/Hope Heavens Red Lingerie Creampie Sex Tape.mp4`
+- Postroom record `hope_heaven` merged into `hope-heaven`: 1 video record(s)
+- created Postroom record `hope-heaven` for `hope-heaven` (1 video record(s))
+- removed empty folder `hope_heaven`
+- moved `izzy_rae/Izzy Rae Takes On Two Cocks At Once.mp4` -> `izzy-rae/Izzy Rae Takes On Two Cocks At Once.mp4`
+- Postroom record `izzy_rae` merged into `izzy-rae`: 1 video record(s)
+- created Postroom record `izzy-rae` for `izzy-rae` (1 video record(s))
+- removed empty folder `izzy_rae`
+- Postroom record `katie_pardon` merged into `katie-pardon`: 0 video record(s)
+- removed empty folder `katie_pardon`
+- Postroom record `kendall_beck` merged into `kendall-beck`: 0 video record(s)
+- created Postroom record `kendall-beck` for `kendall-beck` (0 video record(s))
+- removed empty folder `kendall_beck`
+- Postroom record `kiara_cole` merged into `kiara-cole`: 0 video record(s)
+- moved `kinsley_wyatt/Couch Sextape By Kinsley Wyatt.mp4` -> `kinsley-wyatt/Couch Sextape By Kinsley Wyatt.mp4`
+- moved `kinsley_wyatt/Kinsley Wyatt Nude Dildo Riding.mp4` -> `kinsley-wyatt/Kinsley Wyatt Nude Dildo Riding.mp4`
+- Postroom record `kinsley_wyatt` merged into `kinsley-wyatt`: 2 video record(s)
+- removed empty folder `kinsley_wyatt`
+- Postroom record `kyler_quinn` merged into `kyler-quinn`: 0 video record(s)
+- removed empty folder `kyler_quinn`
+- moved `kylie_rocket/Victoria Voxxx Screws Kylie Rocket With A Strapon.mp4` -> `kylie-rocket/Victoria Voxxx Screws Kylie Rocket With A Strapon.mp4`
+- Postroom record `kylie_rocket` merged into `kylie-rocket`: 1 video record(s)
+- created Postroom record `kylie-rocket` for `kylie-rocket` (1 video record(s))
+- removed empty folder `kylie_rocket`
+- Postroom record `layla_jenner` merged into `layla-jenner`: 0 video record(s)
+- created Postroom record `layla-jenner` for `layla-jenner` (0 video record(s))
+- removed empty folder `layla_jenner`
+- Postroom record `lia_lin` merged into `lia-lin`: 0 video record(s)
+- created Postroom record `lia-lin` for `lia-lin` (0 video record(s))
+- removed empty folder `lia_lin`
+- moved `lilou_danero/Lilou Daneros Sex Tape.mp4` -> `lilou-danero/Lilou Daneros Sex Tape.mp4`
+- Postroom record `lilou_danero` merged into `lilou-danero`: 1 video record(s)
+- created Postroom record `lilou-danero` for `lilou-danero` (1 video record(s))
+- removed empty folder `lilou_danero`
+- moved `lily_larimar/Chloe_Temple Fucks Lily Larimar Before The Gig.mp4` -> `lily-larimar/Chloe_Temple Fucks Lily Larimar Before The Gig.mp4`
+- Postroom record `lily_larimar` merged into `lily-larimar`: 1 video record(s)
+- removed empty folder `lily_larimar`
+- Postroom record `livy_mae` merged into `livy-mae`: 0 video record(s)
+- removed empty folder `livy_mae`
+- moved `lucy_mochi/Lucy Mochi Hot Threesome With AliceOnCam.mp4` -> `lucy-mochi/Lucy Mochi Hot Threesome With AliceOnCam.mp4`
+- moved `lucy_mochi/Lucy Mochi getting cock lessons.mp4` -> `lucy-mochi/Lucy Mochi getting cock lessons.mp4`
+- moved `lucy_mochi/Lucy Mochi Gets Fucked After Going To The Beach.mp4` -> `lucy-mochi/Lucy Mochi Gets Fucked After Going To The Beach.mp4`
+- moved `lucy_mochi/Lucy Mochi Gets Fucked In Her Stepbros Bed.mp4` -> `lucy-mochi/Lucy Mochi Gets Fucked In Her Stepbros Bed.mp4`
+- moved `lucy_mochi/Lucy Mochi Jasmine Teaas Mario Bros Foursome.mp4` -> `lucy-mochi/Lucy Mochi Jasmine Teaas Mario Bros Foursome.mp4`
+- moved `lucy_mochi/Lucy Mochi Jasmine Teaas Bondage Strap On Sex.mp4` -> `lucy-mochi/Lucy Mochi Jasmine Teaas Bondage Strap On Sex.mp4`
+- moved `lucy_mochi/Pool Foursome With Lucy Mochi And Yogababe_Kristen.mp4` -> `lucy-mochi/Pool Foursome With Lucy Mochi And Yogababe_Kristen.mp4`
+- moved `lucy_mochi/Lucy Mochi Gets Plowed By Her Horny Boyfriend.mp4` -> `lucy-mochi/Lucy Mochi Gets Plowed By Her Horny Boyfriend.mp4`
+- moved `lucy_mochi/Lucy Mochi Anal Creampie.mp4` -> `lucy-mochi/Lucy Mochi Anal Creampie.mp4`
+- moved `lucy_mochi/Lucy Mochi Devours Her BFs Hard Cock.mp4` -> `lucy-mochi/Lucy Mochi Devours Her BFs Hard Cock.mp4`
+- Postroom record `lucy_mochi` merged into `lucy-mochi`: 10 video record(s)
+- removed empty folder `lucy_mochi`
+- Postroom record `malia_rain` merged into `malia-rain`: 0 video record(s)
+- created Postroom record `malia-rain` for `malia-rain` (0 video record(s))
+- removed empty folder `malia_rain`
+- moved `Myra Moans/Demi Hawks And Myra Moans Share Their Stepfathers Cocks.mp4` -> `myra-moans/Demi Hawks And Myra Moans Share Their Stepfathers Cocks.mp4`
+- moved `myra_moans/Myra Moans PixieSmallsXOs Threesome With Their Teacher.mp4` -> `myra-moans/Myra Moans PixieSmallsXOs Threesome With Their Teacher.mp4`
+- moved `myra_moans/Myra Moans Having Hot Sex With Her Boyfriend.mp4` -> `myra-moans/Myra Moans Having Hot Sex With Her Boyfriend.mp4`
+- moved `myra_moans/Jewels Jade Myra Moans In A Couple Swap Foursome.mp4` -> `myra-moans/Jewels Jade Myra Moans In A Couple Swap Foursome.mp4`
+- Postroom record `myra_moans` merged into `myra-moans`: 3 video record(s)
+- removed empty folder `Myra Moans`
+- removed empty folder `myra_moans`
+- removed empty folder `paige-insco`
+- moved `rara-knupps/Rara Knupps Shows Her Threesome Fucking Skills [681794d870e70].mp4` -> `raraknupps/Rara Knupps Shows Her Threesome Fucking Skills [681794d870e70].mp4`
+- Postroom record `rara-knupps` merged into `raraknupps`: 1 video record(s)
+- removed empty folder `rara-knupps`
+- Postroom record `rika_fane` merged into `rika-fane`: 0 video record(s)
+- created Postroom record `rika-fane` for `rika-fane` (0 video record(s))
+- removed empty folder `rika_fane`
+- moved `ryan_reid/Ryan Reid Liz Jordan Nicole Doshi Vince Carter And Alfiecinemati.mp4` -> `ryan-reid/Ryan Reid Liz Jordan Nicole Doshi Vince Carter And Alfiecinemati.mp4`
+- Postroom record `ryan_reid` merged into `ryan-reid`: 1 video record(s)
+- created Postroom record `ryan-reid` for `ryan-reid` (1 video record(s))
+- removed empty folder `ryan_reid`
+- moved `sky_bri/Angela White And Sky Bri In A Threesome BBC.mp4` -> `sky-bri/Angela White And Sky Bri In A Threesome BBC.mp4`
+- moved `sky_bri/Sky Bri And Riley Reid Lure A Tinder Date Into Sex.mp4` -> `sky-bri/Sky Bri And Riley Reid Lure A Tinder Date Into Sex.mp4`
+- moved `sky_bri/Sky Bri Gets Cummed On Her Belly After Sex.mp4` -> `sky-bri/Sky Bri Gets Cummed On Her Belly After Sex.mp4`
+- Postroom record `sky_bri` merged into `sky-bri`: 3 video record(s)
+- removed empty folder `sky_bri`
+- removed empty folder `sonya_blaze`
+- moved `spiraling_spirit/Spiraling Spirit Sex Tape With TheFleshMechanic.mp4` -> `spiraling-spirit/Spiraling Spirit Sex Tape With TheFleshMechanic.mp4`
+- moved `spiraling_spirit/Spiraling Spirit Gets Fucked In The Woods.mp4` -> `spiraling-spirit/Spiraling Spirit Gets Fucked In The Woods.mp4`
+- Postroom record `spiraling_spirit` merged into `spiraling-spirit`: 2 video record(s)
+- created Postroom record `spiraling-spirit` for `spiraling-spirit` (2 video record(s))
+- removed empty folder `spiraling_spirit`
+- created Postroom record `stefany-kyler` for `stefany-kyler` (0 video record(s))
+- removed empty folder `stefany_kyler`
+- Links creator `rara_knupps`: downloads now go to `raraknupps` (was `rara-knupps`)
+- Links creator `paige_insco`: downloads now go to `paigeinsco` (was `paige-insco`)
+- rebuilt the position index: 188 videos, 928 sections -> /Users/hugodyson/instagram-bot-2/CLIP Training/position_index.json
+
+Verification: 36 file(s) moved, 0 problem(s).

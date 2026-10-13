@@ -1,0 +1,82 @@
+
+=== Preparing wolfiecindy ===
+Profile reports 9 posts.
+Post types seen: 8 carousels, 1 reels/videos, 0 single photos.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791153918.494571 2183202 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 9 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791153918.640705 2183848 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791153918.658157 2183851 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...9 / 9
+Using photo index: 9 posts.
+
+wolfiecindy: 8 photo posts + 1 reels; 8 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+      1  beach
+      1  gym
+      1  car
+      1  studio
+      0  pool
+      0  boat or sea
+      0  stadium
+      0  restaurant or cafe
+      0  bedroom
+      0  bathroom
+      0  hotel room
+      0  city street
+      0  nature
+      0  snow or mountains
+      0  party or club
+      0  living room
+      4  (no confident tag)
+
+outfit:
+      3  dress
+      1  bikini
+      1  activewear
+      1  skirt
+      0  one-piece swimsuit
+      0  jeans and top
+      0  jacket or coat
+      0  formal wear
+      0  sportswear kit
+      2  (no confident tag)
+
+shot:
+      2  selfie
+      2  close-up portrait
+      2  full-body photo
+      1  mirror selfie
+      0  group photo
+      0  food
+      0  pet or animal
+      0  landscape without people
+      0  text or graphic
+      1  (no confident tag)
+
+pose:
+      3  standing
+      1  lying down
+      1  upper body only
+      0  sitting
+      0  kneeling
+      0  on all fours
+      0  bending over
+      0  leaning
+      3  (no confident tag)
+
+arms:
+      0  arms up
+Using photo index: 9 posts.
+Library for wolfiecindy: 8 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/wolfiecindy
+
+wolfiecindy: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

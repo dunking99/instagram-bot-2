@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/hugodyson/instagram-bot-2/remote_frames.py", line 733, in <module>
+    sys.exit(main())
+  File "/Users/hugodyson/instagram-bot-2/remote_frames.py", line 719, in main
+    run(args)
+  File "/Users/hugodyson/instagram-bot-2/remote_frames.py", line 583, in run
+    files, master = ytdlp_lookup(args.url)
+  File "/Users/hugodyson/instagram-bot-2/remote_frames.py", line 308, in ytdlp_lookup
+    for f in info.get("formats") or []:
+AttributeError: 'NoneType' object has no attribute 'get'

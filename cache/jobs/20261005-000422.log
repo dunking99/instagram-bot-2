@@ -1,0 +1,91 @@
+
+=== Preparing ellachristo ===
+Profile reports 403 posts.
+  ...60 posts loaded / 403
+  ...120 posts loaded / 403
+  ...168 posts loaded / 403
+  ...228 posts loaded / 403
+  ...288 posts loaded / 403
+  ...348 posts loaded / 403
+  ...398 posts loaded / 403
+Post types seen: 241 carousels, 153 reels/videos, 4 single photos.
+Warning: loaded 398 of 403 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791155175.259569 2203956 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 398 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791155175.419870 2207055 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791155175.443363 2207055 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 398
+  ...398 / 398
+Using photo index: 398 posts.
+
+ellachristo: 245 photo posts + 153 reels; 241 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     42  pool
+     16  car
+     11  city street
+     11  snow or mountains
+     10  studio
+      9  stadium
+      9  bedroom
+      8  beach
+      8  bathroom
+      7  gym
+      6  hotel room
+      2  nature
+      2  party or club
+      1  living room
+      0  boat or sea
+      0  restaurant or cafe
+    103  (no confident tag)
+
+outfit:
+     78  dress
+     32  jeans and top
+     29  jacket or coat
+     24  skirt
+     11  bikini
+      7  activewear
+      7  sportswear kit
+      1  one-piece swimsuit
+      0  formal wear
+     56  (no confident tag)
+
+shot:
+     80  selfie
+     70  mirror selfie
+     54  full-body photo
+     14  close-up portrait
+      1  pet or animal
+      0  group photo
+      0  food
+      0  landscape without people
+      0  text or graphic
+     26  (no confident tag)
+
+pose:
+    115  standing
+     40  upper body only
+     21  sitting
+     10  bending over
+      5  lying down
+      2  kneeling
+      1  leaning
+      0  on all fours
+     51  (no confident tag)
+
+arms:
+     38  arms up
+Using photo index: 398 posts.
+Library for ellachristo: 245 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/ellachristo
+
+ellachristo: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

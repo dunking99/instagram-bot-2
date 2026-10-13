@@ -1,0 +1,733 @@
+#!/usr/bin/env python3
+"""Frames every N seconds from a video's page link, WITHOUT downloading the video; then add them to the model dashboard and run the model.
+
+    python3 remote_frames.py --url "https://site/video-page" [--every 5] [--height 480] [--start-seconds 120 --end-seconds 480] [--limit-minutes 5] [--status status.json]
+
+1. Reads the page and finds the video file's address (the same file the site's own player streams).
+2. Asks the server for only the parts of the file around each moment (HTTP range requests, through a small local caching proxy that
+   reads the video's index once and stops ffmpeg from reading ahead), so roughly half of the file or less is fetched, and the video is never saved.
+3. Saves the frames as pipeline/frames_5s/<name>/000001.jpg ... (the folder the model dashboard reads).
+4. Runs the trained model (B/32) on them with label_video.py, which creates the draft in the model dashboard.
+
+Standard library only (Python 3.9). Needs ffmpeg and ffprobe. Progress is written to --status as JSON.
+"""
+import argparse
+import html
+import http.client
+import json
+import os
+import re
+import shutil
+import socket
+import subprocess
+import sys
+import threading
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+FRAMES_ROOT = os.path.join(HERE, "pipeline", "frames_5s")
+CLIP_DIR = os.path.join(HERE, "CLIP Training")
+CLIP_PY = os.path.join(CLIP_DIR, ".venv", "bin", "python")
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+WORKERS = 6                      # parallel frame grabbers (each keeps one connection open); a handful is still polite
+BLOCK = 128 * 1024               # the proxy reads the server in blocks this size (fewer round trips; the wait for each one is what costs time)
+PREFETCH_HEAD = 4 * 1024 * 1024  # the video's index is normally at the start: fetched at once in a few big pieces instead of 70 small ones
+PREFETCH_TAIL = 1 * 1024 * 1024  # ...or at the end, for files that keep it there
+
+OUT_DIR = None                  # the frames folder of this job (removed again if the job fails before saving anything)
+STATUS = {"phase": "starting"}
+STATUS_FILE = None
+
+
+def say(**kw):
+    """Update the progress file (written atomically)."""
+    STATUS.update(kw)
+    if STATUS_FILE:
+        tmp = STATUS_FILE + ".tmp"
+        with open(tmp, "w") as fh:
+            json.dump(STATUS, fh)
+        os.replace(tmp, STATUS_FILE)
+
+
+class Fail(Exception):
+    pass
+
+
+# Share of the whole progress bar each stage gets (the frames dominate on a full-length video)
+W_FIND, W_FRAMES, W_MODEL = 5, 65, 30
+
+
+def clock(sec):
+    sec = int(round(sec))
+    return "%d:%02d:%02d" % (sec // 3600, sec % 3600 // 60, sec % 60) if sec >= 3600 else "%d:%02d" % (sec // 60, sec % 60)
+
+
+def tag(sec):
+    """For folder names (no colons): 2m00, 1h05m30."""
+    sec = int(round(sec))
+    return "%dh%02dm%02d" % (sec // 3600, sec % 3600 // 60, sec % 60) if sec >= 3600 else "%dm%02d" % (sec // 60, sec % 60)
+
+
+# ---------------------------------------------------------------- finding the video file
+def fetch_text(url, referer=None):
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "en", **({"Referer": referer} if referer else {})})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        raise Fail("The page answered with an error (HTTP %d)." % e.code)
+    except (urllib.error.URLError, socket.timeout) as e:
+        raise Fail("Could not open that page: %s" % getattr(e, "reason", e))
+
+
+def find_sources(page_html, page_url):
+    """[(height, url)] of the video files (mp4) the page offers. Trailers and previews are left out."""
+    text = page_html.replace("&amp;", "&").replace("\\/", "/")   # not html.unescape: it reads "&timestamp" as the symbol &times;
+    found = {}
+    for m in re.finditer(r"""(?:https?:)?//[^"'\s<>\\]+?\.mp4[^"'\s<>\\]*""", text):
+        u = m.group(0)
+        u = urllib.parse.urljoin(page_url, u)
+        low = u.lower()
+        if ".m3u8" in low.split("?")[0] or any(w in low for w in ("trailer", "preview", "thumb", "teaser", "sprite")):   # playlists go the HLS way
+            continue
+        h = re.search(r"(\d{3,4})p", urllib.parse.urlparse(u).path) or re.search(r"[-_](\d{3,4})\.mp4", urllib.parse.urlparse(u).path) or re.search(r"[?&](?:res|height|quality)=(\d{3,4})", u)
+        found[u] = int(h.group(1)) if h else 0
+    return sorted(((h, u) for u, h in found.items()), key=lambda x: x[0])
+
+
+def pick_source(sources, want):
+    """The best file at or below the wanted height (480 means 480 at most); if nothing states its height, the first one."""
+    known = [s for s in sources if s[0]]
+    if known:
+        fit = [s for s in known if s[0] <= want] or [min(known, key=lambda s: s[0])]
+        return max(fit, key=lambda s: s[0])
+    return sources[0]
+
+
+def site_of(url):
+    return ".".join((urllib.parse.urlparse(url).hostname or "").split(".")[-2:])
+
+
+def find_embeds(page_html, page_url):
+    """Player pages the video page embeds (many sites keep the video address only there). Same site only."""
+    text = page_html.replace("&amp;", "&")
+    out = []
+    for m in re.finditer(r"""<iframe[^>]+src=["']([^"']*embed[^"']*)["']""", text, re.I):
+        u = urllib.parse.urljoin(page_url, m.group(1))
+        if site_of(u) == site_of(page_url) and u not in out:
+            out.append(u)
+    return out[:2]
+
+
+def find_kt(page_html):
+    """[(height, url)] from a KVS-style player's settings (video_url: '...', video_url_text: '480p', video_alt_url: ...)."""
+    text = page_html.replace("&amp;", "&")
+    found = []
+    for m in re.finditer(r"""\b(video_(?:alt_)?url\d?)\s*:\s*['"](https?://[^'"]+)['"]""", text):
+        t = re.search(r"""\b%s_text\s*:\s*['"](\d{3,4})p?['"]""" % m.group(1), text)
+        found.append((int(t.group(1)) if t else 0, m.group(2)))
+    return sorted(found, key=lambda x: x[0])
+
+
+def resolve(url, referer):
+    """Follow redirects to the file's real address (the range proxy talks to one host and does not follow them)."""
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Referer": referer, "Range": "bytes=0-0"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.geturl()
+    except (urllib.error.URLError, socket.timeout):
+        return url
+
+
+def make_name(page_url, page_html):
+    u = urllib.parse.urlparse(page_url)
+    site = (u.hostname or "video").replace("www.", "").split(".")[0]
+    nums = re.findall(r"\d{4,}", u.path)
+    t = re.search(r"<title[^>]*>(.*?)</title>", page_html, re.S | re.I)
+    title = re.split(r"\s[-|–]\s", html.unescape(t.group(1)).strip())[0] if t else ""
+    if not title:
+        title = (u.path.strip("/").split("/") or ["video"])[-1].replace("-", " ")
+    name = re.sub(r"[^A-Za-z0-9 _-]+", " ", " ".join([title, site, nums[-1] if nums else ""]))
+    return re.sub(r"\s+", " ", name).strip()[:90] or "video"
+
+
+# ---------------------------------------------------------------- caching range proxy for ffmpeg
+class RangeCache:
+    """Serves one origin to local ffmpeg processes. Every block read from the origin is remembered, so the index is fetched once;
+    data is only pulled from the origin as ffmpeg actually reads it (tiny send buffer), not pushed ahead."""
+
+    def __init__(self, origin, headers):
+        self.origin, self.headers = origin, headers
+        u = urllib.parse.urlparse(origin)
+        self.scheme, self.host = u.scheme, u.netloc
+        self.local = threading.local()                              # one open connection per thread: no new handshake for every request
+        self.cache, self.sizes, self.locks = {}, {}, {}
+        self.lock = threading.Lock()
+        self.fetched = 0
+        owner = self
+
+        class H(BaseHTTPRequestHandler):
+            protocol_version = "HTTP/1.1"
+
+            def log_message(self, *a):
+                pass
+
+            def do_GET(self):
+                try:
+                    self.connection.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 4096)
+                    size = owner.total(self.path)
+                    m = re.match(r"bytes=(\d+)-(\d*)", self.headers.get("Range", ""))
+                    a = int(m.group(1)) if m else 0
+                    b = min(int(m.group(2)), size - 1) if m and m.group(2) else size - 1
+                    self.send_response(206 if m else 200)
+                    self.send_header("Content-Type", "video/mp4")
+                    self.send_header("Accept-Ranges", "bytes")
+                    self.send_header("Content-Length", str(b - a + 1))
+                    if m:
+                        self.send_header("Content-Range", "bytes %d-%d/%d" % (a, b, size))
+                    self.end_headers()
+                    pos = a
+                    while pos <= b:
+                        i = pos // BLOCK
+                        data = owner.block(self.path, i)
+                        off = pos - i * BLOCK
+                        chunk = data[off: off + (b - pos + 1)]
+                        self.wfile.write(chunk)
+                        pos += len(chunk)
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+                except Exception:
+                    try:
+                        self.send_error(502)
+                    except Exception:
+                        pass
+
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), H)
+        self.server.daemon_threads = True
+        self.port = self.server.server_address[1]
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+
+    def _conn(self, fresh=False):
+        c = getattr(self.local, "conn", None)
+        if fresh or c is None:
+            if c is not None:
+                try:
+                    c.close()
+                except Exception:
+                    pass
+            cls = http.client.HTTPSConnection if self.scheme == "https" else http.client.HTTPConnection
+            c = self.local.conn = cls(self.host, timeout=60)
+        return c
+
+    def _get(self, path, a, b):
+        hdr = dict(self.headers, Range="bytes=%d-%d" % (a, b))
+        for attempt in (0, 1):                                      # a kept-open connection may have been closed by the server: reconnect once
+            try:
+                c = self._conn(fresh=attempt == 1)
+                c.request("GET", path, headers=hdr)
+                r = c.getresponse()
+                data = r.read()
+                cr = r.getheader("Content-Range")
+                if r.status not in (200, 206):
+                    if r.status in (301, 302, 303, 307, 308):       # redirected: let urllib follow it
+                        break
+                    raise Fail("The server answered with an error (HTTP %d)." % r.status)
+                break
+            except (http.client.HTTPException, ConnectionError, socket.timeout, OSError):
+                if attempt == 1:
+                    raise
+        else:
+            data = cr = None
+        if data is None:
+            req = urllib.request.Request(self.origin + path, headers=hdr)
+            with urllib.request.urlopen(req, timeout=60) as r:
+                data = r.read()
+                cr = r.headers.get("Content-Range")
+        with self.lock:
+            self.fetched += len(data)
+        return cr, data
+
+    def prefetch(self, path):
+        """Fetch the start (and the very end) of the file in a few big parallel pieces, so the index is already cached when ffmpeg asks."""
+        size = self.total(path)
+        jobs = [(a, min(a + 1024 * 1024, PREFETCH_HEAD, size) - 1) for a in range(0, min(PREFETCH_HEAD, size), 1024 * 1024)]
+        if size > PREFETCH_HEAD + PREFETCH_TAIL:
+            jobs.append((size - PREFETCH_TAIL, size - 1))
+
+        def one(job):
+            a, b = job
+            first, last = a // BLOCK, b // BLOCK
+            _, data = self._get(path, first * BLOCK, min((last + 1) * BLOCK, size) - 1)
+            with self.lock:
+                for i in range(first, last + 1):
+                    self.cache.setdefault((path, i), data[(i - first) * BLOCK:(i - first + 1) * BLOCK])
+        with ThreadPoolExecutor(len(jobs)) as pool:
+            list(pool.map(one, jobs))
+
+    def total(self, path):
+        if path not in self.sizes:
+            cr, _ = self._get(path, 0, 0)
+            if not cr:
+                raise Fail("This site does not allow reading part of the video file, so frames can't be taken without downloading it.")
+            self.sizes[path] = int(cr.split("/")[1])
+        return self.sizes[path]
+
+    def block(self, path, i):
+        key = (path, i)
+        with self.lock:
+            lk = self.locks.setdefault(key, threading.Lock())
+        with lk:
+            if key not in self.cache:
+                a = i * BLOCK
+                self.cache[key] = self._get(path, a, min(a + BLOCK, self.total(path)) - 1)[1]
+            return self.cache[key]
+
+    def close(self):
+        self.server.shutdown()
+        self.cache.clear()
+
+
+def ytdlp_lookup(page_url):
+    """Ask yt-dlp (no download) what files a page offers -> ([(height, url)] plain files, master playlist or None).
+    A fallback for sites whose page has no video address in plain sight."""
+    exe = shutil.which("yt-dlp") or next((c for c in ("/opt/homebrew/bin/yt-dlp", "/usr/local/bin/yt-dlp") if os.path.exists(c)), None)
+    if not exe:
+        return [], None
+    try:
+        r = subprocess.run([exe, "--no-warnings", "--no-playlist", "--skip-download", "-J", "--socket-timeout", "20", page_url],
+                           capture_output=True, text=True, timeout=90)
+        info = json.loads(r.stdout)
+    except (subprocess.TimeoutExpired, ValueError, OSError):
+        return [], None
+    files, playlists = [], []
+    for f in info.get("formats") or []:
+        if not f.get("url") or (f.get("vcodec") or "") == "none":
+            continue
+        h = int(f.get("height") or 0)
+        if f.get("protocol") in ("https", "http") and (f.get("ext") or "mp4") in ("mp4", "m4v", "mov"):
+            files.append((h, f["url"], (f.get("vcodec") or "").startswith("av01")))
+        elif f.get("protocol") in ("m3u8", "m3u8_native"):
+            playlists.append((h, f["url"]))
+    plain = [x for x in files if not x[2]] or files               # av1 only when nothing else is offered (ffmpeg builds differ in decoding it)
+    return sorted(((h, u) for h, u, _ in plain), key=lambda x: x[0]), (max(playlists)[1] if playlists else None)
+
+
+def probe_video(url, referer):
+    """The file's real address if it answers a partial read with video (some pages list decoys that return a tiny image), else None."""
+    final = resolve(url, referer)
+    req = urllib.request.Request(final, headers={"User-Agent": UA, "Referer": referer, "Range": "bytes=0-1023"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            ctype = (r.headers.get("Content-Type") or "").lower()
+            ok = r.status == 206 and (ctype.startswith("video/") or "octet-stream" in ctype or "mp4" in ctype)
+            return final if ok else None
+    except (urllib.error.URLError, socket.timeout, OSError):
+        return None
+
+
+# ---------------------------------------------------------------- segmented (HLS) streams
+HLS_HEAD = 128 * 1024            # a segment starts on a keyframe: its first part is enough to decode one frame (the whole segment is the fallback)
+
+
+def find_hls(page_html, page_url):
+    """Master playlist addresses (.m3u8) in a page."""
+    text = page_html.replace("&amp;", "&").replace("\\/", "/")
+    out = []
+    for m in re.finditer(r"""(?:https?:)?//[^"'\s<>\\]+?\.m3u8[^"'\s<>\\]*""", text):
+        u = urllib.parse.urljoin(page_url, m.group(0))
+        if u not in out:
+            out.append(u)
+    return out
+
+
+class HlsSource:
+    """Takes single frames from a VOD HLS stream by reading only the start of the segment around each moment."""
+
+    def __init__(self, master_url, referer, want_height):
+        self.headers = {"User-Agent": UA, "Referer": referer}
+        self.fetched = 0
+        self.sizes = {}
+        self.lock = threading.Lock()
+        self.local = threading.local()
+        text = fetch_text(master_url, referer=referer)
+        if "#EXT-X-STREAM-INF" not in text:                           # already a media playlist
+            variants, media_text, media_url = [(0, 0, master_url)], text, master_url
+            self.height = 0
+        else:
+            variants, lines = [], text.splitlines()
+            for i, ln in enumerate(lines):
+                if ln.startswith("#EXT-X-STREAM-INF"):
+                    res = re.search(r"RESOLUTION=\d+x(\d+)", ln)
+                    bw = re.search(r"AVERAGE-BANDWIDTH=(\d+)", ln) or re.search(r"BANDWIDTH=(\d+)", ln)
+                    nxt = next((l for l in lines[i + 1:] if l and not l.startswith("#")), None)
+                    if nxt:
+                        variants.append((int(res.group(1)) if res else 0, int(bw.group(1)) if bw else 0, urllib.parse.urljoin(master_url, nxt)))
+            if not variants:
+                raise Fail("The stream's playlist could not be read.")
+            known = [v for v in variants if v[0]]
+            fit = [v for v in known if v[0] <= want_height] or ([min(known, key=lambda v: v[0])] if known else variants)
+            self.height, bw, media_url = max(fit, key=lambda v: v[0])[0], max(fit, key=lambda v: v[0])[1], max(fit, key=lambda v: v[0])[2]
+            media_text = fetch_text(media_url, referer=referer)
+        self.segments, t, dur = [], 0.0, None
+        for ln in media_text.splitlines():
+            if ln.startswith("#EXTINF:"):
+                dur = float(ln.split(":")[1].split(",")[0])
+            elif ln and not ln.startswith("#") and dur is not None:
+                self.segments.append((t, dur, urllib.parse.urljoin(media_url, ln)))
+                t += dur
+                dur = None
+        if not self.segments:
+            raise Fail("The stream has no segments I can read (it may be live, encrypted or need a login).")
+        if "#EXT-X-KEY" in media_text and "METHOD=NONE" not in media_text:
+            raise Fail("This stream is encrypted, which isn't supported.")
+        self.duration = t
+        bw = locals().get("bw", 0)
+        self.sizes["stream"] = int(bw * t / 8) if bw else 0
+
+    def _get(self, url, rng):
+        for attempt in (1, 2):
+            c = getattr(self.local, "conn", None)
+            p = urllib.parse.urlparse(url)
+            try:
+                if c is None or getattr(self.local, "host", None) != p.netloc:
+                    c = http.client.HTTPSConnection(p.netloc, timeout=30)
+                    self.local.conn, self.local.host = c, p.netloc
+                c.request("GET", p.path + ("?" + p.query if p.query else ""), headers={**self.headers, **({"Range": rng} if rng else {})})
+                r = c.getresponse()
+                body = r.read()
+                if r.status not in (200, 206):
+                    raise Fail("The server refused a video segment (HTTP %d)." % r.status)
+                return body
+            except (OSError, http.client.HTTPException):
+                self.local.conn = None
+                if attempt == 2:
+                    raise
+        return b""
+
+    def frame(self, t, dest):
+        seg = next((s for s in self.segments if s[0] <= t < s[0] + s[1]), self.segments[-1])
+        for rng in ("bytes=0-%d" % (HLS_HEAD - 1), None):             # the first part of the segment; the whole segment if that does not decode
+            data = self._get(seg[2], rng)
+            with self.lock:
+                self.fetched += len(data)
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", "pipe:0", "-frames:v", "1", "-q:v", "3", dest],
+                           input=data, capture_output=True, timeout=120)
+            if os.path.exists(dest) and os.path.getsize(dest) > 0:
+                return True
+            if len(data) < HLS_HEAD:
+                break
+        return False
+
+    def prefetch(self, path):
+        pass
+
+    def close(self):
+        pass
+
+
+
+def model_stage_oneoff(out, name, every):
+    """The fallback: a separate process for this one video (loads the model itself, about 8 seconds slower)."""
+    proc = subprocess.Popen([CLIP_PY, os.path.join(CLIP_DIR, "scripts", "label_video.py"), "--force", "--every", "%g" % every, out],
+                            cwd=CLIP_DIR, env=dict(os.environ, LABEL_PROGRESS="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    lines = []
+    for line in proc.stdout:
+        lines.append(line)
+        mm = re.match(r"PROGRESS embed (\d+)/(\d+)", line)
+        if mm:
+            say(progress=round(W_FIND + W_FRAMES + W_MODEL * (0.1 + 0.85 * int(mm.group(1)) / max(1, int(mm.group(2)))), 1),
+                message="The model is looking at the frames: %s of %s..." % (mm.group(1), mm.group(2)))
+        elif line.strip().startswith("computing"):
+            say(progress=round(W_FIND + W_FRAMES + W_MODEL * 0.1, 1), message="Loading the model...")
+        elif "draft segments" in line:
+            say(progress=round(W_FIND + W_FRAMES + W_MODEL * 0.97, 1), message="Making the section thumbnails...")
+    proc.wait()
+    text = "".join(lines)
+    if proc.returncode or not os.path.exists(os.path.join(CLIP_DIR, "drafts", name, "segments.csv")):
+        raise Fail("The frames were saved, but the model run failed: " + text.strip()[-300:])
+    m = re.search(r"(\d+) draft segments", text)
+    return int(m.group(1)) if m else None
+
+
+# ---- the resident model worker (CLIP Training/scripts/model_worker.py): loads the model once and takes videos one after another
+LOGS = os.path.join(HERE, "logs")
+PORT_FILE = os.path.join(LOGS, "model-worker.port")
+SPAWN_LOCK = os.path.join(LOGS, "model-worker.lock")
+
+
+def _worker_connection():
+    try:
+        with open(PORT_FILE) as fh:
+            port = json.load(fh)["port"]
+        s = socket.create_connection(("127.0.0.1", port), timeout=5)
+        s.settimeout(None)
+        return s
+    except (OSError, ValueError, KeyError):
+        return None
+
+
+def ensure_worker():
+    """A connection to the model worker, starting it if it is not running. None if that did not work."""
+    s = _worker_connection()
+    if s:
+        return s
+    import fcntl
+    os.makedirs(LOGS, exist_ok=True)
+    with open(SPAWN_LOCK, "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)                            # several videos starting together must not start several workers
+        s = _worker_connection()
+        if s:
+            return s
+        try:
+            os.remove(PORT_FILE)
+        except OSError:
+            pass
+        say(message="Starting the model (first video only)...")
+        log = open(os.path.join(LOGS, "model-worker.log"), "ab")
+        subprocess.Popen([CLIP_PY, "-u", os.path.join(CLIP_DIR, "scripts", "model_worker.py"), "--port-file", PORT_FILE],
+                         cwd=CLIP_DIR, stdout=log, stderr=log, start_new_session=True)
+        for _ in range(240):                                      # up to two minutes
+            time.sleep(0.5)
+            s = _worker_connection()
+            if s:
+                return s
+    return None
+
+
+def model_stage(out, name, every):
+    """Make the draft for the saved frames. Returns the number of sections."""
+    s = ensure_worker()
+    if s is None:
+        return model_stage_oneoff(out, name, every)
+    try:
+        s.sendall((json.dumps({"folder": out, "every": every}) + "\n").encode())
+        for line in s.makefile("r"):
+            msg = json.loads(line)
+            kind = msg.get("type")
+            if kind == "waiting":
+                say(message="Waiting for the model: another video is being processed first...")
+            elif kind == "phase" and msg.get("text") == "loading":
+                say(progress=round(W_FIND + W_FRAMES + W_MODEL * 0.1, 1), message="The model is starting on the frames...")
+            elif kind == "progress":
+                say(progress=round(W_FIND + W_FRAMES + W_MODEL * (0.1 + 0.85 * msg["done"] / max(1, msg["total"])), 1),
+                    message="The model is looking at the frames: %d of %d..." % (msg["done"], msg["total"]))
+            elif kind == "phase" and msg.get("text") == "segments":
+                say(progress=round(W_FIND + W_FRAMES + W_MODEL * 0.97, 1), message="Making the section thumbnails...")
+            elif kind == "done":
+                return msg.get("sections")
+            elif kind == "error":
+                raise Fail("The frames were saved, but the model run failed: " + str(msg.get("error")))
+        raise Fail("The model worker stopped unexpectedly (see logs/model-worker.log).")
+    finally:
+        s.close()
+
+
+# ---------------------------------------------------------------- main job
+def run(args):
+    for tool in ("ffmpeg", "ffprobe"):
+        if not shutil.which(tool):
+            raise Fail("%s is not installed (brew install ffmpeg)." % tool)
+    t0 = time.time()
+    say(phase="finding", progress=1, message="Reading the page...")
+    page_error = None
+    try:
+        page = fetch_text(args.url)
+    except Fail as e:                                              # a page that refuses this reader may still be understood by yt-dlp
+        page, page_error = "", e
+    sources = find_sources(page, args.url)
+    kt = find_kt(page)
+    if kt:                                                         # the player's own settings are the real files; other .mp4 addresses on the page can be decoys
+        sources = kt + [x for x in sources if x[1] not in [k[1] for k in kt]]
+    referer = args.url
+    pages = [(page, args.url)]
+    if not sources and page:                                       # the video address may sit in the player page the video page embeds
+        for emb in find_embeds(page, args.url):
+            ep = fetch_text(emb, referer=args.url)
+            pages.append((ep, emb))
+            sources = find_kt(ep) or find_sources(ep, emb)
+            if sources:
+                break
+
+    def usable(cands):
+        """(height, real address) of the first candidate that really serves video with partial reads: the best fit under the height cap first."""
+        if not cands:
+            return None
+        first = pick_source(cands, args.height)
+        known = [x for x in cands if x[0] and x[0] <= args.height]
+        for h, cand in [first] + sorted((x for x in cands if x != first), key=lambda x: (x not in known, -x[0])):
+            real = probe_video(cand, referer)
+            if real:
+                return h, real
+        return None
+
+    hls, found = None, None
+    if not kt and len(sources) > 3:                                # a page crowded with .mp4 addresses is full of other videos' previews: yt-dlp knows which one is this video
+        files, master = ytdlp_lookup(args.url)
+        found = usable(files)
+        if not found and master:
+            hls = HlsSource(master, args.url, args.height)
+    if not found and not hls:
+        found = usable(sources)
+    if not found:                                                  # no plain file: try a segmented (HLS) stream
+        for body, where in pages:
+            masters = find_hls(body, where)
+            if masters:
+                hls = HlsSource(masters[0], where, args.height)
+                break
+    if not found and not hls:                                      # last resort: ask yt-dlp (it knows many sites' players)
+        files, master = ytdlp_lookup(args.url)
+        found = usable(files)
+        if not found and master:
+            hls = HlsSource(master, args.url, args.height)
+    if not found and not hls:
+        if page_error:
+            raise page_error
+        if sources:
+            raise Fail("This site does not allow reading part of the video file, so frames can't be taken without downloading it.")
+        raise Fail("Couldn't find a video file or stream on that page. It may load the video with a script, need a login, or use protection I won't work around.")
+    if hls:
+        height, src = hls.height, ""
+        origin, path = "", ""
+    else:
+        height, src = found
+        u = urllib.parse.urlparse(src)
+        origin = "%s://%s" % (u.scheme, u.netloc)
+        path = u.path + ("?" + u.query if u.query else "")
+    name = make_name(args.url, page)
+    say(name=name, quality=height or None, message="Found the video (%sp)." % height if height else "Found the video.")
+
+    partial = args.start_seconds > 0 or args.end_seconds > 0
+    if partial:
+        name = "%s %s-%s" % (name, tag(args.start_seconds), tag(args.end_seconds) if args.end_seconds else "end")
+    os.makedirs(FRAMES_ROOT, exist_ok=True)
+    out, n = os.path.join(FRAMES_ROOT, name), 2
+    while True:                                                   # never mix with frames that are already there; claiming the folder is atomic,
+        try:                                                      # so several videos started at the same moment cannot pick the same name
+            os.makedirs(out)
+            break
+        except FileExistsError:
+            out = os.path.join(FRAMES_ROOT, "%s (%d)" % (name, n))
+            n += 1
+    name = os.path.basename(out)
+    say(name=name)
+    global OUT_DIR
+    OUT_DIR = out
+
+    cache = hls or RangeCache(origin, {"User-Agent": UA, "Referer": "%s://%s/" % (urllib.parse.urlparse(args.url).scheme, urllib.parse.urlparse(args.url).netloc)})
+    try:
+        local = "" if hls else "http://127.0.0.1:%d%s" % (cache.port, path)
+        say(phase="indexing", progress=3, message="Reading the video's index...")
+        t_idx = time.time()
+        if hls:
+            duration = hls.duration
+        else:
+            cache.prefetch(path)
+            try:
+                r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", local],
+                                   capture_output=True, text=True, timeout=120)
+                duration = float(r.stdout.strip().splitlines()[0])
+            except (ValueError, IndexError, subprocess.TimeoutExpired):
+                raise Fail("Couldn't read the video's length from the server.")
+        length = duration
+        start = max(0.0, args.start_seconds)
+        end = min(length, args.end_seconds) if args.end_seconds else length
+        if args.limit_minutes:
+            end = min(end, start + args.limit_minutes * 60)
+        if start >= length:
+            raise Fail("The video is only %s long, so there is nothing at %s." % (clock(length), clock(start)))
+        if end <= start:
+            raise Fail("The end of the section has to be after its start.")
+        say(t_index=round(time.time() - t_idx, 1))
+        t_grab = time.time()
+        times = [start + i * args.every for i in range(int((end - start) // args.every) + 1) if start + i * args.every < end]
+        total = len(times)
+        say(phase="grabbing", done=0, total=total, range_start=start, range_end=end, video_length=length,
+            message="Taking %d frames, one every %g seconds, from %s to %s (video length %s)..." % (total, args.every, clock(start), clock(end), clock(length)))
+        state = {"done": 0, "failed": []}
+        lock = threading.Lock()
+
+        def grab(item):
+            idx, t = item
+            dest = os.path.join(out, "%06d.jpg" % (idx + 1))
+            for attempt in (1, 2):
+                if hls:
+                    try:
+                        hls.frame(t, dest)
+                    except (OSError, http.client.HTTPException, Fail):
+                        pass
+                else:
+                    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-probesize", "32768", "-analyzeduration", "0", "-noaccurate_seek",
+                                    "-ss", str(t), "-i", local, "-frames:v", "1", "-q:v", "3", dest], capture_output=True, timeout=180)
+                if os.path.exists(dest) and os.path.getsize(dest) > 0:
+                    break
+            else:
+                with lock:
+                    state["failed"].append(idx + 1)
+            with lock:
+                state["done"] += 1
+                if state["done"] % 3 == 0 or state["done"] == total:
+                    el = time.time() - t_grab
+                    say(done=state["done"], mb=round(cache.fetched / 1e6, 1), progress=round(W_FIND + W_FRAMES * state["done"] / total, 1),
+                        eta_seconds=round(el / state["done"] * (total - state["done"])))
+
+        with ThreadPoolExecutor(max(1, args.workers)) as pool:
+            list(pool.map(grab, enumerate(times)))
+        say(t_frames=round(time.time() - t_grab, 1))
+        file_size = max(cache.sizes.values()) if cache.sizes else 0
+        fetched = cache.fetched
+    finally:
+        cache.close()
+
+    saved = sorted(f for f in os.listdir(out) if re.fullmatch(r"\d+\.jpg", f))
+    if not saved:
+        shutil.rmtree(out, ignore_errors=True)
+        raise Fail("No frames could be taken from that video.")
+    if state["failed"]:                                           # a gap would shift every later frame's time: renumber so the spacing stays true
+        say(message="%d frame(s) could not be read." % len(state["failed"]))
+    say(phase="model", progress=W_FIND + W_FRAMES, eta_seconds=None, frames=len(saved), fetched_mb=round(fetched / 1e6, 1), file_mb=round(file_size / 1e6, 1),
+        percent_fetched=round(100 * fetched / file_size) if file_size else None, failed=len(state["failed"]),
+        message="Adding the frames to the model dashboard and running the model...")
+
+    if not os.path.exists(CLIP_PY):
+        raise Fail("The model environment is missing (CLIP Training/.venv).")
+    t_model = time.time()
+    sections = model_stage(out, name, args.every)
+    say(t_model=round(time.time() - t_model, 1))
+    say(phase="done", progress=100, sections=sections, seconds=round(time.time() - t0),
+        message="Done. The video is in the model dashboard as \"%s\"." % name + (" Its times start at 0:00, which is %s in the original video." % clock(STATUS.get("range_start", 0)) if partial else ""))
+
+
+def main():
+    global STATUS_FILE
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--url", required=True)
+    ap.add_argument("--every", type=float, default=5.0)
+    ap.add_argument("--height", type=int, default=480, help="preferred video height; 480 is plenty for the model")
+    ap.add_argument("--start-seconds", type=float, default=0, help="take frames from this point of the video")
+    ap.add_argument("--end-seconds", type=float, default=0, help="stop at this point (0 = the end of the video)")
+    ap.add_argument("--limit-minutes", type=float, default=0, help="at most N minutes from the start point (for testing)")
+    ap.add_argument("--workers", type=int, default=WORKERS, help="frames taken in parallel")
+    ap.add_argument("--status", help="progress file (JSON)")
+    args = ap.parse_args()
+    STATUS_FILE = args.status
+    try:
+        run(args)
+    except Fail as e:
+        if OUT_DIR and os.path.isdir(OUT_DIR) and not os.listdir(OUT_DIR):
+            os.rmdir(OUT_DIR)
+        say(phase="error", error=str(e))
+        print("ERROR:", e, file=sys.stderr)
+        return 1
+    except Exception as e:                                         # never leave the page waiting on a crashed job
+        say(phase="error", error="%s: %s" % (type(e).__name__, e))
+        raise
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

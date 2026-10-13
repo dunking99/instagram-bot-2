@@ -1,0 +1,83 @@
+
+=== Preparing paigeinsco ===
+Profile reports 56 posts.
+Post types seen: 46 carousels, 0 reels/videos, 9 single photos.
+Warning: loaded 55 of 56 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791089399.859243 1402408 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 55 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791089399.982273 1403125 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791089399.991902 1403130 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...55 / 55
+Using photo index: 55 posts.
+
+paigeinsco: 55 photo posts + 0 reels; 46 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     14  beach
+      8  bedroom
+      3  pool
+      2  boat or sea
+      2  car
+      1  restaurant or cafe
+      1  city street
+      1  snow or mountains
+      1  party or club
+      0  gym
+      0  stadium
+      0  bathroom
+      0  hotel room
+      0  nature
+      0  studio
+      0  living room
+     22  (no confident tag)
+
+outfit:
+     30  bikini
+      7  one-piece swimsuit
+      4  activewear
+      4  jeans and top
+      2  jacket or coat
+      0  dress
+      0  skirt
+      0  formal wear
+      0  sportswear kit
+      8  (no confident tag)
+
+shot:
+     27  full-body photo
+      5  mirror selfie
+      2  selfie
+      2  landscape without people
+      1  group photo
+      1  text or graphic
+      0  close-up portrait
+      0  food
+      0  pet or animal
+     17  (no confident tag)
+
+pose:
+     26  standing
+     11  upper body only
+      3  sitting
+      2  lying down
+      2  bending over
+      1  leaning
+      0  kneeling
+      0  on all fours
+     10  (no confident tag)
+
+arms:
+      5  arms up
+Using photo index: 55 posts.
+Library for paigeinsco: 55 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/paigeinsco
+
+paigeinsco: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

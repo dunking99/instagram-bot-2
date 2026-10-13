@@ -1,0 +1,42 @@
+{
+  "setting": {
+    "beach": "a photo taken on a sandy beach",
+    "pool": "a photo by a swimming pool",
+    "boat or sea": "a photo on a boat on the sea",
+    "gym": "a photo in a gym",
+    "stadium": "a photo in a sports stadium",
+    "restaurant or cafe": "a photo in a restaurant or cafe",
+    "bedroom": "a photo in a bedroom",
+    "bathroom": "a photo in a bathroom",
+    "hotel room": "a photo in a hotel room",
+    "city street": "a photo on a city street",
+    "nature": "a photo outdoors in nature, with hills, trees or fields",
+    "snow or mountains": "a photo in the snow or in the mountains",
+    "car": "a photo inside a car",
+    "party or club": "a photo at a party or nightclub",
+    "studio": "a studio photo with a plain backdrop",
+    "living room": "a photo in a living room at home"
+  },
+  "outfit": {
+    "bikini": "a woman wearing a bikini",
+    "one-piece swimsuit": "a woman wearing a one-piece swimsuit",
+    "dress": "a woman wearing a dress",
+    "activewear": "a woman wearing gym clothes or activewear",
+    "jeans and top": "a woman wearing jeans and a top",
+    "skirt": "a woman wearing a skirt",
+    "jacket or coat": "a woman wearing a jacket or coat",
+    "formal wear": "a woman wearing formal wear or a suit",
+    "sportswear kit": "a person wearing a football shirt or team kit"
+  },
+  "shot": {
+    "selfie": "a selfie taken at arm's length",
+    "mirror selfie": "a mirror selfie holding a phone",
+    "close-up portrait": "a close-up portrait of a face",
+    "full-body photo": "a full-body photo of a standing person",
+    "group photo": "a photo of a group of people together",
+    "food": "a photo of food on a plate",
+    "pet or animal": "a photo of a pet or an animal",
+    "landscape without people": "a landscape or scenery photo with no people in it",
+    "text or graphic": "a graphic, screenshot or image with text on it"
+  }
+}

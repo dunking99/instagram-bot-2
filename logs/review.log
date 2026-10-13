@@ -1,0 +1,102 @@
+Review page running at http://localhost:8795  (Ctrl+C to stop)
+Review page running at http://localhost:8795  (Ctrl+C to stop)
+Review page running at http://localhost:8765  (Ctrl+C to stop)
+Traceback (most recent call last):
+  File "/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py", line 1782, in <module>
+    server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/server.py", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 48] Address already in use
+Review page running at http://localhost:8765  (Ctrl+C to stop)
+Review page running at http://localhost:8765  (Ctrl+C to stop)
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1041: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  excluded = read_json(ex_path).get("frames", [])
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1042: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  excluded = sorted({int(x) for x in excluded if 1 <= int(x) <= total})
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1041: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  excluded = read_json(ex_path).get("frames", [])
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1042: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  excluded = sorted({int(x) for x in excluded if 1 <= int(x) <= total})
+Review page running at http://localhost:8777  (Ctrl+C to stop)
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+Review page running at http://localhost:8777  (Ctrl+C to stop)
+Review page running at http://localhost:8777  (Ctrl+C to stop)
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+Traceback (most recent call last):
+  File "/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py", line 2146, in <module>
+    server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/server.py", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 48] Address already in use
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1074: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
+/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1075: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row

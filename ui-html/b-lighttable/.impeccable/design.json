@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T00:00:00Z",
+  "title": "Design System: Postroom, Light table",
+  "extensions": {
+    "colorMeta": {
+      "paper": {"role": "neutral", "displayName": "Light-Table Paper", "canonical": "#eef1f3", "tonalRamp": ["#101214","#2b3036","#566069","#aab3ba","#d3d9de","#eef1f3","#f6f8f9","#ffffff"]},
+      "ink": {"role": "neutral", "displayName": "Ink", "canonical": "#101214", "tonalRamp": ["#101214","#2b3036","#2f353b","#566069","#aab3ba","#d3d9de","#eef1f3","#ffffff"]},
+      "pick-vermilion": {"role": "primary", "displayName": "Grease-Pencil Vermilion", "canonical": "#e0301a", "tonalRamp": ["#4a0f08","#7a1a0e","#a8230f","#e0301a","#ea6551","#f2998b","#f8ccc4","#fdeeea"]},
+      "maybe-amber": {"role": "secondary", "displayName": "Maybe Amber", "canonical": "#f0b400", "tonalRamp": ["#4d3a00","#7a5c00","#a88000","#f0b400","#f5c93d","#f8da79","#fbebb5","#fef8e1"]},
+      "reject-slate": {"role": "secondary", "displayName": "Reject Slate", "canonical": "#566b80", "tonalRamp": ["#1a2128","#2b3641","#3d4c5b","#566b80","#7b8d9f","#a2b0be","#cbd3dc","#eef1f4"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Display", "purpose": "Page titles, 800 weight, tight tracking."},
+      "data": {"displayName": "Data", "purpose": "Counts, times, frame numbers, edge codes in JetBrains Mono tabular."}
+    },
+    "shadows": [
+      {"name": "paper-lift", "value": "0 1px 0 rgba(16,18,20,0.06), 0 8px 24px -12px rgba(16,18,20,0.22)", "purpose": "Floating surfaces: query bar, viewer, dialogs, popovers."}
+    ],
+    "motion": [
+      {"name": "ease", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "All pop, slide, draw-in and grid transitions (0.2-0.55s)."}
+    ],
+    "breakpoints": [
+      {"name": "stack", "value": "1180px"},
+      {"name": "bar-wrap", "value": "1000px"},
+      {"name": "lightbox-overlay", "value": "900px"}
+    ]
+  },
+  "components": [
+    {"name": "Button", "kind": "button", "refersTo": "button", "description": "Square white button that inverts to ink on hover.", "html": "<button class=\"ds-btn\">Keep all</button>", "css": ".ds-btn{background:#fff;color:#101214;border:1px solid #101214;min-height:36px;padding:0 16px;font:700 14px 'Schibsted Grotesk',system-ui,sans-serif;cursor:pointer}.ds-btn:hover{background:#101214;color:#fff}.ds-btn:focus-visible{outline:3px solid #e0301a;outline-offset:2px}"},
+    {"name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Solid ink main action.", "html": "<button class=\"ds-btn-pri\">Search</button>", "css": ".ds-btn-pri{background:#101214;color:#fff;border:1px solid #101214;min-height:44px;padding:0 24px;font:700 15.5px 'Schibsted Grotesk',system-ui,sans-serif;cursor:pointer}.ds-btn-pri:hover{background:#2f353b}.ds-btn-pri:focus-visible{outline:3px solid #e0301a;outline-offset:2px}"},
+    {"name": "Tag", "kind": "chip", "refersTo": "tag", "description": "Filter tag; selected inverts.", "html": "<span class=\"ds-tag\">landscape</span> <span class=\"ds-tag on\">portrait</span>", "css": ".ds-tag{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;background:#fff;border:1px solid #aab3ba;font:500 13.5px 'Schibsted Grotesk',system-ui,sans-serif}.ds-tag:hover{border-color:#101214}.ds-tag.on{background:#101214;border-color:#101214;color:#fff;font-weight:700}"},
+    {"name": "Input", "kind": "input", "refersTo": "input", "description": "Square text field with ink focus halo.", "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Account\">", "css": ".ds-input{background:#fff;border:1px solid #aab3ba;min-height:36px;padding:0 10px;font:500 14.5px 'Schibsted Grotesk',system-ui,sans-serif;border-radius:0}.ds-input:focus{outline:none;border-color:#101214;box-shadow:0 0 0 3px rgba(16,18,20,0.12)}"},
+    {"name": "Tab", "kind": "nav", "description": "Top-bar tab; current inverts to ink.", "html": "<nav class=\"ds-tabs\"><button class=\"ds-tab\">Find</button><button class=\"ds-tab cur\">Library</button></nav>", "css": ".ds-tabs{display:flex;height:60px;background:#fff;border-bottom:2px solid #101214}.ds-tab{background:none;border:0;padding:0 16px;font:700 15px 'Schibsted Grotesk',system-ui,sans-serif;color:#566069}.ds-tab:hover{color:#101214;background:#f6f8f9}.ds-tab.cur{background:#101214;color:#fff}"},
+    {"name": "Contact-sheet Frame", "kind": "card", "refersTo": "frame", "description": "Black frame, 4:5 image, mono amber edge code.", "html": "<div class=\"ds-fr\"><div class=\"ds-img\"></div><div class=\"ds-edge\"><span>14</span><span>14A</span></div></div>", "css": ".ds-fr{position:relative;width:188px;background:#0b0c0d;padding:8px 8px 22px}.ds-img{aspect-ratio:4/5;background:#222}.ds-edge{position:absolute;left:8px;right:8px;bottom:4px;display:flex;justify-content:space-between;font:500 11px 'JetBrains Mono',ui-monospace,monospace;color:#ffb000;letter-spacing:0.08em}"},
+    {"name": "Grease-Pencil Mark", "kind": "custom", "description": "Hand-drawn ellipse over a frame; vermilion = pick.", "html": "<div class=\"ds-mk\"><svg viewBox=\"0 0 80 100\" preserveAspectRatio=\"none\"><path pathLength=\"1\" d=\"M7 52 C4 22 30 5 54 8 C78 11 80 58 64 82 C48 101 12 95 9 62 C7 48 12 36 21 28\"/></svg></div>", "css": ".ds-mk{position:relative;width:120px;height:150px;background:#0b0c0d}.ds-mk svg{position:absolute;inset:-6px -8px;width:calc(100% + 16px);height:calc(100% + 12px);overflow:visible}.ds-mk path{fill:none;stroke:#e0301a;stroke-width:3.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:ds-draw .5s cubic-bezier(.22,1,.36,1) forwards}@keyframes ds-draw{to{stroke-dashoffset:0}}"},
+    {"name": "Decision Buttons", "kind": "custom", "refersTo": "decide-keep", "description": "Triage keep/review/junk; pressed fills with the decision colour.", "html": "<div class=\"ds-dec\"><button class=\"k on\">Keep<small>K</small></button><button>Review<small>R</small></button><button>Junk<small>J</small></button></div>", "css": ".ds-dec{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ds-dec button{min-height:62px;display:grid;place-items:center;gap:3px;background:#fff;border:2px solid #101214;font:800 16px 'Schibsted Grotesk',system-ui,sans-serif}.ds-dec small{font:500 12px 'JetBrains Mono',monospace;color:#566069}.ds-dec button:hover{background:#101214;color:#fff}.ds-dec .k.on{background:#e0301a;border-color:#e0301a;color:#fff}.ds-dec .k.on small{color:inherit}"}
+  ],
+  "narrative": {
+    "northStar": "The Light Table",
+    "overview": "Images lie on a bright, cool, backlit surface and decisions are made by marking them. The ground is cool paper-white, every image sits in a black frame like a contact-sheet negative, and the owner's judgement shows up as grease-pencil marks drawn over the frame rather than as verb buttons.",
+    "keyCharacteristics": ["Cool paper ground, pure-white sheets, ink-black borders; square corners.", "Every image lives in a near-black frame with a mono edge-code strip.", "Decision colour is semantic and rare: vermilion pick, amber maybe, slate reject.", "Active state is always inversion to solid ink with white text.", "One paper-lift shadow; otherwise depth comes from borders."],
+    "rules": [
+      {"name": "The Marks-Only Colour Rule", "body": "Saturated colour means a decision (pick, maybe, reject) or a status. Never use vermilion, amber or slate as decoration or as a generic accent.", "section": "colors"},
+      {"name": "The Ink Inversion Rule", "body": "Hover, selected, pressed and current states invert to ink fill with white text; they do not tint.", "section": "colors"},
+      {"name": "The Numbers Are Mono Rule", "body": "Any count, time, score or frame number is JetBrains Mono with tabular figures.", "section": "typography"},
+      {"name": "The Heavy-Tight Rule", "body": "Headings are 800 weight with negative letter-spacing; never light weights.", "section": "typography"},
+      {"name": "The One Lift Rule", "body": "The only shadow is the soft paper lift, used for things that float above the sheet. No hard offset shadows, no glow.", "section": "elevation"}
+    ],
+    "dos": ["Do put every image in a frame-black frame with an edge-code strip.", "Do express keep, maybe and reject with the grease-pencil mark family in vermilion, amber and slate.", "Do invert hover and selected states to ink fill with white text.", "Do set every number, time and count in JetBrains Mono with tabular figures.", "Do keep corners square and borders 1px (controls) or 2px (structure).", "Do keep a visible 3px vermilion focus outline."],
+    "donts": ["Don't use dark sidebar dashboards or dark page grounds; the table is light, only frames are dark.", "Don't use vermilion, amber or slate for decoration or non-decision accents.", "Don't add shadows beyond the paper lift, or any hard offset shadow.", "Don't round buttons, inputs or cards.", "Don't replace decision marks with verb-only coloured buttons."]
+  }
+}

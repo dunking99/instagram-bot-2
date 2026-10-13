@@ -1,0 +1,103 @@
+
+=== Preparing magui_corceiro ===
+Profile reports 1335 posts.
+  ...60 posts loaded / 1335
+  ...132 posts loaded / 1335
+  ...180 posts loaded / 1335
+  ...240 posts loaded / 1335
+  ...300 posts loaded / 1335
+  ...360 posts loaded / 1335
+  ...444 posts loaded / 1335
+  ...504 posts loaded / 1335
+  ...576 posts loaded / 1335
+  ...660 posts loaded / 1335
+  ...756 posts loaded / 1335
+  ...864 posts loaded / 1335
+  ...960 posts loaded / 1335
+  ...1068 posts loaded / 1335
+  ...1164 posts loaded / 1335
+  ...1296 posts loaded / 1335
+Post types seen: 558 carousels, 182 reels/videos, 595 single photos.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791078846.557345 1254884 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 1335 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791078846.664709 1257742 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791078846.675273 1257749 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 1335
+  ...512 / 1335
+  ...768 / 1335
+  ...1024 / 1335
+  ...1280 / 1335
+  ...1335 / 1335
+Using photo index: 1335 posts.
+
+magui_corceiro: 1153 photo posts + 182 reels; 558 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    177  beach
+    105  boat or sea
+     86  bedroom
+     80  party or club
+     65  studio
+     59  city street
+     45  car
+     38  restaurant or cafe
+     31  pool
+     23  bathroom
+     18  nature
+     17  gym
+     17  hotel room
+     14  living room
+     11  stadium
+      1  snow or mountains
+    366  (no confident tag)
+
+outfit:
+    172  bikini
+    144  jeans and top
+    105  one-piece swimsuit
+     93  activewear
+     62  formal wear
+     34  jacket or coat
+     23  dress
+     12  skirt
+     11  sportswear kit
+    497  (no confident tag)
+
+shot:
+    321  full-body photo
+    142  mirror selfie
+     94  selfie
+     66  group photo
+     61  text or graphic
+     49  close-up portrait
+     38  landscape without people
+     20  pet or animal
+      7  food
+    355  (no confident tag)
+
+pose:
+    373  standing
+    180  upper body only
+    163  sitting
+     27  bending over
+     15  lying down
+      3  kneeling
+      1  leaning
+      0  on all fours
+    391  (no confident tag)
+
+arms:
+    108  arms up
+Using photo index: 1335 posts.
+Library for magui_corceiro: 1153 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/magui_corceiro
+
+magui_corceiro: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

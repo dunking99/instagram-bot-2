@@ -1,0 +1,40 @@
+--- Thu  8 Oct 2026 23:44:40 BST start_all.sh 
+Postroom already running
+Review dashboard already running
+everything is up
+--- Thu  8 Oct 2026 23:44:53 BST start_all.sh 
+starting the Postroom...
+starting the review dashboard...
+everything is up
+/Users/hugodyson/instagram-bot-2/start_all.sh: line 33: 19435 Terminated: 15          REVIEW_PORT="$PORT_REV" nohup .venv/bin/python -u scripts/review_server.py >> "$ROOT/logs/review.log" 2>&1
+/Users/hugodyson/instagram-bot-2/start_all.sh: line 25: 19432 Terminated: 15          nohup /usr/bin/python3 server.py --no-open --port "$PORT_POST" >> "$ROOT/logs/postroom.log" 2>&1
+--- Thu Oct  8 23:56:09 BST 2026 start_all.sh 
+Postroom already running
+Review dashboard already running
+everything is up
+--- Fri Oct  9 22:15:50 BST 2026 start_all.sh review
+--- Fri Oct  9 22:15:50 BST 2026 start_all.sh 
+starting the Postroom...
+starting the review dashboard...
+starting the Postroom...
+starting the review dashboard...
+everything is up
+everything is up
+--- Fri Oct  9 22:16:02 BST 2026 start_all.sh 
+Postroom already running
+Review dashboard already running
+everything is up
+/Users/hugodyson/instagram-bot-2/start_all.sh: line 33: 58836 Terminated: 15          REVIEW_PORT="$PORT_REV" nohup .venv/bin/python -u scripts/review_server.py >> "$ROOT/logs/review.log" 2>&1
+/Users/hugodyson/instagram-bot-2/start_all.sh: line 25: 58832 Terminated: 15          nohup /usr/bin/python3 server.py --no-open --port "$PORT_POST" >> "$ROOT/logs/postroom.log" 2>&1
+--- Sat Oct 10 01:22:24 BST 2026 start_all.sh 
+starting the Postroom...
+starting the review dashboard...
+everything is up
+--- Sat Oct 10 14:25:43 BST 2026 start_all.sh 
+starting the Postroom...
+starting the review dashboard...
+everything is up
+--- Sun Oct 11 17:41:38 BST 2026 start_all.sh review
+Postroom already running
+Review dashboard already running
+everything is up

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#eef1f3" />
+<title>Postroom · Light table</title>
+<link rel="stylesheet" href="../fonts/b.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Design B: Light table. Static prototype with real data from ../data.js. The shipping app in ui/ is untouched. -->
+<header class="top" id="top">
+  <button class="brand" data-go="find" aria-label="Postroom, home"><span class="mark" aria-hidden="true"></span><span>Postroom</span></button>
+  <nav class="tabs" id="tabs" aria-label="Pages"></nav>
+  <button class="cmd" id="cmd" aria-label="Go to or do anything"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16zM21 21l-4.2-4.2"/></svg><span>Go to a page, find an account, run a command</span><kbd>⌘K</kbd></button>
+  <div class="top-end">
+    <div class="seg" id="model" role="tablist" aria-label="Search model"><button role="tab" data-m="siglip">SigLIP</button><button role="tab" data-m="clip">CLIP</button></div>
+    <button class="status" id="open-status"></button>
+    <button class="act-btn" id="open-act" aria-expanded="false"></button>
+    <button class="lb-btn" id="open-lb" aria-pressed="true"></button>
+  </div>
+</header>
+
+<div class="layout" id="layout">
+  <main id="page" tabindex="-1"></main>
+  <aside class="lightbox" id="lightbox" aria-label="Lightbox"></aside>
+</div>
+
+<div class="pop-layer" id="pop" hidden></div>
+<div class="sheet-layer" id="sheet" hidden></div>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

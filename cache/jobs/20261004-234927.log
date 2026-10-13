@@ -1,0 +1,29 @@
+
+=== Preparing cindyprado ===
+Profile reports 3088 posts.
+  ...60 posts loaded / 3088
+  ...120 posts loaded / 3088
+  ...168 posts loaded / 3088
+  ...228 posts loaded / 3088
+  ...288 posts loaded / 3088
+  ...348 posts loaded / 3088
+  ...408 posts loaded / 3088
+  ...468 posts loaded / 3088
+  ...528 posts loaded / 3088
+  ...588 posts loaded / 3088
+  ...636 posts loaded / 3088
+Post types seen: 378 carousels, 254 reels/videos, 4 single photos.
+Warning: loaded 636 of 3088 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791154336.478173 2187060 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 636 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791154336.736326 2191862 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791154336.747622 2191868 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 636

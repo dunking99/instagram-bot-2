@@ -1,0 +1,10 @@
+playwright>=1.40
+torch
+transformers
+pillow
+numpy
+streamlit
+mediapipe==0.10.14
+fastapi
+uvicorn
+python-multipart

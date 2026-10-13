@@ -1,0 +1,198 @@
+
+=== Preparing minnarosaweber ===
+Using photo index: 114 posts.
+Looking inside 102 post(s) for more photos...
+  [1/25] /minnarosaweber/p/Ddr5c_vDGzD/: 3 photo(s) [page data]
+  [2/25] /minnarosaweber/p/DdHZLHMDE7-/: 2 photo(s) [page data]
+  [3/25] /minnarosaweber/p/Dc3vdavjAkv/: 2 photo(s) [page data]
+  [4/25] /minnarosaweber/p/DcgC6qCjKER/: 2 photo(s) [page data]
+  [5/25] /minnarosaweber/p/DcdTWX8DBXT/: 16 photo(s) [page data]
+  [6/25] /minnarosaweber/p/Db_gjpqDHvk/: 3 photo(s) [page data]
+  [7/25] /minnarosaweber/p/Db8zOcUDDps/: 1 photo(s) [page data]
+  [8/25] /minnarosaweber/p/Db3PnQtjAC4/: 16 photo(s) [page data]
+  [9/25] /minnarosaweber/p/DbqdHcljJmx/: 5 photo(s) [page data]
+  [10/25] /minnarosaweber/p/DbREN8sDAVQ/: 17 photo(s) [page data]
+  [11/25] /minnarosaweber/p/DbOLIA2DAR5/: 2 photo(s) [page data]
+  [12/25] /minnarosaweber/p/DbA6QWdDJGd/: 17 photo(s) [page data]
+  [13/25] /minnarosaweber/p/Da8k9BajNBe/: 10 photo(s) [page data]
+  [14/25] /minnarosaweber/p/DZneitXjFML/: 7 photo(s) [page data]
+  [15/25] /minnarosaweber/p/DZS-oQnDNx1/: 6 photo(s) [page data]
+  [16/25] /minnarosaweber/p/DZDfUOPjCv-/: 12 photo(s) [page data]
+  [17/25] /minnarosaweber/p/DYnF6n6DH1w/: 2 photo(s) [page data]
+  [18/25] /minnarosaweber/p/DYXyZ4VjMWF/: 8 photo(s) [page data]
+  [19/25] /minnarosaweber/p/DXr4IW6jOb-/: 6 photo(s) [page data]
+  [20/25] /minnarosaweber/p/DXNPdc_DLDa/: 7 photo(s) [page data]
+  [21/25] /minnarosaweber/p/DW9ZBdtDAd5/: 10 photo(s) [page data]
+  [22/25] /minnarosaweber/p/DW3u2b0jOmV/: 3 photo(s) [page data]
+  [23/25] /minnarosaweber/p/DWmK4mgjB_O/: 8 photo(s) [page data]
+  [24/25] /minnarosaweber/p/DWWnxi-jFI1/: 2 photo(s) [page data]
+  [25/25] /minnarosaweber/p/DWOw_VIDEbU/: 3 photo(s) [page data]
+Progress: 25 / 102 posts opened, 145 extra photos indexed so far (~10 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791087852.876163 1378051 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 145 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791087853.017292 1378232 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791087853.032468 1378233 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...145 / 145
+  [1/25] /minnarosaweber/p/DWHICbwjGmj/: 2 photo(s) [page data]
+  [2/25] /minnarosaweber/p/DVtn_V7jeFe/: 7 photo(s) [page data]
+  [3/25] /minnarosaweber/p/DVofqOljLvp/: 5 photo(s) [page data]
+  [4/25] /minnarosaweber/p/DUV0_1MDBAf/: 14 photo(s) [page data]
+  [5/25] /minnarosaweber/p/DUQqNpVjJDC/: 4 photo(s) [page data]
+  [6/25] /minnarosaweber/p/DTVoXg_jKAq/: 2 photo(s) [page data]
+  [7/25] /minnarosaweber/p/DTD0OwZjKnJ/: 18 photo(s) [page data]
+  [8/25] /minnarosaweber/p/DSDDGcYjKKl/: 2 photo(s) [page data]
+  [9/25] /minnarosaweber/p/DRvCfeIDOcC/: 3 photo(s) [page data]
+  [10/25] /minnarosaweber/p/DRPkWWZjPZE/: 4 photo(s) [page data]
+  [11/25] /minnarosaweber/p/DRFlWA1DFxs/: 10 photo(s) [page data]
+  [12/25] /minnarosaweber/p/DQkbcEIDHk0/: 12 photo(s) [page data]
+  [13/25] /minnarosaweber/p/DQKZBywjEkf/: 3 photo(s) [page data]
+  [14/25] /minnarosaweber/p/DQILxkJjA7z/: 2 photo(s) [page data]
+  [15/25] /minnarosaweber/p/DP65vPbjCpS/: 12 photo(s) [page data]
+  [16/25] /minnarosaweber/p/DPB_yBdjMXR/: 3 photo(s) [page data]
+  [17/25] /minnarosaweber/p/DOEfAQmDEmL/: 16 photo(s) [page data]
+  [18/25] /minnarosaweber/p/DNc8EFas0fg/: 2 photo(s) [page data]
+  [19/25] /minnarosaweber/p/DNWLr6OMPK1/: 3 photo(s) [page data]
+  [20/25] /minnarosaweber/p/DMncVwfi2af/: 5 photo(s) [page data]
+  [21/25] /minnarosaweber/p/DMdNOG-CF2H/: 15 photo(s) [page data]
+  [22/25] /minnarosaweber/p/DLxsh89M31O/: 13 photo(s) [page data]
+  [23/25] /minnarosaweber/p/DKmqH7AiMiN/: 1 photo(s) [page data]
+  [24/25] /minnarosaweber/p/DJhRMPtsm3G/: 2 photo(s) [page data]
+  [25/25] /minnarosaweber/p/DI4uJP5sIkb/: 3 photo(s) [page data]
+Progress: 50 / 102 posts opened, 283 extra photos indexed so far (~7 min left).
+Processing 138 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...138 / 138
+  [1/25] /minnarosaweber/p/DIJ3T5WsMdc/: 16 photo(s) [page data]
+  [2/25] /minnarosaweber/p/DHMfG1ks7PL/: 9 photo(s) [page data]
+  [3/25] /minnarosaweber/p/DG8epJcM0LU/: 10 photo(s) [page data]
+  [4/25] /minnarosaweber/p/DGBPUvjs_4F/: 7 photo(s) [page data]
+  [5/25] /minnarosaweber/p/DFnxwhVMtCt/: 2 photo(s) [page data]
+  [6/25] /minnarosaweber/p/DFFkj1TzcFN/: 9 photo(s) [page data]
+  [7/25] /minnarosaweber/p/DDvQjTOiXZh/: 3 photo(s) [page data]
+  [8/25] /minnarosaweber/p/DDFSQAhM07R/: 4 photo(s) [page data]
+  [9/25] /minnarosaweber/p/DC44ULdsutG/: 6 photo(s) [page data]
+  [10/25] /minnarosaweber/p/DCedvTbsh_u/: 4 photo(s) [page data]
+  [11/25] /minnarosaweber/p/DBRp7mpsrJg/: 5 photo(s) [page data]
+  [12/25] /minnarosaweber/p/DBEdPljspLY/: 9 photo(s) [page data]
+  [13/25] /minnarosaweber/p/DA86AF9s59f/: 2 photo(s) [page data]
+  [14/25] /minnarosaweber/p/DA1WMkxMpQv/: 2 photo(s) [page data]
+  [15/25] /minnarosaweber/p/DAD6LnKM3u3/: 14 photo(s) [page data]
+  [16/25] /minnarosaweber/p/C_8UXsEMpXq/: 6 photo(s) [page data]
+  [17/25] /minnarosaweber/p/C_6TdQeMW_V/: 7 photo(s) [page data]
+  [18/25] /minnarosaweber/p/C_s06b8OdXn/: 2 photo(s) [page data]
+  [19/25] /minnarosaweber/p/C_Yr-Ows6bJ/: 2 photo(s) [page data]
+  [20/25] /minnarosaweber/p/C-z6_74MFwI/: 4 photo(s) [page data]
+  [21/25] /minnarosaweber/p/C-INKScsdCQ/: 3 photo(s) [page data]
+  [22/25] /minnarosaweber/p/C92TIm1s8ku/: 6 photo(s) [page data]
+  [23/25] /minnarosaweber/p/C9nyVa9iQ2s/: 2 photo(s) [page data]
+  [24/25] /minnarosaweber/p/C9atGYBMmBY/: 5 photo(s) [page data]
+  [25/25] /minnarosaweber/p/C8Mdy2FsSvZ/: 3 photo(s) [page data]
+Progress: 75 / 102 posts opened, 400 extra photos indexed so far (~3 min left).
+Processing 117 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...117 / 117
+  [1/25] /minnarosaweber/p/C71rtvYihqh/: 3 photo(s) [page data]
+  [2/25] /minnarosaweber/p/C7yuTSgsQ98/: 7 photo(s) [page data]
+  [3/25] /minnarosaweber/p/C7rjm35i4yf/: 5 photo(s) [page data]
+  [4/25] /minnarosaweber/p/C7d-SPNsQm7/: 2 photo(s) [page data]
+  [5/25] /minnarosaweber/p/C7R_Rycs4AH/: 3 photo(s) [page data]
+  [6/25] /minnarosaweber/p/C6zP2IPMpPY/: 3 photo(s) [page data]
+  [7/25] /minnarosaweber/p/C5eP6OyMGDo/: 8 photo(s) [page data]
+  [8/25] /minnarosaweber/p/C4s62dTsqwO/: 1 photo(s) [page data]
+  [9/25] /minnarosaweber/p/C4qlgEOMOWy/: 2 photo(s) [page data]
+  [10/25] /minnarosaweber/p/C4RARfjMg0V/: 9 photo(s) [page data]
+  [11/25] /minnarosaweber/p/C3srQsYOKX2/: 3 photo(s) [page data]
+  [12/25] /minnarosaweber/p/C09PEFUMLDK/: 3 photo(s) [page data]
+  [13/25] /minnarosaweber/p/C0eRaBAMxGz/: 1 photo(s) [page data]
+  [14/25] /minnarosaweber/p/CxiCcL8suGo/: 2 photo(s) [page data]
+  [15/25] /minnarosaweber/p/Cwsnf7XsQG3/: 2 photo(s) [page data]
+  [16/25] /minnarosaweber/p/CwpXkGcM0GW/: 1 photo(s) [page data]
+  [17/25] /minnarosaweber/p/CsEsUvGsoW9/: 4 photo(s) [page data]
+  [18/25] /minnarosaweber/p/CsBlsf6MCZo/: 2 photo(s) [page data]
+  [19/25] /minnarosaweber/p/CryauhlMIBI/: 2 photo(s) [page data]
+  [20/25] /minnarosaweber/p/CqY_Jr_j8Ha/: 2 photo(s) [page data]
+  [21/25] /minnarosaweber/p/CqJwXaADIJV/: 3 photo(s) [page data]
+  [22/25] /minnarosaweber/p/CqGO3-XMw5l/: 2 photo(s) [page data]
+  [23/25] /minnarosaweber/p/Coub8T-sasV/: 2 photo(s) [page data]
+  [24/25] /minnarosaweber/p/CoTIy5SqFdd/: 2 photo(s) [page data]
+  [25/25] /minnarosaweber/p/CmFVZ8Ejf3i/: 4 photo(s) [page data]
+Progress: 100 / 102 posts opened, 453 extra photos indexed so far (~0 min left).
+Processing 53 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...53 / 53
+  [1/2] /minnarosaweber/p/CjxyZwOjNi_/: 2 photo(s) [page data]
+  [2/2] /minnarosaweber/p/CUiT64LMHe_/: 2 photo(s) [page data]
+Progress: 102 / 102 posts opened, 455 extra photos indexed so far (~0 min left).
+Processing 2 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...2 / 2
+Added 455 slide image(s) to the index.
+Using photo index: 569 posts.
+
+minnarosaweber: 111 photo posts + 3 reels; 102 of the photo posts are carousels (102 looked inside, 455 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     93  party or club
+     55  bedroom
+     49  city street
+     36  restaurant or cafe
+     29  boat or sea
+     25  beach
+     21  car
+     14  nature
+     13  bathroom
+     12  pool
+      7  living room
+      5  gym
+      3  hotel room
+      3  studio
+      2  stadium
+      2  snow or mountains
+    197  (no confident tag)
+
+outfit:
+     83  jeans and top
+     52  bikini
+     51  activewear
+     33  formal wear
+     26  dress
+     20  jacket or coat
+     18  skirt
+     13  one-piece swimsuit
+     12  sportswear kit
+    258  (no confident tag)
+
+shot:
+    131  full-body photo
+     92  mirror selfie
+     62  group photo
+     46  selfie
+     29  text or graphic
+     14  food
+     13  landscape without people
+      3  close-up portrait
+      3  pet or animal
+    173  (no confident tag)
+
+pose:
+    169  standing
+     95  upper body only
+     45  sitting
+     13  lying down
+      9  bending over
+      5  on all fours
+      3  leaning
+      0  kneeling
+    227  (no confident tag)
+
+arms:
+     37  arms up
+Using photo index: 569 posts.
+Library for minnarosaweber: 566 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/minnarosaweber
+
+minnarosaweber: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

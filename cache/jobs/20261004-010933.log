@@ -1,0 +1,155 @@
+
+=== Preparing luciaaferrato ===
+Using photo index: 425 posts.
+Looking inside 65 post(s) for more photos...
+  [1/25] /luciaaferrato/p/DSIDOokDOhb/: 12 photo(s) [page data]
+  [2/25] /luciaaferrato/p/DRr0TUXDIlX/: 11 photo(s) [page data]
+  [3/25] /luciaaferrato/p/DRNKTWXjDoH/: 14 photo(s) [page data]
+  [4/25] /luciaaferrato/p/DRC4CK4jJ_c/: 6 photo(s) [page data]
+  [5/25] /luciaaferrato/p/DQJf1MBDDe2/: 12 photo(s) [page data]
+  [6/25] /luciaaferrato/p/DP6xDzZDDZj/: 4 photo(s) [page data]
+  [7/25] /luciaaferrato/p/DPgpYfqDHF7/: 11 photo(s) [page data]
+  [8/25] /luciaaferrato/p/DPRfMAwjAl3/: 3 photo(s) [page data]
+  [9/25] /luciaaferrato/p/DO6UqBsDGb4/: 9 photo(s) [page data]
+  [10/25] /luciaaferrato/p/DOle7vEDO5S/: 6 photo(s) [page data]
+  [11/25] /luciaaferrato/p/DOTxrjnjOul/: 12 photo(s) [page data]
+  [12/25] /luciaaferrato/p/DOLs1IHDMpj/: 5 photo(s) [page data]
+  [13/25] /luciaaferrato/p/DN5MlrMDMsM/: 2 photo(s) [page data]
+  [14/25] /luciaaferrato/p/DNQ4_P-MT1h/: 10 photo(s) [page data]
+  [15/25] /luciaaferrato/p/DMf_zxct_8o/: 9 photo(s) [page data]
+  [16/25] /luciaaferrato/p/DMStyO2NHFL/: 13 photo(s) [page data]
+  [17/25] /luciaaferrato/p/DL5urTotzPx/: 14 photo(s) [page data]
+  [18/25] /luciaaferrato/p/DLXUZ-fNjul/: 4 photo(s) [page data]
+  [19/25] /luciaaferrato/p/DLHgvhLNdRn/: 9 photo(s) [page data]
+  [20/25] /luciaaferrato/p/DKU_RgzNWQU/: 3 photo(s) [page data]
+  [21/25] /luciaaferrato/p/DJg1sAcN3P5/: 2 photo(s) [page data]
+  [22/25] /luciaaferrato/p/DJJ7w17sCmE/: 5 photo(s) [page data]
+  [23/25] /luciaaferrato/p/DI9ghMEtsvF/: 2 photo(s) [page data]
+  [24/25] /luciaaferrato/p/DI1jv42NqyY/: 2 photo(s) [page data]
+  [25/25] /luciaaferrato/p/DIRH4EDN-by/: 8 photo(s) [page data]
+Progress: 25 / 65 posts opened, 163 extra photos indexed so far (~3 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791072711.558461 1123746 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 163 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791072711.743544 1123912 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791072711.755901 1123911 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...163 / 163
+  [1/25] /luciaaferrato/p/DHoetltNXjv/: 3 photo(s) [page data]
+  [2/25] /luciaaferrato/p/DHMSITFtM2-/: 11 photo(s) [page data]
+  [3/25] /luciaaferrato/p/DG2qe6lNhjN/: 10 photo(s) [page data]
+  [4/25] /luciaaferrato/p/DGZTH_LK2xq/: 3 photo(s) [page data]
+  [5/25] /luciaaferrato/p/DGL8cCdunv3/: 10 photo(s) [page data]
+  [6/25] /luciaaferrato/p/DFq3GxbNRxm/: 2 photo(s) [page data]
+  [7/25] /luciaaferrato/p/DFiV2artLEh/: 8 photo(s) [page data]
+  [8/25] /luciaaferrato/p/DEpCNP4tX5n/: 5 photo(s) [page data]
+  [9/25] /luciaaferrato/p/DEQFJhoNtNl/: 14 photo(s) [page data]
+  [10/25] /luciaaferrato/p/DELuOBPq3bz/: 2 photo(s) [page data]
+  [11/25] /luciaaferrato/p/DD4--1tOpI-/: 8 photo(s) [page data]
+  [12/25] /luciaaferrato/p/DDfi6hINGGk/: 2 photo(s) [page data]
+  [13/25] /luciaaferrato/p/DDUcvCWNi3w/: 4 photo(s) [page data]
+  [14/25] /luciaaferrato/p/DC7eYyWOHow/: 7 photo(s) [page data]
+  [15/25] /luciaaferrato/p/DCrEYp2Ng7-/: 12 photo(s) [page data]
+  [16/25] /luciaaferrato/p/DCfayyVN9Ak/: 8 photo(s) [page data]
+  [17/25] /luciaaferrato/p/DCNIafauTh9/: 6 photo(s) [page data]
+  [18/25] /luciaaferrato/p/DBZEB3mNolR/: 2 photo(s) [page data]
+  [19/25] /luciaaferrato/p/DBJ_IDwR8Ai/: 2 photo(s) [page data]
+  [20/25] /luciaaferrato/p/DA6mxG5uMGO/: 7 photo(s) [page data]
+  [21/25] /luciaaferrato/p/DAtXC9Ytpuf/: 5 photo(s) [page data]
+  [22/25] /luciaaferrato/p/DAjKHKat-9v/: 3 photo(s) [page data]
+  [23/25] /luciaaferrato/p/DATrD51NYp0/: 7 photo(s) [page data]
+  [24/25] /luciaaferrato/p/C_yXQ9jObAL/: 2 photo(s) [page data]
+  [25/25] /luciaaferrato/p/C_tFxEQNcse/: 10 photo(s) [page data]
+Progress: 50 / 65 posts opened, 291 extra photos indexed so far (~1 min left).
+Processing 128 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...128 / 128
+  [1/15] /luciaaferrato/p/C-3RvEKuUPw/: 4 photo(s) [page data]
+  [2/15] /luciaaferrato/p/C-LJLV2tAEE/: 3 photo(s) [page data]
+  [3/15] /luciaaferrato/p/C90D5UvuQOb/: 12 photo(s) [page data]
+  [4/15] /luciaaferrato/p/C9Nv8_4R7hz/: 2 photo(s) [page data]
+  [5/15] /luciaaferrato/p/C8Up9KwtbqG/: 9 photo(s) [page data]
+  [6/15] /luciaaferrato/p/C28RUE4tQPF/: 8 photo(s) [page data]
+  [7/15] /luciaaferrato/p/Cz2GF8wNNqX/: 4 photo(s) [page data]
+  [8/15] /luciaaferrato/p/CxqJZY1Kk0v/: 2 photo(s) [page data]
+  [9/15] /luciaaferrato/p/CwASnECNeAg/: 8 photo(s) [page data]
+  [10/15] /luciaaferrato/p/CuH4YsltA9v/: 2 photo(s) [page data]
+  [11/15] /luciaaferrato/p/CkEnMvPqzXk/: 8 photo(s) [page data]
+  [12/15] /luciaaferrato/p/CeHPWf5qD5D/: 2 photo(s) [page data]
+  [13/15] /luciaaferrato/p/CZHx_OtqA18/: 3 photo(s) [page data]
+  [14/15] /luciaaferrato/p/CVqu-EKqhJS/: 8 photo(s) [page data]
+  [15/15] /luciaaferrato/p/CQhG1wBH6TJ/: 6 photo(s) [page data]
+Progress: 65 / 65 posts opened, 357 extra photos indexed so far (~0 min left).
+Processing 66 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...66 / 66
+Added 357 slide image(s) to the index.
+Using photo index: 782 posts.
+
+luciaaferrato: 111 photo posts + 77 reels; 101 of the photo posts are carousels (101 looked inside, 594 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    105  party or club
+     78  city street
+     62  restaurant or cafe
+     33  bedroom
+     30  snow or mountains
+     30  car
+     28  boat or sea
+     19  living room
+     17  beach
+     17  bathroom
+     16  pool
+     13  stadium
+     13  studio
+      9  nature
+      8  hotel room
+      3  gym
+    224  (no confident tag)
+
+outfit:
+     73  jeans and top
+     54  formal wear
+     50  bikini
+     49  jacket or coat
+     44  activewear
+     35  dress
+     22  sportswear kit
+     20  skirt
+     16  one-piece swimsuit
+    342  (no confident tag)
+
+shot:
+    183  full-body photo
+    102  mirror selfie
+     60  text or graphic
+     45  group photo
+     40  selfie
+     24  food
+     16  close-up portrait
+     15  landscape without people
+     11  pet or animal
+    209  (no confident tag)
+
+pose:
+    213  standing
+    105  upper body only
+     65  sitting
+     18  bending over
+     14  lying down
+      5  leaning
+      4  on all fours
+      1  kneeling
+    280  (no confident tag)
+
+arms:
+     47  arms up
+Using photo index: 782 posts.
+Library for luciaaferrato: 705 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/luciaaferrato
+
+luciaaferrato: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

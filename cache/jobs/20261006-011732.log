@@ -1,0 +1,35 @@
+Found 11 video file(s).
+  [1/11] Freaky Babe Gives Head Till Facial.mp4: 275 frames (550 s).
+  [2/11] Kristen Hancher And Her Friend Making Out In Their Underwear.mp4: 32 frames (64 s).
+  [3/11] Kristen Hancher Blows A Cock In The Tub.mp4: 353 frames (705 s).
+  [4/11] Kristen Hancher Gets Railed In Doggy Style.mp4: 111 frames (222 s).
+  [5/11] Kristen Hancher Humps On A Dick After BJ.mp4: 229 frames (458 s).
+  [6/11] Kristen Hancher Knows How To Theatrically Suck Dick.mp4: 220 frames (439 s).
+  [7/11] Kristen Hancher Lesbians Touching Each Other.mp4: 41 frames (82 s).
+  [8/11] Kristen Hancher Receives Facial After BJ.mp4: 275 frames (550 s).
+  [9/11] Kristen Hancher Sucking A Cock.mp4: 219 frames (437 s).
+  [10/11] Kristen Hancher Sucks On A Hard Cock.mp4: 231 frames (461 s).
+  [11/11] Kristen Hancher Wants To Make Her BF Cum.mp4: 205 frames (410 s).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791245972.045699 3543530 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 2191 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791245972.299155 3547929 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791245972.313193 3547934 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 2191
+  ...512 / 2191
+  ...768 / 2191
+  ...1024 / 2191
+  ...1280 / 2191
+  ...1536 / 2191
+  ...1792 / 2191
+  ...2048 / 2191
+  ...2191 / 2191
+263 near-identical frame(s) skipped.
+Collection 'kristenhancher' now holds 2247 image(s) including 1928 video frame(s).

@@ -1,0 +1,293 @@
+
+=== Preparing leahhalton ===
+Using photo index: 233 posts.
+Looking inside 188 post(s) for more photos, 2 browser windows at once...
+  [w1 1/13] /leahhalton/p/DdlynvLEwO2/: 10 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/DcOtld1CYMD/: 12 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/DZcuvUHE39v/: 10 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/DYwxNOhk6aB/: 5 photo(s) [page data]
+  [w2 3/12] /brookemonk/p/DXcZgDFD9MR/: 10 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/DX8WY3oE5Bs/: 12 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/DXEFZzbFQrD/: 8 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/DXOAUkAEzz0/: 10 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/DW-5NfEFHPo/: 7 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/DXBfxyhFOpP/: 9 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/DUx5hpsE-wy/: 8 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/DVqVSSlk5et/: 9 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/DTKl8SdE5dx/: 10 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/DUNqccYk26Z/: 10 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/DRj22XUk_i2/: 9 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/DOtH8uJFB7Y/: 6 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/DS61MGIEwEd/: 15 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/DQVoEmyEZiZ/: 7 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/DON1HQSFNP7/: 9 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/DOjwDOgEkb4/: 5 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/DNc7kiBucXK/: 9 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/DN5Qzz6EXKx/: 10 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/DL7FO4UTooG/: 5 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/DMm4nN2zNsr/: 7 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/DKg9lPjTq1T/: 8 photo(s) [page data]
+Progress: 25 / 188 posts opened, 195 extra photos indexed so far (~8 min left).
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791075793.506952 1185569 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 195 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791075794.023999 1185730 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791075794.040432 1185732 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...195 / 195
+  [w1 1/13] /leahhalton/p/DJRdaHcJUsz/: 6 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/DIa3G_iu6RG/: 7 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/DIYTmcSxS_E/: 6 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/DIVyLG2TAAU/: 6 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/DITJpkLT8C0/: 7 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/DH3P-ZKTVNL/: 8 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/DHbVTlgzu4H/: 5 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/DHEuIP5MAv9/: 6 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/DG5klVfTkfN/: 4 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/DGS6BFhT1BK/: 8 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/DGGF3YCzrnb/: 8 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/DFu2uxhT6or/: 9 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/DFFv9v5zeKL/: 6 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/DESMU_RzGhY/: 6 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/DEKfFFOzZnK/: 10 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/DD4hKZBTP6o/: 9 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/DDtZs_UT46r/: 8 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/DDYzBYdTz56/: 5 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/DDBsTZPzMNe/: 6 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/DCopo47TiWP/: 10 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/DCCEd8tpm-9/: 10 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/DBqxTqtRbDL/: 7 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/DBd8SOkRDpD/: 8 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/DAQLM1xzigL/: 4 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/DANjjdKz9z9/: 3 photo(s) [page data]
+Progress: 50 / 188 posts opened, 342 extra photos indexed so far (~8 min left).
+Processing 147 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...147 / 147
+  [w1 1/13] /leahhalton/p/DAF27SWzWjs/: 7 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/C_7qbHSTJcN/: 8 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/C_umBmlzeIm/: 5 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/C-pDXMCTxef/: 4 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/C_XcCEVz7ft/: 8 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/C-KgslKJblO/: 5 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/C-UwfEnz85A/: 9 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/C9wiiq4Ir1x/: 6 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/C94jEbvsAE6/: 9 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/C9WoQR_M6-T/: 8 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/C9hKvR3Mq8d/: 5 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/C9ErT6JsOQG/: 10 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/C9RepKJIVmE/: 5 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/C8wI3zZPR3c/: 7 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/C83zTMUvR9I/: 6 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/C8gpRw1sLq-/: 5 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/C8oWMsfsV1I/: 3 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/C8MRfxEp-w7/: 4 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/C8RSmewJ7-K/: 4 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/C7vxFUfJXUk/: 3 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/C8G0LUJJUZn/: 7 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/C7bCoAzS1cY/: 4 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/C7BHy_pI5xy/: 5 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/C7tCm1KpVnT/: 10 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/C7JCOgev0Lx/: 5 photo(s) [page data]
+Progress: 75 / 188 posts opened, 469 extra photos indexed so far (~7 min left).
+Processing 127 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...127 / 127
+  [w1 1/13] /leahhalton/p/C63R2U5MAa5/: 5 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/C6yKRxWsM8H/: 5 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/C6s2rXGsvFs/: 4 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/C6N43XJJ-sv/: 4 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/C52zGjRJtxw/: 5 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/C5c5jTlp3WR/: 5 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/C5SfBgMJ3GZ/: 4 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/C5QAmCmpKh8/: 7 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/C5DEYYivftb/: 5 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/C4XV8UiJc0o/: 2 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/C4CyAEqpfyd/: 5 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/C3_9qe-J6mD/: 5 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/C34lfkhpWS_/: 5 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/C3oj4ABJVEc/: 5 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/C3hWbJAJ90V/: 4 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/C21jUIkpJ2m/: 4 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/C2O-eSYpmCQ/: 7 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/C2WSMFBJapZ/: 6 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/C1TjGYtpyQu/: 3 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/C1yOtRKJBEG/: 6 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/C0I7rCIp0-Q/: 2 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/C0gQGfPJfAk/: 3 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/Cz-qCEgJ666/: 3 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/C0GKy0FpKM1/: 6 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/CzvQj2tJprR/: 2 photo(s) [page data]
+Progress: 100 / 188 posts opened, 556 extra photos indexed so far (~5 min left).
+Processing 87 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...87 / 87
+  [w1 1/13] /leahhalton/p/CzQR5RqpqKG/: 5 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/CzCKX9-pFv2/: 6 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/Cy5Id-jpiCL/: 4 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/Cyc0Q-UJkxy/: 4 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/CyaX3Uwpzwc/: 3 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/CxNMkLwJQbw/: 4 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/CxCvOANprBm/: 5 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/CwE9yKKJgZG/: 4 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/Cv_3Jq-JXYA/: 4 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/Cvt1naXpQGY/: 4 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/CvmRmTwpgVU/: 5 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/CvCC8aKJXYZ/: 5 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/Cu6WUE_JFcl/: 6 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/Cu1I6_ppBu5/: 4 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/CueBC_Dpt9e/: 8 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/Ct_ED1upRHA/: 4 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/CtgMF59JuP_/: 5 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/CtduPjTJEw-/: 4 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/CtGivHhJlid/: 6 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/Cs8KXArJg1x/: 3 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/CrdDTqmuLmr/: 4 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/CsVn-4tJCxJ/: 4 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/CrXuQU-u54d/: 2 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/CrNUfGpuW9M/: 6 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/CrKvLV5OhGN/: 8 photo(s) [page data]
+Progress: 125 / 188 posts opened, 648 extra photos indexed so far (~4 min left).
+Processing 92 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...92 / 92
+  [w1 1/13] /leahhalton/p/CrDV_Tluqfg/: 6 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/CqaBy_spCxh/: 2 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/CqFfWQ0JIou/: 4 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/Cp9mU7TpPIP/: 3 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/CpR2v4nJLfb/: 5 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/CnjEWaVploQ/: 4 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/CnbU-edJGWT/: 6 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/CnEH2CupJL2/: 5 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/CmBTiJJJI0K/: 3 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/Cj2LIffJHS6/: 3 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/CirjvGlOlYV/: 7 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/CiW9Y8QOmX1/: 4 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/ChjlpVTs3iY/: 7 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/Cheehl3pPmG/: 5 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/ChUF4ghpPiC/: 5 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/ChRWlgipZmR/: 4 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/ChJvR7TOr7t/: 4 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/Cg3tpHvJQ0t/: 4 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/Cesmk6euhQ8/: 5 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/CeakC6xOV5q/: 3 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/Cd7oyDGulkU/: 4 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/CduwjXuuhHm/: 3 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/CdP78upOmgm/: 7 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/CdXesAMO-6b/: 6 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/CcwqXvdrXMW/: 9 photo(s) [page data]
+Progress: 150 / 188 posts opened, 741 extra photos indexed so far (~2 min left).
+Processing 93 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...93 / 93
+  [w1 1/13] /leahhalton/p/CcKMwAjOuB2/: 7 photo(s) [page data]
+  [w2 1/12] /leahhalton/p/CcCmsQLJb-C/: 9 photo(s) [page data]
+  [w1 2/13] /leahhalton/p/Cb6uTqEp3js/: 4 photo(s) [page data]
+  [w2 2/12] /leahhalton/p/Cbg8hQEJpX0/: 5 photo(s) [page data]
+  [w1 3/13] /leahhalton/p/CbKImPZJ-hs/: 5 photo(s) [page data]
+  [w2 3/12] /leahhalton/p/Ca_yHWVpoqc/: 4 photo(s) [page data]
+  [w1 4/13] /leahhalton/p/CaBymU5J6Ns/: 10 photo(s) [page data]
+  [w2 4/12] /leahhalton/p/CZY6MMTJpLN/: 5 photo(s) [page data]
+  [w1 5/13] /leahhalton/p/CZLzQdDJovK/: 7 photo(s) [page data]
+  [w2 5/12] /leahhalton/p/CZELCDvJhO5/: 8 photo(s) [page data]
+  [w1 6/13] /leahhalton/p/CY53U7bvUdV/: 7 photo(s) [page data]
+  [w2 6/12] /leahhalton/p/CYvgTH9pFnj/: 8 photo(s) [page data]
+  [w1 7/13] /leahhalton/p/CYnzvZmJuMU/: 2 photo(s) [page data]
+  [w2 7/12] /leahhalton/p/CYik4hVJLzm/: 2 photo(s) [page data]
+  [w1 8/13] /leahhalton/p/CYXw1CfJxvt/: 5 photo(s) [page data]
+  [w2 8/12] /leahhalton/p/CYOGaHIJj1o/: 10 photo(s) [page data]
+  [w1 9/13] /leahhalton/p/CYLJe2Ipqlb/: 3 photo(s) [page data]
+  [w2 9/12] /leahhalton/p/CXp5XOYpYdB/: 3 photo(s) [page data]
+  [w1 10/13] /leahhalton/p/CXA0f5XF1MJ/: 3 photo(s) [page data]
+  [w2 10/12] /leahhalton/p/CW2ltwYpMV5/: 5 photo(s) [page data]
+  [w1 11/13] /leahhalton/p/CWz8-GmJQhB/: 3 photo(s) [page data]
+  [w1 12/13] /leahhalton/p/CVr0-7kp-X7/: 5 photo(s) [page data]
+  [w2 11/12] /leahhalton/p/CWK0TiwpWQl/: 8 photo(s) [page data]
+  [w2 12/12] /leahhalton/p/CTMgS9-JcAB/: 7 photo(s) [page data]
+  [w1 13/13] /leahhalton/p/CRV67-8pQ_j/: 8 photo(s) [page data]
+Progress: 175 / 188 posts opened, 859 extra photos indexed so far (~0 min left).
+Processing 118 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...118 / 118
+  [w1 1/7] /leahhalton/p/CQasX8NFdnK/: 3 photo(s) [page data]
+  [w2 1/6] /leahhalton/p/CPFw5QYpfWj/: 4 photo(s) [page data]
+  [w1 2/7] /leahhalton/p/CO919PSpfQp/: 4 photo(s) [page data]
+  [w1 3/7] /leahhalton/p/CNo54EHJQ_I/: 9 photo(s) [page data]
+  [w2 2/6] /leahhalton/p/COpQQZYpUQG/: 8 photo(s) [page data]
+  [w1 4/7] /leahhalton/p/CKqT7MDJWpn/: 2 photo(s) [page data]
+  [w2 3/6] /leahhalton/p/CK3JqFLJtD3/: 5 photo(s) [page data]
+  [w1 5/7] /leahhalton/p/CIDIZrAJdmZ/: 5 photo(s) [page data]
+  [w2 4/6] /leahhalton/p/CIm8eAWJQxE/: 4 photo(s) [page data]
+  [w1 6/7] /leahhalton/p/CG6u9oipkzL/: 2 photo(s) [page data]
+  [w2 5/6] /leahhalton/p/CHeX4GLp0cl/: 2 photo(s) [page data]
+  [w1 7/7] /leahhalton/p/CC79qbmpjyW/: 4 photo(s) [page data]
+  [w2 6/6] /leahhalton/p/CFRS-CepiQZ/: 4 photo(s) [page data]
+Progress: 188 / 188 posts opened, 902 extra photos indexed so far (~0 min left).
+Processing 43 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...43 / 43
+Added 902 slide image(s) to the index.
+Using photo index: 1135 posts.
+
+leahhalton: 198 photo posts + 35 reels; 188 of the photo posts are carousels (188 looked inside, 902 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    142  party or club
+    111  bedroom
+     89  car
+     73  beach
+     49  restaurant or cafe
+     45  city street
+     40  boat or sea
+     24  bathroom
+     18  pool
+     15  stadium
+     13  snow or mountains
+     12  living room
+     11  studio
+     10  hotel room
+      9  nature
+      8  gym
+    431  (no confident tag)
+
+outfit:
+    149  jeans and top
+    112  bikini
+     93  activewear
+     63  one-piece swimsuit
+     56  formal wear
+     35  dress
+     31  skirt
+     15  jacket or coat
+      6  sportswear kit
+    540  (no confident tag)
+
+shot:
+    314  full-body photo
+    166  mirror selfie
+     66  selfie
+     54  text or graphic
+     41  pet or animal
+     36  close-up portrait
+     30  group photo
+     16  food
+     14  landscape without people
+    363  (no confident tag)
+
+pose:
+    401  standing
+    183  upper body only
+     74  sitting
+     24  bending over
+     11  lying down
+      5  leaning
+      2  kneeling
+      0  on all fours
+    400  (no confident tag)
+
+arms:
+    130  arms up
+Using photo index: 1135 posts.
+Library for leahhalton: 1100 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/leahhalton
+
+leahhalton: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

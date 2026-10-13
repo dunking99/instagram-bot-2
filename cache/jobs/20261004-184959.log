@@ -1,0 +1,172 @@
+
+=== Preparing livvydunne ===
+Profile reports 600 posts.
+  ...60 posts loaded / 600
+  ...132 posts loaded / 600
+  ...228 posts loaded / 600
+  ...336 posts loaded / 600
+  ...456 posts loaded / 600
+  ...576 posts loaded / 600
+Post types seen: 223 carousels, 133 reels/videos, 234 single photos.
+Warning: loaded 590 of 600 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791136299.006799 1880994 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 590 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791136299.086193 1883681 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791136299.091894 1883677 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 590
+  ...512 / 590
+  ...590 / 590
+Using photo index: 590 posts.
+
+livvydunne: 457 photo posts + 133 reels; 223 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     99  stadium
+     45  beach
+     42  party or club
+     36  gym
+     17  studio
+     16  bedroom
+     12  car
+     11  boat or sea
+      8  city street
+      8  nature
+      6  pool
+      5  living room
+      4  restaurant or cafe
+      4  snow or mountains
+      1  hotel room
+      0  bathroom
+    143  (no confident tag)
+
+outfit:
+    161  activewear
+     67  jeans and top
+     56  bikini
+     20  one-piece swimsuit
+     14  formal wear
+     12  dress
+      7  sportswear kit
+      3  skirt
+      3  jacket or coat
+    114  (no confident tag)
+
+shot:
+    180  full-body photo
+     27  group photo
+     24  text or graphic
+     23  mirror selfie
+     21  selfie
+     18  pet or animal
+      8  close-up portrait
+      2  food
+      2  landscape without people
+    152  (no confident tag)
+
+pose:
+    230  standing
+     59  sitting
+     58  upper body only
+     11  bending over
+      7  lying down
+      5  leaning
+      2  kneeling
+      1  on all fours
+     84  (no confident tag)
+
+arms:
+     62  arms up
+Using photo index: 590 posts.
+Library for livvydunne: 457 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/livvydunne
+
+livvydunne: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.
+
+=== Preparing madisonbeer ===
+Profile reports 656 posts.
+  ...72 posts loaded / 656
+  ...132 posts loaded / 656
+  ...192 posts loaded / 656
+  ...288 posts loaded / 656
+  ...396 posts loaded / 656
+  ...516 posts loaded / 656
+  ...636 posts loaded / 656
+Post types seen: 288 carousels, 137 reels/videos, 230 single photos.
+Warning: loaded 655 of 656 posts; selection is from this partial pool.
+Processing 655 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...256 / 655
+  ...512 / 655
+  ...655 / 655
+Using photo index: 655 posts.
+
+madisonbeer: 518 photo posts + 137 reels; 288 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+    129  party or club
+     39  bedroom
+     30  studio
+     14  car
+     13  nature
+     12  stadium
+     10  city street
+      9  living room
+      8  gym
+      8  restaurant or cafe
+      8  bathroom
+      5  pool
+      4  hotel room
+      3  beach
+      3  snow or mountains
+      1  boat or sea
+    222  (no confident tag)
+
+outfit:
+     65  jeans and top
+     36  activewear
+     32  dress
+     29  formal wear
+     27  skirt
+     14  jacket or coat
+     10  sportswear kit
+      8  bikini
+      6  one-piece swimsuit
+    291  (no confident tag)
+
+shot:
+     94  full-body photo
+     82  mirror selfie
+     76  text or graphic
+     59  group photo
+     28  selfie
+     23  pet or animal
+     10  landscape without people
+      9  close-up portrait
+      2  food
+    135  (no confident tag)
+
+pose:
+    132  standing
+     65  upper body only
+     34  sitting
+     11  bending over
+      9  lying down
+      3  on all fours
+      1  kneeling
+      1  leaning
+    262  (no confident tag)
+
+arms:
+     35  arms up
+Using photo index: 655 posts.
+Library for madisonbeer: 518 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/madisonbeer
+
+madisonbeer: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

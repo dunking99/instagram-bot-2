@@ -1,0 +1,88 @@
+
+=== Preparing lexibrookerivera ===
+Profile reports 327 posts.
+  ...71 posts loaded / 327
+  ...143 posts loaded / 327
+  ...251 posts loaded / 327
+  ...326 posts loaded / 327
+Post types seen: 180 carousels, 10 reels/videos, 136 single photos.
+Warning: loaded 326 of 327 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791071952.424729 1110447 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 326 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791071952.514418 1111630 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791071952.521571 1111636 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 326
+  ...326 / 326
+Using photo index: 326 posts.
+
+lexibrookerivera: 316 photo posts + 10 reels; 180 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     50  beach
+     28  car
+     26  boat or sea
+     24  party or club
+     18  bedroom
+      9  pool
+      8  nature
+      7  living room
+      6  snow or mountains
+      6  studio
+      5  gym
+      5  city street
+      3  stadium
+      3  restaurant or cafe
+      1  hotel room
+      0  bathroom
+    117  (no confident tag)
+
+outfit:
+     82  bikini
+     49  jeans and top
+     36  one-piece swimsuit
+     26  activewear
+     12  formal wear
+     10  dress
+      4  jacket or coat
+      3  sportswear kit
+      2  skirt
+     92  (no confident tag)
+
+shot:
+     93  full-body photo
+     30  group photo
+     27  mirror selfie
+      8  pet or animal
+      8  landscape without people
+      7  text or graphic
+      6  selfie
+      1  food
+      0  close-up portrait
+    136  (no confident tag)
+
+pose:
+    153  standing
+     70  upper body only
+     35  sitting
+     10  lying down
+      7  leaning
+      3  bending over
+      1  kneeling
+      1  on all fours
+     36  (no confident tag)
+
+arms:
+     40  arms up
+Using photo index: 326 posts.
+Library for lexibrookerivera: 316 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/lexibrookerivera
+
+lexibrookerivera: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

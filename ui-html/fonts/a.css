@@ -1,0 +1,9 @@
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url(../fonts/Barlow-400.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/Barlow-500.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/Barlow-600.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 700; font-display: swap; src: url(../fonts/Barlow-700.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/BarlowCondensed-500.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/BarlowCondensed-600.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url(../fonts/BarlowCondensed-700.woff2) format('woff2'); }
+@font-face { font-family: 'Overpass Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(../fonts/OverpassMono-400.woff2) format('woff2'); }
+@font-face { font-family: 'Overpass Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/OverpassMono-600.woff2) format('woff2'); }

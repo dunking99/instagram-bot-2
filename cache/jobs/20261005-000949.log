@@ -1,0 +1,302 @@
+
+=== Preparing talitha.balinska ===
+Profile reports 150 posts.
+  ...72 posts loaded / 150
+Post types seen: 100 carousels, 27 reels/videos, 23 single photos.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791155432.764794 2211374 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 150 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791155432.882760 2212618 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791155432.892562 2212622 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...150 / 150
+Using photo index: 150 posts.
+
+talitha.balinska: 123 photo posts + 27 reels; 100 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     21  pool
+     11  car
+      9  beach
+      9  stadium
+      7  hotel room
+      5  city street
+      5  party or club
+      3  gym
+      3  bedroom
+      2  boat or sea
+      2  bathroom
+      2  living room
+      1  restaurant or cafe
+      1  snow or mountains
+      1  studio
+      0  nature
+     41  (no confident tag)
+
+outfit:
+     51  dress
+     15  bikini
+     15  jacket or coat
+     13  jeans and top
+      9  activewear
+      4  skirt
+      1  one-piece swimsuit
+      0  formal wear
+      0  sportswear kit
+     15  (no confident tag)
+
+shot:
+     46  selfie
+     28  mirror selfie
+     21  full-body photo
+      8  close-up portrait
+      3  pet or animal
+      1  landscape without people
+      0  group photo
+      0  food
+      0  text or graphic
+     16  (no confident tag)
+
+pose:
+     57  standing
+     17  upper body only
+     12  sitting
+      2  bending over
+      1  lying down
+      0  kneeling
+      0  on all fours
+      0  leaning
+     34  (no confident tag)
+
+arms:
+      5  arms up
+Using photo index: 150 posts.
+Library for talitha.balinska: 123 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/talitha.balinska
+
+talitha.balinska: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.
+
+=== Preparing kristenhancher ===
+Profile reports 319 posts.
+  ...132 posts loaded / 319
+  ...240 posts loaded / 319
+Post types seen: 129 carousels, 0 reels/videos, 190 single photos.
+Processing 319 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...256 / 319
+  ...319 / 319
+Using photo index: 319 posts.
+
+kristenhancher: 319 photo posts + 0 reels; 129 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     69  pool
+     35  beach
+     30  bedroom
+     12  studio
+     10  bathroom
+      5  hotel room
+      5  snow or mountains
+      4  boat or sea
+      4  nature
+      4  car
+      1  gym
+      1  stadium
+      1  restaurant or cafe
+      1  city street
+      1  party or club
+      1  living room
+    135  (no confident tag)
+
+outfit:
+    145  dress
+     74  bikini
+     16  jeans and top
+     12  one-piece swimsuit
+     10  skirt
+      9  jacket or coat
+      8  activewear
+      0  formal wear
+      0  sportswear kit
+     45  (no confident tag)
+
+shot:
+    154  selfie
+     37  mirror selfie
+     37  close-up portrait
+     28  full-body photo
+      8  landscape without people
+      6  pet or animal
+      1  food
+      0  group photo
+      0  text or graphic
+     48  (no confident tag)
+
+pose:
+    117  standing
+     48  upper body only
+     47  sitting
+      8  lying down
+      8  bending over
+      6  leaning
+      2  kneeling
+      1  on all fours
+     82  (no confident tag)
+
+arms:
+     40  arms up
+Using photo index: 319 posts.
+Library for kristenhancher: 319 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/kristenhancher
+
+kristenhancher: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.
+
+=== Preparing carolina_samani ===
+Profile reports 110 posts.
+  ...84 posts loaded / 110
+Post types seen: 67 carousels, 29 reels/videos, 14 single photos.
+Processing 110 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...110 / 110
+Using photo index: 110 posts.
+
+carolina_samani: 81 photo posts + 29 reels; 67 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     35  pool
+      5  boat or sea
+      4  beach
+      4  car
+      3  gym
+      3  bedroom
+      2  bathroom
+      1  stadium
+      1  hotel room
+      1  city street
+      1  party or club
+      0  restaurant or cafe
+      0  nature
+      0  snow or mountains
+      0  studio
+      0  living room
+     21  (no confident tag)
+
+outfit:
+     39  bikini
+     17  dress
+      9  jeans and top
+      4  one-piece swimsuit
+      3  activewear
+      3  skirt
+      1  jacket or coat
+      0  formal wear
+      0  sportswear kit
+      5  (no confident tag)
+
+shot:
+     44  selfie
+     15  full-body photo
+     12  mirror selfie
+      0  close-up portrait
+      0  group photo
+      0  food
+      0  pet or animal
+      0  landscape without people
+      0  text or graphic
+     10  (no confident tag)
+
+pose:
+     55  standing
+      9  sitting
+      8  upper body only
+      4  bending over
+      1  kneeling
+      1  lying down
+      1  on all fours
+      0  leaning
+      2  (no confident tag)
+
+arms:
+     12  arms up
+Using photo index: 110 posts.
+Library for carolina_samani: 81 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/carolina_samani
+
+carolina_samani: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.
+
+=== Preparing renatarrii ===
+Profile reports 86 posts.
+  ...72 posts loaded / 86
+Post types seen: 65 carousels, 4 reels/videos, 3 single photos.
+Warning: loaded 72 of 86 posts; selection is from this partial pool.
+Processing 72 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+  ...72 / 72
+Using photo index: 72 posts.
+
+renatarrii: 68 photo posts + 4 reels; 65 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+      7  beach
+      7  bedroom
+      6  city street
+      6  car
+      5  pool
+      5  studio
+      3  bathroom
+      3  hotel room
+      2  gym
+      1  stadium
+      1  living room
+      0  boat or sea
+      0  restaurant or cafe
+      0  nature
+      0  snow or mountains
+      0  party or club
+     22  (no confident tag)
+
+outfit:
+     17  dress
+     13  jacket or coat
+      9  skirt
+      6  bikini
+      6  jeans and top
+      1  activewear
+      0  one-piece swimsuit
+      0  formal wear
+      0  sportswear kit
+     16  (no confident tag)
+
+shot:
+     42  selfie
+      7  close-up portrait
+      7  full-body photo
+      2  mirror selfie
+      1  food
+      1  landscape without people
+      1  text or graphic
+      0  group photo
+      0  pet or animal
+      7  (no confident tag)
+
+pose:
+     21  standing
+     11  upper body only
+      6  sitting
+      4  bending over
+      3  lying down
+      2  on all fours
+      0  kneeling
+      0  leaning
+     21  (no confident tag)
+
+arms:
+      4  arms up
+Using photo index: 72 posts.
+Library for renatarrii: 68 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/renatarrii
+
+renatarrii: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

@@ -1,0 +1,87 @@
+
+=== Preparing sadieemckennaa ===
+Profile reports 296 posts.
+  ...84 posts loaded / 296
+  ...168 posts loaded / 296
+  ...264 posts loaded / 296
+Post types seen: 197 carousels, 6 reels/videos, 87 single photos.
+Warning: loaded 290 of 296 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading CLIP model (first time downloads ~600 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791071515.178065 1104336 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 290 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791071515.267180 1105486 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791071515.276517 1105493 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...256 / 290
+  ...290 / 290
+Using photo index: 290 posts.
+
+sadieemckennaa: 284 photo posts + 6 reels; 197 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     42  beach
+     27  bedroom
+     25  car
+     15  party or club
+     12  pool
+     11  city street
+      9  studio
+      8  nature
+      7  boat or sea
+      7  bathroom
+      5  restaurant or cafe
+      4  stadium
+      4  living room
+      3  hotel room
+      2  snow or mountains
+      1  gym
+    102  (no confident tag)
+
+outfit:
+     64  jeans and top
+     50  bikini
+     24  activewear
+     17  one-piece swimsuit
+      6  dress
+      4  sportswear kit
+      3  jacket or coat
+      2  skirt
+      1  formal wear
+    113  (no confident tag)
+
+shot:
+     96  full-body photo
+     36  mirror selfie
+     16  selfie
+     15  group photo
+     13  landscape without people
+      9  text or graphic
+      3  pet or animal
+      2  close-up portrait
+      1  food
+     93  (no confident tag)
+
+pose:
+    123  standing
+     38  upper body only
+     11  sitting
+      5  bending over
+      4  kneeling
+      2  lying down
+      2  leaning
+      1  on all fours
+     98  (no confident tag)
+
+arms:
+     39  arms up
+Using photo index: 290 posts.
+Library for sadieemckennaa: 284 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/sadieemckennaa
+
+sadieemckennaa: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.

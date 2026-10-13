@@ -1,0 +1,87 @@
+
+=== Preparing maligoshik ===
+Profile reports 294 posts.
+  ...72 posts loaded / 294
+  ...132 posts loaded / 294
+  ...216 posts loaded / 294
+  ...251 posts loaded / 294
+Post types seen: 133 carousels, 109 reels/videos, 9 single photos.
+Warning: loaded 251 of 294 posts; selection is from this partial pool.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading the siglip model (first time downloads ~800 MB)...
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791152932.400439 2169190 gl_context.cc:357] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M2
+Processing 251 thumbnails (photo vectors + poses; one-off, later searches are instant)...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1791152932.512600 2170318 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1791152932.523735 2170320 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+/Users/hugodyson/Library/Python/3.9/lib/python/site-packages/google/protobuf/symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+  ...251 / 251
+Using photo index: 251 posts.
+
+maligoshik: 142 photo posts + 109 reels; 133 of the photo posts are carousels (0 looked inside, 0 extra slide images indexed)
+(counts below cover photos only, tags at confidence >= 50%)
+
+setting:
+     27  pool
+     16  bedroom
+      9  car
+      8  beach
+      6  city street
+      5  hotel room
+      5  studio
+      2  boat or sea
+      2  gym
+      2  stadium
+      1  bathroom
+      1  nature
+      1  snow or mountains
+      1  living room
+      0  restaurant or cafe
+      0  party or club
+     56  (no confident tag)
+
+outfit:
+     53  dress
+     27  bikini
+     17  skirt
+     12  jacket or coat
+      3  jeans and top
+      1  one-piece swimsuit
+      1  activewear
+      1  sportswear kit
+      0  formal wear
+     27  (no confident tag)
+
+shot:
+     71  selfie
+     28  full-body photo
+     11  pet or animal
+      9  close-up portrait
+      3  mirror selfie
+      1  group photo
+      1  food
+      0  landscape without people
+      0  text or graphic
+     18  (no confident tag)
+
+pose:
+     50  standing
+     21  upper body only
+     12  sitting
+     10  bending over
+      7  lying down
+      3  kneeling
+      2  on all fours
+      2  leaning
+     35  (no confident tag)
+
+arms:
+     10  arms up
+Using photo index: 251 posts.
+Library for maligoshik: 142 images in 5 views (by-setting, by-outfit, by-shot, by-pose, by-arms) + manifest.csv -> /Users/hugodyson/instagram-bot-2/library/maligoshik
+
+maligoshik: ready. Photo search, tags, pose, the breakdown and the library folders now work instantly.
