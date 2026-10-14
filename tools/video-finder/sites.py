@@ -151,7 +151,7 @@ SITES = {
 }
 
 # Sites whose video address can be read straight from the page and streamed without downloading (tested in ~/stream-test)
-STREAMABLE = {"freepornvideos", "fpo.xxx", "xozilla", "porntrex"}
+STREAMABLE = {"freepornvideos", "fpo.xxx", "xozilla", "porntrex", "tnaflix", "porneec", "playvids", "pornflip"}   # the last four were play-tested in Chrome on 2026-10-14 (tools/stream-test/play_test.py)
 
 # Sites tested but not usable yet (shown greyed out in the dashboard)
 UNAVAILABLE = {

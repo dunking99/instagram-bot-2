@@ -11,7 +11,7 @@ Standalone. Finds a data18 scene on other sites and shows the best match per sit
 - Searches are saved in `data/jobs/` (last 30) so a page reload keeps the results.
 
 ## Search strategy (changed 2026-10-14)
-- Sites: 21 (added playvids, pornwex, porneec on 2026-10-14; before that porntrex, trendyporn, youcrazyx, yrprno, pornhub). The three new ones are not in `STREAMABLE` yet (not tested in Stream test). pornwex and porneec use page 1 only. `sites.STREAMABLE` = freepornvideos, fpo.xxx, xozilla, porntrex.
+- Sites: 21 (added playvids, pornwex, porneec on 2026-10-14; before that porntrex, trendyporn, youcrazyx, yrprno, pornhub). pornwex and porneec use page 1 only. `STREAMABLE` now also has tnaflix, porneec, playvids and pornflip (play-tested in Chrome on 2026-10-14). `sites.STREAMABLE` = freepornvideos, fpo.xxx, xozilla, porntrex, tnaflix, porneec, playvids, pornflip.
 - Per site, in `search_site`: **main queries** (page 1 only): `{title_core} {performer}`, `{performer}`, `{title_core}`, `{performer} {studio} {title_core}`; stops at a confident match.
   If nothing was found: **extra formats** (only on `extra_sites`): `{performer} {title_core}`, `{title} {performer}`, `{title_key} {performer}`, `{title_key}`;
   then **deep pages** of the performer query (only on `deep_sites`).

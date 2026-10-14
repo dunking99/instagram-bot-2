@@ -3,6 +3,7 @@ Standalone. Python 3.9 stdlib only.   python3 server.py  ->  http://127.0.0.1:87
 """
 import json, re, shutil, subprocess, sys, threading, time, urllib.request, urllib.parse, urllib.error
 from concurrent.futures import ThreadPoolExecutor
+from html import unescape as html_unescape
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -13,7 +14,7 @@ HERE = Path(__file__).parent
 
 SITES = {   # page hosts that may be opened (the video address is read from the page); only freepornvideos accepts a bare ID
     "freepornvideos.xxx": "https://www.freepornvideos.xxx/videos/%s/x/",
-    "fpo.xxx": None, "porntrex.com": None, "xozilla.com": None,
+    "fpo.xxx": None, "porntrex.com": None, "xozilla.com": None, "porneec.com": None, "playvids.com": None, "pornflip.com": None,
     "tnaflix.com": None, "xhamster.com": None, "youporn.com": None, "xxxbunker.com": None, "eporner.com": None, "pornhub.com": None,
     "trendyporn.com": None, "youcrazyx.com": None, "yrprno.com": None,
 }
@@ -22,7 +23,6 @@ NOT_STREAMABLE = {
     "porngrey.net": "its video files answer 'error' to anything but its own player (they are protected); not worked around",
     "shyfap.net": "its video files answer 'error' to anything but its own player (they are protected); not worked around",
     "pornzog.com": "the page only embeds another site's player (videotxxx.com), so there is no video file on the page",
-    "pornflip.com": "only an HLS playlist (.m3u8) is offered; HLS playback is not built into this tool yet",
 }
 YTDLP_FIRST = {"tnaflix.com", "youporn.com", "pornhub.com", "eporner.com", "xxxbunker.com"}   # crowded pages full of other videos' previews: ask yt-dlp straight away
 ISSUED = {}            # every video address handed to the page -> the headers it needs (the proxy and ffmpeg only fetch these)
@@ -55,6 +55,45 @@ def parse_sources(html):
     if all(o["quality"] for o in out):
         out.sort(key=lambda o: o["quality"])
     return out
+
+
+PAGE_SOURCES = {"tnaflix.com", "porneec.com", "playvids.com", "pornflip.com"}   # the page itself names the video file: read it straight from the page
+FFMPEG_HEADERS = {}      # HLS address -> headers only ffmpeg sends when taking frames (the browser plays these with no referrer, so they are not "issued" headers)
+
+
+def _attr(tag, name):
+    m = re.search(r"""\b%s\s*=\s*(?:"([^"]*)"|'([^']*)')""" % name, tag)
+    return html_unescape(m.group(1) if m.group(1) is not None else m.group(2)) if m else ""
+
+
+def parse_page_sources(page, page_url):
+    """[{label, quality, url}] named by the page itself: <source> tags (tnaflix: one mp4 per size; playvids and pornflip: an HLS playlist)
+    or a contentUrl (porneec: one plain mp4). Checked in a real Chrome (play_test.py, 2026-10-14): all four play and seek straight from these
+    addresses with no referrer. Plain mp4s come lowest quality first, then any HLS playlist."""
+    text = page.replace("\\/", "/")
+    mp4, hls = [], []
+
+    def add(bucket, url, label, quality=None):
+        if url.startswith("http") and url not in [o["url"] for o in mp4 + hls]:
+            bucket.append({"label": label, "quality": quality, "url": url})
+
+    tags = re.findall(r"<source\b[^>]*>", text, re.I)
+    for tag in tags[:12]:                                         # a page with more is crowded with other videos' previews
+        src, typ = _attr(tag, "src"), _attr(tag, "type").lower()
+        if ".m3u8" in src or "mpegurl" in typ:
+            add(hls, src, "HLS (automatic quality)")
+        elif ".mp4" in src or typ == "video/mp4":
+            size = _attr(tag, "size") or _attr(tag, "label") or _attr(tag, "res")
+            add(mp4, src, ("%sp" % size) if size.isdigit() else (size or "mp4"), int(size) if size.isdigit() else None)
+    for m in re.finditer(r"""itemprop=["']contentUrl["'][^>]*content=["']([^"']+)["']|content=["']([^"']+)["'][^>]*itemprop=["']contentUrl["']""", text):
+        u = html_unescape(m.group(1) or m.group(2))
+        if re.search(r"\.mp4(\?|$)", u):
+            add(mp4, u, "mp4")
+    if all(o["quality"] for o in mp4):
+        mp4.sort(key=lambda o: o["quality"])
+    for o in hls:
+        FFMPEG_HEADERS[o["url"]] = {"Referer": page_url}          # frames only: ffmpeg is told which page it came from
+    return mp4 + hls
 
 
 PREVIEW_WORDS = re.compile(r"preview|thumb|trailer|teaser|sprite|_th_|/th/|/gifs?/|promo", re.I)
@@ -137,7 +176,8 @@ def ytdlp_sources(page_url):
 
 
 def page_duration(html):
-    for pat in (r'duration"\s+content="(\d+)"', r"duration:\s*'(\d+)'", r'"duration"\s*:\s*"PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"', r'video:duration"\s+content="(\d+)"'):
+    for pat in (r'duration"\s+content="(\d+)"', r"duration:\s*'(\d+)'", r'"duration"\s*:\s*"P?(?:\d+D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"', r'video:duration"\s+content="(\d+)"',
+                r'itemprop="duration"\s+content="P?(?:\d+D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"', r'data-duration="(\d+)"'):
         m = re.search(pat, html)
         if m:
             g = m.groups()
@@ -172,7 +212,9 @@ def fetch_info(v):
     if site in KVS:
         sources = parse_sources(html)
     else:
-        if site not in YTDLP_FIRST:
+        if site in PAGE_SOURCES:
+            sources, how = parse_page_sources(html, page_url), "page source"
+        if not sources and site not in YTDLP_FIRST:
             sources, how = own_scan(html, page_url), "page scan"
         if not sources:
             yt, err = ytdlp_sources(page_url)
@@ -282,7 +324,7 @@ def start_frames(q):
     d = FRAMES / jid
     d.mkdir(parents=True, exist_ok=True)
     job = dict(id=jid, dir=d, state="running", total=len(secs), done=0, failed=0, files=[], cancel=False, t0=time.time(),
-               title=info["title"], site=info["site"], quality=srcs[i]["label"], every=every, error=None, last_error="", headers=ISSUED.get(srcs[i]["url"]) or {})
+               title=info["title"], site=info["site"], quality=srcs[i]["label"], every=every, error=None, last_error="", headers=ISSUED.get(srcs[i]["url"]) or FFMPEG_HEADERS.get(srcs[i]["url"]) or {})
     JOBS[jid] = job
     threading.Thread(target=run_frames, args=(job, srcs[i]["url"], secs, height), daemon=True).start()
     return jid

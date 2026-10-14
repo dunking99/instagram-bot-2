@@ -248,7 +248,7 @@
   <div id="autobar">
     <strong style="color:var(--fg)">Find video links</strong>
     <label title="After a creator is scraped, search the other sites for each of their videos by itself"><input type="checkbox" id="ab-on"> automatically after scraping</label>
-    <label title="Search only the sites the video can be streamed from (about a third of the requests). Untick to search every site."><input type="checkbox" id="ab-str"> streamable sites only</label>
+    <label title="Search only the sites the video can be streamed from. Untick to search every site."><input type="checkbox" id="ab-str"> streamable sites only</label>
     <label title="Choose the match for you when it is confident (you can change it later)"><input type="checkbox" id="ab-sel"> choose confident matches</label>
     <span><input type="text" id="ab-slug" list="saved" placeholder="Creator already scraped"> <button type="button" id="ab-go" title="Search every video of this creator that has not been searched yet">Find links</button></span>
     <span id="ab-state"></span>
@@ -970,7 +970,7 @@ function closeFinderModal() { $("fm").classList.remove("open"); if (fmSid && fin
 $("fm-x").addEventListener("click", closeFinderModal);
 
 // ---- "Watch & get frames": Stream test (~/stream-test, a separate tool) plays the chosen result straight from its site (nothing is downloaded) and takes frames from it
-const STREAM_SITES = /^https?:\/\/(www\.)?(freepornvideos\.xxx|fpo\.xxx|porntrex\.com|xozilla\.com)\//i;
+const STREAM_SITES = /^https?:\/\/(www\.)?(freepornvideos\.xxx|fpo\.xxx|porntrex\.com|xozilla\.com|tnaflix\.com|porneec\.com|playvids\.com|pornflip\.com)\//i;
 async function openStreamModal(url, title, startSec) {
   $("sm-title").textContent = title || "Watch"; $("sm-note").textContent = "Starting Stream test…"; $("sm-frame").removeAttribute("src"); $("sm").classList.add("open");
   try {
