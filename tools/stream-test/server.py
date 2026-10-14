@@ -15,14 +15,14 @@ HERE = Path(__file__).parent
 SITES = {   # page hosts that may be opened (the video address is read from the page); only freepornvideos accepts a bare ID
     "freepornvideos.xxx": "https://www.freepornvideos.xxx/videos/%s/x/",
     "fpo.xxx": None, "porntrex.com": None, "xozilla.com": None, "porneec.com": None, "playvids.com": None, "pornflip.com": None,
+    "porntop.com": None, "pornwex.tv": None, "pornzog.com": None,
     "tnaflix.com": None, "xhamster.com": None, "youporn.com": None, "xxxbunker.com": None, "eporner.com": None, "pornhub.com": None,
     "trendyporn.com": None, "youcrazyx.com": None, "yrprno.com": None,
 }
-KVS = {"freepornvideos.xxx", "fpo.xxx", "porntrex.com", "xozilla.com"}      # sites whose player block lists every quality (read by parse_sources)
+KVS = {"freepornvideos.xxx", "fpo.xxx", "porntrex.com", "xozilla.com", "pornwex.tv"}      # sites whose player block lists every quality (read by parse_sources)
 NOT_STREAMABLE = {
     "porngrey.net": "its video files answer 'error' to anything but its own player (they are protected); not worked around",
     "shyfap.net": "its video files answer 'error' to anything but its own player (they are protected); not worked around",
-    "pornzog.com": "the page only embeds another site's player (videotxxx.com), so there is no video file on the page",
 }
 YTDLP_FIRST = {"tnaflix.com", "youporn.com", "pornhub.com", "eporner.com", "xxxbunker.com"}   # crowded pages full of other videos' previews: ask yt-dlp straight away
 ISSUED = {}            # every video address handed to the page -> the headers it needs (the proxy and ffmpeg only fetch these)
@@ -42,13 +42,49 @@ def quality_of(label):
     return int(m.group(1)) if m else None
 
 
+def kvs_license_token(license_code):
+    """KVS players hide the real video address behind the site's licence code (method ported from yt-dlp, which is public domain)."""
+    code = license_code.replace("$", "")
+    values = [int(c) for c in code]
+    mod = code.replace("0", "1")
+    center = len(mod) // 2
+    front, back = int(mod[:center + 1]), int(mod[center:])
+    mod = str(4 * abs(front - back))[:center + 1]
+    return [(values[i + off] + int(cur)) % 10 for i, cur in enumerate(mod) for off in range(4)]
+
+
+def kvs_real_url(video_url, license_code):
+    """'function/0/https://site/get_file/N/<hash>/...' -> the usable address (the first 32 letters of <hash> are shuffled). Other addresses are returned as they are."""
+    if not video_url.startswith("function/0/"):
+        return video_url
+    parsed = urllib.parse.urlparse(video_url[len("function/0/"):])
+    token = kvs_license_token(license_code)
+    parts = parsed.path.split("/")
+    hash_ = parts[3][:32]
+    order = list(range(32))
+    acc = 0
+    for src in reversed(range(32)):
+        acc += token[src]
+        dest = (src + acc) % 32
+        order[src], order[dest] = order[dest], order[src]
+    parts[3] = "".join(hash_[i] for i in order) + parts[3][32:]
+    return urllib.parse.urlunparse(parsed._replace(path="/".join(parts)))
+
+
 def parse_sources(html):
     """[{label, quality, url}] from a KVS player block (video_url, video_alt_url, video_alt_url2 ...) or <source> get_file links."""
     out = []
-    for m in re.finditer(r"video_(alt_)?url(\d?)\s*:\s*'(https?://[^']+)'", html):
+    lic = re.search(r"license_code\s*:\s*'([^']+)'", html)
+    for m in re.finditer(r"video_(alt_)?url(\d?)\s*:\s*'((?:function/0/)?https?://[^']+)'", html):
         t = re.search(r"video_%surl%s_text\s*:\s*'([^']+)'" % (m.group(1) or "", m.group(2)), html)
-        label = t.group(1) if t else "?"
-        out.append({"label": label, "quality": quality_of(label), "url": m.group(3)})
+        label = t.group(1) if t else "mp4"
+        url = m.group(3)
+        if url.startswith("function/0/"):
+            try:
+                url = kvs_real_url(url, lic.group(1)) if lic else url
+            except (ValueError, IndexError):
+                continue
+        out.append({"label": label, "quality": quality_of(label), "url": url})
     if not out:
         for url, q in re.findall(r"""["'](https?://[^"'?]+/get_file/[^"'?]+?_(\d+)m\.mp4/)["']""", html):
             out.append({"label": q + "p", "quality": int(q), "url": url})
@@ -57,6 +93,7 @@ def parse_sources(html):
     return out
 
 
+EMBEDDING = {"pornzog.com"}     # pages that only embed another site's player
 PAGE_SOURCES = {"tnaflix.com", "porneec.com", "playvids.com", "pornflip.com"}   # the page itself names the video file: read it straight from the page
 FFMPEG_HEADERS = {}      # HLS address -> headers only ffmpeg sends when taking frames (the browser plays these with no referrer, so they are not "issued" headers)
 
@@ -94,6 +131,30 @@ def parse_page_sources(page, page_url):
     for o in hls:
         FFMPEG_HEADERS[o["url"]] = {"Referer": page_url}          # frames only: ffmpeg is told which page it came from
     return mp4 + hls
+
+
+def follow_embed(page, page_url):
+    """Sites that only embed another site's player (pornzog -> vxxx.com): open that player's own page and read the video from it.
+    -> [{label, quality, url, headers}] (the embedded site is told which player page the request comes from)."""
+    for m in re.finditer(r"<iframe\b[^>]*\bsrc=\"(https?://[^\"]+)\"", page, re.I):
+        embed = html_unescape(m.group(1))
+        if urllib.parse.urlparse(embed).hostname == urllib.parse.urlparse(page_url).hostname or "embed" not in embed.lower():
+            continue                                              # the site's own frames and adverts are not the player
+        try:
+            req = urllib.request.Request(embed, headers={"User-Agent": UA, "Accept-Language": "en", "Referer": page_url})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                emb = r.read().decode("utf-8", "replace").replace("&amp;", "&")
+        except Exception:
+            continue
+        found = parse_sources(emb) or parse_page_sources(emb, embed) or own_scan(emb, embed)
+        if not found:
+            yt, _ = ytdlp_sources(embed)
+            found = (yt or {}).get("sources") or []
+        for o in found:
+            o["headers"] = dict(o.get("headers") or {}, Referer=embed)
+        if found:
+            return found
+    return []
 
 
 PREVIEW_WORDS = re.compile(r"preview|thumb|trailer|teaser|sprite|_th_|/th/|/gifs?/|promo", re.I)
@@ -205,15 +266,20 @@ def fetch_info(v):
     with urllib.request.urlopen(req, timeout=30) as r:
         html = r.read().decode("utf-8", "replace").replace("&amp;", "&")
         page_url = r.geturl()
-    vid = (re.search(r"/(?:videos?)/(\d+)", page_url) or re.search(r"(\d{6,10})", page_url) or re.search(r"([A-Za-z0-9_-]{6,})/?$", page_url.split("?")[0].rstrip("/") + "/")).group(1)
+    vid = (re.search(r"/(?:videos?)/(\d+)", page_url) or re.search(r"(\d{6,10})", page_url) or re.search(r"([A-Za-z0-9_-]{5,})(?:\.html?)?/?$", page_url.split("?")[0].rstrip("/") + "/") or re.search(r"([A-Za-z0-9]+)", page_url.split("//")[-1])).group(1)
     title = re.search(r'property="og:title"\s+content="([^"]*)"', html) or re.search(r"<title>([^<]*)</title>", html)
     duration = page_duration(html)
+    if not duration:                                          # "duration: '08:00'" (pornzog)
+        md = re.search(r"duration:\s*'(?:(\d+):)?(\d+):(\d+)'", html)
+        duration = (int(md.group(1) or 0) * 3600 + int(md.group(2)) * 60 + int(md.group(3))) if md else None
     sources, how = [], "player block"
     if site in KVS:
         sources = parse_sources(html)
     else:
         if site in PAGE_SOURCES:
             sources, how = parse_page_sources(html, page_url), "page source"
+        if not sources and site in EMBEDDING:
+            sources, how = follow_embed(html, page_url), "embedded player"
         if not sources and site not in YTDLP_FIRST:
             sources, how = own_scan(html, page_url), "page scan"
         if not sources:
@@ -320,7 +386,7 @@ def start_frames(q):
         t += every
     if not secs:
         raise ValueError("nothing to take: check the from/to times")
-    jid = "%s_%s_%d" % (info["site"].split(".")[0], info["id"], int(time.time()))
+    jid = "%s_%s_%d" % (info["site"].split(".")[0], re.sub(r"[^a-z0-9]", "", str(info["id"]).lower())[:24] or "v", int(time.time()))   # letters and digits only: the file routes accept nothing else
     d = FRAMES / jid
     d.mkdir(parents=True, exist_ok=True)
     job = dict(id=jid, dir=d, state="running", total=len(secs), done=0, failed=0, files=[], cancel=False, t0=time.time(),
@@ -385,14 +451,14 @@ class H(BaseHTTPRequestHandler):
             self.send_json({"ok": bool(j)})
         elif u.path == "/api/frames/delete":
             jid = q.get("job", [""])[0]
-            if re.fullmatch(r"[a-z0-9]+_\d+_\d+", jid) and (FRAMES / jid).is_dir():
+            if re.fullmatch(r"[a-z0-9]+_[a-z0-9]+_\d+", jid) and (FRAMES / jid).is_dir():
                 if jid in JOBS:
                     JOBS[jid]["cancel"] = True
                 shutil.rmtree(FRAMES / jid, ignore_errors=True)
                 JOBS.pop(jid, None)
             self.send_json({"ok": True})
         elif u.path.startswith("/frames/"):
-            m = re.fullmatch(r"/frames/([a-z0-9]+_\d+_\d+)/(f_\d{5}\.jpg)", u.path)
+            m = re.fullmatch(r"/frames/([a-z0-9]+_[a-z0-9]+_\d+)/(f_\d{5}\.jpg)", u.path)
             f = FRAMES / m.group(1) / m.group(2) if m else None
             if not f or not f.is_file():
                 return self.send_error(404)

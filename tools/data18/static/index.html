@@ -970,7 +970,7 @@ function closeFinderModal() { $("fm").classList.remove("open"); if (fmSid && fin
 $("fm-x").addEventListener("click", closeFinderModal);
 
 // ---- "Watch & get frames": Stream test (~/stream-test, a separate tool) plays the chosen result straight from its site (nothing is downloaded) and takes frames from it
-const STREAM_SITES = /^https?:\/\/(www\.)?(freepornvideos\.xxx|fpo\.xxx|porntrex\.com|xozilla\.com|tnaflix\.com|porneec\.com|playvids\.com|pornflip\.com)\//i;
+const STREAM_SITES = /^https?:\/\/(www\.)?(freepornvideos\.xxx|fpo\.xxx|porntrex\.com|xozilla\.com|tnaflix\.com|porneec\.com|playvids\.com|pornflip\.com|eporner\.com|pornhub\.com|porntop\.com|youporn\.com|xhamster\.com|trendyporn\.com|xxxbunker\.com|youcrazyx\.com|yrprno\.com|pornwex\.tv|pornzog\.com)\//i;
 async function openStreamModal(url, title, startSec) {
   $("sm-title").textContent = title || "Watch"; $("sm-note").textContent = "Starting Stream test…"; $("sm-frame").removeAttribute("src"); $("sm").classList.add("open");
   try {

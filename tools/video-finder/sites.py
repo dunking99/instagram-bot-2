@@ -151,7 +151,10 @@ SITES = {
 }
 
 # Sites whose video address can be read straight from the page and streamed without downloading (tested in ~/stream-test)
-STREAMABLE = {"freepornvideos", "fpo.xxx", "xozilla", "porntrex", "tnaflix", "porneec", "playvids", "pornflip"}   # the last four were play-tested in Chrome on 2026-10-14 (tools/stream-test/play_test.py)
+STREAMABLE = {"freepornvideos", "fpo.xxx", "xozilla", "porntrex",                                  # tested in Chrome by the stream-test notes
+              "tnaflix", "porneec", "playvids", "pornflip",                                       # play-tested in Chrome on 2026-10-14 (tools/stream-test/play_test.py)
+              "eporner", "pornhub", "porntop", "youporn", "xhamster", "trendyporn", "xxxbunker",  # read through yt-dlp / a page scan; frames worked in probe_sites.py
+              "youcrazyx", "yrprno", "pornwex", "pornzog"}                                        # readers added 2026-10-14, not yet run against the live sites
 
 # Sites tested but not usable yet (shown greyed out in the dashboard)
 UNAVAILABLE = {
