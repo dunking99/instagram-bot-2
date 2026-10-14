@@ -20,3 +20,4 @@ tools/stream-test/frames/
 tools/stream-test/server.log
 tools/video-finder/data/jobs/
 .DS_Store
+tools/stream-test/probe_frames/
