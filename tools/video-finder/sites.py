@@ -130,6 +130,24 @@ SITES = {
         search=lambda q, pg=1: "https://www.pornhub.com/video/search?search=" + plus(q) + ("&page=%d" % pg if pg > 1 else ""),
         split=r'<li class="pcVideoListItem', url=r'href="(/view_video\.php\?viewkey=[a-z0-9]+)"', title=r'title="([^"]*)"',
         thumb=r'data-image="([^"]+)"', dur=r'<var class="duration">\s*([\d:]+)'),
+    # playvids runs the same engine as pornflip (/videos?qry=, cards <div class="card thumbs_rotate itemVideo ...">); its results are plain HTML
+    "playvids": dict(
+        name="playvids", home="https://www.playvids.com/",
+        search=lambda q, pg=1: "https://www.playvids.com/videos?qry=" + plus(q) + ("&page=%d" % pg if pg > 1 else ""),
+        split=r'<div class="card thumbs_rotate itemVideo', url=r'<a href="(/[A-Za-z0-9_-]{6,}/[^"]+)"', title=r'alt="([^"]*)"',
+        thumb=r'class="card-img-top" src="([^"]+)"', dur=r'class="duration">\s*([\d:]+)'),
+    # pornwex.tv: same kind of page as fpo.xxx (<div class="item">); search is /search/<words joined by +>/, only page 1 is used (page 2 is loaded by the page itself)
+    "pornwex": dict(
+        name="pornwex", home="https://www.pornwex.tv/", max_pages=1,
+        search=lambda q, pg=1: "https://www.pornwex.tv/search/%s/" % plus(q),
+        split=r'<div class="item', url=r'href="(https://www\.pornwex\.tv/video/\d+/[^"]+)"', title=r'title="([^"]*)"',
+        thumb=r'<img class="thumb[^"]*" src="([^"]+)"', dur=r'class="duration">\s*([\d:]+)'),
+    # porneec.com: WordPress; /?s= needs every word to match, so a loose query returns nothing; only page 1 is used
+    "porneec": dict(
+        name="porneec", home="https://porneec.com/", max_pages=1,
+        search=lambda q, pg=1: "https://porneec.com/?s=" + plus(q),
+        split=r'<article data-video-id', url=r'<a href="(https://porneec\.com/[^"]+/)"', title=r'<span class="title">([^<]*)<',
+        thumb=r'data-main-thumb="([^"]+)"', dur=r'class="duration">\s*([\d:]+)'),
 }
 
 # Sites whose video address can be read straight from the page and streamed without downloading (tested in ~/stream-test)
@@ -141,7 +159,6 @@ UNAVAILABLE = {
     "exporntoons": "Behind a Cloudflare 'Just a moment' check (bot detection). Not bypassed.",
     "ukdevilz": "Behind a Cloudflare 'Just a moment' check (bot detection). Not bypassed.",
     "tyler-brown": "Its search ignores the query (always the same list), so it can't be searched.",
-    "playvids": "Its results are loaded by a script, so a plain reader sees no video links.",
     "peekvids": "Answers 'too many requests' (HTTP 429) to this kind of reader.",
     "noodlemagazine": "Refuses this kind of reader (HTTP 403).",
 }
