@@ -37,7 +37,7 @@ LIB = os.path.join(ROOT, "library")
 CACHE = os.path.join(ROOT, "cache")
 LOGS = os.path.join(ROOT, "library_cleanup_logs")
 CLIP = os.path.join(ROOT, "CLIP Training")
-LINKS = os.environ.get("LIBRARY_CLEANUP_LINKS", "/Users/hugodyson/Links-3-embedded/ui/data/creators.json")
+LINKS = os.environ.get("LIBRARY_CLEANUP_LINKS", os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "links", "ui", "data", "creators.json"))
 VIDEO_EXT = {".mp4", ".mov", ".mkv", ".webm", ".m4v", ".avi", ".wmv", ".flv"}
 INDEX_FILES = ("siglip.npz", "clip.npz", "videos.json", "local.json")
 

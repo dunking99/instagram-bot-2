@@ -1,7 +1,0 @@
-Postroom is running at http://localhost:8603   (Ctrl+C to stop)
-Postroom is running at http://localhost:8603   (Ctrl+C to stop)
-Postroom is running at http://localhost:8503   (Ctrl+C to stop)
-Postroom is running at http://localhost:8503   (Ctrl+C to stop)
-ERROR:    [Errno 48] error while attempting to bind on address ('127.0.0.1', 8503): address already in use
-Postroom is running at http://localhost:8503   (Ctrl+C to stop)
-Postroom is running at http://localhost:8503   (Ctrl+C to stop)

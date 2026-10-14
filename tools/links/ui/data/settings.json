@@ -1,0 +1,41 @@
+{
+  "scraper_path": "/Users/hugodyson/Links-3-embedded/necessary/scrape_fruitsvids.py",
+  "scrape_pause": -14,
+  "bucket_edges_min": [
+    6,
+    10,
+    17,
+    25
+  ],
+  "download_dir": "/Users/hugodyson/Downloads",
+  "library_dir": "/Users/hugodyson/instagram-bot-2/library",
+  "vdh_icon": [
+    1248,
+    95
+  ],
+  "download_button": [
+    1177,
+    382
+  ],
+  "page_load_wait": 5.5,
+  "menu_wait": 1.8,
+  "download_wait": 25,
+  "download_method": "ytdlp",
+  "ytdlp_max_height": "480",
+  "stop_after_failures": 4,
+  "use_image_clicks": true,
+  "image_match_threshold": 0.8,
+  "max_parallel": 3,
+  "max_download_minutes": 40,
+  "pause_between_links": 3,
+  "target_success": 10,
+  "max_attempts": 30,
+  "startup_delay": 8,
+  "min_video_minutes": "",
+  "max_video_minutes": "",
+  "default_site": "bunnyhop",
+  "pages_default_all": true,
+  "name_match": true,
+  "name_match_min_len": 7,
+  "name_match_ask_pct": 80
+}

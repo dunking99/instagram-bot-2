@@ -1852,7 +1852,7 @@ def get_storage(refresh: bool = False):
 # =====================================================================================
 # Links: the scrape / sort / download tool, run as its own small server and shown inside this interface
 # =====================================================================================
-LINKS_DIR = Path("/Users/hugodyson/Links-3-embedded")     # a copy of Links-3, so the original is never touched
+LINKS_DIR = Path(__file__).resolve().parent / "tools" / "links"
 LINKS_PORT = 8791
 LINKS_NEEDS = ("requests", "pyautogui", "bs4", "cv2", "numpy")      # what the Links scraper and downloader import
 

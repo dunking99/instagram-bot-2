@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Links</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">Links</div>
+  <nav id="tabs">
+    <button data-tab="creators" class="on">Creators</button>
+    <button data-tab="discover">Discover</button>
+    <button data-tab="sites">Sites</button>
+    <button data-tab="library">Library</button>
+    <button data-tab="lists">Lists</button>
+    <button data-tab="download">Download</button>
+    <button data-tab="settings">Settings</button>
+  </nav>
+  <div id="site" class="chip"></div>
+</header>
+
+<div id="staleBanner" class="banner stale" hidden><strong>The server is running an older version than this page.</strong> Some buttons won't work until you restart it: press Ctrl+C in the window where you started it, then run <code>python3 /Users/hugodyson/Links-3/ui/server.py</code> again, and reload this page.</div>
+<div id="banner" class="banner" hidden></div>
+
+<main>
+  <!-- CREATORS -->
+  <section id="tab-creators">
+    <div class="card">
+      <h2>Add creators</h2>
+      <p class="muted">Paste a creator page link or just a name, one per line. A trailing number on a link (e.g. <code>/6/</code>) is how many pages the scraper walks.</p>
+      <textarea id="newUrls" rows="4" placeholder="https://example.com/video-creators/some-creator/6/&#10;Jane Doe"></textarea>
+      <p class="muted" id="nameHint" style="margin:6px 0 0"></p>
+      <div class="row">
+        <label>Site <select id="newProfile"></select></label>
+        <span class="alsoBox" id="alsoBox" hidden title="Tick the other sites to run this name on, one after the other, after the first site finishes">
+          <span class="muted">then also on</span> <span id="alsoSites"></span>
+        </span>
+        <label title="A number such as 5, or the word all to keep going until the last page">Pages<input id="newPages" type="text" placeholder="1 or all" style="width:110px"></label>
+        <button id="addBtn" class="primary">Add</button>
+        <label class="check"><input id="autoScrape" type="checkbox" checked> Scrape right after adding</label>
+        <span id="addMsg" class="muted"></span>
+      </div>
+      <div id="linkSuggest" class="muted" hidden>
+      </div>
+    </div>
+
+    <details class="card" id="importCard">
+      <summary><strong>Import existing files</strong> <span class="muted">(links you already scraped, e.g. with the old script)</span></summary>
+      <p class="muted">Finds files named <code>name_links.txt</code> in a folder and adds each as a creator, so they show up in the Creators list, Library, Lists and Download tabs. Files already in your list are skipped, never overwritten.</p>
+      <div class="row">
+        <input id="importFolder" style="flex:1;min-width:300px" spellcheck="false">
+        <button id="importBtn" class="primary">Import</button>
+      </div>
+      <div class="row">
+        <label>Put them under this site <select id="importSite"></select></label>
+        <span class="muted" style="align-self:end;padding-bottom:9px">That site's keywords decide their categories.</span>
+      </div>
+      <div class="row"><label class="check"><input id="importOverwrite" type="checkbox"> Replace earlier imports of the same names (re-import). Links you scraped yourself are never touched.</label></div>
+      <div class="row"><label class="check"><input id="importUnderscore" type="checkbox"> Keep underscores in download folder names (<code>jane_doe</code> instead of <code>jane-doe</code>)</label></div>
+      <p class="muted" id="importMsg"></p>
+    </details>
+
+    <div class="card">
+      <div class="row between">
+        <h2>Creators <span id="creatorCount" class="muted"></span></h2>
+        <div class="row">
+          <label class="inlineSel">Sort <select id="creatorSort">
+            <option value="az">A to Z</option>
+            <option value="za">Z to A</option>
+            <option value="most">Most videos first</option>
+            <option value="least">Fewest videos first</option>
+          </select></label>
+          <button id="recat" title="Re-sort every link with your current keywords (no re-scrape needed) and refresh what's on screen">Re-categorise all</button>
+          <button id="makeFolders" title="Create the download folder of every creator that doesn't have one yet">Create folders</button>
+          <button id="findAddr" title="For creators imported from a file (no page address): look each one up by name on the site, attach the address and scrape it">Find addresses for imported</button>
+          <button id="scrapeMissing">Scrape unscraped</button>
+          <button id="scrapeAll">Re-scrape all</button>
+        </div>
+      </div>
+      <div id="empty" class="empty" hidden>
+        <strong>No creators yet.</strong>
+        <span>Add a creator URL above and press Scrape. Your link lists are built from what it finds.</span>
+      </div>
+      <div id="creatorGrid" class="cgrid" hidden></div>
+    </div>
+  </section>
+
+  <!-- SITES -->
+  <section id="tab-sites" hidden>
+    <div class="card">
+      <div class="row between">
+        <h2>Sites</h2>
+        <button id="newSite" class="primary">Add a site</button>
+      </div>
+      <p class="muted">A site profile tells the scraper how a website's URLs and pages are laid out. "Your script" runs <code>scrape_fruitsvids.py</code> unchanged. Duplicate it to get an editable copy.</p>
+      <div id="siteList"></div>
+    </div>
+
+    <div class="card" id="siteEditor" hidden>
+      <h2 id="editorTitle">Edit site</h2>
+      <div class="form">
+        <label>Name <input id="sName" placeholder="My other site"></label>
+        <label>Base URL (no path) <input id="sBase" placeholder="https://newsite.com"></label>
+        <label class="wide">Next pages look like (page 2, 3, …)
+          <div class="inline">
+            <select id="sPreset" style="flex:0 0 auto">
+              <option value="{path}/{page}/">/creator-name/2/</option>
+              <option value="{path}/?page={page}">/creator-name/?page=2</option>
+              <option value="{path}/page/{page}/">/creator-name/page/2/</option>
+              <option value="">Custom…</option>
+            </select>
+            <input id="sTemplate" placeholder="{path}/page/{page}/" spellcheck="false">
+          </div>
+          <span class="muted">Type your own. <code>{path}</code> is the creator page's address and <code>{page}</code> is the page number. Page 1 is always the plain creator URL.</span>
+          <span class="muted" id="sExample"></span>
+        </label>
+        <label class="wide">Creator-name endings to strip (comma separated)
+          <input id="sStrip" placeholder="videos, exclusive-videos, new-videos">
+        </label>
+        <label class="wide">Creator addresses to try when I add someone by name (one per line, tried in order, stops at the first that works)
+          <textarea id="sPatterns" rows="6" spellcheck="false" placeholder="/video-creators/{name}-new-videos/&#10;/video-creators/{name}-videos/&#10;/video-creators/{name}-exclusive-videos/&#10;/video-creators/{name}/"></textarea>
+          <span class="muted">Use <code>{name}</code> for jane-doe, <code>{compact}</code> for janedoe or <code>{underscore}</code> for jane_doe. Leave empty if you only ever paste links.</span>
+        </label>
+        <label class="wide">Text that means "this creator doesn't exist" (one per line, optional). The site may show a normal-looking page that says this and lists unrelated videos. If a page contains one of these, the address is skipped and the next is tried.
+          <textarea id="sNotFound" rows="2" spellcheck="false" placeholder="page not found"></textarea>
+        </label>
+        <label class="wide">Categories: one per line as <code>Name: keyword, keyword</code> (matched against the video link)
+          <textarea id="sKeywords" rows="4" placeholder="Pear: pear1, pear2&#10;Orange: orange1, orange2"></textarea>
+        </label>
+        <label class="wide">Dominant category (optional): a video with any of its words goes here, even if it also has words from other categories
+          <select id="sDominant"><option value="">None (the first category above that matches wins)</option></select>
+        </label>
+        <label class="wide">Download this site's videos with
+          <select id="sMethod"><option value="">The global choice (Settings)</option><option value="vdh">Video DownloadHelper (clicks in Chrome)</option><option value="ytdlp">yt-dlp (no browser, no clicking)</option></select>
+        </label>
+        <label class="wide">Keywords that force "Other" (comma separated, optional)
+          <input id="sNegative" placeholder="apple1, apple2">
+        </label>
+        <details class="wide">
+          <summary>Advanced patterns</summary>
+          <div class="form" style="margin-top:12px">
+            <p class="muted wide" style="margin:0"><b>Find videos by an ID attribute</b> (use this when the page marks each video with something like <code>data-video-vkey="abc123"</code>). Leave empty to read ordinary links instead.</p>
+            <label>Attribute name <input id="sKeyAttr" placeholder="data-video-vkey" spellcheck="false"></label>
+            <label>Link built from the ID <input id="sUrlTpl" placeholder="/view_video.php?viewkey={key}" spellcheck="false"></label>
+            <label class="wide">Only look inside (optional CSS selector, to skip "recommended" videos) <input id="sScope" placeholder="ul.videos" spellcheck="false"></label>
+            <label class="wide">Ignore anything inside (optional CSS selector, for extra videos the site adds to every page) <input id="sExclude" placeholder=".related-videos, #promo" spellcheck="false"></label>
+            <label class="wide">View count: CSS selector of the number inside each video's box (optional; empty = look for text like "17.6M views") <input id="sViews" placeholder=".views" spellcheck="false"></label>
+            <label class="wide">Scrape several pages per creator (optional). One per line: <code>{root}/address | only look inside</code>. Each page is scraped in turn and the videos are combined. {root} is the creator's own address.
+              <textarea id="sSections" rows="3" spellcheck="false" placeholder="{root}/videos?o=mv | #mostRecentVideosSection&#10;{root}/videos/upload?o=mv | #uploadedVideosSection"></textarea></label>
+            <label class="wide">Profile picture: CSS selector of the creator's image (optional) <input id="sAvatarSel" placeholder='img[src*="/contents/models/"]' spellcheck="false"></label>
+            <label>Picture address is in attribute <input id="sAvatarAttr" placeholder="src" spellcheck="false"></label>
+            <label class="wide">Video link pattern (regex tested on each link's path)
+              <input id="sLinkRe">
+            </label>
+            <label class="wide">Duration pattern (regex; groups: optional hours, minutes, seconds)
+              <input id="sDurRe">
+            </label>
+            <label>Seconds between page requests <input id="sDelay" type="number" step="0.1" min="0"></label>
+            <label class="check wide"><input id="sKeepQuery" type="checkbox"> Keep everything after the ? in video links (tick this if each video's ID comes after a ?, like /watch?id=123)</label>
+          </div>
+        </details>
+      </div>
+      <div class="row">
+        <button id="saveSite" class="primary">Save site</button>
+        <button id="deleteSite" class="link danger">Delete</button>
+        <span id="siteMsg" class="muted"></span>
+      </div>
+      <hr>
+      <h2>Try it</h2>
+      <p class="muted">Paste one creator URL from this site. It fetches page 1 only, shows what it found, and saves nothing.</p>
+      <div class="row">
+        <input id="testUrl" style="flex:1;min-width:260px" placeholder="https://newsite.com/video-creators/some-creator/">
+        <button id="testBtn">Test</button>
+      </div>
+      <p class="muted" style="margin-top:16px">Or test the address list with a name. It tries each address in order and stops at the first that works.</p>
+      <div class="row">
+        <input id="testName" style="flex:1;min-width:260px" placeholder="Jane Doe">
+        <button id="findBtn">Find</button>
+      </div>
+      <pre id="testOut" class="testOut" hidden></pre>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="tab-library" hidden>
+    <div class="card">
+      <div class="row between">
+        <h2>Library <span id="libTotal" class="muted"></span></h2>
+        <div class="row"><button id="exportBtn">Export .txt lists</button><span id="exportMsg" class="muted"></span></div>
+      </div>
+      <div id="libEmpty" class="empty" hidden><strong>Nothing here yet.</strong><span>Scrape a creator first.</span></div>
+      <div id="libGrid"></div>
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section id="tab-lists" hidden>
+    <div class="card">
+      <h2>Build a list</h2>
+      <p class="muted">Combine your scraped links into one list, sorted or shuffled. The preview updates as you change anything.</p>
+
+      <div class="lbSec"><span class="lbLabel">Creators <span class="muted" id="lbCreatorHint"></span></span>
+        <div class="chipBox" id="lbCreators"></div></div>
+      <div class="lbSec"><span class="lbLabel">Categories</span><div class="chipRow" id="lbCats"></div></div>
+      <div class="lbSec"><span class="lbLabel">Length</span><div class="chipRow" id="lbBuckets"></div></div>
+
+      <div class="filters" style="margin-top:16px">
+        <label>Order
+          <select id="lbOrder">
+            <option value="creator">Alphabetical by creator</option>
+            <option value="title">Alphabetical by video title</option>
+            <option value="category">Grouped by category</option>
+            <option value="random">Random shuffle</option>
+            <option value="scrape">Scrape order</option>
+            <option value="views">Most viewed first</option>
+          </select>
+        </label>
+        <label>Result
+          <select id="lbSplit">
+            <option value="none">One combined list</option>
+            <option value="category">One list per category</option>
+            <option value="creator">One list per creator</option>
+          </select>
+        </label>
+        <label class="check"><input id="lbDur" type="checkbox"> Include durations</label>
+        <label class="check"><input id="lbTitles" type="checkbox"> Include titles</label>
+        <label class="check"><input id="lbExcl" type="checkbox"> Skip already downloaded</label>
+        <label title="Only links with at least this many views, e.g. 100000 or 100k or 1.5m. Links with no view count are left out.">Minimum views <input id="lbMinViews" type="text" placeholder="e.g. 100k" style="width:110px"></label>
+      </div>
+
+      <div class="row">
+        <button id="lbShuffle" hidden>Shuffle again</button>
+        <input id="lbName" placeholder="File name for saving (optional)" style="min-width:230px">
+        <button id="lbSave" class="primary">Save to folder</button>
+        <span class="muted" id="lbMsg"></span>
+      </div>
+    </div>
+
+    <div class="card" id="lbResultCard">
+      <div class="row between"><h2>Preview <span class="muted" id="lbTotal"></span></h2><button id="lbToDownload" title="Send this list to the Download tab, in this exact order">Use this list for downloading</button></div>
+      <div id="lbEmpty" class="empty" hidden><strong>No links match.</strong><span>Scrape some creators first, or loosen the filters above.</span></div>
+      <div id="lbGroups"></div>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <section id="tab-discover" hidden>
+    <div class="dc" id="dc">
+      <div class="dcBg" id="dcBg"></div>
+      <div class="dcBg2" id="dcBg2"></div>
+
+      <div class="dcWelcome" id="dcWelcome" hidden></div>
+
+      <div class="dcApp" id="dcApp" hidden>
+        <header class="dcTop">
+          <div class="dcStats" id="dcStats"></div>
+          <div class="dcTools">
+            <button class="dcTool" id="dcShuffle" title="Shuffle the deck again (R)"><svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Re-shuffle <kbd>R</kbd></button>
+            <button class="dcTool" id="dcFilterBtn" title="Filter by views, videos, rank, verified (F)"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>Filters <b class="dcBadge" id="dcFilterBadge" hidden></b> <kbd>F</kbd></button>
+            <button class="dcTool" id="dcGear" title="Settings: how much to scrape, filters, collect more"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+          </div>
+        </header>
+
+        <div class="dcChipsRow" id="dcChipsRow" hidden></div>
+
+        <div class="dcBody">
+          <section class="dcCenter">
+            <div class="dcStage" id="dcStage"></div>
+            <div class="dcActions" id="dcActions">
+              <button class="dcBtn nope" id="dcNope" title="Not interested (←)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Skip</span><kbd>←</kbd></button>
+              <button class="dcBtn undo" id="dcUndo" title="Take back the last choice (Z)"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Undo</span><kbd>Z</kbd></button>
+              <button class="dcBtn open" id="dcOpen" title="Open this performer's page in a new tab (O)"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span>Open</span><kbd>O</kbd></button>
+              <button class="dcBtn keep" id="dcKeep" title="Keep: add as a creator and scrape all their links (→)"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>Keep</span><kbd>→</kbd></button>
+            </div>
+          </section>
+
+          <aside class="dcSide">
+            <div class="dcPanel dcScrape" id="dcScrape"></div>
+            <div class="dcPanel">
+              <div class="dcPanelHead"><b>Recently kept</b><span id="dcKeptCount"></span></div>
+              <div class="dcKept" id="dcKept"></div>
+              <p class="dcLegend"><i class="done"></i>scraped <i class="scraping"></i>scraping <i class="queued"></i>waiting</p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="dcSettings dcFilters" id="dcFilters" hidden></div>
+        <div class="dcSettings" id="dcSettings" hidden></div>
+        <div class="dcToast" id="dcToast"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section id="tab-download" hidden>
+    <div class="card">
+      <h2>What to download</h2>
+      <div class="seg" id="dlMode">
+        <button data-dlmode="pick" class="on">Pick for me</button>
+        <button data-dlmode="list">Use a list</button>
+        <button data-dlmode="manual">Enter links myself</button>
+      </div>
+
+      <div id="dlManualBox" hidden>
+        <p class="muted">Paste links, one per line. They do not need to be in your library or on the Lists tab. Each one downloads with the same method as the others (see Settings) and lands in the folder you choose.</p>
+        <textarea id="dlManual" rows="5" spellcheck="false" placeholder="https://…"></textarea>
+        <div class="row">
+          <label>Save into folder <input id="dlManualFolder" list="dlFolders" placeholder="a creator folder, or a new name" style="width:260px" autocomplete="off"></label>
+          <datalist id="dlFolders"></datalist>
+          <span class="muted">Leave it empty to use <code>unsorted</code>. A name that matches an existing folder uses that folder.</span>
+        </div>
+      </div>
+
+      <div id="dlListBox" hidden>
+        <p class="muted">Paste links, one per line, or load the list you built on the Lists tab. They download in exactly this order. A line may also carry <code>| 5:00 | title</code>. Links must be ones in your library, because that's how each one is filed in the right folder.</p>
+        <textarea id="dlList" rows="8" spellcheck="false" placeholder="https://…"></textarea>
+        <div class="row">
+          <button id="dlLoadList">Load the whole list from the Lists tab</button>
+          <button id="dlRandom" class="primary" title="Takes the list as it is built on the Lists tab and picks that many at random (the number in 'How many' below)">Pick random from the Lists tab</button>
+          <span class="muted" id="dlRandomMsg"></span>
+        </div>
+      </div>
+
+      <p class="muted" id="dlFilterNote" hidden style="margin-top:14px"><strong>Narrow the list</strong> (optional). These filters apply to the links above, and to the random pick.</p>
+      <div id="dlPickBox">
+        <div class="lbSec">
+          <span class="lbLabel">Only these creators <span class="muted" id="dlIncHint"></span></span>
+          <input id="dlFind" class="slim" placeholder="Search names…" spellcheck="false">
+          <div class="chipBox" id="dlInc"></div>
+        </div>
+        <div class="lbSec"><span class="lbLabel">Never these creators <span class="muted" id="dlExcHint"></span></span><div class="chipBox" id="dlExc"></div></div>
+        <div class="lbSec"><span class="lbLabel">Categories</span><div class="chipRow" id="dlCats"></div></div>
+        <div class="lbSec"><span class="lbLabel">Length <span class="muted">(pick several to combine them, e.g. 8 to 12 and 12 to 23)</span></span><div class="chipRow" id="dlBuckets"></div></div>
+        <div class="lbSec">
+          <label class="check"><input id="dlMix" type="checkbox"> Mix sites in a ratio</label>
+          <div id="dlMixBox" hidden>
+            <p class="muted" style="margin:6px 0">Give each site a share. <code>2</code> and <code>1</code> means two links from the first site for every one from the second. <code>0</code> leaves a site out.</p>
+            <div class="row" id="dlWeights"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters" style="margin-top:16px">
+        <label>How many <input id="dlN" type="number" min="1" value="10"></label>
+        <label class="check"><input id="dlExcl" type="checkbox" checked> Skip already downloaded</label>
+        <label title="Only links with at least this many views, e.g. 100000 or 100k or 1.5m. Links with no view count are left out.">Minimum views <input id="dlMinViews" type="text" placeholder="e.g. 100k" style="width:110px"></label>
+        <label title="No creator will have more than this many videos in the run. Example: ask for 50 and set 2, and every creator appears at most twice.">Max per creator <input id="dlMaxPer" type="number" min="1" placeholder="no limit" style="width:100px"></label>
+        <label title="How the creators share the run. Equal: the same number from each creator (give or take one). At least N: every creator gets N first, the rest is filled after.">Share between creators
+          <select id="dlSpread"><option value="">Random (no rule)</option><option value="equal">Equal share</option><option value="min">At least N each</option></select></label>
+        <label id="dlMinPerWrap" hidden>N <input id="dlMinPer" type="number" min="1" value="1" style="width:70px"></label>
+      </div>
+      <p class="muted" id="dlInfo"></p>
+      <div class="row">
+        <button id="dlPreview">Preview</button>
+        <button id="dlGo" class="primary">Download these</button>
+      </div>
+      <p class="warn">Downloading drives your mouse in Chrome. Keep Chrome open and maximised, Video DownloadHelper visible, and don't touch the mouse. Fling it into a screen corner to abort.</p>
+      <textarea id="dlPrev" rows="8" readonly hidden></textarea>
+      <div class="row"><button id="dlCopy" hidden>Copy</button></div>
+    </div>
+
+    <div class="card" id="dlProgress" hidden>
+      <div class="row between">
+        <h2>Downloads <span class="muted" id="dpSummary"></span></h2>
+        <span class="chip" id="dpState"></span>
+      </div>
+      <div class="dpTotal"><div class="dpBar"><i id="dpTotalBar"></i></div></div>
+      <div id="dpList"></div>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section id="tab-settings" hidden>
+    <div class="card">
+      <h2>Settings</h2>
+      <div id="settingsForm" class="form"></div>
+      <div class="row"><button id="saveSettings" class="primary">Save</button><span id="saveMsg" class="muted"></span></div>
+    </div>
+  </section>
+</main>
+
+<aside id="activity" class="activity" hidden>
+  <div class="row between">
+    <strong id="jobTitle"></strong>
+    <div class="row"><span id="jobStatus" class="chip"></span><button id="stopBtn">Stop</button><button id="hideLog">Hide</button></div>
+  </div>
+  <pre id="logOut"></pre>
+</aside>
+<button id="showLog" class="logToggle" hidden>Activity</button>
+
+<script src="/static/app.js"></script>
+<script src="/static/discover.js"></script>
+</body>
+</html>

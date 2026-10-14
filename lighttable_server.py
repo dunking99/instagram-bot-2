@@ -29,7 +29,7 @@ TARGET = urllib.parse.urlparse(os.environ.get("POSTROOM_URL", "http://127.0.0.1:
 REVIEW_PORTS = [int(p) for p in os.environ.get("REVIEW_PORTS", "8777,8765").split(",")]    # where the model dashboard may be running
 REVIEW_PY = os.path.join(HERE, "CLIP Training", ".venv", "bin", "python")
 _start_lock = __import__("threading").Lock()
-D18_DIR = os.path.expanduser("~/data18-scraper")                    # the data18 scraper (its own folder, its own python)
+D18_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "data18")
 D18_PY = os.path.join(D18_DIR, ".venv", "bin", "python")
 D18_PORT = int(os.environ.get("D18_PORT", "8790"))
 REMOTE_FRAMES = os.path.join(HERE, "remote_frames.py")              # frames from a video link without downloading the video
@@ -56,7 +56,7 @@ def ensure_data18():
         if _up_path(D18_PORT, "/api/status"):
             return None
         if not os.path.exists(D18_PY):
-            return "The data18 scraper could not be started: ~/data18-scraper/.venv is missing."
+            return "The data18 scraper could not be started: tools/data18/.venv is missing."
         os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
         log = open(os.path.join(HERE, "logs", "data18.log"), "ab")
         subprocess.Popen([D18_PY, "-u", "server.py"], cwd=D18_DIR, env=_tool_env, stdout=log, stderr=log, start_new_session=True)

@@ -6,3 +6,12 @@ library/
 picks/
 pipeline/frames/
 pipeline/frames_5s
+auth.json
+tools/data18/data/session.json
+tools/data18/data/imgcache/
+.venv/
+*.bak-*
+*.mp4
+__pycache__/
+node_modules/
+logs/

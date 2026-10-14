@@ -1,0 +1,1693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>data18 scraper</title>
+<style>
+  :root { --bg:#f6f6f4; --fg:#1c1c1a; --muted:#6b6b66; --card:#fff; --line:#dcdcd6; --accent:#2b5fd9; --err:#b3261e;
+          --inc:#1d7a3a; --inc-bg:#d9f2e0; --exc:#b3261e; --exc-bg:#fadcd9;
+          --cat-s:60%; --cat-l:88%; --cat-t:28%; --eth-s:75%; --eth-l:86%; --eth-t:30%; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161615; --fg:#ececea; --muted:#9a9a94; --card:#1f1f1d; --line:#35352f; --accent:#7ba3ff; --err:#ff8a80;
+            --inc:#7fd99a; --inc-bg:#1d3a27; --exc:#ff9a90; --exc-bg:#43211e;
+            --cat-s:35%; --cat-l:24%; --cat-t:82%; --eth-s:45%; --eth-l:25%; --eth-t:84%; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.45 system-ui,sans-serif; }
+  main { max-width:960px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:20px; margin:0 0 16px; }
+  form { display:flex; gap:8px; }
+  input[type=text], select { padding:10px 12px; font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:8px; }
+  form input[type=text] { flex:1; }
+  button { padding:10px 16px; font:inherit; color:#fff; background:var(--accent); border:0; border-radius:8px; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  button.ghost { background:none; color:var(--accent); border:1px solid var(--line); padding:6px 10px; font-size:13px; }
+  button.ghost.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  #status { margin:14px 0 6px; color:var(--muted); min-height:1.4em; }
+  #status.err { color:var(--err); }
+  #prog { height:4px; background:var(--line); border-radius:2px; overflow:hidden; margin-bottom:10px; }
+  #prog > div { height:100%; width:0; background:var(--accent); transition:width .3s; }
+
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; margin:12px 0; }
+  .row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .row + .row, .group + .group { margin-top:10px; }
+  .row select, .row input[type=text] { padding:6px 8px; font-size:13px; }
+  .row input[type=text] { flex:1; min-width:160px; }
+  .group h3 { margin:0 0 6px; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+  .hint { font-weight:400; text-transform:none; letter-spacing:0; }
+  .chips { display:flex; flex-wrap:wrap; gap:5px; }
+
+  .chip { --h:220; display:inline-flex; align-items:center; gap:5px; padding:2px 8px; border-radius:6px; border:1px solid transparent;
+          font-size:12.5px; line-height:1.5; cursor:pointer; user-select:none; font-family:inherit;
+          background:hsl(var(--h) var(--cat-s) var(--cat-l)); color:hsl(var(--h) 45% var(--cat-t)); }
+  .chip.eth { background:hsl(var(--h) var(--eth-s) var(--eth-l)); color:hsl(var(--h) 55% var(--eth-t)); }
+  .chip .n { opacity:.65; font-variant-numeric:tabular-nums; }
+  .chip.inc { background:var(--inc-bg); color:var(--inc); border-color:var(--inc); font-weight:600; }
+  .chip.exc { background:var(--exc-bg); color:var(--exc); border-color:var(--exc); text-decoration:line-through; }
+  .chip.inc::before { content:"+"; } .chip.exc::before { content:"−"; text-decoration:none; }
+
+  ul { list-style:none; margin:0; padding:0; }
+  li { display:flex; gap:12px; align-items:flex-start; padding:10px; margin-bottom:8px; background:var(--card); border:1px solid var(--line); border-radius:8px; }
+  li img { width:96px; height:54px; object-fit:cover; border-radius:4px; background:var(--line); flex:none; }
+  .num { color:var(--muted); font-variant-numeric:tabular-nums; min-width:3.2em; padding-top:1px; }
+  .main { min-width:0; flex:1; }
+  .main a { color:var(--fg); font-weight:600; text-decoration:none; }
+  .main a:hover { color:var(--accent); text-decoration:underline; }
+  .meta { color:var(--muted); font-size:13px; }
+  li .chips { margin-top:6px; }
+  .more { margin-top:6px; }
+  .tabs { display:flex; gap:4px; margin:-6px 0 16px; border-bottom:1px solid var(--line); }
+  .tabs button { background:none; color:var(--muted); border-radius:8px 8px 0 0; padding:8px 14px; border-bottom:2px solid transparent; }
+  .tabs button[aria-selected=true] { color:var(--fg); border-bottom-color:var(--accent); font-weight:600; }
+  #pg-creators .srow { display:flex; align-items:center; gap:12px; padding:8px 10px; margin-bottom:4px; background:var(--card); border:1px solid var(--line); border-radius:8px; }
+  #pg-creators .srow .nm { flex:1; min-width:0; font-weight:600; color:var(--fg); text-decoration:none; overflow-wrap:anywhere; }
+  #pg-creators .srow .nm:hover { color:var(--accent); text-decoration:underline; }
+  #pg-creators .srow .cnt { color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px; }
+  #pg-creators .srow .slug { color:var(--muted); font-size:12px; white-space:nowrap; }
+  #pg-studios .srow { display:flex; align-items:baseline; gap:10px; padding:8px 10px; margin-bottom:4px; background:var(--card); border:1px solid var(--line); border-radius:8px; }
+  #pg-studios .srow.child { margin-left:22px; border-left:3px solid var(--accent); }
+  #pg-studios .srow .nm { flex:1; min-width:0; font-weight:600; color:var(--fg); text-decoration:none; overflow-wrap:anywhere; }
+  #pg-studios .srow .nm:hover { color:var(--accent); text-decoration:underline; }
+  #pg-studios .srow.parentrow .nm { font-weight:700; }
+  #pg-studios .srow .cnt { color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; font-size:13px; }
+  #pg-studios .srow .slug { color:var(--muted); font-size:12px; }
+  #pg-studios .via { font-size:12px; }
+  #pg-studios .pill { color:var(--muted); font-size:12px; padding:0 6px; border:1px solid var(--line); border-radius:10px; }
+  #pg-tags .trow { background:var(--card); border:1px solid var(--line); border-radius:8px; margin-bottom:4px; }
+  #pg-tags .thead { display:flex; align-items:baseline; gap:10px; width:100%; padding:8px 10px; background:none; color:var(--fg); border:0; border-radius:8px; text-align:left; }
+  #pg-tags .thead .arrow { display:inline-block; width:1em; color:var(--muted); transition:transform .15s; }
+  #pg-tags .thead[aria-expanded=true] .arrow { transform:rotate(90deg); }
+  #pg-tags .thead .nm { flex:1; font-weight:600; }
+  #pg-tags .thead .cnt { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
+  #pg-tags .trow.empty .nm { font-weight:400; color:var(--muted); }
+  #pg-tags .tlink { color:var(--muted); font-size:12px; text-decoration:none; padding-right:4px; }
+  #pg-tags .tlink:hover { color:var(--accent); }
+  #pg-tags .tvids { padding:2px 10px 10px; }
+  #pg-tags .tv { display:flex; gap:10px; align-items:center; padding:6px 0; border-top:1px solid var(--line); }
+  #pg-tags .tv img { width:80px; height:45px; object-fit:cover; border-radius:4px; background:var(--line); flex:none; }
+  #pg-tags .tv a { color:var(--fg); font-weight:600; text-decoration:none; }
+  #pg-tags .tv a:hover { color:var(--accent); text-decoration:underline; }
+  #p-grid { display:grid; gap:10px; grid-template-columns:repeat(auto-fill, minmax(132px, 1fr)); }
+  .pcard { display:block; background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; text-decoration:none; color:var(--fg); }
+  .pcard:hover { border-color:var(--accent); }
+  .pcard .pic { aspect-ratio:1; width:100%; display:flex; align-items:center; justify-content:center; background:var(--bg); color:var(--muted); font-size:28px; font-weight:600; }
+  .pcard .pic img { width:100%; height:100%; object-fit:cover; display:block; }
+  .pcard .pn { padding:6px 8px 0; font-size:13px; font-weight:600; line-height:1.3; overflow-wrap:anywhere; }
+  .pcard .ps { padding:0 8px 7px; font-size:12px; color:var(--muted); }
+  li { flex-wrap:wrap; }
+  li > img { cursor:default; }
+  .pbtn { margin-top:6px; display:inline-flex; align-items:center; gap:6px; }
+  .pbtn .arrow { display:inline-block; transition:transform .15s; }
+  .pbtn[aria-expanded=true] .arrow { transform:rotate(90deg); }
+  .pbtn .sum { color:var(--muted); font-size:12px; }
+  .nophotos { margin-top:6px; color:var(--muted); font-size:12.5px; }
+  .gal { flex-basis:100%; margin-top:8px; border-top:1px solid var(--line); padding-top:10px; }
+  .gal h4 { margin:12px 0 6px; font-size:13px; }
+  .gal h4:first-child { margin-top:0; }
+  .gal h4 .n { color:var(--muted); font-weight:400; }
+  .grid { display:grid; gap:8px; grid-template-columns:repeat(auto-fill, minmax(max(170px, calc((100% - 32px) / 5)), 1fr)); }
+  .grid .ph { display:block; aspect-ratio:4/3; background:var(--bg); border:1px solid var(--line); border-radius:6px; overflow:hidden; padding:0; cursor:zoom-in; }
+  .grid .ph img { width:100%; height:100%; object-fit:contain; display:block; }
+  .bbar { height:8px; background:var(--line); border-radius:4px; overflow:hidden; margin-top:8px; }
+  .bbar i { display:block; height:100%; width:0; background:var(--accent); transition:width .4s; }
+  .pcard { margin-bottom:12px; }
+  .ptitle { font-weight:700; font-size:16px; color:var(--fg); text-decoration:none; }
+  .ptitle:hover { color:var(--accent); text-decoration:underline; }
+  .psamples { display:flex; gap:6px; margin:8px 0; }
+  .psamples img { height:64px; width:auto; max-width:23%; object-fit:cover; border-radius:4px; background:var(--line); }
+  .posrow { display:flex; align-items:center; gap:10px; padding:4px 0; border-top:1px solid var(--line); }
+  .posrow .nm { width:190px; flex:none; color:var(--fg); text-decoration:none; font-size:14px; }
+  .posrow .nm:hover { color:var(--accent); text-decoration:underline; }
+  .posrow .cnt { color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px; min-width:90px; text-align:right; }
+  .pbar { flex:1; height:8px; background:var(--line); border-radius:4px; overflow:hidden; } .pbar i { display:block; height:100%; background:var(--accent); }
+  .pgrid { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); }
+  .pgrid .pw { position:relative; display:flex; flex-direction:column; gap:3px; }
+  .pgrid .pbadge { position:absolute; left:4px; top:4px; padding:1px 6px; border-radius:5px; font-size:11px; font-weight:600; background:rgba(0,0,0,.76); color:#fff; pointer-events:none; }
+  .pgrid .pcap { font-size:11.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration:none; }
+  .pgrid .pcap:hover { color:var(--accent); }
+  #pos-crumb a { color:var(--accent); }
+  .selbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 10px; }
+  .selbar button { padding:3px 10px; font-size:12px; }
+  .grid .pw { position:relative; }
+  .grid .pw .pick { position:absolute; top:6px; left:6px; width:18px; height:18px; cursor:pointer; accent-color:var(--accent); }
+  .head2 { display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+  .head2 .rbtn { padding:3px 10px; font-size:12px; }
+  .finder { flex-basis:100%; margin-top:8px; border-top:1px solid var(--line); padding-top:10px; font-size:13px; }
+  .finder[hidden] { display:none; }
+  .finder .ftop { display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); margin-bottom:6px; }
+  .finder .ftop button { padding:3px 10px; font-size:12px; }
+  .finder .ftop a { color:var(--accent); }
+  .finder .err { color:var(--err); }
+  .finder .fwant { color:var(--muted); font-size:12px; margin-bottom:4px; }
+  .finder .frow { display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-top:1px solid var(--line); }
+  .finder .frow img { width:128px; height:72px; object-fit:cover; border-radius:4px; background:var(--line); flex:none; }
+  .finder .fmain { min-width:0; }
+  .finder .fmain a { color:var(--fg); font-weight:600; text-decoration:none; overflow-wrap:anywhere; }
+  .finder .fmain a:hover { color:var(--accent); text-decoration:underline; }
+  .finder .fchip { display:inline-block; padding:1px 8px; border-radius:99px; font-size:12px; margin-right:6px; background:var(--line); color:var(--muted); }
+  .finder .fchip.confident { background:var(--inc-bg); color:var(--inc); font-weight:600; }
+  .finder .fchip.possible { background:color-mix(in srgb, #c98a00 22%, transparent); color:#b57a00; font-weight:600; }
+  .finder .fwhy { color:var(--muted); font-size:12px; margin-top:2px; }
+  .finder .frow input[type=radio] { margin-top:5px; flex:none; accent-color:var(--accent); }
+  .finder .frow.picked { background:color-mix(in srgb, var(--accent) 10%, transparent); border-radius:6px; }
+  .finder .frow.sm img { width:72px; height:41px; }
+  .finder .fbar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding:6px 0 8px; font-size:13px; }
+  .finder .fbar button { padding:5px 12px; font-size:13px; }
+  .finder .fbar .ok { color:var(--inc); }
+  .finder details { margin-top:6px; color:var(--muted); }
+  .finder summary { cursor:pointer; color:var(--accent); }
+  .finder .fnone { padding:3px 0; }
+  .pred { flex-basis:100%; margin-top:8px; border-top:1px solid var(--line); padding-top:10px; }
+  .pred[hidden] { display:none; }
+  .pred .ptop { display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:13px; color:var(--muted); margin-bottom:6px; }
+  .pred .ptop select { padding:3px 6px; font-size:12px; }
+  .pred .ptop button { padding:3px 10px; font-size:12px; }
+  .pred .err { color:var(--err); }
+  .pred h4 { margin:12px 0 4px; font-size:13px; } .pred h4 .n { color:var(--muted); font-weight:400; }
+  .pred .warn { color:var(--muted); font-size:12px; margin:0 0 6px; }
+  .pred .sumrow { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .pred .sc { padding:2px 8px; border-radius:6px; border:1px solid var(--line); font-size:12px; background:var(--card); font-variant-numeric:tabular-nums; }
+  .pred .sc.u { color:var(--muted); border-style:dashed; }
+  .pred .tile { position:relative; }
+  .pred .badges { position:absolute; left:4px; bottom:4px; right:4px; display:flex; flex-direction:column; gap:2px; align-items:flex-start; pointer-events:none; }
+  .pred .badge { padding:1px 6px; border-radius:5px; font-size:11px; font-weight:600; background:rgba(0,0,0,.76); color:#fff; max-width:100%; line-height:1.25; }
+  .pred .badge.u { background:rgba(120,120,114,.9); font-weight:400; }
+  .pred .badge .who { opacity:.65; font-weight:400; margin-right:4px; }
+  .pred .tile.dis { outline:2px solid var(--accent); outline-offset:-2px; }
+  .pred .mrow { display:flex; align-items:baseline; gap:8px; margin:0 0 4px; flex-wrap:wrap; } .pred .mrow .mn { font-size:12px; color:var(--muted); min-width:92px; }
+  .pred .agree { font-size:13px; margin:4px 0 8px; } .pred label.chk { display:inline-flex; gap:5px; align-items:center; cursor:pointer; }
+  .heartbtn { position:absolute; right:4px; top:4px; width:28px; height:28px; padding:0; border-radius:50%; font-size:16px; line-height:1; background:rgba(0,0,0,.6); color:#fff; border:0; cursor:pointer; }
+  .heartbtn.on, #lb .lbfav.on { color:#ff6b81; }
+  .getbtn { padding:2px 8px; font-size:11.5px; align-self:flex-start; }
+  #lb .lbfav { top:10px; left:10px; }
+  #lb .lbget { top:10px; left:64px; font-size:14px; }
+  .getbtn.found { color:var(--inc); border-color:var(--inc); }
+  .getbtn.chosen { background:var(--inc-bg); color:var(--inc); border-color:var(--inc); }
+  .pgrid .selbox { position:absolute; left:6px; top:30px; width:18px; height:18px; cursor:pointer; accent-color:var(--accent); z-index:2; }
+  body.selmode { padding-bottom:76px; }
+  #selbar { position:fixed; left:0; right:0; bottom:0; z-index:30; background:var(--card); border-top:1px solid var(--line); padding:10px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; box-shadow:0 -4px 14px rgba(0,0,0,.3); }
+  #selbar[hidden] { display:none; }
+  #selbar button { padding:6px 14px; font-size:13px; }
+  .clipw { display:inline-flex; gap:6px; align-items:center; font-size:12px; color:var(--muted); }
+  .clipw select, .clipw input { padding:3px 6px; font-size:12px; }
+  .clipw input { width:64px; }
+  #clipq { position:fixed; left:16px; bottom:16px; z-index:29; background:var(--card); }
+  #clipq[hidden] { display:none; }
+  #bm { position:fixed; inset:0; z-index:42; background:rgba(0,0,0,.6); display:none; align-items:flex-start; justify-content:center; overflow:auto; padding:30px 12px; }
+  #bm.open { display:flex; }
+  .bm-card { background:var(--card); border:1px solid var(--line); border-radius:12px; width:min(1000px,100%); padding:14px 16px; }
+  .bm-top { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:6px 0 8px; font-size:13px; color:var(--muted); }
+  .bm-top button { padding:5px 14px; font-size:13px; }
+  .bm-row { padding:9px 0; border-top:1px solid var(--line); font-size:13px; }
+  .bm-row select { max-width:100%; font-size:12px; padding:4px 6px; margin-top:4px; }
+  .bm-item { font-size:12px; color:var(--muted); padding:1px 0 1px 12px; }
+  .bm-item.ok { color:var(--inc); } .bm-item.bad { color:var(--err); }
+  #autobar { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:8px 0; padding:8px 12px; border:1px solid var(--line); border-radius:8px; font-size:13px; color:var(--muted); }
+  #autobar label { display:inline-flex; gap:5px; align-items:center; cursor:pointer; }
+  #autobar input[type=text] { width:170px; padding:3px 8px; font-size:13px; }
+  #autobar button { padding:3px 10px; font-size:12px; }
+  #autobar .ab-run { color:var(--fg); }
+  #autobar .ab-err { color:var(--err); }
+  #sm { position:fixed; inset:0; z-index:44; background:rgba(0,0,0,.6); display:none; align-items:flex-start; justify-content:center; padding:20px 12px; }
+  #sm.open { display:flex; }
+  #sm .sm-card { background:var(--card); border:1px solid var(--line); border-radius:12px; width:min(1180px,100%); padding:12px 14px; }
+  #sm iframe { width:100%; height:calc(100vh - 110px); border:0; border-radius:8px; background:var(--card); }
+  #fm { position:fixed; inset:0; z-index:40; background:rgba(0,0,0,.6); display:none; align-items:flex-start; justify-content:center; overflow:auto; padding:30px 12px; }
+  #fm.open { display:flex; }
+  .fm-card { background:var(--card); border:1px solid var(--line); border-radius:12px; width:min(980px,100%); padding:14px 16px; }
+  .fm-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:6px; }
+  #fm-body { border-top:0; margin-top:0; padding-top:0; }
+  #lb { position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; }
+  #lb.open { display:flex; }
+  #lb img { max-width:94vw; max-height:90vh; object-fit:contain; }
+  #lb .cap { position:fixed; bottom:10px; left:0; right:0; text-align:center; color:#ddd; font-size:13px; }
+  #lb button { position:fixed; background:rgba(255,255,255,.12); color:#fff; padding:10px 14px; font-size:20px; border-radius:8px; }
+  #lb .x { top:12px; right:12px; } #lb .prev { left:12px; top:50%; } #lb .next { right:12px; top:50%; }
+  @media (max-width:560px) { li > img { width:72px; height:40px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>data18 scraper</h1>
+  <nav class="tabs" role="tablist">
+    <button type="button" role="tab" id="tab-perf" aria-selected="true">Performers</button>
+    <button type="button" role="tab" id="tab-studios" aria-selected="false">Studios</button>
+    <button type="button" role="tab" id="tab-tags" aria-selected="false">Tags</button>
+    <button type="button" role="tab" id="tab-stars" aria-selected="false">Pornstars</button>
+    <button type="button" role="tab" id="tab-creators" aria-selected="false">Scraped creators</button>
+    <button type="button" role="tab" id="tab-positions" aria-selected="false">By position</button>
+    <button type="button" role="tab" id="tab-favs" aria-selected="false">Favourites</button>
+  </nav>
+  <div id="pg-perf">
+  <form id="f">
+    <input type="text" id="name" list="saved" placeholder="Performer name, e.g. Kyler Quinn" autofocus autocomplete="off">
+    <datalist id="saved"></datalist>
+    <button id="go">Scrape</button>
+  </form>
+  <div id="autobar">
+    <strong style="color:var(--fg)">Find video links</strong>
+    <label title="After a creator is scraped, search the other sites for each of their videos by itself"><input type="checkbox" id="ab-on"> automatically after scraping</label>
+    <label title="Search only the sites the video can be streamed from (about a third of the requests). Untick to search every site."><input type="checkbox" id="ab-str"> streamable sites only</label>
+    <label title="Choose the match for you when it is confident (you can change it later)"><input type="checkbox" id="ab-sel"> choose confident matches</label>
+    <span><input type="text" id="ab-slug" list="saved" placeholder="Creator already scraped"> <button type="button" id="ab-go" title="Search every video of this creator that has not been searched yet">Find links</button></span>
+    <span id="ab-state"></span>
+    <button type="button" id="ab-pause" class="ghost" hidden>Pause</button><button type="button" id="ab-stop" class="ghost" hidden>Stop</button>
+  </div>
+  <div id="status"></div>
+  <div id="prog" hidden><div></div></div>
+
+  <div id="results" hidden>
+    <div class="panel" id="batch">
+      <div class="row">
+        <strong>Run the model on this creator's videos</strong>
+        <label class="meta"><input type="radio" name="bmode" value="all" checked> all videos</label>
+        <label class="meta"><input type="radio" name="bmode" value="random"> <input type="number" id="bcount" value="50" min="1" max="1000" style="width:72px"> at random</label>
+        <label class="meta" title="Skip videos that already have model results"><input type="checkbox" id="bnew" checked> only new videos</label>
+        <label class="meta" title="Photosets are posed photos, not video frames: the model is less reliable on them"><input type="checkbox" id="bphotos"> include photosets</label>
+        <button id="bgo" type="button">Run the model</button>
+        <button id="bcancel" class="ghost" type="button" hidden>Cancel</button>
+        <button id="bview" class="ghost" type="button">See results by position</button>
+      </div>
+      <div id="bprog" hidden><div class="bbar"><i></i></div></div>
+      <div class="meta" id="binfo" style="margin-top:6px"></div>
+    </div>
+    <div class="panel" id="filters">
+      <div class="row">
+        <strong id="count"></strong>
+        <input type="text" id="filter" placeholder="Search titles...">
+        <button class="ghost" id="clear" type="button">Clear filters</button>
+        <button class="ghost" id="copy" type="button">Copy links</button>
+        <button class="ghost" id="refresh" type="button">Re-scrape</button>
+      </div>
+      <div class="row">
+        <select id="studio"></select>
+        <select id="costar"></select>
+        <select id="year"></select>
+        <select id="sort">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+          <option value="az">Title A–Z</option>
+          <option value="photos_desc">Most photos first</option>
+          <option value="photos_asc">Fewest photos first</option>
+        </select>
+      </div>
+      <div class="group">
+        <h3>Categories <span class="hint">click once to require, twice to exclude</span>
+          <button class="ghost" id="mode" type="button" title="Whether a video needs all the required categories or any one of them">match: all</button></h3>
+        <div class="chips" id="catchips"></div>
+        <button class="ghost more" id="catmore" type="button" hidden></button>
+      </div>
+      <div class="group">
+        <h3>Ethnicity</h3>
+        <div class="chips" id="ethchips"></div>
+      </div>
+    </div>
+    <ul id="list"></ul>
+  </div>
+  </div><!-- /pg-perf -->
+
+  <div id="pg-studios" hidden>
+    <div class="panel">
+      <div class="row">
+        <strong id="s-count"></strong>
+        <input type="text" id="s-q" placeholder="Search studios..." autocomplete="off">
+        <button class="ghost" id="s-refresh" type="button">Re-scrape from data18</button>
+      </div>
+      <div class="row">
+        <select id="s-type">
+          <option value="all">All studios</option>
+          <option value="top">Top-level only</option>
+          <option value="sub">Sub-channels only</option>
+        </select>
+        <select id="s-parent"></select>
+        <select id="s-sort">
+          <option value="az">A–Z</option>
+          <option value="za">Z–A</option>
+          <option value="most">Most scenes</option>
+          <option value="least">Fewest scenes</option>
+        </select>
+        <button class="ghost" id="s-group" type="button" title="Show each sub-channel under its parent channel">Group by channel</button>
+        <button class="ghost" id="s-copy" type="button">Copy links</button>
+      </div>
+      <div id="s-info" class="meta" style="margin-top:8px"></div>
+    </div>
+    <div id="s-list"></div>
+  </div>
+
+  <div id="pg-tags" hidden>
+    <div class="panel">
+      <div class="row">
+        <strong id="t-count"></strong>
+        <input type="text" id="t-q" placeholder="Search tags..." autocomplete="off">
+        <select id="t-sort">
+          <option value="az">A–Z</option>
+          <option value="most">Most videos</option>
+        </select>
+        <button class="ghost" id="t-only" type="button" title="Hide tags none of your scraped videos have">Only tags with videos</button>
+      </div>
+      <div id="t-info" class="meta" style="margin-top:8px"></div>
+    </div>
+    <div id="t-list"></div>
+  </div>
+  <div id="pg-positions" hidden>
+    <div class="panel">
+      <div class="row">
+        <strong id="pos-count"></strong>
+        <select id="pos-creator" title="Creator"><option value="">All creators</option></select>
+        <select id="pos-type" title="Which images"><option value="stills">Video stills</option><option value="photoset">Photosets</option><option value="all">Stills and photosets</option></select>
+        <label class="meta">position sure at least <select id="pos-min"><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select></label>
+        <label class="meta">sub-type sure at least <select id="pos-submin"><option value="0" selected>any</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option></select></label>
+      </div>
+      <div class="meta" id="pos-crumb" style="margin-top:8px"></div>
+    </div>
+    <div id="pos-body"></div>
+  </div>
+  <div id="pg-favs" hidden>
+    <div class="panel"><div class="row"><strong id="fav-count"></strong><input type="text" id="fav-q" placeholder="Search favourites (title, creator, position)..." autocomplete="off"></div>
+      <div class="meta" style="margin-top:8px">Frames you have marked with ♥ (on By position, in the photo lists and in the full-screen viewer). Click a frame to see it large; “Get video” finds that video on the other sites so you can download it.</div></div>
+    <div class="grid pgrid" id="fav-grid"></div>
+  </div>
+  <div id="pg-creators" hidden>
+    <div class="panel"><div class="row"><strong id="c-count"></strong><input type="text" id="c-q" placeholder="Search creators..." autocomplete="off"></div>
+      <div class="meta" style="margin-top:8px">Every performer you have scraped so far. Open one to see its videos, photos and model results.</div></div>
+    <div id="c-list"></div>
+  </div>
+  <div id="pg-stars" hidden>
+    <div class="panel">
+      <div class="row">
+        <strong id="p-count"></strong>
+        <input type="text" id="p-q" placeholder="Search pornstars..." autocomplete="off">
+        <select id="p-sort">
+          <option value="site">Newest activity</option>
+          <option value="az">A–Z</option>
+          <option value="za">Z–A</option>
+          <option value="most">Most scenes</option>
+        </select>
+        <button class="ghost" id="p-pics" type="button" title="Hide performers data18 has no photo for">Only with photos</button>
+        <button class="ghost" id="p-refresh" type="button">Re-scrape from data18</button>
+      </div>
+      <div id="p-info" class="meta" style="margin-top:8px"></div>
+    </div>
+    <div id="p-grid"></div>
+    <div id="p-more" class="meta" style="text-align:center;padding:16px;cursor:pointer" title="Click to load more"></div>
+  </div>
+</main>
+<div id="lb" aria-hidden="true">
+  <button class="x" type="button" aria-label="Close">✕</button>
+  <button class="prev" type="button" aria-label="Previous">‹</button>
+  <img alt="">
+  <button class="next" type="button" aria-label="Next">›</button>
+  <div class="cap"></div>
+  <button class="lbfav" type="button" data-fav-u="" title="Favourite this frame">♡</button>
+  <button class="lbget" type="button" title="Find this video on the other sites and download it">Get video</button>
+</div>
+<div id="fm" aria-hidden="true"><div class="fm-card">
+  <div class="fm-head"><strong id="fm-title"></strong><button type="button" class="ghost" id="fm-x" aria-label="Close">✕</button></div>
+  <div class="finder" id="fm-body"></div>
+</div></div>
+<div id="sm" aria-hidden="true"><div class="sm-card">
+  <div class="fm-head"><strong id="sm-title">Watch</strong><button type="button" class="ghost" id="sm-x" aria-label="Close">✕</button></div>
+  <div id="sm-note" class="meta"></div>
+  <iframe id="sm-frame" title="Stream test" allow="fullscreen"></iframe>
+</div></div>
+<div id="bm" aria-hidden="true"><div class="bm-card">
+  <div class="fm-head"><strong id="bm-title">Download clips</strong><button type="button" class="ghost" id="bm-x" aria-label="Close">✕</button></div>
+  <div id="bm-body"></div>
+</div></div>
+<div id="selbar" hidden><span id="sel-count"></span><span id="sel-clipw"></span><button type="button" id="sel-go">Download clips…</button><button type="button" class="ghost" id="sel-clear">Clear</button></div>
+<button type="button" class="ghost" id="clipq" hidden></button>
+<script>
+const BASE = location.pathname.replace(/[^/]*$/, "");   // "/" when opened on its own, "/d18/" inside the Light table
+const $ = id => document.getElementById(id);
+let data = null, pollTimer = null, lastSig = "";
+const CAT_LIMIT = 30;
+// filter state: tag -> "inc" | "exc"
+const F = { cats:new Map(), eths:new Map(), anyMode:false, showAllCats:false };
+
+function setStatus(msg, err) { $("status").textContent = msg; $("status").className = err ? "err" : ""; }
+function setProgress(frac) { $("prog").hidden = frac == null; if (frac != null) $("prog").firstElementChild.style.width = Math.round(frac * 100) + "%"; }
+
+// stable hue from a string; categories cool (180-300), ethnicity warm (10-60)
+function hash(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
+const catHue = s => 180 + hash(s) % 120;
+const ethHue = s => 10 + hash(s) % 50;
+
+function chip(label, {eth=false, state="", count=null, onclick=null}={}) {
+  const b = document.createElement(onclick ? "button" : "span");
+  if (onclick) { b.type = "button"; b.addEventListener("click", onclick); }
+  b.className = "chip" + (eth ? " eth" : "") + (state ? " " + state : "");
+  b.style.setProperty("--h", eth ? ethHue(label) : catHue(label));
+  b.textContent = label;
+  if (count != null) { const n = document.createElement("span"); n.className = "n"; n.textContent = count; b.append(n); }
+  return b;
+}
+
+function year(v) { const m = /\b(19|20)\d{2}\b/.exec(v.date || ""); return m ? m[0] : ""; }
+function counts(vids, key) {
+  const c = new Map();
+  for (const v of vids) for (const t of v[key] || []) c.set(t, (c.get(t) || 0) + 1);
+  return [...c.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+
+function passes(v, ignore) {
+  const q = $("filter").value.toLowerCase();
+  if (q && !v.title.toLowerCase().includes(q)) return false;
+  if (ignore !== "studio" && $("studio").value && v.studio !== $("studio").value) return false;
+  if (ignore !== "costar" && $("costar").value && !v.performers.includes($("costar").value)) return false;
+  if (ignore !== "year" && $("year").value && year(v) !== $("year").value) return false;
+  for (const [map, key] of [[F.cats, "categories"], [F.eths, "ethnicity"]]) {
+    const have = v[key];
+    const inc = [...map].filter(([, s]) => s === "inc").map(([t]) => t);
+    const exc = [...map].filter(([, s]) => s === "exc").map(([t]) => t);
+    if (inc.length || exc.length) {
+      if (!have) return false;                    // details not fetched yet
+      if (exc.some(t => have.includes(t))) return false;
+      if (inc.length && !(F.anyMode ? inc.some(t => have.includes(t)) : inc.every(t => have.includes(t)))) return false;
+    }
+  }
+  return true;
+}
+
+function fillSelect(sel, firstLabel, values) {
+  const cur = sel.value;
+  sel.replaceChildren(new Option(firstLabel, ""), ...values.map(([v, n]) => new Option(`${v} (${n})`, v)));
+  if (values.some(([v]) => v === cur)) sel.value = cur;
+}
+
+function cycle(map, tag) {
+  const s = map.get(tag);
+  if (!s) map.set(tag, "inc"); else if (s === "inc") map.set(tag, "exc"); else map.delete(tag);
+  render();
+}
+
+function renderFilters() {
+  const all = data.videos;
+  fillSelect($("studio"), "Any studio", counts(all.map(v => ({s: v.studio ? [v.studio] : []})), "s"));
+  fillSelect($("costar"), "Anyone", counts(all, "performers"));
+  fillSelect($("year"), "Any year", counts(all.map(v => ({y: year(v) ? [year(v)] : []})), "y").sort((a, b) => b[0].localeCompare(a[0])));
+  const cats = counts(all, "categories"), eths = counts(all, "ethnicity");
+  // keep selected chips visible even when they'd fall outside the top list
+  let shown = F.showAllCats ? cats : cats.slice(0, CAT_LIMIT);
+  for (const [t] of F.cats) if (!shown.some(([x]) => x === t)) shown = shown.concat([[t, cats.find(([x]) => x === t)?.[1] ?? 0]]);
+  $("catchips").replaceChildren(...shown.map(([t, n]) => chip(t, {state:F.cats.get(t) || "", count:n, onclick:() => cycle(F.cats, t)})));
+  $("catmore").hidden = cats.length <= CAT_LIMIT;
+  $("catmore").textContent = F.showAllCats ? "Show fewer" : `Show all ${cats.length} categories`;
+  $("ethchips").replaceChildren(...eths.map(([t, n]) => chip(t, {eth:true, state:F.eths.get(t) || "", count:n, onclick:() => cycle(F.eths, t)})));
+  if (!cats.length && !eths.length) $("catchips").textContent = "Categories are still loading...";
+}
+
+function render() {
+  if (!data) return;
+  renderFilters();
+  const sort = $("sort").value;
+  let vids = data.videos.filter(v => passes(v));
+  const photoTotal = v => (v.galleries || []).reduce((n, g) => n + (g.count || 0), 0);   // every gallery: Primary, Photoset, Video Stills, Trailer...
+  if (sort === "photos_desc") vids = vids.slice().sort((a, b) => photoTotal(b) - photoTotal(a) || Number(b.number) - Number(a.number));
+  else if (sort === "photos_asc") vids = vids.slice().sort((a, b) => photoTotal(a) - photoTotal(b) || Number(b.number) - Number(a.number));
+  else if (sort === "old") vids = vids.slice().sort((a, b) => Number(a.number) - Number(b.number));
+  else if (sort === "az") vids = vids.slice().sort((a, b) => a.title.localeCompare(b.title));
+  else vids = vids.slice().sort((a, b) => Number(b.number) - Number(a.number));
+  $("count").textContent = `${vids.length}${vids.length !== data.videos.length ? " / " + data.videos.length : ""} videos`;
+  $("list").replaceChildren(...vids.map(rowFor));
+}
+
+// ---- rows (cached so an expanded photo panel survives the refreshes while details load)
+const rowCache = new Map();   // scene_id -> {sig, li}
+const panels = new Map();     // scene_id -> {panel, btn}   (only for expanded rows)
+const photoData = new Map();  // scene_id -> galleries
+
+function rowSig(v) {
+  const st = t => (F.cats.get(t) || F.eths.get(t) || "");
+  return JSON.stringify([v.categories, v.ethnicity, v.galleries, (v.categories || []).map(st), (v.ethnicity || []).map(st)]);
+}
+function rowFor(v) {
+  const sig = rowSig(v), hit = rowCache.get(v.scene_id);
+  if (hit && hit.sig === sig) return hit.li;
+  const li = buildRow(v);
+  rowCache.set(v.scene_id, {sig, li});
+  return li;
+}
+
+function buildRow(v) {
+  const li = document.createElement("li");
+  const img = document.createElement("img"); img.src = v.thumbnail; img.loading = "lazy"; img.referrerPolicy = "no-referrer";
+  const num = document.createElement("span"); num.className = "num"; num.textContent = v.number ? "#" + v.number : "";
+  const main = document.createElement("div"); main.className = "main";
+  const a = document.createElement("a"); a.href = v.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = v.title;
+  const meta = document.createElement("div"); meta.className = "meta";
+  meta.textContent = [v.date, v.studio, v.performers.length ? "With " + v.performers.join(", ") : ""].filter(Boolean).join(" · ");
+  const head = document.createElement("div"); head.className = "head2"; head.append(a);
+  const canRun = (v.galleries || []).some(g => /^(video\s?stills|photoset)/i.test(g.label));
+  let rb = null;
+  if (canRun) {
+    rb = document.createElement("button"); rb.type = "button"; rb.className = "ghost rbtn"; rb.textContent = "Run model";
+    rb.title = "Run the position model on this video's stills and photosets"; rb.addEventListener("click", () => runModel(v));
+    head.append(rb);
+  }
+  const fb = document.createElement("button"); fb.type = "button"; fb.className = "ghost rbtn"; fb.textContent = "Find on sites";
+  fb.title = "Open Video Finder and search the other sites for this video";
+  fb.addEventListener("click", () => findOnSites(v));
+  head.append(fb);
+  main.append(head, meta);
+  if ((v.categories && v.categories.length) || (v.ethnicity && v.ethnicity.length)) {
+    const chips = document.createElement("div"); chips.className = "chips";
+    for (const t of v.categories || []) chips.append(chip(t, {state:F.cats.get(t) || "", onclick:() => cycle(F.cats, t)}));
+    for (const t of v.ethnicity || []) chips.append(chip(t, {eth:true, state:F.eths.get(t) || "", onclick:() => cycle(F.eths, t)}));
+    main.append(chips);
+  }
+  if (v.galleries && v.galleries.length) {
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "ghost pbtn"; btn.setAttribute("aria-expanded", "false");
+    const arrow = document.createElement("span"); arrow.className = "arrow"; arrow.textContent = "▸";
+    const sum = document.createElement("span"); sum.className = "sum";
+    sum.textContent = `${v.galleries.reduce((n, g) => n + (g.count || 0), 0)} photos: ` + v.galleries.map(g => `${g.label} ${g.count}`).join(" · ");
+    btn.append(arrow, document.createTextNode("Photos"), sum);
+    btn.addEventListener("click", () => togglePhotos(v, li, btn));
+    main.append(btn);
+  } else if (v.galleries) {
+    const n = document.createElement("div"); n.className = "nophotos"; n.textContent = "No photos";
+    main.append(n);
+  }
+  li.append(img, num, main);
+  const fbox = document.createElement("div"); fbox.className = "finder"; fbox.hidden = true; li.append(fbox);
+  regFinder(v.scene_id, "row", {btn: fb, box: fbox, v}); renderFinder(v.scene_id);
+  if (rb) { const box = document.createElement("div"); box.className = "pred"; box.hidden = true; li.append(box); predUI.set(v.scene_id, {btn: rb, box}); renderPred(v.scene_id); }
+  const open = panels.get(v.scene_id);          // rebuilt while expanded: put the open panel back
+  if (open) { li.append(open.panel); open.btn = main.querySelector(".pbtn"); open.btn?.setAttribute("aria-expanded", "true"); }
+  return li;
+}
+
+async function togglePhotos(v, li, btn) {
+  const id = v.scene_id, open = panels.get(id);
+  if (open) { open.panel.remove(); panels.delete(id); btn.setAttribute("aria-expanded", "false"); return; }
+  const panel = document.createElement("div"); panel.className = "gal"; panel.textContent = "Loading photos...";
+  panels.set(id, {panel, btn}); btn.setAttribute("aria-expanded", "true"); li.append(panel);
+  try {
+    if (!photoData.has(id)) {
+      const r = await fetch(BASE + "api/photos?scene_id=" + encodeURIComponent(id));
+      if (!r.ok) throw new Error((await r.json()).error || r.status);
+      photoData.set(id, (await r.json()).galleries);
+    }
+    panel.replaceChildren(...photoSections(photoData.get(id), id));
+  } catch (e) { panel.textContent = "Couldn't load photos: " + e.message; }
+}
+
+const proxy = url => BASE + "img?u=" + encodeURIComponent(url);
+const picked = new Map();     // scene_id -> Set of image addresses chosen for a model run
+function photoSections(galleries, sid) {
+  const out = [], sel = () => picked.get(sid) || picked.set(sid, new Set()).get(sid);
+  const bar = document.createElement("div"); bar.className = "selbar";
+  const info = document.createElement("span"); info.className = "meta";
+  const runSel = document.createElement("button"); runSel.type = "button"; runSel.className = "ghost"; runSel.textContent = "Run model on selected";
+  const clear = document.createElement("button"); clear.type = "button"; clear.className = "ghost"; clear.textContent = "Clear";
+  const refresh = () => { const n = sel().size; info.textContent = n ? `${n} image${n === 1 ? "" : "s"} selected` : "Tick images (or use Select all) to run the model on just those."; runSel.disabled = !n; clear.disabled = !n;
+    document.querySelectorAll(`[data-sid="${sid}"] .pick`).forEach(c => { c.checked = sel().has(c.dataset.u); }); };
+  runSel.addEventListener("click", () => runModelOn(sid, [...sel()]));
+  clear.addEventListener("click", () => { sel().clear(); refresh(); });
+  bar.append(runSel, clear, info); out.push(bar);
+  for (const g of galleries) {
+    const h = document.createElement("h4");
+    h.textContent = g.label + " ";
+    const n = document.createElement("span"); n.className = "n"; n.textContent = `(${g.images.length})`; h.append(n);
+    const all = document.createElement("button"); all.type = "button"; all.className = "ghost"; all.style.cssText = "margin-left:8px;padding:2px 8px;font-size:12px"; all.textContent = "Select all";
+    all.addEventListener("click", () => { g.images.forEach(im => sel().add(im.f)); refresh(); }); h.append(all);
+    const grid = document.createElement("div"); grid.className = "grid"; grid.dataset.sid = sid;
+    g.images.forEach((im, i) => {
+      const w = document.createElement("div"); w.className = "pw";
+      const b = document.createElement("button"); b.type = "button"; b.className = "ph";
+      const img = document.createElement("img"); img.loading = "lazy"; img.decoding = "async"; img.alt = `${g.label} ${i + 1}`; img.src = proxy(im.f);
+      b.append(img); b.addEventListener("click", () => openLightbox(Object.assign(g, {sid}), i));
+      const c = document.createElement("input"); c.type = "checkbox"; c.className = "pick"; c.dataset.u = im.f; c.title = "Include in a model run";
+      c.addEventListener("change", () => { c.checked ? sel().add(im.f) : sel().delete(im.f); refresh(); });
+      w.append(b, c); grid.append(w);
+    });
+    out.push(h, g.images.length ? grid : Object.assign(document.createElement("div"), {className:"meta", textContent:"No images"}));
+  }
+  setTimeout(refresh, 0);
+  return out;
+}
+
+// ---- position models: "Run model" button + results panel. Both models run on the server, each in its own python.
+const predState = new Map();  // scene_id -> {job, results, open, thr, onlyDiff, timer}
+const predUI = new Map();     // scene_id -> {btn, box}   (the current row's elements; rebuilt rows re-register here)
+const RUNNING = ["queued", "galleries", "downloading", "model"];
+const verdict = (m, thr) => m.confidence < thr ? "Unsure" : m.best;
+const mText = (m, thr) => { const v = verdict(m, thr); return v + (v !== "Unsure" && m.sub ? " · " + m.sub : "") + " " + m.confidence.toFixed(2); };
+
+function renderPred(id) {
+  const ui = predUI.get(id), st = predState.get(id);
+  if (!ui) return;
+  const job = st && st.job || {}, running = RUNNING.includes(job.phase);
+  const gs = st && st.results ? st.results.galleries : [];
+  ui.btn.disabled = running;
+  ui.btn.textContent = running ? (job.phase === "downloading" ? `Downloading ${job.done || 0}/${job.total || "?"}` : job.phase === "model" ? `Running ${job.model || "model"}…` : "Starting…")
+    : gs.length && st.results.complete ? (st.open ? "Hide results" : "Show results") : "Run model";
+  ui.box.hidden = !(st && st.open);
+  if (ui.box.hidden) return;
+  const mods = st.results ? st.results.models : {}, ids = Object.keys(mods);
+  const top = document.createElement("div"); top.className = "ptop";
+  if (running) top.append(job.phase === "model" ? `Running ${job.model || "the model"} (the first run of each model loads it, about 20 s)…` : job.phase === "downloading" ? `Downloading images ${job.done || 0}/${job.total || "?"}…` : "Finding this video's galleries…");
+  else if (job.phase === "error") { const e = document.createElement("span"); e.className = "err"; e.textContent = job.error + (job.needs_setup ? " (run setup_session.py, then reload)" : ""); top.append(e); }
+  if (gs.length) {
+    const sel = document.createElement("select");
+    for (const t of [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]) sel.append(new Option(`Unsure below ${t}`, t, false, t === st.thr));
+    sel.addEventListener("change", () => { st.thr = Number(sel.value); renderPred(id); });
+    const lab = document.createElement("label"); lab.className = "chk"; const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!st.onlyDiff;
+    cb.addEventListener("change", () => { st.onlyDiff = cb.checked; renderPred(id); }); lab.append(cb, "Only where the models disagree");
+    const re = document.createElement("button"); re.type = "button"; re.className = "ghost"; re.textContent = "Re-run"; re.disabled = running;
+    re.title = "Run both models again on every image of this video"; re.addEventListener("click", () => runModel({scene_id: id}, true));
+    top.append(sel, lab, re);
+    const old = ids.filter(m => mods[m].version && mods[m].version !== mods[m].current_version).map(m => mods[m].label);
+    if (old.length) { const w = document.createElement("span"); w.textContent = `${old.join(", ")}: these results are from an older version of the model, press Re-run to refresh.`; top.append(w); }
+  }
+  const parts = [top];
+  for (const g of gs) {
+    const h = document.createElement("h4"); h.textContent = (g.kind === "photoset" ? "Photosets" : g.label) + " "; const n = document.createElement("span"); n.className = "n"; n.textContent = `(${g.images.length} images)`; h.append(n);
+    parts.push(h);
+    if (g.kind === "photoset") { const w = document.createElement("div"); w.className = "warn"; w.textContent = "Posed photos, not video frames: the models were trained on video frames, so treat these results with extra caution."; parts.push(w); }
+    for (const m of ids) {
+      const counts = new Map(); let nn = 0;
+      for (const im of g.images) if (im.models[m]) { nn++; const v = verdict(im.models[m], st.thr); counts.set(v, (counts.get(v) || 0) + 1); }
+      if (!nn) continue;
+      const row = document.createElement("div"); row.className = "mrow"; const mn = document.createElement("span"); mn.className = "mn"; mn.textContent = mods[m].label; row.append(mn);
+      for (const [l, c] of [...counts].sort((a, b) => b[1] - a[1])) { const sc = document.createElement("span"); sc.className = "sc" + (l === "Unsure" ? " u" : ""); sc.textContent = `${l} ${c} (${Math.round(100 * c / nn)}%)`; row.append(sc); }
+      parts.push(row);
+    }
+    const both = g.images.filter(im => ids.every(m => im.models[m]));
+    const dis = im => new Set(ids.map(m => im.models[m] && verdict(im.models[m], st.thr))).size > 1;
+    if (ids.length > 1 && both.length) { const ag = document.createElement("div"); ag.className = "agree"; const same = both.filter(im => !dis(im)).length; ag.textContent = `The models give the same answer on ${same} of ${both.length} images (${Math.round(100 * same / both.length)}%).`; parts.push(ag); }
+    const shown = g.images.map((im, i) => [im, i]).filter(([im]) => !st.onlyDiff || (ids.every(m => im.models[m]) && dis(im)));
+    const pg = {label: g.label, sid: id, images: shown.map(([im, i]) => ({f: im.f, cap: ids.filter(m => im.models[m]).map(m => `${mods[m].label}: ${mText(im.models[m], st.thr)}${im.models[m].top ? " (" + im.models[m].top.map(t => `${t[0]} ${t[1].toFixed(2)}`).join(", ") + ")" : ""}`).join("   |   ")}))};
+    const grid = document.createElement("div"); grid.className = "grid";
+    shown.forEach(([im, i], k) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "ph tile" + (ids.length > 1 && ids.every(m => im.models[m]) && dis(im) ? " dis" : "");
+      const img = document.createElement("img"); img.loading = "lazy"; img.decoding = "async"; img.src = proxy(im.f); img.alt = "";
+      const bs = document.createElement("span"); bs.className = "badges";
+      for (const m of ids) if (im.models[m]) { const bd = document.createElement("span"); bd.className = "badge" + (verdict(im.models[m], st.thr) === "Unsure" ? " u" : ""); const w = document.createElement("span"); w.className = "who"; w.textContent = m === "b32" ? "Y" : "N"; bd.append(w, mText(im.models[m], st.thr)); bs.append(bd); }
+      b.append(img, bs); b.addEventListener("click", () => openLightbox(pg, k)); grid.append(b);
+    });
+    parts.push(shown.length ? grid : Object.assign(document.createElement("div"), {className: "meta", textContent: "No disagreements."}));
+  }
+  ui.box.replaceChildren(...parts);
+}
+
+// ---- Video Finder is a separate tool (~/video-finder). This asks it, through this server, to search the other sites for a scene and shows what it finds under the video.
+const finderState = new Map();   // scene_id -> {job, open, starting, err, timer}
+const finderUI = new Map();      // scene_id -> Map(kind -> {btn, box, v, always})   kinds: "row" (under a video) and "modal" (the pop-up opened by Get video)
+function regFinder(id, kind, ui) { if (!finderUI.has(id)) finderUI.set(id, new Map()); finderUI.get(id).set(kind, ui); }
+const fmtLen = s => s ? (s >= 3600 ? Math.floor(s / 3600) + ":" + String(Math.floor(s % 3600 / 60)).padStart(2, "0") : Math.floor(s / 60)) + (s >= 3600 ? "" : " min") : "length unknown";
+
+async function findOnSites(v, force, all) {
+  const id = v.scene_id; let st = finderState.get(id);
+  if (!force && st && (st.job || st.starting)) { st.open = !st.open; renderFinder(id); return; }          // already searched: just show or hide
+  st = {job: null, open: true, starting: true, err: ""}; finderState.set(id, st); renderFinder(id);
+  try {
+    // the server reuses an earlier search of this video (even from another session) unless asked to search again
+    const r = await fetch(BASE + "api/finder/start?scene_id=" + encodeURIComponent(id) + (force ? "&force=1" : "") + (all ? "&all=1" : "")), j = await r.json();
+    if (!r.ok) throw new Error(j.error || "failed");
+    st.job = j; if (j.sel) st.sel = j.sel;
+  } catch (e) { st.err = e.message; }
+  st.starting = false; renderFinder(id); if (st.job) pollFinder(id); loadLinks();
+}
+
+function pollFinder(id) {
+  const st = finderState.get(id); if (!st || !st.job || st.job.state === "done") return;
+  clearTimeout(st.timer);
+  st.timer = setTimeout(async () => {
+    try { const r = await fetch(BASE + "api/finder/job?id=" + encodeURIComponent(st.job.id)); if (r.ok) st.job = Object.assign(await r.json(), {finder_url: st.job.finder_url}); } catch (e) {}
+    renderFinder(id); pollFinder(id); if (st.job.state === "done") { loadLinks(); setTimeout(loadLinks, 3000); }
+  }, 1500);
+}
+
+const dlBusy = st => st.dl && ["queued", "downloading", "downloaded", "analysed"].includes(st.dl.state);
+const finderStill = new Map();   // scene_id -> the frame (image address) the pop-up was opened from
+const stillInfo = new Map();     // "scene_id|image" -> where that frame sits in the video (from the server)
+const fmtClock = s => { s = Math.round(s); return s >= 3600 ? Math.floor(s / 3600) + ":" + String(Math.floor(s % 3600 / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0") : Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+async function ensureStillInfo(id) {
+  const still = finderStill.get(id), st = finderState.get(id);
+  if (!still || !st || !st.job) return;
+  const key = id + "|" + still + "|" + CLIPW, cur = stillInfo.get(key);
+  if (cur && (cur.pending || cur.job === st.job.id)) return;
+  stillInfo.set(key, {pending: true});
+  try { const r = await fetch(BASE + "api/finder/stillinfo?scene_id=" + encodeURIComponent(id) + "&still=" + encodeURIComponent(still) + "&window=" + CLIPW + "&job=" + encodeURIComponent(st.job.id)); stillInfo.set(key, Object.assign(await r.json(), {job: st.job.id})); }
+  catch (e) { stillInfo.set(key, {ok: false, why: "Could not work out where this frame is: " + e.message, job: st.job.id}); }
+  renderFinder(id);
+}
+
+function candRow(id, st, site, c, verdict, small) {
+  const picked = !!(st.sel && st.sel.url === c.url);
+  const row = document.createElement("div"); row.className = "frow" + (small ? " sm" : "") + (picked ? " picked" : "");
+  const rb = document.createElement("input"); rb.type = "radio"; rb.name = "fsel-" + id; rb.checked = picked; rb.disabled = dlBusy(st); rb.title = "This is the right video";
+  rb.addEventListener("change", () => {
+    st.sel = {site, url: c.url, title: c.title, duration: c.duration}; renderFinder(id);
+    fetch(BASE + "api/finder/select?" + new URLSearchParams({scene_id: id, site, url: c.url, title: c.title, duration: c.duration || 0})).then(loadLinks).catch(() => {});
+  });
+  const a0 = document.createElement("a"); a0.href = c.url; a0.target = "_blank"; a0.rel = "noopener";
+  const im = document.createElement("img"); im.loading = "lazy"; im.alt = ""; if (c.thumb) im.src = c.thumb.replace(/^\/img\?/, BASE + "api/finder/img?"); a0.append(im);
+  const m = document.createElement("div"); m.className = "fmain";
+  const top = document.createElement("div");
+  if (verdict === "confident" || verdict === "possible") { const chip = document.createElement("span"); chip.className = "fchip " + verdict; chip.textContent = verdict + " " + c.score; top.append(chip); }
+  const t = document.createElement("a"); t.href = c.url; t.target = "_blank"; t.rel = "noopener"; t.textContent = c.title; top.append(t);
+  const meta = document.createElement("div"); meta.className = "fwhy"; meta.textContent = `${site} · ${fmtLen(c.duration)}${small ? " · score " + c.score : ""}`;
+  const why = document.createElement("div"); why.className = "fwhy"; why.textContent = c.why.join(" · ");
+  m.append(top, meta, why); row.append(rb, a0, m);
+  return row;
+}
+
+async function finderDownload(id, part) {
+  const st = finderState.get(id); if (!st || !st.sel || !st.job) return;
+  st.dl = {state: "queued", mode: part ? "part" : "whole", site: st.sel.site, message: "Starting…"}; renderFinder(id);
+  try {
+    const r = await fetch(BASE + "api/finder/download?scene_id=" + encodeURIComponent(id) + "&job=" + encodeURIComponent(st.job.id) + "&url=" + encodeURIComponent(st.sel.url) + (part ? "&window=" + CLIPW + "&still=" + encodeURIComponent(finderStill.get(id)) : "")), d = await r.json();
+    st.dl = r.ok ? d : {state: "failed", message: d.error || "failed"};
+  } catch (e) { st.dl = {state: "failed", message: e.message}; }
+  renderFinder(id); pollDownload(id);
+}
+
+function pollDownload(id) {
+  const st = finderState.get(id); if (!st || !st.dl || !["queued", "downloading", "downloaded"].includes(st.dl.state)) return;
+  clearTimeout(st.dlTimer);
+  st.dlTimer = setTimeout(async () => {
+    try { const r = await fetch(BASE + "api/finder/dlstatus?scene_id=" + encodeURIComponent(id)); if (r.ok) { const d = await r.json(); if (d.state !== "none") st.dl = d; } } catch (e) {}
+    renderFinder(id); pollDownload(id);
+  }, 2000);
+}
+
+function renderFinder(id) {
+  const uis = finderUI.get(id), st = finderState.get(id);
+  if (uis) for (const ui of uis.values()) renderFinderUI(id, ui, st);
+}
+
+function renderFinderUI(id, ui, st) {
+  if (ui.always) ensureStillInfo(id);
+  if (ui.btn) ui.btn.textContent = !st ? "Find on sites" : st.starting ? "Starting…" : st.job || st.err ? (st.open ? "Hide results" : "Show results") : "Find on sites";
+  ui.box.hidden = !ui.always && !(st && st.open);
+  if (ui.box.hidden) return;
+  const wasOpen = [...ui.box.querySelectorAll("details")].map(d => d.open);        // keep the lists the viewer opened open across a redraw
+  const parts = [], top = document.createElement("div"); top.className = "ftop"; parts.push(top);
+  const j = st.job;
+  if (st.err) { const e = document.createElement("span"); e.className = "err"; e.textContent = st.err; top.append(e); }
+  else if (!j) top.append("Starting Video Finder and reading this scene from data18…");
+  else {
+    const sites = Object.entries(j.sites), done = sites.filter(([, d]) => d.state === "done" || d.state === "error").length;
+    const good = sites.filter(([, d]) => d.verdict === "confident" || d.verdict === "possible").length;
+    top.append(j.state === "done" ? (good ? `Found a likely match on ${good} of ${sites.length} sites.` : `No likely match on any of ${sites.length} sites.`) : `Searching the other sites… ${done} of ${sites.length} done`);
+    const full = document.createElement("a"); full.href = (j.finder_url || "http://127.0.0.1:8792") + "/?job=" + encodeURIComponent(j.id); full.target = "_blank"; full.rel = "noopener"; full.textContent = "Open in Video Finder (rules, all results)"; top.append(full);
+    const again = document.createElement("button"); again.type = "button"; again.className = "ghost"; again.textContent = "Search again"; again.disabled = j.state !== "done" || dlBusy(st);
+    again.addEventListener("click", () => { finderState.delete(id); findOnSites(ui.v, true); }); top.append(again);
+    const nSkipped = sites.filter(([, d]) => d.skipped).length;
+    if (nSkipped) {
+      const all = document.createElement("button"); all.type = "button"; all.className = "ghost"; all.textContent = `Search all sites (${nSkipped} skipped)`;
+      all.title = "A streamable site already had a confident match, so the other sites were not searched. This searches them too.";
+      all.disabled = j.state !== "done" || dlBusy(st); all.addEventListener("click", () => { finderState.delete(id); findOnSites(ui.v, true, true); }); top.append(all);
+    }
+    const gw = j.want || {}, gq = encodeURIComponent([gw.title, (gw.performers || [])[0]].filter(Boolean).join(" "));
+    for (const [label, extra] of [["Google: All", ""], ["Google: Videos", "&tbm=vid"]]) {
+      const g = document.createElement("a"); g.href = "https://www.google.com/search?q=" + gq + extra; g.target = "_blank"; g.rel = "noopener noreferrer"; g.textContent = label;
+      g.title = "Opens Google in a new tab with this search filled in (Google blocks searches made by scripts, so the results show in your own browser)"; top.append(g);
+    }
+    const w = j.want || {};
+    const wl = document.createElement("div"); wl.className = "fwant";
+    wl.textContent = [w.title, (w.performers || []).join(", "), w.studio, w.duration ? "data18 length " + fmtLen(w.duration) : "data18 gives no length"].filter(Boolean).join(" · "); parts.push(wl);
+
+    // the choice and the download
+    const bar = document.createElement("div"); bar.className = "fbar"; parts.push(bar);
+    const dl = st.dl;
+    if (dl && dl.state === "failed") {
+      const e = document.createElement("span"); e.className = "err"; e.textContent = dl.message; bar.append(e);
+      const retry = document.createElement("button"); retry.type = "button"; retry.className = "ghost"; retry.textContent = "Choose again";
+      retry.addEventListener("click", () => { st.dl = null; renderFinder(id); }); bar.append(retry);
+    } else if (dl && dl.state !== "none") {
+      const say = dl.state === "downloading" ? (dl.mode === "part" ? `Saving the clip from ${dl.site}: ${dl.message || ""}` : `Downloading from ${dl.site}…`) + `${dl.pct != null ? " " + Math.round(dl.pct) + "%" : ""}${dl.mb ? " (" + Math.round(dl.mb) + " MB)" : ""}`
+        : dl.state === "queued" ? dl.message
+        : dl.state === "downloaded" ? `Downloaded: ${dl.dest}. ${dl.message}` : `Downloaded: ${dl.dest}. ${dl.message}`;
+      const sp = document.createElement("span"); sp.className = dl.state === "analysed" ? "ok" : ""; sp.textContent = (dl.state === "analysed" ? "✓ " : "") + say; bar.append(sp);
+    } else if (st.sel) {
+      bar.append(`Selected: ${st.sel.site} · ${st.sel.title} (${fmtLen(st.sel.duration)})`);
+      const b = document.createElement("button"); b.type = "button"; b.textContent = "Download"; b.title = "Download the whole video into the library, then the model runs on it";
+      b.addEventListener("click", () => finderDownload(id)); bar.append(b);
+      const stillF = ui.always ? finderStill.get(id) : null, info = stillF ? stillInfo.get(id + "|" + stillF + "|" + CLIPW) : null;
+      if (STREAM_SITES.test(st.sel.url)) {
+        const sb = document.createElement("button"); sb.type = "button"; sb.className = "ghost"; sb.textContent = "Watch & get frames";
+        sb.title = "Play this result straight from its site (no download) and take frames from it";
+        sb.addEventListener("click", () => openStreamModal(st.sel.url, st.sel.title, info && info.ok && info.k ? (info.k - 1) * 60 : 0)); bar.append(sb);
+      }
+      if (stillF) bar.append(clipLengthControl(() => renderFinder(id)));
+      if (stillF && info && !info.pending) {
+        if (info.ok) {
+          const bp = document.createElement("button"); bp.type = "button"; bp.className = "ghost"; bp.textContent = `Download this part (${fmtWin(CLIPW)})`;
+          bp.title = "Save only a clip around this frame, not the whole video";
+          bp.addEventListener("click", () => finderDownload(id, true)); bar.append(bp);
+          const note = document.createElement("span"); note.className = "fwhy";
+          note.textContent = `This frame is still ${info.k} of ${info.n}, about minute ${info.k - 1}: the clip would be about ${fmtClock(info.start)}–${fmtClock(info.end)}${info.verified ? "" : " (data18 gives no length, so unverified)"}.`;
+          bar.append(note);
+        } else { const note = document.createElement("span"); note.className = "fwhy"; note.textContent = "No clip option: " + info.why; bar.append(note); }
+      }
+    } else if (j.state === "done" && good) bar.append("Select the correct video below, then press Download.");
+    else if (j.state === "done") bar.append("Nothing matched well. You can still pick a result from the lists below.");
+
+    const order = {confident: 0, possible: 1}, rank = d => order[d.verdict] ?? 2;
+    const hits = sites.filter(([, d]) => rank(d) < 2 && d.ranked.length).sort((a, b) => rank(a[1]) - rank(b[1]) || b[1].ranked[0].score - a[1].ranked[0].score);
+    for (const [site, d] of hits) {
+      parts.push(candRow(id, st, site, d.ranked[0], d.verdict, false));
+      const more = d.ranked.slice(1, 5);
+      if (more.length) {
+        const det = document.createElement("details"), sm = document.createElement("summary"); sm.textContent = `${more.length} more result${more.length > 1 ? "s" : ""} from ${site}`; det.append(sm);
+        for (const c of more) det.append(candRow(id, st, site, c, "", true));
+        parts.push(det);
+      }
+    }
+    const rest = sites.filter(([, d]) => rank(d) === 2 && (d.state === "done" || d.state === "error"));
+    if (j.state === "done" && rest.length) {
+      const det = document.createElement("details"), sm = document.createElement("summary"); sm.textContent = `No match on ${rest.length} site${rest.length > 1 ? "s" : ""} (closest results)`; det.append(sm);
+      for (const [site, d] of rest) {
+        if (d.state === "error") { const l = document.createElement("div"); l.className = "fnone"; l.textContent = `${site}: couldn't read (${d.message})`; det.append(l); continue; }
+        if (d.skipped) { const l = document.createElement("div"); l.className = "fnone"; l.textContent = `${site}: not searched`; det.append(l); continue; }
+        if (!d.ranked.length) { const l = document.createElement("div"); l.className = "fnone"; l.textContent = `${site}: nothing usable`; det.append(l); continue; }
+        for (const c of d.ranked.slice(0, 2)) det.append(candRow(id, st, site, c, "", true));
+      }
+      parts.push(det);
+    }
+  }
+  ui.box.replaceChildren(...parts);
+  ui.box.querySelectorAll("details").forEach((d, i) => { if (wasOpen[i]) d.open = true; });
+}
+
+async function runModel(v, refresh = false) {
+  const id = v.scene_id; let st = predState.get(id);
+  if (!st) { st = {job: null, results: null, open: false, thr: 0.5, onlyDiff: false}; predState.set(id, st); }
+  if (st.job && RUNNING.includes(st.job.phase)) return;
+  if (!refresh && st.results && st.results.complete) { st.open = !st.open; renderPred(id); return; }
+  st.open = true; st.job = {phase: "queued"}; renderPred(id);
+  try {
+    const r = await fetch(BASE + "api/predict?scene_id=" + encodeURIComponent(id) + (refresh ? "&refresh=1" : ""));
+    if (!r.ok) throw new Error((await r.json()).error || r.status);
+    await pollPred(id);
+  } catch (e) { st.job = {phase: "error", error: "Request failed: " + e.message}; renderPred(id); }
+}
+
+async function runModelOn(id, urls) {
+  let st = predState.get(id);
+  if (!st) { st = {job: null, results: null, open: false, thr: 0.5, onlyDiff: false}; predState.set(id, st); }
+  if (st.job && RUNNING.includes(st.job.phase)) return;
+  st.open = true; st.job = {phase: "queued"}; renderPred(id);
+  try {
+    const r = await fetch(BASE + "api/predict-images", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({scene_id: id, urls})});
+    if (!r.ok) throw new Error((await r.json()).error || r.status);
+    await pollPred(id);
+  } catch (e) { st.job = {phase: "error", error: "Request failed: " + e.message}; renderPred(id); }
+}
+
+async function pollPred(id) {
+  const st = predState.get(id);
+  try {
+    const j = await (await fetch(BASE + "api/predictions?scene_id=" + encodeURIComponent(id))).json();
+    st.job = j.job; st.results = {galleries: j.galleries, models: j.models, complete: j.complete};
+    renderPred(id);
+    if (RUNNING.includes(j.job.phase)) { clearTimeout(st.timer); st.timer = setTimeout(() => pollPred(id), 1000); }
+  } catch (e) { st.job = {phase: "error", error: "Lost contact with the dashboard: " + e.message}; renderPred(id); }
+}
+
+// ---- lightbox
+const lb = { g:null, i:0 };
+function lbShow() {
+  const im = lb.g.images[lb.i];
+  $("lb").querySelector("img").src = proxy(im.f);
+  $("lb").querySelector(".cap").textContent = `${lb.g.label} · ${lb.i + 1} / ${lb.g.images.length}${im.cap ? " · " + im.cap : ""}`;
+  const sid = im.sid || lb.g.sid, fav = $("lb").querySelector(".lbfav"), get = $("lb").querySelector(".lbget");
+  fav.dataset.favU = im.f; fav.hidden = !sid; get.hidden = !sid;
+  if (typeof refreshHearts === "function") refreshHearts();
+}
+function openLightbox(g, i) { lb.g = g; lb.i = i; $("lb").classList.add("open"); lbShow(); }
+function lbStep(d) { if (lb.g) { lb.i = (lb.i + d + lb.g.images.length) % lb.g.images.length; lbShow(); } }
+function lbClose() { $("lb").classList.remove("open"); $("lb").querySelector("img").removeAttribute("src"); lb.g = null; }
+$("lb").querySelector(".x").addEventListener("click", lbClose);
+$("lb").querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); lbStep(-1); });
+$("lb").querySelector(".next").addEventListener("click", e => { e.stopPropagation(); lbStep(1); });
+$("lb").addEventListener("click", e => { if (e.target === $("lb")) lbClose(); });
+document.addEventListener("keydown", e => {
+  if (!lb.g) return;
+  if (e.key === "Escape") lbClose(); else if (e.key === "ArrowLeft") lbStep(-1); else if (e.key === "ArrowRight") lbStep(1);
+});
+
+// ---- favourite frames
+const FAV = new Set();
+function refreshHearts() {
+  for (const b of document.querySelectorAll("[data-fav-u]")) { const on = FAV.has(b.dataset.favU); b.classList.toggle("on", on); b.textContent = on ? "♥" : "♡"; }
+}
+async function toggleFav(url, sid) {
+  try {
+    const r = await fetch(BASE + "api/favourites/toggle?url=" + encodeURIComponent(url) + "&scene_id=" + encodeURIComponent(sid || "")), j = await r.json();
+    if (!r.ok) throw new Error(j.error || "failed");
+    if (j.favourite) FAV.add(url); else FAV.delete(url);
+  } catch (e) { alert("Favourite not saved: " + e.message); }
+  refreshHearts();
+  if (!$("pg-favs").hidden) loadFavs();
+}
+function heartBtn(url, sid) {
+  const b = document.createElement("button"); b.type = "button"; b.className = "heartbtn"; b.dataset.favU = url; b.title = "Favourite this frame";
+  b.addEventListener("click", e => { e.stopPropagation(); toggleFav(url, sid); });
+  return b;
+}
+function getVideoBtn(sid, title, still) {
+  const b = document.createElement("button"); b.type = "button"; b.className = "ghost getbtn"; b.dataset.sid = sid; setGetLabel(b);
+  b.addEventListener("click", e => { e.stopPropagation(); openFinderModal(sid, title, still); });
+  return b;
+}
+fetch(BASE + "api/favourites/urls").then(r => r.json()).then(j => { (j.urls || []).forEach(u => FAV.add(u)); refreshHearts(); }).catch(() => {});
+
+// ---- "Get video": the Find on sites panel in a pop-up, for any frame
+let fmSid = null;
+function openFinderModal(sid, title, still) {
+  if (!sid) return;
+  if (still) finderStill.set(sid, still); else finderStill.delete(sid);
+  fmSid = sid; $("fm-title").textContent = title || "Video " + sid; $("fm").classList.add("open");
+  regFinder(sid, "modal", {btn: null, box: $("fm-body"), v: {scene_id: sid}, always: true});
+  if (finderState.get(sid)) renderFinder(sid); else findOnSites({scene_id: sid});
+}
+function closeFinderModal() { $("fm").classList.remove("open"); if (fmSid && finderUI.get(fmSid)) finderUI.get(fmSid).delete("modal"); fmSid = null; }
+$("fm-x").addEventListener("click", closeFinderModal);
+
+// ---- "Watch & get frames": Stream test (~/stream-test, a separate tool) plays the chosen result straight from its site (nothing is downloaded) and takes frames from it
+const STREAM_SITES = /^https?:\/\/(www\.)?(freepornvideos\.xxx|fpo\.xxx|porntrex\.com|xozilla\.com)\//i;
+async function openStreamModal(url, title, startSec) {
+  $("sm-title").textContent = title || "Watch"; $("sm-note").textContent = "Starting Stream test…"; $("sm-frame").removeAttribute("src"); $("sm").classList.add("open");
+  try {
+    const r = await fetch(BASE + "api/stream/ensure"), j = await r.json(); if (!r.ok) throw new Error(j.error || "failed");
+    $("sm-note").textContent = "Plays straight from the site; nothing is saved to the library. “Get frames” below takes frames from this video." + (startSec > 0 ? " Starting at about " + fmtClock(startSec) + "." : "");
+    $("sm-frame").src = j.url + "/?embed=1&v=" + encodeURIComponent(url) + (startSec > 0 ? "&t=" + Math.round(startSec) : "");
+  } catch (e) { $("sm-note").textContent = "Could not start Stream test: " + e.message; }
+}
+function closeStreamModal() { $("sm").classList.remove("open"); $("sm-frame").removeAttribute("src"); }
+$("sm-x").addEventListener("click", closeStreamModal);
+$("sm").addEventListener("click", e => { if (e.target === $("sm")) closeStreamModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("sm").classList.contains("open")) closeStreamModal(); });
+$("fm").addEventListener("click", e => { if (e.target === $("fm")) closeFinderModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("fm").classList.contains("open") && !lb.g) closeFinderModal(); });
+$("lb").querySelector(".lbfav").addEventListener("click", e => { e.stopPropagation(); const im = lb.g && lb.g.images[lb.i]; if (im) toggleFav(im.f, im.sid || lb.g.sid); });
+$("lb").querySelector(".lbget").addEventListener("click", e => { e.stopPropagation(); const im = lb.g && lb.g.images[lb.i]; if (!im) return; const sid = im.sid || lb.g.sid, title = im.title, still = im.f; lbClose(); openFinderModal(sid, title, still); });
+
+// ---- Favourites tab
+const FV = {all: []};
+async function loadFavs() {
+  try { const d = await (await fetch(BASE + "api/favourites")).json(); FV.all = d.favourites || []; } catch (e) { FV.all = []; }
+  renderFavs();
+}
+function renderFavs() {
+  const q = $("fav-q").value.trim().toLowerCase();
+  const list = FV.all.filter(x => !q || [x.title, (x.creators || []).join(" "), x.best, x.sub].filter(Boolean).join(" ").toLowerCase().includes(q));
+  $("fav-count").textContent = `${list.length}${list.length !== FV.all.length ? " / " + FV.all.length : ""} favourite frame${FV.all.length === 1 ? "" : "s"}`;
+  const pg = {label: "Favourites", images: list.map(x => ({f: x.f, sid: x.scene_id, title: x.title, cap: `${x.title} · ${(x.creators || []).join(", ")}${x.best ? " · " + x.best + (x.confidence != null ? " " + x.confidence.toFixed(2) : "") : ""}`}))};
+  if (!list.length) { $("fav-grid").replaceChildren(Object.assign(document.createElement("div"), {className: "meta", textContent: FV.all.length ? "No favourites match." : "No favourites yet. Press the ♡ on any frame (By position, a video's photos, or the full-screen viewer)."})); return; }
+  $("fav-grid").replaceChildren(...list.map((x, k) => {
+    const w = document.createElement("div"); w.className = "pw";
+    const b = document.createElement("button"); b.type = "button"; b.className = "ph";
+    const im = document.createElement("img"); im.loading = "lazy"; im.decoding = "async"; im.src = proxy(x.t); im.alt = x.title; b.append(im);
+    b.addEventListener("click", () => openLightbox(pg, k));
+    const badge = document.createElement("span"); badge.className = "pbadge"; badge.textContent = x.best ? (x.confidence != null ? x.confidence.toFixed(2) + " · " : "") + x.best + (x.sub ? " · " + x.sub : "") : "no model result yet";
+    const cap = document.createElement("a"); cap.className = "pcap"; cap.href = x.scene_url || "#"; cap.target = "_blank"; cap.rel = "noopener"; cap.textContent = x.title; cap.title = x.title;
+    const who = document.createElement("div"); who.className = "pcap"; who.textContent = (x.creators || []).join(", ");
+    w.append(selBox(x.f, x.scene_id, x.title), b, badge, heartBtn(x.f, x.scene_id), cap, who, getVideoBtn(x.scene_id, x.title, x.f));
+    return w;
+  }));
+  refreshHearts();
+}
+$("fav-q").addEventListener("input", renderFavs);
+
+// ---- what is already known about each video (searched? which result chosen?) - the buttons on every image of that video show it
+const FL = new Map();   // scene_id -> {job, summary, sel}
+function setGetLabel(b) {
+  const l = FL.get(b.dataset.sid); b.classList.remove("found", "chosen");
+  b.title = "Find this video on the other sites and download it (or just the part around this frame)";
+  if (!l || !l.job) { b.textContent = "Get video"; return; }
+  if (l.sel) { b.textContent = "Video chosen ✓"; b.classList.add("chosen"); b.title = "Chosen: " + l.sel.site + " · " + l.sel.title; return; }
+  if (!l.summary) { b.textContent = "Searching…"; return; }
+  if (l.summary.best) { const n = l.summary.confident + l.summary.possible; b.textContent = "Video found ✓"; b.classList.add("found"); b.title = `${n} likely match${n > 1 ? "es" : ""}; best: ${l.summary.best.site} (${l.summary.best.verdict}). Click to choose.`; return; }
+  b.textContent = "No match found"; b.title = "Every site was searched without a likely match. Click to see the closest results.";
+}
+function refreshGetButtons() { for (const b of document.querySelectorAll(".getbtn[data-sid]")) setGetLabel(b); }
+async function loadLinks() {
+  try { const j = await (await fetch(BASE + "api/finder/links")).json(); FL.clear(); for (const [k, v] of Object.entries(j.links || {})) FL.set(k, v); } catch (e) {}
+  refreshGetButtons();
+}
+
+
+// ---- automatic video search (the server searches each video of a scraped creator, one after another; this bar shows it and holds its settings)
+let abLast = -1, abPaused = false;
+async function abPoll() {
+  try {
+    const j = await (await fetch(BASE + "api/autofind/status")).json(), st = j.state, c = j.settings;
+    for (const [id, k] of [["ab-on", "enabled"], ["ab-str", "streamable_only"], ["ab-sel", "auto_select"]]) if (document.activeElement !== $(id)) $(id).checked = c[k];
+    const running = st.running || st.queued > 0;
+    abPaused = st.paused;
+    $("ab-pause").hidden = $("ab-stop").hidden = !running; $("ab-pause").textContent = st.paused ? "Resume" : "Pause";
+    $("ab-state").className = st.error && !running ? "ab-err" : running ? "ab-run" : "";
+    $("ab-state").textContent = running
+      ? `${st.paused ? "Paused" : "Searching"}: ${st.done} of ${st.total} videos (${st.slug})${st.current && !st.paused ? " · now: " + st.current : ""} · ${st.found} found, ${st.none} none${st.failed ? ", " + st.failed + " failed" : ""}`
+      : st.total ? `Last run (${st.slug}): ${st.done} of ${st.total} searched · ${st.found} found (${st.chosen} chosen), ${st.none} none${st.failed ? ", " + st.failed + " failed" : ""}${st.error ? " · " + st.error : ""}` : "";
+    if (st.done !== abLast) { abLast = st.done; if (st.done) loadLinks(); }
+  } catch (e) {}
+  setTimeout(abPoll, 3000);
+}
+for (const [id, k] of [["ab-on", "enabled"], ["ab-str", "streamable_only"], ["ab-sel", "auto_select"]]) $(id).addEventListener("change", () => fetch(BASE + "api/autofind/config?" + k + "=" + ($(id).checked ? 1 : 0)));
+$("ab-go").addEventListener("click", async () => {
+  const slug = $("ab-slug").value.trim().toLowerCase().replace(/\s+/g, "-"); if (!slug) return;
+  const r = await fetch(BASE + "api/autofind/start?slug=" + encodeURIComponent(slug)), j = await r.json();
+  $("ab-state").textContent = r.ok ? (j.queued ? `Queued ${j.queued} videos.` : "Every video of this creator has already been searched.") : j.error;
+  abPoll();
+});
+$("ab-pause").addEventListener("click", () => fetch(BASE + "api/autofind/" + (abPaused ? "resume" : "pause")).then(abPoll));
+$("ab-stop").addEventListener("click", () => fetch(BASE + "api/autofind/stop").then(abPoll));
+abPoll();
+
+// ---- how long a clip is (before + after the frame together), remembered
+const WINS = [[30, "30 s (±15 s)"], [60, "1 min (±30 s)"], [120, "2 min (±1 min)"], [180, "3 min (±1.5 min)"], [300, "5 min (±2.5 min)"]];
+let CLIPW = 180; try { CLIPW = Math.max(10, Math.min(900, parseInt(localStorage.getItem("clipWindow")) || 180)); } catch (e) {}
+const fmtWin = w => w < 60 ? w + " s" : (w % 60 === 0 ? (w / 60) + " min" : Math.floor(w / 60) + " min " + (w % 60) + " s");
+function clipLengthControl(onChange) {
+  const wrap = document.createElement("span"); wrap.className = "clipw"; wrap.append("Clip length");
+  const sel = document.createElement("select"); for (const [v, t] of WINS) sel.append(new Option(t, v)); sel.append(new Option("Custom…", "custom"));
+  const inp = document.createElement("input"); inp.type = "number"; inp.min = 10; inp.max = 900; inp.step = 5; inp.title = "Seconds in total, half before the frame and half after";
+  const lab = document.createElement("span"); lab.textContent = "s";
+  const preset = WINS.some(([v]) => v === CLIPW);
+  sel.value = preset ? String(CLIPW) : "custom"; inp.value = CLIPW; inp.hidden = lab.hidden = preset;
+  const apply = w => { CLIPW = Math.max(10, Math.min(900, Math.round(w) || 180)); try { localStorage.setItem("clipWindow", String(CLIPW)); } catch (e) {} if (onChange) onChange(); };
+  sel.addEventListener("change", () => { if (sel.value === "custom") { inp.hidden = lab.hidden = false; inp.focus(); } else { inp.hidden = lab.hidden = true; apply(Number(sel.value)); } });
+  inp.addEventListener("change", () => apply(Number(inp.value)));
+  wrap.append(sel, inp, lab); return wrap;
+}
+
+// ---- choosing many frames
+const SEL = new Map();   // image address -> {f, sid, title}
+function selBox(f, sid, title) {
+  const c = document.createElement("input"); c.type = "checkbox"; c.className = "selbox"; c.dataset.selU = f; c.checked = SEL.has(f);
+  c.title = "Select this frame (then press Download clips at the bottom)";
+  c.addEventListener("click", e => e.stopPropagation());
+  c.addEventListener("change", () => { if (c.checked) SEL.set(f, {f, sid, title}); else SEL.delete(f); renderSelBar(); });
+  return c;
+}
+function renderSelBar() {
+  document.body.classList.toggle("selmode", SEL.size > 0); $("selbar").hidden = SEL.size === 0;
+  if (!SEL.size) return;
+  const scenes = new Set([...SEL.values()].map(x => x.sid));
+  $("sel-count").textContent = `${SEL.size} frame${SEL.size > 1 ? "s" : ""} from ${scenes.size} video${scenes.size > 1 ? "s" : ""} selected`;
+  $("sel-clipw").replaceChildren(clipLengthControl(renderSelBar));
+}
+$("sel-clear").addEventListener("click", () => { SEL.clear(); for (const c of document.querySelectorAll("[data-sel-u]")) c.checked = false; renderSelBar(); });
+$("sel-go").addEventListener("click", () => openBatch());
+
+// ---- "Download clips": find each video (searches already done are reused), pick the right result for each, then queue a clip per frame
+const BM = {scenes: new Map(), batch: null, timer: null, poll: null};
+function closeBatch() { $("bm").classList.remove("open"); clearTimeout(BM.timer); clearTimeout(BM.poll); }
+$("bm-x").addEventListener("click", closeBatch);
+$("bm").addEventListener("click", e => { if (e.target === $("bm")) closeBatch(); });
+function bmCandidates(g) {
+  const out = [], order = {confident: 0, possible: 1};
+  for (const [site, d] of Object.entries(g.job.sites)) (d.ranked || []).slice(0, 3).forEach((c, i) => out.push({site, c, v: i === 0 ? d.verdict : "", rank: i === 0 ? (order[d.verdict] ?? 2) : 3}));
+  return out.sort((a, b) => a.rank - b.rank || b.c.score - a.c.score);
+}
+function bmDefault(g) {
+  const list = bmCandidates(g), saved = g.savedSel && list.find(x => x.c.url === g.savedSel.url), best = list.find(x => x.v === "confident" || x.v === "possible");
+  g.choice = saved || best || null;
+}
+async function openBatch() {
+  if (!SEL.size) return;
+  $("bm").classList.add("open"); $("bm-title").textContent = "Download clips";
+  const groups = new Map();
+  for (const x of SEL.values()) { if (!groups.has(x.sid)) groups.set(x.sid, {sid: x.sid, title: x.title, frames: [], job: null, choice: null, ready: false, err: ""}); groups.get(x.sid).frames.push(x.f); }
+  BM.scenes = groups; BM.batch = null; renderBatch();
+  await Promise.all([...groups.values()].map(async g => {
+    try { const r = await fetch(BASE + "api/finder/start?scene_id=" + encodeURIComponent(g.sid)), j = await r.json(); if (!r.ok) throw new Error(j.error || "failed"); g.job = j; g.savedSel = j.sel; }
+    catch (e) { g.err = e.message; }
+    renderBatch();
+  }));
+  const wait = async () => {
+    let pending = false;
+    for (const g of groups.values()) {
+      if (!g.job || g.err) continue;
+      if (g.job.state !== "done") { pending = true; try { const r = await fetch(BASE + "api/finder/job?id=" + encodeURIComponent(g.job.id)); if (r.ok) g.job = Object.assign(await r.json(), {finder_url: g.job.finder_url}); } catch (e) {} }
+      if (g.job.state === "done" && !g.ready) { g.ready = true; bmDefault(g); setTimeout(loadLinks, 3000); }
+    }
+    renderBatch();
+    if (pending && $("bm").classList.contains("open") && !BM.batch) BM.timer = setTimeout(wait, 2000);
+  };
+  wait(); loadLinks();
+}
+function bmItemLine(it) {
+  const d = document.createElement("div"); d.className = "bm-item";
+  const where = it.k ? `frame ${it.k} of ${it.n} (about minute ${it.k - 1})` : "frame";
+  const st = it.state === "queued" ? "waiting in line" : it.state === "downloading" ? `${it.message || "downloading"}${it.pct != null ? " " + Math.round(it.pct) + "%" : ""}`
+    : it.state === "downloaded" ? "saved, waiting for the model" : it.state === "analysed" ? "✓ saved and analysed by the model" : "failed: " + it.message;
+  d.textContent = `${where}: ${st}`; if (it.state === "analysed") d.classList.add("ok"); if (it.state === "failed") d.classList.add("bad");
+  return d;
+}
+function renderBatch() {
+  const parts = [], groups = [...BM.scenes.values()], started = !!BM.batch;
+  const searching = groups.filter(g => !g.err && !g.ready).length, withChoice = groups.filter(g => g.choice).length, frames = groups.filter(g => g.choice).reduce((n, g) => n + g.frames.length, 0);
+  const top = document.createElement("div"); top.className = "bm-top"; parts.push(top);
+  if (!started) {
+    top.append(searching ? `Finding ${searching} video${searching > 1 ? "s" : ""} on the other sites… (videos searched before are reused)` : `${withChoice} of ${groups.length} video${groups.length > 1 ? "s" : ""} ready: ${frames} clip${frames === 1 ? "" : "s"} of ${fmtWin(CLIPW)}.`);
+    top.append(clipLengthControl(renderBatch));
+    const go = document.createElement("button"); go.type = "button"; go.textContent = `Download ${frames} clip${frames === 1 ? "" : "s"}`; go.disabled = searching > 0 || !withChoice; go.addEventListener("click", startBatch); top.append(go);
+  } else {
+    const items = BM.batch.items, done = items.filter(i => ["downloaded", "analysed", "failed"].includes(i.state)).length;
+    top.append(`${done} of ${items.length} clips finished (${fmtWin(BM.batch.window)} each). You can close this window; the downloads keep going.`);
+  }
+  for (const g of groups) {
+    const row = document.createElement("div"); row.className = "bm-row"; parts.push(row);
+    const h = document.createElement("div"); h.innerHTML = ""; const b = document.createElement("strong"); b.textContent = g.title || ("Video " + g.sid); h.append(b, ` · ${g.frames.length} frame${g.frames.length > 1 ? "s" : ""}`); row.append(h);
+    if (g.err) { const e = document.createElement("div"); e.className = "bm-item bad"; e.textContent = g.err; row.append(e); continue; }
+    if (!g.ready) { const e = document.createElement("div"); e.className = "bm-item"; e.textContent = "Searching…"; row.append(e); continue; }
+    if (!started) {
+      const sel = document.createElement("select"), list = bmCandidates(g);
+      sel.append(new Option("— skip this video —", ""));
+      list.forEach((x, i) => sel.append(new Option(`${x.site} · ${x.c.title.slice(0, 70)} · ${fmtLen(x.c.duration)} · ${x.v ? x.v + " " : "score "}${x.c.score}`, String(i))));
+      const at = g.choice ? list.findIndex(x => x.c.url === g.choice.c.url) : -1;     // the list is rebuilt on every draw, so compare by address
+      sel.value = at >= 0 ? String(at) : "";
+      sel.addEventListener("change", () => { g.choice = sel.value === "" ? null : list[Number(sel.value)]; renderBatch(); });
+      row.append(sel);
+      if (!g.choice) { const e = document.createElement("div"); e.className = "bm-item"; e.textContent = list.some(x => x.v) ? "Skipped." : "No likely match was found for this video; pick one from the list, or it is skipped."; row.append(e); }
+    } else {
+      const its = BM.batch.items.filter(i => i.scene_id === g.sid);
+      if (!g.choice) { const e = document.createElement("div"); e.className = "bm-item"; e.textContent = "Skipped (no video chosen)."; row.append(e); }
+      else { const e = document.createElement("div"); e.className = "bm-item"; e.textContent = `From ${g.choice.site} · ${g.choice.c.title}`; row.append(e); for (const it of its) row.append(bmItemLine(it)); }
+    }
+  }
+  $("bm-body").replaceChildren(...parts);
+}
+async function startBatch() {
+  const items = [];
+  for (const g of BM.scenes.values()) if (g.choice) {
+    fetch(BASE + "api/finder/select?" + new URLSearchParams({scene_id: g.sid, site: g.choice.site, url: g.choice.c.url, title: g.choice.c.title, duration: g.choice.c.duration || 0})).catch(() => {});
+    for (const f of g.frames) items.push({scene_id: g.sid, still: f, url: g.choice.c.url, job: g.job.id});
+  }
+  try {
+    const r = await fetch(BASE + "api/finder/clips", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({items, window: CLIPW})}), j = await r.json();
+    if (!r.ok) throw new Error(j.error || "failed");
+    BM.batch = j; try { localStorage.setItem("clipBatch", j.id); } catch (e) {}
+  } catch (e) { alert("Could not start the downloads: " + e.message); return; }
+  renderBatch(); pollBatch(); loadLinks();
+  SEL.clear(); for (const c of document.querySelectorAll("[data-sel-u]")) c.checked = false; renderSelBar();
+}
+function pollBatch() {
+  clearTimeout(BM.poll);
+  BM.poll = setTimeout(async () => {
+    try { const r = await fetch(BASE + "api/finder/clips/status?batch=" + encodeURIComponent(BM.batch.id)); if (r.ok) BM.batch = await r.json(); } catch (e) {}
+    if ($("bm").classList.contains("open")) renderBatch();
+    checkClipQueue();
+    if (BM.batch.items.some(i => ["queued", "downloading", "downloaded"].includes(i.state))) pollBatch();
+  }, 2000);
+}
+// a button to come back to the downloads after closing the window or reloading the page
+async function checkClipQueue() {
+  let id = null; try { id = localStorage.getItem("clipBatch"); } catch (e) {}
+  if (!id) { $("clipq").hidden = true; return; }
+  try {
+    const r = await fetch(BASE + "api/finder/clips/status?batch=" + encodeURIComponent(id));
+    if (!r.ok) { $("clipq").hidden = true; return; }
+    const b = await r.json(), active = b.items.filter(i => ["queued", "downloading", "downloaded"].includes(i.state)).length;
+    $("clipq").hidden = false; $("clipq").textContent = active ? `Clip downloads: ${active} still going` : `Clip downloads: ${b.items.length} finished`;
+    $("clipq").onclick = () => {
+      BM.batch = b; BM.scenes = new Map();
+      for (const it of b.items) { if (!BM.scenes.has(it.scene_id)) BM.scenes.set(it.scene_id, {sid: it.scene_id, title: it.title, frames: [], ready: true, choice: {site: it.site, c: {title: it.title, url: it.url}}}); BM.scenes.get(it.scene_id).frames.push(it.still); }
+      $("bm").classList.add("open"); $("bm-title").textContent = "Clip downloads"; renderBatch(); pollBatch();
+    };
+  } catch (e) { $("clipq").hidden = true; }
+}
+loadLinks(); checkClipQueue();
+
+async function poll(slug) {
+  clearTimeout(pollTimer);
+  try {
+    const r = await fetch(BASE + "api/job?slug=" + encodeURIComponent(slug));
+    const j = await r.json();
+    if (!r.ok) { setStatus(j.error, true); $("go").disabled = false; return; }
+    if (j.phase === "error") {
+      setStatus(j.error + (j.needs_setup ? "  (then reload this page)" : ""), true);
+      setProgress(null); $("go").disabled = false; return;
+    }
+    const sig = j.phase + j.total + (j.details_done || 0);
+    if (sig !== lastSig) {
+      lastSig = sig;
+      data = j;
+      $("results").hidden = !j.total;
+      render();
+    }
+    if (j.phase === "queued" || j.phase === "listing") {
+      setStatus(`Fetching video list... ${j.listing_count || 0} videos so far (page ${j.listing_page || 0})`);
+      setProgress(null);
+    } else if (j.phase === "details") {
+      setStatus(`${j.slug}: fetching categories ${j.details_done}/${j.details_total}. You can already browse and filter.`);
+      setProgress(j.details_done / j.details_total);
+    } else {
+      setStatus(j.total ? `${j.slug}${j.cached ? " (saved copy)" : ""}` : `${j.slug}: no videos found`, !j.total);
+      setProgress(null); $("go").disabled = false; return;
+    }
+    pollTimer = setTimeout(() => poll(slug), 1000);
+  } catch (e) { setStatus("Request failed: " + e.message, true); $("go").disabled = false; }
+}
+
+async function run(refresh) {
+  const name = $("name").value.trim();
+  if (!name) return;
+  $("go").disabled = true; $("results").hidden = true; data = null; lastSig = "";
+  F.cats.clear(); F.eths.clear(); rowCache.clear(); panels.clear(); photoData.clear();
+  setStatus("Starting..."); setProgress(null);
+  try {
+    const r = await fetch(`${BASE}api/scrape?name=${encodeURIComponent(name)}${refresh ? "&refresh=1" : ""}`);
+    const j = await r.json();
+    if (!r.ok) { setStatus(j.error, true); $("go").disabled = false; return; }
+    poll(j.slug);
+  } catch (e) { setStatus("Request failed: " + e.message, true); $("go").disabled = false; }
+}
+
+$("f").addEventListener("submit", e => { e.preventDefault(); run(false); });
+$("refresh").addEventListener("click", () => run(true));
+for (const id of ["filter", "studio", "costar", "year", "sort"]) $(id).addEventListener("input", render);
+$("mode").addEventListener("click", () => { F.anyMode = !F.anyMode; $("mode").textContent = "match: " + (F.anyMode ? "any" : "all"); $("mode").classList.toggle("on", F.anyMode); render(); });
+$("catmore").addEventListener("click", () => { F.showAllCats = !F.showAllCats; render(); });
+$("clear").addEventListener("click", () => {
+  F.cats.clear(); F.eths.clear(); $("filter").value = "";
+  for (const id of ["studio", "costar", "year"]) $(id).value = "";
+  render();
+});
+$("copy").addEventListener("click", async () => {
+  const urls = data.videos.filter(v => passes(v)).map(v => v.url).join("\n");
+  await navigator.clipboard.writeText(urls);
+  $("copy").textContent = "Copied"; setTimeout(() => $("copy").textContent = "Copy links", 1200);
+});
+fetch(BASE + "api/status").then(r => r.json()).then(s => {
+  $("saved").replaceChildren(...s.saved.map(x => new Option(x.replace(/-/g, " "))));
+  if (!s.session) setStatus("No saved session yet. Run  .venv/bin/python setup_session.py  once, then reload.", true);
+});
+
+// ================= Studios tab =================
+const S = { all:[], loaded:false, group:false };
+
+function showTab(name) {
+  for (const t of ["perf", "studios", "tags", "stars", "creators", "positions", "favs"]) {
+    $("pg-" + t).hidden = t !== name;
+    $("tab-" + t).setAttribute("aria-selected", String(t === name));
+  }
+  if (name !== "positions") { try { history.replaceState(null, "", name === "perf" ? location.pathname : "#" + name); } catch (e) {} }
+  if (name === "studios" && !S.loaded) loadStudios();
+  if (name === "tags") loadTags();
+  if (name === "stars" && !P.loaded) loadStars();
+  if (name === "creators") loadCreators();
+  if (name === "positions") openPositions();
+  if (name === "favs") loadFavs();
+}
+$("tab-perf").addEventListener("click", () => showTab("perf"));
+$("tab-studios").addEventListener("click", () => showTab("studios"));
+$("tab-tags").addEventListener("click", () => showTab("tags"));
+$("tab-favs").addEventListener("click", () => showTab("favs"));
+$("tab-stars").addEventListener("click", () => showTab("stars"));
+$("tab-creators").addEventListener("click", () => showTab("creators"));
+$("tab-positions").addEventListener("click", () => { POS.parent = POS.sub = null; setPosHash(); showTab("positions"); });
+
+// ================= Run the model on many videos of a creator =================
+const BT = { timer: null, last: null };
+const mmss = sec => { sec = Math.max(0, Math.round(sec)); return Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0"); };
+async function batchPoll() {
+  let j = null;
+  try { j = (await (await fetch(BASE + "api/batch/status")).json()).job; } catch (e) { return; }
+  BT.last = j;
+  const mine = j && data && j.slug === data.slug, running = !!j && j.phase === "running";
+  $("bgo").disabled = running; $("bcancel").hidden = !(running && mine);
+  $("bprog").hidden = !(mine && (running || j.phase === "done" || j.phase === "cancelled"));
+  if (!j) { $("binfo").textContent = "Takes the first look at every video's stills, so you can see them grouped by position. Photos are only read, never stored."; return; }
+  if (!mine) { $("binfo").textContent = running ? `A batch for ${j.slug} is running (${j.videos_done} of ${j.videos_total} videos). Wait for it to finish, or open that creator to cancel it.` : ""; return; }
+  const frac = j.videos_total ? j.videos_done / j.videos_total : 0;
+  $("bprog").firstElementChild.firstElementChild.style.width = Math.round((j.phase === "done" ? 1 : frac) * 100) + "%";
+  const tail = `${j.images_done.toLocaleString()} images done${j.images_skipped ? `, ${j.images_skipped.toLocaleString()} skipped (already analysed)` : ""}${j.failed_images ? `, ${j.failed_images} could not be read` : ""}${j.failed_videos ? `, ${j.failed_videos} videos failed` : ""}`;
+  if (running) $("binfo").textContent = `${j.cancelling ? "Cancelling... " : ""}${j.stage === "model" ? "The model is looking at the images" : j.stage === "listing" ? "Finding the photos" : "Downloading the images"} · video ${j.videos_done} of ${j.videos_total} · ${tail}${j.eta_seconds != null ? ` · about ${mmss(j.eta_seconds)} left` : ""}${j.current ? ` · ${j.current}` : ""}`;
+  else if (j.phase === "error") $("binfo").textContent = "Stopped: " + j.error + (j.needs_setup ? "  (run setup_session.py, then reload this page)" : "");
+  else $("binfo").textContent = `${j.phase === "cancelled" ? "Cancelled" : "Done"}: ${j.videos_done} of ${j.videos_total} videos · ${tail}. Use "See results by position" to look through them.`;
+}
+function batchSchedule() { clearInterval(BT.timer); BT.timer = setInterval(batchPoll, 2000); batchPoll(); }
+$("bgo").addEventListener("click", async () => {
+  if (!data) return;
+  const mode = document.querySelector('input[name="bmode"]:checked').value;
+  const r = await fetch(BASE + "api/batch/start", {method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({slug: data.slug, mode, count: Number($("bcount").value) || 50, photosets: $("bphotos").checked, only_new: $("bnew").checked})});
+  const j = await r.json();
+  if (!r.ok) { $("binfo").textContent = j.error; return; }
+  batchPoll();
+});
+$("bcancel").addEventListener("click", async () => { await fetch(BASE + "api/batch/cancel", {method: "POST", headers: {"Content-Type": "application/json"}, body: "{}"}); batchPoll(); });
+$("bview").addEventListener("click", () => { POS.creator = data ? data.slug : ""; POS.parent = POS.sub = null; setPosHash(); showTab("positions"); });
+batchSchedule();
+
+// ================= By position: the images grouped by what the model found =================
+const POS = { creator: "", parent: null, sub: null, items: [], total: 0, groups: null, loadedCreators: false };
+function readPosHash() {
+  const parts = decodeURIComponent(location.hash.slice(1)).split("/");
+  POS.parent = parts[1] || null; POS.sub = parts[2] || null;
+}
+function setPosHash() {
+  const h = "#positions" + (POS.parent ? "/" + encodeURIComponent(POS.parent) + (POS.sub ? "/" + encodeURIComponent(POS.sub) : "") : "");
+  if (location.hash !== h) { try { history.pushState(null, "", h); } catch (e) {} }
+}
+const posQuery = () => `creator=${encodeURIComponent($("pos-creator").value)}&type=${$("pos-type").value}&min=${$("pos-min").value}&submin=${$("pos-submin").value}`;
+async function openPositions() {
+  if (!POS.loadedCreators) {
+    const d = await (await fetch(BASE + "api/creators")).json();
+    for (const c of d.creators) $("pos-creator").append(new Option(`${c.name} (${c.with_model} analysed)`, c.slug));
+    POS.loadedCreators = true;
+  }
+  if (POS.creator != null) $("pos-creator").value = POS.creator;
+  await renderPositions();
+}
+for (const id of ["pos-creator", "pos-type", "pos-min", "pos-submin"]) $(id).addEventListener("change", () => { POS.creator = $("pos-creator").value; renderPositions(); });
+const nf = n => n.toLocaleString();
+function crumb() {
+  const c = $("pos-crumb"); c.replaceChildren();
+  const link = (txt, fn) => { const a = document.createElement("a"); a.href = "#"; a.textContent = txt; a.addEventListener("click", e => { e.preventDefault(); fn(); }); return a; };
+  c.append(link("By position", () => { POS.parent = POS.sub = null; setPosHash(); renderPositions(); }));
+  if (POS.parent) { c.append(" › "); c.append(POS.sub ? link(POS.parent, () => { POS.sub = null; setPosHash(); renderPositions(); }) : document.createTextNode(POS.parent)); }
+  if (POS.sub) c.append(" › " + POS.sub);
+}
+async function renderPositions() {
+  crumb();
+  const g = await (await fetch(BASE + "api/position-groups?" + posQuery())).json();
+  POS.groups = g;
+  $("pos-count").textContent = g.total ? `${nf(g.total)} images from ${nf(g.videos)} videos` : "Nothing yet";
+  const body = $("pos-body"); body.replaceChildren();
+  if (!g.total) { body.append(Object.assign(document.createElement("div"), {className: "meta", style: "padding:14px", textContent: "No images with model results here yet. Open a creator on the Performers tab and press \"Run the model\" (all videos or a random number), or run the model on a video's photos."})); return; }
+  if (!POS.parent) return renderOverview(g, body);
+  const node = g.positions.find(p => p.name === POS.parent);
+  if (!node) { body.append(Object.assign(document.createElement("div"), {className: "meta", style: "padding:14px", textContent: `No images are grouped under ${POS.parent} with these settings.`})); return; }
+  if (!POS.sub && node.subs.length) body.append(subTable(node));
+  await renderGrid(body);
+}
+function subTable(node) {
+  const t = document.createElement("div"); t.className = "panel";
+  const h = document.createElement("div"); h.className = "row"; h.innerHTML = ""; const st = document.createElement("strong"); st.textContent = `${node.name}: ${nf(node.count)} images by sub-type`; h.append(st); t.append(h);
+  for (const s of node.subs) {
+    const row = document.createElement("div"); row.className = "posrow";
+    const a = document.createElement("a"); a.href = "#"; a.textContent = s.name; a.className = "nm";
+    a.addEventListener("click", e => { e.preventDefault(); POS.parent = node.name; POS.sub = s.name; setPosHash(); renderPositions(); });
+    const bar = document.createElement("span"); bar.className = "pbar"; const i = document.createElement("i"); i.style.width = Math.round(100 * s.count / node.count) + "%"; bar.append(i);
+    const n = document.createElement("span"); n.className = "cnt"; n.textContent = `${nf(s.count)} · ${Math.round(100 * s.count / node.count)}%`;
+    row.append(a, bar, n); t.append(row);
+  }
+  return t;
+}
+function renderOverview(g, body) {
+  for (const p of g.positions) {
+    const card = document.createElement("div"); card.className = "panel pcard";
+    const head = document.createElement("div"); head.className = "row";
+    const a = document.createElement("a"); a.href = "#"; a.className = "ptitle"; a.textContent = p.name === "Unsure" ? `Unsure (position under ${$("pos-min").value})` : p.name;
+    a.addEventListener("click", e => { e.preventDefault(); POS.parent = p.name; POS.sub = null; setPosHash(); renderPositions(); });
+    const c = document.createElement("span"); c.className = "meta"; c.textContent = `${nf(p.count)} images · ${Math.round(100 * p.count / g.total)}% of all`;
+    head.append(a, c); card.append(head);
+    const th = document.createElement("div"); th.className = "psamples";
+    for (const u of p.sample) { const im = document.createElement("img"); im.src = proxy(u); im.loading = "lazy"; th.append(im); }
+    if (p.sample.length) card.append(th);
+    if (p.subs.length) {
+      for (const s of p.subs) {
+        const row = document.createElement("div"); row.className = "posrow";
+        const l = document.createElement("a"); l.href = "#"; l.className = "nm"; l.textContent = s.name;
+        l.addEventListener("click", e => { e.preventDefault(); POS.parent = p.name; POS.sub = s.name; setPosHash(); renderPositions(); });
+        const bar = document.createElement("span"); bar.className = "pbar"; const i = document.createElement("i"); i.style.width = Math.round(100 * s.count / p.count) + "%"; bar.append(i);
+        const n = document.createElement("span"); n.className = "cnt"; n.textContent = `${nf(s.count)}`;
+        row.append(l, bar, n); card.append(row);
+      }
+    }
+    body.append(card);
+  }
+}
+const PAGE = 120;
+async function renderGrid(body) {
+  const sortSel = document.createElement("select"); for (const [v, t] of [["conf", "Most confident first"], ["random", "Random order"], ["video", "By video"]]) sortSel.append(new Option(t, v));
+  sortSel.value = POS.sort || "conf"; sortSel.addEventListener("change", () => { POS.sort = sortSel.value; renderPositions(); });
+  const bar = document.createElement("div"); bar.className = "row"; bar.style.margin = "10px 0"; bar.append(sortSel);
+  const selAll = document.createElement("button"); selAll.type = "button"; selAll.className = "ghost"; selAll.textContent = "Select all shown"; selAll.title = "Tick every frame loaded on this page";
+  selAll.addEventListener("click", () => { for (const x of POS.items) SEL.set(x.f, {f: x.f, sid: x.scene_id, title: x.title}); for (const c of document.querySelectorAll("[data-sel-u]")) c.checked = SEL.has(c.dataset.selU); renderSelBar(); });
+  bar.append(selAll);
+  const head = document.createElement("strong"); bar.append(head);
+  const grid = document.createElement("div"); grid.className = "grid pgrid"; body.append(bar, grid);
+  const more = document.createElement("button"); more.className = "ghost"; more.type = "button"; body.append(more);
+  POS.items = []; let total = 0;
+  const q = () => `${posQuery()}&position=${encodeURIComponent(POS.parent)}&sub=${encodeURIComponent(POS.sub || "")}&sort=${sortSel.value}&offset=${POS.items.length}&limit=${PAGE}`;
+  const load = async () => {
+    const d = await (await fetch(BASE + "api/position-images?" + q())).json();
+    total = d.total; const start = POS.items.length; POS.items.push(...d.images);
+    const pg = POS.pg = {label: POS.sub ? `${POS.parent} › ${POS.sub}` : POS.parent, images: POS.items.map(x => ({f: x.f, sid: x.scene_id, title: x.title, cap: `${x.title} · ${x.creators.join(", ")} · ${x.best} ${x.confidence.toFixed(2)}${x.sub ? " · " + x.sub + " " + (x.sub_conf != null ? x.sub_conf.toFixed(2) : "") : ""}`}))};
+    d.images.forEach((x, k) => {
+      const w = document.createElement("div"); w.className = "pw";
+      const b = document.createElement("button"); b.type = "button"; b.className = "ph";
+      const im = document.createElement("img"); im.loading = "lazy"; im.decoding = "async"; im.src = proxy(x.t); im.alt = x.title;
+      b.append(im); b.addEventListener("click", () => openLightbox(POS.pg, start + k));
+      const badge = document.createElement("span"); badge.className = "pbadge"; badge.textContent = x.confidence.toFixed(2) + (x.sub && !POS.sub ? " · " + x.sub : "");
+      const cap = document.createElement("a"); cap.className = "pcap"; cap.href = x.scene_url || "#"; cap.target = "_blank"; cap.rel = "noopener"; cap.textContent = x.title; cap.title = x.title;
+      w.append(selBox(x.f, x.scene_id, x.title), b, badge, heartBtn(x.f, x.scene_id), cap, getVideoBtn(x.scene_id, x.title, x.f)); grid.append(w);
+    });
+    refreshHearts();
+    head.textContent = `${nf(total)} images`; more.hidden = POS.items.length >= total; more.textContent = `Show ${Math.min(PAGE, total - POS.items.length)} more (${nf(total - POS.items.length)} left)`;
+  };
+  more.addEventListener("click", load); await load();
+}
+
+// ================= Scraped creators tab =================
+const CR = { all: [] };
+async function loadCreators() {
+  const d = await (await fetch(BASE + "api/creators")).json();
+  CR.all = d.creators; renderCreators();
+}
+function renderCreators() {
+  const q = $("c-q").value.trim().toLowerCase();
+  const list = CR.all.filter(c => !q || c.name.toLowerCase().includes(q) || c.slug.includes(q));
+  $("c-count").textContent = `${list.length}${list.length !== CR.all.length ? " / " + CR.all.length : ""} creators, ${CR.all.reduce((n, c) => n + c.videos, 0)} videos`;
+  $("c-list").replaceChildren(...list.map(c => {
+    const row = document.createElement("div"); row.className = "srow";
+    const img = document.createElement("img"); img.src = c.thumbnail || ""; img.referrerPolicy = "no-referrer"; img.style.cssText = "width:64px;height:36px;object-fit:cover;border-radius:4px;background:var(--line);flex:none";
+    const a = document.createElement("a"); a.href = "#"; a.className = "nm"; a.textContent = c.name; a.addEventListener("click", e => { e.preventDefault(); $("name").value = c.slug; showTab("perf"); run(false); });
+    const cnt = document.createElement("span"); cnt.className = "cnt"; cnt.textContent = `${c.videos} videos` + (c.with_model ? ` · ${c.with_model} with model results` : "");
+    const d = document.createElement("span"); d.className = "slug"; d.textContent = "scraped " + new Date(c.scraped * 1000).toLocaleDateString(undefined, {day: "numeric", month: "short", year: "numeric"});
+    row.append(img, a, cnt, d); return row;
+  }));
+}
+$("c-q").addEventListener("input", renderCreators);
+
+async function loadStudios() {
+  const d = await (await fetch(BASE + "api/studios")).json();
+  S.all = d.studios; S.loaded = true; S.scraped = d.scraped_at;
+  const parents = new Map();
+  for (const s of S.all) if (s.parent) parents.set(s.parent, (parents.get(s.parent) || 0) + 1);
+  const opts = [...parents].map(([slug, n]) => [slug, S.all.find(x => x.slug === slug)?.name || slug, n]).sort((a, b) => a[1].localeCompare(b[1]));
+  $("s-parent").replaceChildren(new Option("Any channel", ""), ...opts.map(([slug, name, n]) => new Option(`${name} (${n} sub-channels)`, slug)));
+  renderStudios();
+}
+
+function renderStudios() {
+  const q = $("s-q").value.trim().toLowerCase(), type = $("s-type").value, parent = $("s-parent").value, sort = $("s-sort").value;
+  let rows = S.all.filter(s =>
+    (!q || s.name.toLowerCase().includes(q) || s.slug.includes(q) || (s.parent_name || "").toLowerCase().includes(q)) &&
+    (type === "all" || (type === "top" ? !s.parent : !!s.parent)) &&
+    (!parent || s.parent === parent || s.slug === parent));
+  const byName = (a, b) => a.name.localeCompare(b.name, undefined, {sensitivity:"base", numeric:true});
+  const cmp = { az:byName, za:(a, b) => byName(b, a), most:(a, b) => b.scenes - a.scenes || byName(a, b), least:(a, b) => a.scenes - b.scenes || byName(a, b) }[sort];
+  if (S.group) {
+    // children sit under their parent; groups follow the chosen sort, using the parent's figures
+    const key = s => s.parent || s.slug;
+    const head = new Map(S.all.filter(s => !s.parent).map(s => [s.slug, s]));
+    const groups = new Map();
+    for (const s of rows) { const k = key(s); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(s); }
+    const order = [...groups].sort(([ka], [kb]) => cmp(head.get(ka) || groups.get(ka)[0], head.get(kb) || groups.get(kb)[0]));
+    rows = order.flatMap(([, items]) => items.sort((a, b) => (a.parent ? 1 : 0) - (b.parent ? 1 : 0) || cmp(a, b)));
+  } else rows.sort(cmp);
+
+  const total = S.all.length, subs = S.all.filter(s => s.parent).length;
+  $("s-count").textContent = rows.length === total ? `${total} studios` : `${rows.length} / ${total} studios`;
+  $("s-info").textContent = total ? `${total - subs} top-level · ${subs} sub-channels · last scraped ${S.scraped || "never"}` : "No studios saved yet. Click \"Re-scrape from data18\".";
+  $("s-group").classList.toggle("on", S.group);
+
+  const frag = document.createDocumentFragment();
+  for (const s of rows) {
+    const row = document.createElement("div");
+    row.className = "srow" + (S.group && s.parent ? " child" : "") + (S.group && !s.parent ? " parentrow" : "");
+    const a = document.createElement("a"); a.className = "nm"; a.href = s.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = s.name;
+    row.append(a);
+    if (s.parent && !S.group) {
+      const via = document.createElement("button"); via.type = "button"; via.className = "chip via"; via.style.setProperty("--h", catHue(s.parent));
+      via.textContent = "↳ " + s.parent_name; via.title = "Show only this channel's sub-channels";
+      via.addEventListener("click", () => { $("s-parent").value = s.parent; renderStudios(); });
+      row.append(via);
+    }
+    const cnt = document.createElement("span"); cnt.className = "cnt"; cnt.textContent = s.scenes.toLocaleString() + " scenes";
+    row.append(cnt);
+    frag.append(row);
+  }
+  $("s-list").replaceChildren(frag);
+}
+
+for (const id of ["s-q", "s-type", "s-parent", "s-sort"]) $(id).addEventListener("input", renderStudios);
+$("s-group").addEventListener("click", () => { S.group = !S.group; renderStudios(); });
+$("s-copy").addEventListener("click", async () => {
+  const q = $("s-q").value.trim().toLowerCase();
+  const urls = [...document.querySelectorAll("#s-list a.nm")].map(a => a.href).join("\n");
+  await navigator.clipboard.writeText(urls);
+  $("s-copy").textContent = "Copied"; setTimeout(() => $("s-copy").textContent = "Copy links", 1200);
+});
+$("s-refresh").addEventListener("click", async () => {
+  $("s-refresh").disabled = true; $("s-info").textContent = "Scraping studios...";
+  await fetch(BASE + "api/studios/refresh");
+  for (;;) {
+    await new Promise(r => setTimeout(r, 1000));
+    const j = await (await fetch(BASE + "api/studios/job")).json();
+    if (j.phase === "running") { $("s-info").textContent = `Scraping studios... page ${j.page}, ${j.count} so far`; continue; }
+    if (j.phase === "error") $("s-info").textContent = j.error + (j.needs_setup ? "  (then reload this page)" : "");
+    else await loadStudios();
+    break;
+  }
+  $("s-refresh").disabled = false;
+});
+
+
+// ================= Tags tab =================
+const T = { all:[], only:false, open:new Set(), vids:new Map() };
+
+async function loadTags() {
+  const d = await (await fetch(BASE + "api/tags")).json();   // refreshed every visit: new videos change the counts
+  T.all = d.tags; T.scrapedAt = d.scraped_at; T.unlisted = d.unlisted || [];
+  renderTags();
+}
+
+function renderTags() {
+  const q = $("t-q").value.trim().toLowerCase(), sort = $("t-sort").value;
+  let rows = T.all.filter(t => (!q || t.name.toLowerCase().includes(q) || t.slug.includes(q)) && (!T.only || t.videos));
+  rows = rows.slice().sort(sort === "most"
+    ? (a, b) => b.videos - a.videos || a.name.localeCompare(b.name)
+    : (a, b) => a.name.localeCompare(b.name, undefined, {sensitivity:"base"}));
+  const withVideos = T.all.filter(t => t.videos).length;
+  $("t-count").textContent = rows.length === T.all.length ? `${T.all.length} tags` : `${rows.length} / ${T.all.length} tags`;
+  $("t-info").textContent = T.all.length
+    ? `${withVideos} have videos from your scraped performers` + (T.unlisted.length ? ` · ${T.unlisted.length} tags on videos aren't in the list` : "")
+    : "No tags saved yet.";
+  $("t-only").classList.toggle("on", T.only);
+  $("t-list").replaceChildren(...rows.map(tagRow));
+}
+
+function tagRow(t) {
+  const row = document.createElement("div"); row.className = "trow" + (t.videos ? "" : " empty");
+  const head = document.createElement("button"); head.type = "button"; head.className = "thead";
+  head.setAttribute("aria-expanded", String(T.open.has(t.slug)));
+  const arrow = document.createElement("span"); arrow.className = "arrow"; arrow.textContent = t.videos ? "▸" : "";
+  const nm = document.createElement("span"); nm.className = "nm"; nm.textContent = t.name;
+  const cnt = document.createElement("span"); cnt.className = "cnt"; cnt.textContent = t.videos ? `${t.videos} video${t.videos === 1 ? "" : "s"}` : "0";
+  const link = document.createElement("a"); link.className = "tlink"; link.href = t.url; link.target = "_blank"; link.rel = "noopener"; link.textContent = "data18 ↗";
+  link.addEventListener("click", e => e.stopPropagation());
+  head.append(arrow, nm, link, cnt);
+  row.append(head);
+  if (t.videos) {
+    head.addEventListener("click", () => toggleTag(t, row, head));
+    if (T.open.has(t.slug)) fillTag(t, row);
+  }
+  return row;
+}
+
+async function toggleTag(t, row, head) {
+  if (T.open.has(t.slug)) { T.open.delete(t.slug); row.querySelector(".tvids")?.remove(); head.setAttribute("aria-expanded", "false"); return; }
+  T.open.add(t.slug); head.setAttribute("aria-expanded", "true"); fillTag(t, row);
+}
+
+async function fillTag(t, row) {
+  const box = document.createElement("div"); box.className = "tvids"; box.textContent = "Loading...";
+  row.append(box);
+  if (!T.vids.has(t.slug)) T.vids.set(t.slug, (await (await fetch(BASE + "api/tag-videos?slug=" + encodeURIComponent(t.slug))).json()).videos);
+  if (!box.isConnected) return;
+  box.replaceChildren(...T.vids.get(t.slug).map(v => {
+    const d = document.createElement("div"); d.className = "tv";
+    const img = document.createElement("img"); img.src = v.thumbnail; img.loading = "lazy"; img.referrerPolicy = "no-referrer";
+    const info = document.createElement("div");
+    const a = document.createElement("a"); a.href = v.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = v.title;
+    const meta = document.createElement("div"); meta.className = "meta";
+    meta.textContent = [v.date, v.studio, "scraped from " + v.scraped_from.join(", ")].filter(Boolean).join(" · ");
+    info.append(a, meta); d.append(img, info);
+    return d;
+  }));
+}
+
+$("t-q").addEventListener("input", renderTags);
+$("t-sort").addEventListener("input", renderTags);
+$("t-only").addEventListener("click", () => { T.only = !T.only; renderTags(); });
+
+
+// ================= Pornstars tab =================
+// rows from the server: [slug, name, picture, scenes, movies, rank]
+const P = { all:[], loaded:false, only:false, shown:0, rows:[] };
+const BATCH = 120;
+
+async function loadStars() {
+  $("p-info").textContent = "Loading...";
+  const d = await (await fetch(BASE + "api/pornstars")).json();
+  P.all = d.stars.map(([slug, name, pic, scenes, movies, rank]) => ({slug, name, pic, scenes, movies, rank, key:name.toLowerCase()}));
+  P.loaded = true; P.scrapedAt = d.scraped_at;
+  renderStars();
+}
+
+function renderStars() {
+  const q = $("p-q").value.trim().toLowerCase(), sort = $("p-sort").value;
+  let rows = P.all.filter(x => (!q || x.key.includes(q)) && (!P.only || x.pic));
+  const az = (a, b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+  rows = rows.slice().sort({ site:(a, b) => b.rank - a.rank, az, za:(a, b) => az(b, a),
+                            most:(a, b) => b.scenes - a.scenes || az(a, b) }[sort]);
+  P.rows = rows; P.shown = 0;
+  const withPic = P.all.filter(x => x.pic).length;
+  $("p-count").textContent = rows.length === P.all.length ? `${P.all.length.toLocaleString()} pornstars` : `${rows.length.toLocaleString()} / ${P.all.length.toLocaleString()}`;
+  $("p-info").textContent = P.all.length
+    ? `${withPic.toLocaleString()} with a photo · last scraped ${P.scrapedAt}`
+    : 'No pornstars saved yet. Click "Re-scrape from data18" (takes about 2 minutes).';
+  $("p-pics").classList.toggle("on", P.only);
+  $("p-grid").replaceChildren();
+  showMoreStars();
+}
+
+function showMoreStars() {
+  const next = P.rows.slice(P.shown, P.shown + BATCH);
+  P.shown += next.length;
+  const frag = document.createDocumentFragment();
+  for (const x of next) {
+    const a = document.createElement("a"); a.className = "pcard"; a.href = "https://www.data18.com/name/" + x.slug; a.target = "_blank"; a.rel = "noopener";
+    const pic = document.createElement("div"); pic.className = "pic";
+    if (x.pic) { const img = document.createElement("img"); img.src = x.pic; img.alt = ""; img.loading = "lazy"; img.referrerPolicy = "no-referrer"; pic.append(img); }
+    else pic.textContent = x.name.split(/\s+/).slice(0, 2).map(w => w[0] || "").join("").toUpperCase();
+    const n = document.createElement("div"); n.className = "pn"; n.textContent = x.name;
+    const sc = document.createElement("div"); sc.className = "ps"; sc.textContent = `${x.scenes.toLocaleString()} scene${x.scenes === 1 ? "" : "s"}`;
+    a.append(pic, n, sc); frag.append(a);
+  }
+  $("p-grid").append(frag);
+  $("p-more").textContent = P.shown < P.rows.length ? `Showing ${P.shown.toLocaleString()} of ${P.rows.length.toLocaleString()}. Scroll or click here for more` : (P.rows.length ? "" : "No matches");
+}
+// load the next batch as the bottom comes into view (observer, with a scroll listener as backup)
+function fillStars() {
+  while (!$("pg-stars").hidden && P.shown < P.rows.length && $("p-more").getBoundingClientRect().top < innerHeight + 600) showMoreStars();
+}
+new IntersectionObserver(es => { if (es[0].isIntersecting) fillStars(); }, {rootMargin:"600px"}).observe($("p-more"));
+$("p-more").addEventListener("click", () => { for (let i = 0; i < 4 && P.shown < P.rows.length; i++) showMoreStars(); });
+let fillQueued = false;
+addEventListener("scroll", () => { if (!fillQueued) { fillQueued = true; setTimeout(() => { fillQueued = false; fillStars(); }, 80); } }, {passive:true});
+
+let pTimer;
+$("p-q").addEventListener("input", () => { clearTimeout(pTimer); pTimer = setTimeout(renderStars, 150); });
+$("p-sort").addEventListener("input", renderStars);
+$("p-pics").addEventListener("click", () => { P.only = !P.only; renderStars(); });
+$("p-refresh").addEventListener("click", async () => {
+  $("p-refresh").disabled = true; $("p-info").textContent = "Scraping...";
+  await fetch(BASE + "api/pornstars/refresh");
+  for (;;) {
+    await new Promise(r => setTimeout(r, 1000));
+    const j = await (await fetch(BASE + "api/pornstars/job")).json();
+    if (j.phase === "running") { $("p-info").textContent = `Scraping... page ${j.page} of about 560, ${j.count.toLocaleString()} so far`; continue; }
+    if (j.phase === "error") { $("p-info").textContent = j.error + (j.needs_setup ? "  (then reload this page)" : ""); break; }
+    await loadStars(); break;
+  }
+  $("p-refresh").disabled = false;
+});
+{ const h = location.hash.slice(1); if (h === "studios" || h === "tags" || h === "stars" || h === "favs") showTab(h); else if (h.startsWith("positions")) { readPosHash(); showTab("positions"); } }
+window.addEventListener("hashchange", () => { if (location.hash.startsWith("#positions")) { readPosHash(); showTab("positions"); } });
+</script>
+</body>
+</html>

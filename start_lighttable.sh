@@ -5,7 +5,7 @@
 # The ordinary Postroom (http://localhost:8503) is untouched and keeps working on its own.
 # Test switches: POSTROOM_PORT, LIGHTTABLE_PORT, NO_OPEN=1
 
-ROOT="/Users/hugodyson/instagram-bot-2"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
 PORT_POST="${POSTROOM_PORT:-8503}"
 PORT_LT="${LIGHTTABLE_PORT:-8504}"
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

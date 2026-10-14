@@ -1,5 +1,0 @@
-Review page running at http://localhost:8777  (Ctrl+C to stop)
-/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1072: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
-  c = list(im.resize((W, 1), _I.BOX).getdata())     # mean brightness of each column
-/Users/hugodyson/instagram-bot-2/CLIP Training/scripts/review_server.py:1073: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
-  rw = list(im.resize((1, H), _I.BOX).getdata())    # ... and of each row

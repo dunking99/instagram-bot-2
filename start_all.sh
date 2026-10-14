@@ -5,7 +5,7 @@
 # Everything else (the Links tool, the automatic video analysis) is started by the Postroom itself.
 # Test switches: POSTROOM_PORT, REVIEW_PORT, NO_OPEN=1
 
-ROOT="/Users/hugodyson/instagram-bot-2"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
 PORT_POST="${POSTROOM_PORT:-8503}"
 PORT_REV="${REVIEW_PORT:-8765}"
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
