@@ -1,0 +1,14 @@
+pv_video | 200 62625 https://www.playvids.com/XV84IVJOs08/bjraw-sera-ryder-and-millie-morgan-nbq-nice-tits-wet-pussy | cloudflare-or-captcha=0 | hrefs=143
+pv_home | 200 65857 https://www.playvids.com/ | cloudflare-or-captcha=0 | hrefs=199
+pv_search1 | 200 51667 https://www.playvids.com/videos?qry=sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=132
+pv_search1_xhr | 200 51655 https://www.playvids.com/videos?qry=sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=132
+pv_search2 | 404 58212 https://www.playvids.com/search/sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=160
+pw_video | 200 26499 https://www.pornwex.tv/video/365834/sera-ryder-and-millie-morgan-bjraw/ | cloudflare-or-captcha=2 | hrefs=43
+pw_home | 200 42384 https://www.pornwex.tv/ | cloudflare-or-captcha=0 | hrefs=95
+pw_search1 | 200 44153 https://www.pornwex.tv/search/sera+ryder+millie+morgan/ | cloudflare-or-captcha=0 | hrefs=54
+pw_search2 | 200 44153 https://www.pornwex.tv/search/?q=sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=54
+pw_search3 | 200 42384 https://www.pornwex.tv/?s=sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=95
+pe_video | 200 59360 https://porneec.com/bjraw-sera-ryder-millie-morgan-millie-sera-share-the/ | cloudflare-or-captcha=0 | hrefs=46
+pe_home | 200 90553 https://porneec.com/ | cloudflare-or-captcha=0 | hrefs=74
+pe_search1 | 200 38061 https://porneec.com/?s=sera+ryder+millie+morgan | cloudflare-or-captcha=0 | hrefs=38
+pe_search2 | 200 38096 https://porneec.com/search/sera+ryder+millie+morgan/ | cloudflare-or-captcha=0 | hrefs=38
