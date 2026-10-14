@@ -83,3 +83,16 @@ everything is up
 Postroom already running
 starting the Light table...
 everything is up
+--- Tue Oct 13 22:16:48 BST 2026 start_lighttable.sh
+Postroom already running
+Light table already running
+everything is up
+./start_lighttable.sh: line 37: 16858 Terminated: 15          LIGHTTABLE_PORT="$PORT_LT" POSTROOM_URL="http://127.0.0.1:$PORT_POST" nohup /usr/bin/python3 lighttable_server.py >> "$ROOT/logs/lighttable.log" 2>&1
+--- Wed Oct 14 00:35:01 BST 2026 start_lighttable.sh
+Postroom already running
+starting the Light table...
+everything is up
+--- Wed Oct 14 14:52:23 BST 2026 start_lighttable.sh
+Postroom already running
+Light table already running
+everything is up
