@@ -1,94 +1,138 @@
-# Handoff
+# Handoff: 2026-10-14 (cloud session -> Claude Code in the terminal)
 
-> Generated: 2026-10-12
-> Project: /Users/hugodyson/instagram-bot-2 (plus ~/data18-scraper)
-> Session summary: Analysed the position-labelling model, then built a data18 scraper page, a "frames from video links" tool and per-position image pages into the Light table (port 8504); the user decided to stay on the B/32 model.
+> Written by the Claude session that worked in the cloud (no internet, GitHub only) for the Claude Code session that continues on the owner's Mac.
+> The previous handoff (12 Oct, before the folders were merged) is archived at `docs/HANDOFF_2026-10-12.md`; its model/training notes are still valid.
 
-## Goal
+## 0. Read this first
 
-The owner (one person, working alone on their Mac) is building a private media library where an image model labels video frames by sex position (parent such as Doggystyle, plus sub-type such as Standing). They have accepted that the model will never reach 100% and want **more training images**: frames from their library, from data18 stills, and from videos at a link without downloading them. They want all of it inside the dashboards (buttons, progress, results), not scripts or folders. The model is the **B/32 head they trained** (`CLIP Training/models/position_clf.pkl` + `subtype_clf.pkl`), not the newer L/14 I built.
+**What changes now.** The cloud session could not open any website, so every site-related thing below was written against saved pages and fake servers and
+marked "not yet run live". **You are on the owner's Mac with a network, ffmpeg, yt-dlp, Chrome and the real dashboard, so you can run things directly.
+Do that: verify live, instead of asking the owner to paste terminal output** (that is how it was done before and it was slow).
 
-## Current State
+**First five minutes**
+1. `cd ~/instagram-bot-2 && git status && git branch --show-current && git log --oneline -5`. The cloud work lives on branch `claude/jolly-cannon-88sel9`
+   (tip `ab7b6ff` or later). `origin/main` is behind it (`b2be86d`). The owner ran `git pull origin claude/jolly-cannon-88sel9` into their local checkout, so check which
+   branch they are on and whether `pornbox_probe.py` (the newest commit) is present. Ask the owner how they want branches handled before pushing anything to `main`.
+2. Run the one test that was pending when this session ended (section 5, P1): `tools/data18/.venv/bin/python tools/stream-test/pornbox_probe.py 127185`.
+3. Ask the owner two things you cannot know: (a) "fix the Stream test failures now?" (they said "don't fix yet" while analysing, then moved on), (b) the chain question in P4.
 
-**Working (all tested this session):**
-- Light table `http://localhost:8504` (React in `ui-lighttable/`, server `lighttable_server.py`), also at `https://hugos-macbook-air-4.tailb8a21a.ts.net` via `tailscale serve` (tailnet only). Pages: Search, Library, Collections, Pilot, Positions, Analysis, **Data18 Scraper** (new), Links.
-- Data18 Scraper page = the scraper at `~/data18-scraper` (own server, port 8790, own venv) shown at `/d18/` through the Light table proxy. Added by me: "Scraped creators" tab, tick-boxes + "Run model on selected", sort by total photos, batch panel ("run the model on all / N random videos of a creator", progress, cancel), "By position" tab (position -> sub-type -> image grids, hash routes `#positions/Doggystyle/Standing`). Model is **B/32 only** (`ACTIVE = ["b32"]` in `~/data18-scraper/server.py`).
-- "Frames from video links" panel on the Light table's Links page: paste one or more page links, optional from/to time, spacing; reads only needed parts of the video (HTTP range requests through a local caching proxy), writes frames to `pipeline/frames_5s/<name>/`, creates the B/32 draft in the model dashboard. Up to 3 videos at once, rest queue; one resident model worker (`CLIP Training/scripts/model_worker.py`) serves them.
-- Model dashboard (review page) on 8777 (`CLIP Training/scripts/review_server.py`): `Unsure` is OFF (user asked); a "refined sections (test)" checkbox exists (default off).
+## 1. The owner and how to work with them
 
-**Not done / loose ends:**
-- `/distil` was run: I showed a 10-entry draft (feedback memories, `docs/JUDGEMENT.md` opinions/traps/parked ideas, update to `postroom-ui.md`). **The user has not answered; nothing was saved.** The draft is in the last assistant message of that session; rebuild it from this file if needed.
-- Disk is low: 4.2 GB free (Light table header shows "Low space"). I offered to delete B/16 + L/14 weights (~2.3 GB by published size, not measured), `CLIP Training/embeddings/experiments/` (122 MB) and 259 stale L/14 entries in `~/data18-scraper/data/predictions.json`. Unanswered. Delete nothing without a yes.
-- A batch over a whole large creator (e.g. kyler-quinn: 247 videos with stills, ~8,700 stills) was never run. Only 13 videos (explicit-kait) have results (~588 stills + some others).
-- Light table has no phone layout (only desktop media queries); the "Model dashboard"/"Frames" buttons point at localhost and don't work from a phone.
-- User saw the header switch on CLIP instead of SigLIP and asked if that changes results. Answer given: it only selects the Search/Library index (stored per browser in localStorage, default SigLIP); position features are unaffected. I did not click it and don't know who did. User may come back to this.
+- One person, alone, Mac (zsh), long sessions. Expert; wants speed, density, and **dashboards with buttons, not scripts or folders**.
+- **Brief, simple explanations.** Plain words, short tables. When they ask for "a very brief outline", give one.
+- They paste terminal output or screenshots. When you can run it yourself, do.
+- **Autonomy:** when they say "you know what to do, no need to go through me", proceed. When they say "don't fix yet / brainstorming", do not edit code.
+- **Do not argue with their domain judgement.** They said more frames per video are better ("Not true at all. Don't fight me on this") when I suggested diminishing returns; drop it.
+  Frames are the *second* step; the first is getting the **video** (watch a segment without downloading).
+- Report honestly what was verified vs inferred. **Never claim a file was saved/pushed without checking** (the cloud session once said it saved a file it had not; check with `ls`/`git log`).
+- zsh paste gotchas from earlier: a `#` comment containing an apostrophe in a pasted block opened a `quote>` prompt and swallowed the whole paste. Give commands without `#` comments,
+  one logical step per block; heredocs with `<<'EOF'` pasted fine.
+- Content is personal and sensitive. Nothing leaves the machine except requests to the sites. They know the sites' terms probably forbid automated access and decide; keep requests polite
+  (a few per second per site, small parallelism). Do not try to defeat Cloudflare/bot checks or logins.
+- Disk is low (about 6 GB free): never store large image sets at full size; keep 224 px copies for the model.
 
-## Files in Play
+## 2. The system
 
-| File | Why It Matters |
-|------|---------------|
-| `lighttable_server.py` | Light table server: static files, pass-through to Postroom (:8503), `/d18/` proxy (+ Sec-Fetch-Site cross-site guard), `/lt/data18`, `/lt/frames/{start,status,list}` job queue (max 3, `FRAMES_MAX_JOBS`), `/lt/review`. Python 3.9: no `X | Y` types. Backups `.bak-d18/.bak-range/.bak-queue`. |
-| `remote_frames.py` | Frames-from-link job (own process per video, py3.9 stdlib). Range-cache proxy with keep-alive connections, 128 KB blocks, 4 MB head + 1 MB tail prefetch, 6 workers; talks to the model worker (falls back to a one-off `label_video.py`). Writes progress JSON (`--status`). |
-| `CLIP Training/scripts/model_worker.py` | Resident model process (TCP on 127.0.0.1, port in `logs/model-worker.port`), exits after 15 idle minutes, reloads model if `position_clf.pkl` mtime changes. |
-| `CLIP Training/scripts/label_video.py` | Makes drafts. Options I added: `--unsure`, `--refine`; prints `PROGRESS embed i/n` only when env `LABEL_PROGRESS` is set. |
-| `CLIP Training/scripts/classify_images.py` | Classifies any images: `--model b32` (live model + sub-types) or `l14`; CSV output. The data18 server shells out to it. |
-| `CLIP Training/scripts/review_server.py` | Model dashboard. Page markup/JS exists TWICE (~lines 1200 and 1691): edit both. Checkbox `refine`, promote guard for `Unsure`. |
-| `ui-lighttable/src/components/LinksView.tsx` | Frames panel (multi-link textarea, per-video progress cards, from/to). |
-| `ui-lighttable/src/components/Data18View.tsx`, `Chrome.tsx`, `App.tsx`, `types.ts`, `AnalysisView.tsx`, `index.css` | New page, nav entry (between Analysis and Links), `openReview` exported from AnalysisView. |
-| `~/data18-scraper/server.py` | Scraper server: batch run (`start_batch`, `run_batch`), `/api/batch/*`, `/api/position-groups`, `/api/position-images`, `/api/predict*`, `/api/creators`. Backups `.bak-*`. |
-| `~/data18-scraper/static/index.html` | Single-file UI (relative `BASE` paths so it works under `/d18/`). |
-| `~/data18-scraper/data/predictions.json` | `{"models": {"b32": {...}, "l14": {...}}}` keyed by image URL; no per-image model version. |
-| `CLIP Training/models/experimental/l14_clf.pkl`, `l14_nb_clf.pkl`, `embeddings/experiments/*.npz` | The L/14 experiment (kept, switched off). |
-| `pipeline/frames_5s/Alex Grey tnaflix 11489946` and `Vixen ... tnaflix 11613943 8m00-12m05` | First is my test data; the second is the USER's own run. Don't delete it. |
+| What | Port | Where | Notes |
+|---|---|---|---|
+| Postroom (FastAPI) | 8503 | `server.py`, `random_post.py`, `ui/` | **Original; leave `server.py` and `ui/` alone** unless asked. Python 3.9 (`/usr/bin/python3`): no `X \| None`, no `match` |
+| Light table (the UI the owner uses) | 8504 | `lighttable_server.py`, `ui-lighttable/` (React/Vite, `npx vite build`) | Proxies Postroom, `/d18/` = data18 page in an iframe, `/lt/*` job endpoints |
+| data18 scraper + dashboard | 8790 | `tools/data18/` (own `.venv`: requests, bs4, playwright; **never install torch there**) | Started on demand by the Light table. Runs the B/32 model as a subprocess in `CLIP Training/.venv` |
+| Links (collect + download) | 8791 | `tools/links/ui/` | Started by Postroom |
+| Video Finder | 8792 | `tools/video-finder/` (stdlib only, `start.sh`) | Finds a data18 scene on 21 other sites, scores matches. `sites.py`, `matcher.py`, `rules.json`, `data18.py` |
+| Stream test | 8793 | `tools/stream-test/` (`start.sh` uses `/opt/homebrew/bin/python3`; the macOS Python cannot reach porntrex's CDN) | "Watch & get frames": plays a result from its site and takes frames with ffmpeg |
+| Model dashboard | 8765 / 8777 | `CLIP Training/scripts/review_server.py` | Gitignored folder; markup duplicated ~L1200 and ~L1691: edit both |
 
-## What Has Been Tried (and Why It Failed)
+Start/stop: `./start_all.sh`, `NO_OPEN=1 ./start_lighttable.sh`, `./stop_all.sh`, `./stop_lighttable.sh`. After editing a Python tool, restart it: `kill $(lsof -ti tcp:PORT)` (the Light table
+restarts data18 / Video Finder / Stream test itself the next time they are needed). `static/index.html` files are re-read on every request.
+**Everything now lives in one repo, `~/instagram-bot-2/tools/{data18,links,video-finder,stream-test}`** (they used to be separate folders `~/data18-scraper`, `~/Links-3-embedded`,
+`~/video-finder`, `~/stream-test`; all paths were converted to be relative to the file). The two old GitHub repos should be archived by the owner.
 
-### "Unsure" label (`--unsure`, below 0.5 smoothed confidence)
-- Built opt-in, then wired into the dashboard's Re-run. User: "the results are very definitely better without unsure." Measured on the 16 benchmark videos: frames right 80.4% -> 74.3% (flagged frames were right 45% of the time, so ~6 points of correct guesses became Unsure). Switched off in `review_server.py` and `auto_analyse.py`; the CLI flag and the `Unsure` holding label remain (harmless; `position_index.py` ignores it).
+## 3. What was done in this session (newest last)
 
-### Refined sections (`--refine`: split at scene cuts, per-piece sub-type, plain parent on toss-ups)
-- CLIP similarity cannot see room changes (bed -> table scored 0.89, typical 0.92; ~10% of cuts were real boundaries). Switched to colour-histogram distance (threshold 0.35). Result on benchmark: sub-type right 85.7% -> 81.3%, wrong 14.3% -> 11.4%, plain parent 7.2%, 73 -> 97 sections. Not better. Kept as an off-by-default checkbox.
+1. **Merged the folders** into `tools/`; removed hard-coded `/Users/hugodyson/...` paths; untracked secrets/junk (`auth.json`, `session.json`, imgcache, .mp4, node_modules, logs, `.DS_Store`).
+   **`auth.json` (Instagram cookies) and data18's old `session.json` are still in git history: the owner should rotate those logins.**
+2. **Video Finder: 3 new sites** (playvids, pornwex, porneec) -> 21 sites. Card readers checked against saved pages.
+3. **Streaming ("Watch & get frames") extended from 4 sites to 19 of 21.** Not streamable: porngrey, shyfap (see P2). Details in `tools/stream-test/NOTES.md`. Code:
+   `server.py` `PAGE_SOURCES` + `parse_page_sources()` (tnaflix `<source>` list, porneec `contentUrl`, playvids/pornflip HLS), `kvs_real_url()` (pornwex `function/0/` addresses; port of yt-dlp's method,
+   verified identical on the saved page), `follow_embed()` (pornzog -> vxxx.com player), `FFMPEG_HEADERS` (HLS frames need the page as Referer, the browser does not), frame-folder names letters+digits only,
+   `page_duration()` reads `P0DT0H25M0S` / `T25M48S` / `data-duration`. The button list is `STREAM_SITES` in `tools/data18/static/index.html`; Video Finder's `sites.STREAMABLE` has the same 19.
+   Chrome 154/155 plays HLS natively, so no hls.js is needed.
+4. **Test and probe tools** (all in `tools/stream-test/`, all write a `*_results.txt/.json` next to themselves):
+   - `probe_sites.py`: one frame per site via ffmpeg (frames only, not browser playback).
+   - `play_test.py`: **default = drives the real Stream test pop-up in Chrome** for all sites (seek to 40%, play 3 s); `--direct` and `--media ADDRESS` are older modes. Needs the data18 venv (Playwright) and Google Chrome.
+   - `probe_frames.py`: which sites hand out frames for free (numbered previews, storyboard sheets, WebVTT, HLS I-frames). **Never run yet.**
+   - `capture_network.py URL`: opens Chrome, you click, it lists the hidden requests that returned picture addresses.
+   - `inspect_json.py URL --header ... --cookie ...`: sorts a JSON's picture addresses into different pictures vs sizes.
+   - `pornbox_probe.py ID`: checks a Pornbox scene as a frame source. **Pending run.**
+5. **UI redesign prompt** written (no UI built): `docs/UI_DESIGN_PROMPT.md` (see P6).
+6. Cloned ThePornDB's public `scrapers` repo to read it (not part of this repo).
 
-### L/14 and neighbouring-frame features
-- 10-fold video-grouped CV: B/32 67.8%, B/16 68.6%, L/14 73.2%, L/14 + neighbour frames 75.0%. User still chose B/32 ("been better in my opinion... despite your claims"). B/32 + neighbours was 70.3% (not adopted).
+## 4. Results so far (facts)
 
-### Naive parallel frame jobs
-- 3 simultaneous jobs: 66 s vs ~96 s sequential. Each loaded its own CLIP copy (model stage 23-30 s vs 12 s alone). Fixed with the resident model worker: 35 s for 3.
+**`play_test.py` (real pop-up, Chrome 155, 2 videos per site)**: 28 of 38 tests played and seeked.
+- Both videos play: porneec, freepornvideos, porntrex, xozilla, eporner, pornhub, porntop, youporn (slow start, about 15 s), xhamster, trendyporn, xxxbunker, youcrazyx, yrprno.
+- tnaflix: 1 of 2 (the other "STALLED": played 1.6 of 3 s; probably a slow moment, recheck). fpo.xxx: 1 of 2 (the other failed: the link from a saved search contained spaces, `urllib` refused it).
+- **playvids x2, pornflip x2 FAILED: a regression from the cloud session's own change.** `fetch_info` does `html.replace("&amp;", "&")`, then `parse_page_sources`/`_attr` runs `html.unescape` again, which turns `&sectime=` into `§ime`
+  (`&sect` is a legacy HTML entity). The `§` breaks the address (direct load fails, then the proxy dies with `UnicodeEncodeError`). They played fine in the earlier `--direct` test (which read the raw page).
+- pornwex x2 FAILED: page read and KVS address decoded, but playback failed ("Format error", proxy mode). Cause unknown (need the proxy's HTTP status or a live capture).
+- pornzog x2 FAILED: `follow_embed` found nothing; nobody has looked at vxxx.com's real player page.
+- The `ConnectionResetError` tracebacks printed during the run are harmless (Chrome closing idle keep-alive connections after each test). Optional tidy: override `handle_error` in Stream test's server.
 
-### Original frame grabber speed
-- 60 frames took 162 s (index 46 s, frames 99 s). Cause: 32 KB requests, a fresh TLS connection per request, ~7 requests/frame. Fix: keep-alive connections, bigger blocks, index prefetch, 6 workers -> 32 s. The user was misled by my earlier "480 frames in 6 s" (synthetic localhost test); never quote that as a real-site number.
+**Earlier `probe_sites.py` (ffmpeg frame test)**: worked for eporner, fpo.xxx, freepornvideos, pornhub, porntop, porntrex, tnaflix, trendyporn, xhamster, xozilla, youporn, xxxbunker (1/2), playvids and pornflip (HLS, 2/2).
 
-### My own regressions (do not repeat)
-- Queue edit to `lighttable_server.py` replaced a span and deleted `HOP = {...}` and two `mimetypes.add_type` lines -> `NameError: name 'HOP' is not defined`; every pass-through request (Postroom `/api/*`, `/d18/*`) failed from 22:37 to 23:32 on 2026-10-11 (427 logged errors). `/lt/frames/*` kept working so my tests passed. Fixed. After ANY edit to that file, check: `/`, `/api/config`, `/api/accounts`, `/api/analysis/videos`, `/api/links/status`, `/api/positions`, `/lt/data18`, `/d18/`, `/d18/api/status`, and the content-type of the built JS (`text/javascript`).
-- Folder-name race in `remote_frames.py` (two simultaneous jobs picked the same name -> `FileExistsError`). Fixed with atomic `os.makedirs` loop.
-- First L/14 embedding job crashed (a frame moved while the user re-saved a video) after ~15 min with no checkpoint; I also reported it as "running" without checking the log. Fixed with checkpointing; check logs before reporting status.
+**Pornbox (best frame source found so far)**: `GET https://pornbox.com/contents/<id>` with header `X-Requested-With: XMLHttpRequest` and cookie `agree18=1` works logged out (also used by ThePornDB's `scenes/networkPornbox.py`).
+For scene 127185 ("Casting and Creampie Skinny Supermodel Like Beauty Kyler Quinn - POV", 00:34:42, published 2022-10-19) the JSON has **`screenshots[]`: 248 different pictures, each with `small_thumbnail` and `xga_size`**
+(plain CDN addresses on `cdn77-image.gtflixtv.com`, no resize parameters, path signature valid until 2033-01-21), i.e. one every 8.4 s, evenly spaced. It also has title, studio, `models`, `male_models`, release date, runtime, niches/tags,
+price, `is_purchased`, `allow_guest_preview`, `video_preview`, `thumbnail.{list,small,large,mosaic}` (poster sizes), `player_poster`. `/contents/<id>/related` lists 52 related scenes; `/media/<n>/stream?label_id=` returns player/quality info.
+**Unknown:** whether both sizes download without a referrer, pixel size and KB per picture, how to search Pornbox by title/performer, and coverage of the owner's creators.
 
-### Test-harness gotchas
-- Shell is zsh on macOS: `set -- $var` does not word-split; no `timeout`; no `ls --time-style`. A scratch file named `six.py` shadowed the real module and broke pandas. `javascript_tool` times out at 45 s. Opening `/d18/` directly in the automation tab gives "Cross-site request refused" (intentional guard); test inside the Light table iframe (`document.querySelector("iframe.links-frame").contentDocument`). Two elements in the model dashboard share `id="restore"`; use `POST /api/restore` with JSON `{"name": ...}`.
+## 5. Open work, in priority order
 
-## Current Best Theory
+**P1. Pornbox as a frame source (the owner's current focus: "dense frames per video").**
+1. Run `pornbox_probe.py 127185` (referrer needed? sizes? KB?). Decide: keep `small_thumbnail` if >= 224 px high, else resize `xga_size` to 224 px (about 15 KB each, about 4 MB per scene).
+2. Find Pornbox's search endpoint: `capture_network.py "https://pornbox.com/store/search?q=kyler+quinn"` (or use the site's search box while it records). ThePornDB's list endpoint is `/niche/<id>/?skip=N&sort=recent&_=<ms>` and `/studio/<id>/`.
+3. Build a **"frame source" type in Video Finder** (second kind of site entry): search by title+performers, open `/contents/<id>`, score with the existing matcher (the JSON gives performers, studio, date, length, which data18 pages lacked), show "found 248 frames", button to pull them -> model -> labels. Then make it a stage of the chain (P4).
+4. Possibly other databases of the same kind; the owner may supply links. ThePornDB's own API (not the scrapers repo) may supply performers/studio/duration for matching (needs an account/key, unverified).
 
-The user's bottleneck is **volume of correct labels**, not model architecture. The most useful next work is anything that gets more labelled frames into training with less clicking: pre-label a chosen section of a link's video with a position, group data18 stills by position for fast review, and keep the B/32 pipeline fast. Expect the Doggystyle sub-types (Leg_Raised recall 2%, Standing 59% in held-out tests) to be unreliable until more are labelled, so keep confidence sliders visible.
+**P2. Fix the Stream test failures (ask the owner to confirm; diagnosed above).**
+- playvids/pornflip: stop double-unescaping (`_attr` should not unescape when the page text is already unescaped; or keep `&amp;` handling in one place). Add a test: the printed source address must contain `sectime=`, no `§`.
+- fpo.xxx spaces: percent-quote the page link in `fetch_info` (`urllib.parse.quote` with safe characters) before requesting.
+- pornwex: capture what the proxy gets (status/body); possibly the decoded get_file link needs a Referer or cookie; compare with the browser via `capture_network.py` on a pornwex watch page.
+- pornzog: save the real pornzog page and the vxxx.com embed page and read how the player gets its video.
+- shyfap/porngrey (parked): the plain request gets an 11-byte `text/html` answer from Cloudflare, even with cookies and Referer; the owner's Chrome gets the file. If you try again, use Chrome's "Copy as cURL" of the working request (cookie values removed) to see which header differs; if it is a Cloudflare clearance cookie, leave them.
+- Optional: quiet the `ConnectionResetError` noise; re-run `play_test.py` afterwards and update `NOTES.md` and the README.
 
-## Next Steps
+**P3. Video Finder judge (the owner said "we'll come back to that").** In their screenshot for "Finally Getting Our Fuck On" the finder found the right videos but scored them "no match" because:
+(a) `data18.fetch_scene()` re-reads the scene page live and its fixed patterns returned empty studio, performers and duration for that scene (verified: `data18.fetch_scene('1345966')` -> studio '', performers [], duration 0), although the scraper's saved results (`tools/data18/data/results/*.json`, `data18.from_link()`) have studio and performers;
+(b) without performers/length the maximum score is about 60 (title 35 + studio 10 + length bonus 10 + 5) while "confident" needs 70, so a perfect title match can never be confident;
+(c) `{Name} - Title` / `Studio - Title - XXX` titles lose points because the extra words count as "extras" (coverage 3/5 -> 21 of 35 points).
+Plan: start from the scraper's saved studio/performers/date; segment-aware title matching (split on ` - `, `|`, brackets, `#tags`, strip filler); cross-site length consensus (the same title+length on several sites is strong evidence); learn performer names from the first confident hit and re-query; a "paste a link" box (Google can't be scripted: the page already links to Google Videos) that reads any video page (title, length, streamable?) and scores it; weight distinctive words. The README measured that extra query *formats* found no extra matches on 7 videos, so the problem is the judge, not search recall.
 
-1. Ask the user to answer the `/distil` draft (yes / edit / drop). If yes: write feedback memories to `/Users/hugodyson/.claude/projects/-Users-hugodyson-instagram-bot-2/memory/` (one fact per file, update `MEMORY.md`), create `/Users/hugodyson/instagram-bot-2/docs/JUDGEMENT.md` (<60 lines), and update `postroom-ui.md`.
-2. Ask about the disk cleanup (list above). Check `df -h /` first; do not delete anything unconfirmed, and never touch the user's own `Vixen ... tnaflix 11613943 8m00-12m05` folder/draft.
-3. Offer the unbuilt features, in this order: (a) "label this whole section as <position>" on the frames-from-link panel (saves corrections so frames count as training data); (b) re-score selected frames with the current label excluded, as a ranked list in the model dashboard (the user's own idea: split frames 362-367 of a section and force the next-best label; for those frames Leg_Raised 0.46 vs Standing 0.39); (c) phone-sized layout for the Light table.
-4. If the user wants a big batch: run it from the Data18 Scraper page (creator -> "Run the model"), watch `~/data18-scraper/data/tmp_batch/` stays empty after chunks, expect ~8 images/s download cap; keep Mac awake.
-5. Restart commands: Light table `pkill -f lighttable_server.py; NO_OPEN=1 ./start_lighttable.sh`; data18 `kill $(lsof -ti tcp:8790)` then `curl http://127.0.0.1:8504/lt/data18` (starts it); model dashboard (from `CLIP Training`) `REVIEW_PORT=8777 nohup .venv/bin/python -u scripts/review_server.py >> ../logs/review.log 2>&1 &`. Rebuild UI: `cd ui-lighttable && npx vite build` (2 old `tsc` errors in `ui.tsx` lines 16-17 are pre-existing).
+**P4. Chains: the owner's most crucial UI requirement.** One click from a page starts a chain, shown as ONE job with stages, pausable/retryable: *scrape creator -> find each video (Video Finder, auto-select confident matches) -> pull segments (stream or download) / frames (P1) -> run the B/32 model -> update Positions (`position_index.json`: per-video creator + seconds per position, per-section creator/position/sub/start_s/end_s/confidence/source) -> cut segment clips into the creator's collection*.
+Today these are separate servers/jobs (data18 batch, autofind queue, `remote_frames.py` + model worker, `label_video.py`, `position_index.py`). Needs an orchestrator with one status model. **Unanswered question for the owner: fully automatic, or pause for approval at chosen points (e.g. after a video is matched)?**
 
-## Key Constraints
+**P5. Run `probe_frames.py`** (which of the 21 sites hand out frames for free; known: freepornvideos 100 numbered previews 390x220, tnaflix `data-mosaic` storyboard, fpo.xxx only 1-2, pornwex page shows only `1.jpg`, playvids rotating preview folder with odd numbering) and add the best sources to the frame step (spacing from `duration / count`).
 
-- Model = B/32 only. Do not run or push L/14 again unless asked. Unsure stays off in the dashboard.
-- Leave the original Postroom (`server.py`, `ui/`) untouched; changes go in `ui-lighttable`, `lighttable_server.py` or separate tools (stated in the transcript the session opened with). The data18 scraper stays its own server (own venv; never install torch into it); the model runs as a subprocess in `CLIP Training/.venv`.
-- Server runs Python 3.9 (`/usr/bin/python3`): no `X | None`, no `match`.
-- Put features in the dashboards with buttons/progress/results; the user does not want to hunt for files or run terminal commands ("I've had enough of having to spend 50% of my time opening and closing and looking for files in so many different places").
-- State how any speed/accuracy number was measured; verify which model/job is actually running from code/logs before claiming.
-- The user retrains `position_clf.pkl`/`subtype_clf.pkl` themselves from the dashboard (seen at 17:46, 18:43, 23:18 on 2026-10-11), so model files change mid-session.
-- Be polite to data18 and the video sites: ~8 images/s, 6 workers per video, 3 videos at once. Site terms probably forbid automated access; the user knows and decides.
-- Content is personal and sensitive; nothing leaves the machine except requests to those sites and the tailnet.
+**P6. UI redesign.** The owner will ask 4 different AIs for designs. `docs/UI_DESIGN_PROMPT.md` = base prompt (vision first, 3 tiers: hard rules / strong defaults / open; Stage 1 text-only skeleton, Stage 2 mockup; click-budget journeys; fake data) + 4 alternative "HOME" paragraphs (8 were discussed: 1 chains, 2 breakdown by creator, 3 review, 4 finding, 5 one creator, 6 watching, 7 sourcing, 8 teaching the model; recommended first round 1, 8, 2, 6).
+The owner wants real pages, not one screen: at least **Model training**, **Scrape & links**, **Positions (breakdown by creator, e.g. "creator 1: 200 videos, 400 Standing segments...")**, plus cross-page links everywhere and chains. Last round's two designs (`ui-html/a-departures`, `b-lighttable`) had different looks but the same skeleton (search box + grid + right panel). Nothing to implement until they pick a design.
 
-## Memory Pointers
+**P7. Housekeeping.** Rotate Instagram/data18 logins; archive the old GitHub repos; remaining items from the 12 Oct handoff (the `/distil` memory draft was never answered; disk cleanup of B/16 + L/14 weights, `CLIP Training/embeddings/experiments/`, stale L/14 entries in `tools/data18/data/predictions.json` was offered, never confirmed: **delete nothing without a yes**; never touch the folder `pipeline/frames_5s/Vixen ... 8m00-12m05`).
 
-- claude-mem search tools were not loaded this session (deferred), so no observation IDs are listed. Searches worth running: `Light table data18 scraper`, `remote_frames model_worker`, `Unsure refine benchmark`.
+## 6. Constraints that still hold (from the earlier handoff and this session)
+
+- Position model = **B/32 only** (`position_clf.pkl`, `subtype_clf.pkl`); do not run or push L/14 unless asked; "Unsure" stays off. The owner retrains from the dashboard, so model files change mid-session.
+- Leave the original Postroom (`server.py`, `ui/`) alone; changes go in `ui-lighttable`, `lighttable_server.py` or `tools/`. After ANY edit to `lighttable_server.py` check `/`, `/api/config`, `/api/accounts`, `/api/analysis/videos`, `/api/links/status`, `/api/positions`, `/lt/data18`, `/d18/`, `/d18/api/status`, and that the built JS is served as `text/javascript` (a past edit deleted `HOP = {...}` and broke every pass-through request).
+- Say how any speed/accuracy number was measured; verify which job/model is really running from code and logs before reporting status.
+- Stream test and Video Finder are standard-library Python by design (Stream test calls ffmpeg and yt-dlp as programs).
+
+## 7. Where things are
+
+- `docs/`: `CAPABILITIES.md` (inventory of today's app, organised by today's pages), `DESIGN_BRIEF*.md` (old briefs), `UI_DESIGN_PROMPT.md` (current), `HANDOFF_2026-10-12.md` (archived).
+- `tools/stream-test/NOTES.md`: findings per site (qualities, referrer rules, KVS notes, Pornbox, HLS), kept up to date; add to it when you learn something.
+- `tools/video-finder/README.md`: search strategy and scoring. `tools/data18/README.md`, `tools/data18/HANDOFF_run_model_on_photos.md`: scraper and model integration.
+- Run output stays local and out of git (`play_test_shots/`, `frames_probe_samples/`, `pornbox_samples/`, `tools/video-finder/data/jobs/`, `tools/data18/data/imgcache/`, logs).
+
+## 8. Suggested first message to the owner
+
+"I've read HANDOFF.md. I'm running `pornbox_probe.py` now. Two quick questions: should I fix the Stream test failures (playvids/pornflip are my regression), and for chains do you want fully automatic or pauses for your OK?"
