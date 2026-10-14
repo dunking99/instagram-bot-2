@@ -59,6 +59,7 @@ def group_images(urls_with_size):
     for url, nbytes in urls_with_size:
         p = urllib.parse.urlsplit(url.replace("\\/", "/"))
         folder, _, name = p.path.rpartition("/")
+        folder = "/".join("*" if (len(seg) > 24 or "==" in seg) else seg for seg in folder.split("/"))      # signed links carry a token in the path: treat those as one folder
         m = re.match(r"^(.*?)(\d+)(\D*)$", name.rsplit(".", 1)[0])
         shape = ("%sN%s" % (m.group(1), m.group(3)) if m else "(named)") + "." + (name.rsplit(".", 1)[-1] if "." in name else "?")
         g = groups.setdefault((p.netloc, folder, shape), dict(n=0, nums=[], bytes=0, sample=url))
