@@ -1,0 +1,106 @@
+{
+  "points": {
+    "title_phrase": 35,
+    "title_words": 25,
+    "performer_each": 20,
+    "performer_cap": 40,
+    "performer_missing": 0,
+    "studio": 10,
+    "full_video_label": 5,
+    "length_match": 15,
+    "length_bonus": 10
+  },
+  "length_match_within_minutes": 2.5,
+  "short_version_below": 0.7,
+  "short_version_penalty": -20,
+  "hide_short_versions": false,
+  "long_version_above": 1.5,
+  "long_version_penalty": -10,
+  "length_bonus_full_at_minutes": 40,
+  "min_minutes": 3,
+  "confident_score": 70,
+  "confident_lead": 15,
+  "possible_score": 40,
+  "override_min_performers": 2,
+  "no_title_evidence_cap": 30,
+  "search_ladder": [
+    {
+      "q": "{title_core} {performer}",
+      "pages": 1
+    },
+    {
+      "q": "{performer}",
+      "pages": 1,
+      "deep": 4
+    },
+    {
+      "q": "{title_core}",
+      "pages": 1
+    },
+    {
+      "q": "{performer} {studio} {title_core}",
+      "pages": 1
+    },
+    {
+      "q": "{performer} {title_core}",
+      "pages": 1,
+      "extra": true
+    },
+    {
+      "q": "{title} {performer}",
+      "pages": 1,
+      "extra": true
+    },
+    {
+      "q": "{title_key} {performer}",
+      "pages": 1,
+      "extra": true
+    },
+    {
+      "q": "{title_key}",
+      "pages": 1,
+      "extra": true
+    }
+  ],
+  "stopwords": [
+    "a",
+    "an",
+    "the",
+    "and",
+    "of",
+    "to",
+    "in",
+    "on",
+    "for",
+    "with",
+    "my",
+    "your",
+    "her",
+    "his",
+    "at",
+    "by",
+    "is",
+    "it",
+    "our"
+  ],
+  "stop_when_confident": 1,
+  "streamable_first": 1,
+  "deep_when_nothing": 1,
+  "deep_sites": [
+    "freepornvideos",
+    "fpo.xxx",
+    "xozilla",
+    "porntrex",
+    "tnaflix",
+    "pornzog",
+    "eporner"
+  ],
+  "max_requests_per_site": 14,
+  "extra_sites": [
+    "freepornvideos",
+    "fpo.xxx",
+    "xozilla",
+    "porntrex"
+  ],
+  "streamable_only": 0
+}

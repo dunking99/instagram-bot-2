@@ -696,7 +696,7 @@ def favourites_list():
     return out
 
 
-FINDER_DIR = Path.home() / "video-finder"
+FINDER_DIR = Path(__file__).resolve().parents[1] / "video-finder"
 FINDER_URL = "http://127.0.0.1:8792"
 
 
@@ -720,7 +720,7 @@ def ensure_finder():
     return None
 
 
-STREAM_DIR = Path.home() / "stream-test"
+STREAM_DIR = Path(__file__).resolve().parents[1] / "stream-test"
 STREAM_URL = "http://127.0.0.1:8793"
 
 

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Stream test</title>
+<style>
+  :root { --bg:#14120f; --panel:#1d1a16; --line:#33302a; --text:#ece6da; --dim:#9a9283; --accent:#e8743b; --ok:#7fbf7f; --bad:#e86a5a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 -apple-system, system-ui, sans-serif; }
+  main { max-width:1100px; margin:0 auto; padding:20px 16px 60px; }
+  h1 { font-size:18px; margin:0 0 4px; } .sub { color:var(--dim); margin:0 0 16px; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  input[type=text] { flex:1; min-width:260px; background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:8px 10px; font:inherit; }
+  input[type=number] { width:72px; }
+  select, input[type=number] { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:7px 8px; font:inherit; }
+  button { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:7px 12px; font:inherit; cursor:pointer; }
+  button:hover { border-color:var(--accent); } button.go { background:var(--accent); border-color:var(--accent); color:#1a1209; font-weight:600; }
+  video { width:100%; max-height:62vh; background:#000; border-radius:8px; display:block; }
+  .info { color:var(--dim); margin:8px 0; } .info b { color:var(--text); }
+  .grid { display:grid; grid-template-columns: 1fr 340px; gap:16px; } @media (max-width:860px){ .grid { grid-template-columns:1fr; } }
+  #log { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 10px; height:62vh; overflow:auto; font:12px/1.5 ui-monospace, Menlo, monospace; }
+  #log div.err { color:var(--bad); } #log div.ok { color:var(--ok); } #log span { color:var(--dim); }
+  #strip { display:grid; grid-template-columns:repeat(auto-fill, minmax(96px, 1fr)); gap:6px; margin-top:8px; }
+  #strip figure { margin:0; cursor:pointer; position:relative; } #strip img { width:100%; display:block; border-radius:4px; border:2px solid transparent; background:#000; }
+  #strip figure:hover img, #strip figure.on img { border-color:var(--accent); }
+  #strip figcaption { position:absolute; left:3px; bottom:3px; font-size:11px; background:rgba(0,0,0,.7); padding:0 4px; border-radius:3px; }
+  .bar { height:6px; background:var(--panel); border:1px solid var(--line); border-radius:4px; overflow:hidden; flex:1; min-width:120px; } .bar i { display:block; height:100%; width:0; background:var(--accent); transition:width .2s; }
+  #sheet { display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:6px; margin-top:8px; }
+  #sheet figure { margin:0; cursor:pointer; position:relative; } #sheet img { width:100%; display:block; border-radius:4px; background:#000; border:2px solid transparent; }
+  #sheet figure:hover img { border-color:var(--accent); } #sheet figcaption { position:absolute; left:3px; bottom:3px; font-size:11px; background:rgba(0,0,0,.7); padding:0 4px; border-radius:3px; }
+  body.embed h1, body.embed .sub { display:none; } body.embed main { padding-top:8px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--dim); margin:18px 0 4px; font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Stream test</h1>
+  <p class="sub">Plays a video straight from the site it is on (13 sites). Nothing is saved to disk. Nothing is saved to disk.</p>
+
+  <div class="row">
+    <input type="text" id="v" placeholder="Video page link, or a freepornvideos ID" value="93745944">
+    <button class="go" id="load">Load</button>
+  </div>
+  <div class="row" id="tries"></div>
+  <div class="row">
+    <label>Quality <select id="q"></select></label>
+    <label>Mode <select id="mode">
+      <option value="direct">Direct (browser reads the site's link)</option>
+      <option value="proxy">Via local proxy</option>
+    </select></label>
+  </div>
+  <div class="info" id="info">Nothing loaded.</div>
+
+  <div class="grid">
+    <div>
+      <video id="vid" controls preload="metadata" playsinline></video>
+      <div class="row" style="margin-top:10px">
+        <button data-d="-30">−30 s</button><button data-d="30">+30 s</button><button data-d="300">+5 min</button>
+        <span style="color:var(--dim)">Jump to</span>
+        <input type="number" id="jm" min="0" value="10"> min
+        <input type="number" id="js" min="0" max="59" value="0"> s
+        <button id="jump">Go</button>
+        <span id="pos" style="color:var(--dim);margin-left:auto"></span>
+      </div>
+      <h2>Get frames <span style="text-transform:none;letter-spacing:0">(real frames read from the stream; nothing is downloaded)</span></h2>
+      <div class="row">
+        Every <select id="fe"><option>5</option><option selected>10</option><option>15</option><option>30</option><option>60</option></select> s
+        from <input type="number" id="ff" min="0" step="0.5" value="0" title="minutes"> to <input type="number" id="ft" min="0" step="0.5" placeholder="end" title="minutes"> min
+        <button id="fnow" title="Start from the player's position">From here</button>
+        <select id="fh"><option>224</option><option>360</option><option>480</option></select> px high
+        <button class="go" id="fgo">Get frames</button><button id="fstop" style="display:none">Stop</button>
+        <span id="fcount" style="color:var(--dim)"></span>
+      </div>
+      <div class="row" id="fprog" style="display:none"><div class="bar"><i id="fbar"></i></div><span id="ftxt" style="color:var(--dim)"></span><button id="fdel">Delete these frames</button></div>
+      <div id="sheet"></div>
+
+      <h2>Preview frames <span style="text-transform:none;letter-spacing:0">(click to jump; time is an even-spacing guess)</span></h2>
+      <div id="strip"></div>
+    </div>
+    <div>
+      <h2 style="margin-top:0">What the player is doing</h2>
+      <div id="log"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const vid = $('#vid'), logEl = $('#log');
+let info = null, t0 = performance.now(), seekT = null;
+
+function log(msg, cls) {
+  const d = document.createElement('div'); if (cls) d.className = cls;
+  const s = ((performance.now() - t0) / 1000).toFixed(1).padStart(6);
+  d.innerHTML = '<span>' + s + 's</span> ' + msg;
+  logEl.appendChild(d); logEl.scrollTop = logEl.scrollHeight;
+}
+const fmt = s => { s = Math.round(s); const h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60;
+  return (h ? h + ':' + String(m).padStart(2,'0') : m) + ':' + String(x).padStart(2,'0'); };
+function buffered() { const b = vid.buffered, r = []; for (let i = 0; i < b.length; i++) r.push(fmt(b.start(i)) + '–' + fmt(b.end(i))); return r.join(', ') || 'none'; }
+
+function srcUrl() {
+  const o = info.sources[Number($('#q').value)], u = o.url;
+  if (o.needs_proxy && $('#mode').value === 'direct') { $('#mode').value = 'proxy'; log('This site only serves the video with its own page as the referrer, so it plays through the local proxy.'); }
+  return $('#mode').value === 'proxy' ? '/proxy?u=' + encodeURIComponent(u) : u;
+}
+function setSource(keepTime) {
+  if (!keepTime) autoProxied = false;
+  const t = keepTime ? vid.currentTime : 0, was = !vid.paused;
+  t0 = performance.now(); logEl.innerHTML = '';
+  log('Source: ' + info.sources[Number($('#q').value)].label + ', ' + $('#mode').value + ' mode');
+  vid.src = srcUrl();
+  vid.addEventListener('loadedmetadata', () => { if (t) vid.currentTime = t; if (was) vid.play(); }, { once: true });
+}
+
+async function load() {
+  const v = $('#v').value.trim(); if (!v) return;
+  $('#info').textContent = 'Fetching the page…';
+  const r = await fetch('/api/info?v=' + encodeURIComponent(v)); const j = await r.json();
+  if (j.error) { $('#info').textContent = 'Error: ' + j.error; return; }
+  info = j;
+  if (!j.sources.length) { $('#info').textContent = 'No video links found on that page (' + j.site + ').'; return; }
+  $('#q').innerHTML = j.sources.map((o, i) => '<option value="' + i + '">' + o.label + '</option>').join('');
+  const pick = j.sources.findIndex(o => o.quality && o.quality >= 480); $('#q').value = pick >= 0 ? pick : (j.sources.some(o => o.quality) ? 0 : Math.floor((j.sources.length - 1) / 2));
+  $('#info').innerHTML = '<b>' + j.title + '</b> <span style="color:var(--accent)">' + j.site + '</span><br>Page says ' + (j.duration ? fmt(j.duration) : 'no length') + ' long · qualities ' + j.sources.map(o => o.label).join(', ') + ' · ' + (j.frames ? j.frames + ' preview frames' : 'no numbered preview frames');
+  const strip = $('#strip'); strip.innerHTML = '';
+  for (let i = 1; i <= j.frames; i++) {
+    const f = document.createElement('figure'), t = j.duration ? (i - 0.5) * j.duration / j.frames : 0;
+    f.innerHTML = '<img loading="lazy" src="' + j.frame_base + i + '.jpg"><figcaption>≈' + fmt(t) + '</figcaption>';
+    f.onclick = () => { seekTo(t); document.querySelectorAll('#strip .on').forEach(x => x.classList.remove('on')); f.classList.add('on'); };
+    strip.appendChild(f);
+  }
+  setSource(false);
+}
+function seekTo(t) { if (!info) return; vid.currentTime = Math.max(0, Math.min(t, (vid.duration || info.duration || 1e9) - 1)); vid.play().catch(() => {}); }
+
+['loadstart','loadedmetadata','canplay','playing','pause','ended','stalled','suspend'].forEach(e => vid.addEventListener(e, () => {
+  if (e === 'loadedmetadata') log('Metadata: ' + fmt(vid.duration) + ', ' + vid.videoWidth + '×' + vid.videoHeight +
+     (info && info.duration && Math.abs(vid.duration - info.duration) > 3 ? ' (page said ' + info.duration + ' s)' : ' (matches page)'), 'ok');
+  else if (e === 'suspend') log('Browser paused loading (has enough). Buffered: ' + buffered());
+  else log(e);
+}));
+vid.addEventListener('waiting', () => log('Waiting for data…', 'err'));
+vid.addEventListener('seeking', () => { seekT = performance.now(); log('Seeking to ' + fmt(vid.currentTime)); });
+vid.addEventListener('seeked', () => { log('Seeked in ' + (seekT ? Math.round(performance.now() - seekT) + ' ms' : '?') + '. Buffered: ' + buffered(), 'ok'); });
+vid.addEventListener('error', () => {
+  log('ERROR code ' + (vid.error && vid.error.code) + ': ' + (vid.error && vid.error.message || 'unknown'), 'err');
+  if (info && $('#mode').value === 'direct' && !autoProxied) { autoProxied = true; log('Direct playback failed; trying through the local proxy…'); $('#mode').value = 'proxy'; setSource(true); }
+});
+let autoProxied = false;
+vid.addEventListener('timeupdate', () => { $('#pos').textContent = fmt(vid.currentTime) + ' / ' + fmt(vid.duration || 0); });
+
+const TRIES = [['freepornvideos', '93745944'], ['fpo.xxx', 'https://www.fpo.xxx/video/1313302/stepdaughter-l-ves-it-rough-jun-per-ren/'],
+  ['porntrex', 'https://www.porntrex.com/video/3357505/lucy-mochi-ix'], ['xozilla', 'https://www.xozilla.com/videos/747219/lia-lin-s-steamy-asian-encounter-in-public/'],
+  ["tnaflix", "https://www.tnaflix.com/amateur-porn/Sav-Shawz-%E2%80%93-POV-BGG-Threesome-With-Madiiitay/video25179852"],
+  ["xhamster", "https://xhamster.com/videos/the-inappropriate-gift-xhbkvJ6"],
+  ["youporn", "https://www.youporn.com/watch/191705511/"],
+  ["xxxbunker", "https://xxxbunker.com/2130776"],
+  ["eporner", "https://www.eporner.com/video-qL0KLOufcay/n-little-babes-cum-spills-better/"],
+  ["pornhub", "https://www.pornhub.com/view_video.php?viewkey=6892855d9e556"],
+  ["trendyporn", "https://www.trendyporn.com/video/onlyfans-sav-shawz-155687.html"],
+  ["youcrazyx", "https://www.youcrazyx.com/video/onlyfans-sav-shawz-111384.html"],
+  ["yrprno", "https://www.yrprno.com/video/onlyfans-sav-shawz-113842.html"]];
+TRIES.forEach(([n, v]) => { const b = document.createElement('button'); b.textContent = 'Try ' + n; b.onclick = () => { $('#v').value = v; load(); }; $('#tries').appendChild(b); });
+$('#load').onclick = load;
+$('#v').addEventListener('keydown', e => { if (e.key === 'Enter') load(); });
+$('#q').onchange = () => info && setSource(true);
+$('#mode').onchange = () => info && setSource(true);
+document.querySelectorAll('button[data-d]').forEach(b => b.onclick = () => seekTo(vid.currentTime + Number(b.dataset.d)));
+$('#jump').onclick = () => seekTo(Number($('#jm').value) * 60 + Number($('#js').value));
+
+// ---- Get frames -------------------------------------------------------------
+let fjob = null, ftimer = null;
+function fparams() {
+  const every = Number($('#fe').value), from = Number($('#ff').value || 0) * 60, to = Number($('#ft').value || 0) * 60;
+  const dur = vid.duration || (info && info.duration) || 0;
+  return { every, from, to: to || dur, dur };
+}
+function fupdateCount() {
+  const p = fparams(); if (!info || !p.dur) { $('#fcount').textContent = ''; return; }
+  const n = Math.max(0, Math.floor((Math.min(p.to, p.dur - 1) - p.from) / p.every) + 1);
+  $('#fcount').textContent = '≈ ' + Math.min(n, 600) + ' frames' + (n > 600 ? ' (capped at 600)' : '');
+}
+['fe', 'ff', 'ft'].forEach(id => $('#' + id).addEventListener('input', fupdateCount));
+vid.addEventListener('loadedmetadata', fupdateCount);
+$('#fnow').onclick = () => { $('#ff').value = (vid.currentTime / 60).toFixed(1); fupdateCount(); };
+async function fpoll() {
+  const r = await fetch('/api/frames/status?job=' + fjob); const j = await r.json();
+  if (j.error) { $('#ftxt').textContent = j.error; clearInterval(ftimer); return; }
+  const done = j.done + j.failed; $('#fbar').style.width = (100 * done / j.total) + '%';
+  const why = j.last_error && j.failed ? ' · last error: ' + j.last_error : '';
+  $('#ftxt').textContent = j.state === 'running' ? done + ' / ' + j.total + ' frames · ' + j.elapsed + ' s'
+    : j.state + ': ' + j.done + ' frames' + (j.failed ? ', ' + j.failed + ' failed' + why : '') + ' in ' + j.elapsed + ' s (' + (j.done ? (j.elapsed / j.done).toFixed(2) : '–') + ' s per frame)';
+  const have = new Set([...$('#sheet').children].map(f => Number(f.dataset.t)));
+  j.files.filter(t => !have.has(t)).forEach(t => {
+    const f = document.createElement('figure'); f.dataset.t = t;
+    f.innerHTML = '<img src="/frames/' + fjob + '/f_' + String(t).padStart(5, '0') + '.jpg"><figcaption>' + fmt(t) + '</figcaption>';
+    f.onclick = () => seekTo(t); $('#sheet').appendChild(f);
+  });
+  [...$('#sheet').children].sort((a, b) => a.dataset.t - b.dataset.t).forEach(f => $('#sheet').appendChild(f));
+  if (j.state !== 'running') { clearInterval(ftimer); $('#fgo').style.display = ''; $('#fstop').style.display = 'none'; }
+}
+$('#fgo').onclick = async () => {
+  if (!info) return;
+  const p = fparams();
+  const qs = new URLSearchParams({ v: info.page, q: $('#q').value, every: p.every, start: p.from, end: p.to < p.dur ? p.to : 0, dur: p.dur, height: $('#fh').value });
+  $('#sheet').innerHTML = ''; $('#fprog').style.display = 'flex'; $('#ftxt').textContent = 'Starting…'; $('#fbar').style.width = '0';
+  const r = await fetch('/api/frames/start?' + qs); const j = await r.json();
+  if (j.error) { $('#ftxt').textContent = j.error; return; }
+  fjob = j.job; $('#fgo').style.display = 'none'; $('#fstop').style.display = '';
+  clearInterval(ftimer); ftimer = setInterval(fpoll, 700);
+};
+$('#fstop').onclick = () => fetch('/api/frames/cancel?job=' + fjob);
+$('#fdel').onclick = async () => { if (!fjob) return; await fetch('/api/frames/delete?job=' + fjob); $('#sheet').innerHTML = ''; $('#fprog').style.display = 'none'; fjob = null; };
+
+// ---- ?v=<page link>&t=<seconds>&embed=1 : open straight into a video (used by the data18 page) ----
+(() => {
+  const q = new URLSearchParams(location.search);
+  if (q.get('embed')) document.body.classList.add('embed');
+  if (q.get('v')) { $('#v').value = q.get('v'); load().then(() => { if (q.get('t')) vid.addEventListener('loadedmetadata', () => { vid.currentTime = Number(q.get('t')); }, { once: true }); }); }
+})();
+</script>
+</body>
+</html>

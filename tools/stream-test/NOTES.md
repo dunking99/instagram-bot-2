@@ -1,0 +1,66 @@
+# Streaming without downloading: site findings
+
+Tested 2026-10-13 with curl, then in Chrome for all four sites (see 'Chrome results' below). One video per site, so treat as a first read.
+All four sites run the same video software (KVS): the page lists links of the form `/get_file/<server>/<hash>/<id rounded to 000>/<id>/<file>.mp4/`.
+Only the hash is unguessable, and it is in the page. One page request gives all qualities. The page's video ID is enough to open it (slug ignored on freepornvideos).
+Each link redirects (1-2 hops) to a CDN address that is signed (`key=`, `end=` expiry, `ip=` of the asker). Never store the final address; fetch a fresh page each time.
+
+## freepornvideos.xxx: PROVEN in Chrome
+- Qualities: 480p, 720p. Page: exact length (`duration` meta, 1614 s in the test), 100 preview frames at `img.freepornvideos.xxx/<dir>/<id>/player/1..100.jpg` (~10 KB, 390x220; even spacing NOT verified).
+- Range requests: 206. CDN sends `access-control-allow-origin: *`. Works with no referrer, the site's referrer or a localhost referrer.
+- Chrome: Direct mode plays and seeks (about 0.2 s). Proxy mode works but seeks slowly (about 7 s, cause unknown).
+
+## fpo.xxx: streams, but blocks a localhost referrer
+- Link is in the player settings (`video_url` = low quality, `video_alt_url` = `_720p`), each ending `?v-acctoken=...`. Other get_file links on the page are other videos' `_preview.mp4`: ignore.
+- Length from `duration` meta (1648 s in the test). No numbered preview frames (only `preview.jpg`; `320x180/1.jpg` and `2.jpg` exist, `10.jpg` does not).
+- Range requests: 206 with no referrer, the site's referrer, or cookies. **403 when the Referer is http://127.0.0.1:8793/**. So Direct mode would need the page to send no referrer (`<meta name="referrer" content="no-referrer">`), or use the proxy.
+- Not tested: token lifetime, Chrome playback.
+
+## porntrex.com: streams at 4 qualities, blocks a localhost referrer
+- Qualities: 480p (260 MB), 720p HD (458 MB), 1080p FHD (877 MB), 2160p 4K (2.86 GB) for the same video. Settings keys `video_url`, `video_alt_url`, `video_alt_url2`, `video_alt_url3`; files `<id>.mp4`, `_720p`, `_1080p`, `_2160p`.
+- Range requests: 206 with no referrer (CDN `pcdn.cdntrex.com`, `access-control-allow-origin: *`). **410 with a localhost referrer.**
+- Length: not found with simple patterns. Page is 485 KB.
+- Not tested: Chrome playback, preview frames, token lifetime.
+
+## xozilla.com: streams at 2 qualities, blocks a localhost referrer
+- Qualities: 540p (165 MB), 720p (259 MB). Files `<id>.mp4` and `<id>hd.mp4`. Length in settings: `duration: '736'` (12:16).
+- Range requests: 206 with no referrer (CDN `ahcdn.com`, same host family as freepornvideos, address is plain http). **410 with a localhost referrer.** No CORS header seen on the final host (playback does not need it).
+- Behind Cloudflare, but the page loaded normally for a plain request.
+- Not tested: Chrome playback, preview frames.
+
+## Pattern so far
+- Sites that reject a localhost referrer: fpo.xxx, porntrex, xozilla. freepornvideos accepts it.
+- Plan when building readers: send no referrer in the page, and keep the proxy as a fallback. A reader per site only needs: where the qualities are, where the length is, how to get preview frames (if any).
+- Other sites from the Video Finder list that showed a `video_url:` block on one page: porngrey, shyfap, pornzog, porntop. xhamster uses HLS (`.m3u8`). youporn/eporner/tnaflix/pornflip/xxxbunker unclear. All untested for streaming.
+
+## Not a source
+- fapello.com: Cloudflare challenge ("Just a moment...", 403). Not scraped. Not worked around.
+
+## Chrome results (2026-10-13, all four added to the test dashboard)
+Mode Direct needs `<meta name="referrer" content="no-referrer">` (added to index.html) because fpo.xxx, porntrex and xozilla refuse a localhost referrer.
+Seek to 40% of the video, then play 3 s (muted); one video per site:
+
+| Site | Quality tested | Size / length | Direct: seek, played | Proxy: seek, played |
+|---|---|---|---|---|
+| freepornvideos | 480p | 853x480, 1614 s | 0.3 s, 2.96 s | 4.7 s, 2.96 s |
+| fpo.xxx | LQ | 854x480, 1648 s | 1.2 s, 2.96 s | 2.1 s, 2.96 s |
+| porntrex | 480p | 854x480, 2244 s (length not on the page) | 1.4 s, 2.98 s | 4.8 s, 2.96 s |
+| xozilla | 540p | 960x540, 736 s | 0.9 s, 2.71 s | 2.3 s, 1.1 s (slow start) |
+
+- Page lengths matched the file for freepornvideos (1614/1615), fpo.xxx (1648) and xozilla (736). Porntrex has no usable length in the page; the file says 2244 s.
+- fpo.xxx names its qualities "LQ"/"HQ" (no pixel height); the file played was 854x480.
+- Gotcha: `/usr/bin/python3` (3.9, LibreSSL 2.8) cannot reach porntrex's CDN (`TLSV1_ALERT_PROTOCOL_VERSION`). The server runs on `/opt/homebrew/bin/python3` (OpenSSL 3); `./start.sh` does this.
+- Gotcha: porntrex has an unrelated `duration: 5` in its page; durations under 30 s are ignored.
+- Not tested: token/link lifetime, other qualities (720p/1080p/4K) in a browser, long-run seeking, more than one video per site.
+
+## Get frames (added 2026-10-13)
+- Stream test page: "Get frames" panel (every 5/10/15/30/60 s, from/to minutes, "From here", height 224/360/480). Saves to `tools/stream-test/frames/<job>/f_<seconds>.jpg`; "Delete these frames" removes the folder. Max 600 per job.
+- How: resolve the site's redirects once, then one ffmpeg call per frame (`-ss T -i <final url>`), 6 in parallel (3 for fpo.xxx), 3 tries each. Resolving once cut a frame from 5.2 s to 2.0 s; parallel brings it to 0.5-1 s.
+- Measured in Chrome, 19 frames each, 10 s spacing: freepornvideos 0.79 s/frame, xozilla 0.56, porntrex 0.97, fpo.xxx 2.24 (slow; refused some requests at 6 parallel, 1 of 21 failed once before retries/limit).
+- `?v=<page link>&t=<seconds>&embed=1` opens the page straight into a video (used by the data18 page).
+
+## Data18 scraper integration (added 2026-10-13)
+- `tools/data18/server.py`: `/api/stream/ensure` starts `tools/stream-test/start.sh` if port 8793 is down and returns its address.
+- `tools/data18/static/index.html`: when the chosen Find-on-sites result is on freepornvideos, fpo.xxx, porntrex or xozilla, the result bar shows "Watch & get frames", which opens Stream test in a pop-up iframe (`#sm`) at the minute of the frame it was opened from (still k = minute k-1). Seen working inside the Light table's Data18 page. Light table code was not changed.
+- Backups: `server.py.bak-stream`, `static/index.html.bak-stream` (data18-scraper); `server.py.bak-noframes`, `index.html.bak-noframes` (stream-test).
+- Limits: the iframe is http://127.0.0.1:8793, so this works on the Mac only (not from the tailnet/phone). Video Finder only searches freepornvideos, fpo.xxx and xozilla of the four (no porntrex), so porntrex results can't be chosen there yet.

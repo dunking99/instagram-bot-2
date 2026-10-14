@@ -15,3 +15,8 @@ tools/data18/data/imgcache/
 __pycache__/
 node_modules/
 logs/
+tools/video-finder/logs/
+tools/stream-test/frames/
+tools/stream-test/server.log
+tools/video-finder/data/jobs/
+.DS_Store

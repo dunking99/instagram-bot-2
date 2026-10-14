@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Finder</title>
+<style>
+:root { --bg:#f6f6f4; --panel:#fff; --ink:#1c1c1a; --mute:#6b6b66; --line:#dcdcd6; --accent:#2f5d8a; --good:#2a7a43; --warn:#a56a00; --bad:#a33a3a; --chip:#eceae3; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161614; --panel:#201f1d; --ink:#ecebe6; --mute:#9b9a93; --line:#37352f; --accent:#7fb0e0; --good:#6cc08a; --warn:#e0b24f; --bad:#e08a8a; --chip:#2c2a26; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+header { padding:16px 20px 0; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+h1 { font-size:18px; margin:0; font-weight:650; }
+header .sub { color:var(--mute); font-size:12.5px; }
+main { padding:12px 20px 40px; max-width:1500px; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+input[type=text], textarea { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:8px 10px; font:inherit; }
+input[type=text] { flex:1 1 320px; min-width:0; }
+button { background:var(--accent); color:#fff; border:0; border-radius:6px; padding:8px 14px; font:inherit; cursor:pointer; }
+button.ghost { background:var(--chip); color:var(--ink); }
+button:disabled { opacity:.5; cursor:default; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-top:12px; }
+.fields { display:grid; grid-template-columns:2fr 2fr 1fr 0.8fr auto; gap:8px; align-items:end; }
+.fields label { display:block; font-size:11.5px; color:var(--mute); margin-bottom:2px; }
+.fields input { width:100%; }
+.meta { color:var(--mute); font-size:12.5px; margin-top:8px; }
+.error { color:var(--bad); margin-top:8px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:12px; margin-top:12px; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
+.card.off { opacity:.55; }
+.card h2 { font-size:13px; margin:0; padding:9px 12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); }
+.chip { font-size:11.5px; padding:2px 8px; border-radius:99px; background:var(--chip); color:var(--mute); }
+.chip.confident { background:color-mix(in srgb,var(--good) 18%,transparent); color:var(--good); }
+.chip.possible { background:color-mix(in srgb,var(--warn) 18%,transparent); color:var(--warn); }
+.chip.none, .chip.error { background:color-mix(in srgb,var(--bad) 16%,transparent); color:var(--bad); }
+.thumb { aspect-ratio:16/9; background:var(--chip); display:block; width:100%; object-fit:cover; }
+.body { padding:10px 12px; }
+.title a { color:var(--ink); font-weight:600; text-decoration:none; }
+.title a:hover { color:var(--accent); text-decoration:underline; }
+.small { font-size:12px; color:var(--mute); }
+.small a { color:var(--accent); }
+ul.why { margin:6px 0 0; padding-left:16px; font-size:12px; color:var(--mute); }
+details { margin-top:8px; font-size:12.5px; }
+summary { cursor:pointer; color:var(--accent); }
+.other { display:flex; gap:8px; padding:6px 0; border-top:1px solid var(--line); }
+.other img { width:72px; height:41px; object-fit:cover; background:var(--chip); border-radius:3px; flex:none; }
+.other .t { min-width:0; }
+.other .t a { color:var(--ink); text-decoration:none; overflow-wrap:anywhere; }
+textarea { width:100%; min-height:300px; font:12px/1.4 ui-monospace,Menlo,monospace; }
+.hint { color:var(--mute); font-size:12.5px; }
+@media (max-width:760px) { .fields { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Video Finder</h1>
+  <span class="sub">Finds a data18 scene on the other sites. Fixed rules, no AI. Every score shows its reasons.</span>
+</header>
+<main>
+  <div class="row">
+    <input type="text" id="input" placeholder="data18 scene link (e.g. https://www.data18.com/scenes/1254829) or: Title - Performer" autofocus>
+    <button id="go">Find</button>
+  </div>
+  <div class="error" id="err"></div>
+
+  <div class="panel" id="wantPanel" hidden>
+    <div class="fields">
+      <div><label>Title</label><input type="text" id="fTitle"></div>
+      <div><label>Performers (comma-separated)</label><input type="text" id="fPerf"></div>
+      <div><label>Studio</label><input type="text" id="fStudio"></div>
+      <div><label>Length (min or min:sec)</label><input type="text" id="fLen" placeholder="unknown"></div>
+      <button id="again" class="ghost">Search again with these</button>
+      <button id="againAll" class="ghost" title="Also search the sites that are skipped when a streamable site already has a confident match">Search all sites</button>
+      <span id="glinks"></span>
+    </div>
+    <div class="meta" id="wantMeta"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="panel">
+    <div class="row" style="justify-content:space-between">
+      <strong>Scoring rules</strong>
+      <span class="row"><button class="ghost" id="rulesToggle">Show / edit</button></span>
+    </div>
+    <div id="rulesBox" hidden>
+      <p class="hint">These numbers decide every score. Change them, press <b>Save &amp; re-score</b>, and the results below re-rank at once (no new searching). The search order under <code>search_ladder</code> only applies to new searches.</p>
+      <textarea id="rules" spellcheck="false"></textarea>
+      <div class="row" style="margin-top:8px"><button id="saveRules">Save &amp; re-score</button><span class="error" id="rulesErr"></span></div>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let jobId = null, timer = null;
+try { jobId = localStorage.getItem("finder.job"); } catch (e) {}
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dur = s => { if (s == null) return "length unknown"; const h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60; return h ? `${h}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}` : `${m}:${String(x).padStart(2,"0")}`; };
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)});
+  const j = await r.json().catch(() => ({error:"Bad answer from the server."}));
+  if (!r.ok) throw new Error(j.error || ("HTTP " + r.status));
+  return j;
+}
+
+async function start(body) {
+  $("err").textContent = ""; $("go").disabled = true; $("again").disabled = true;
+  try {
+    const job = await api("/api/search", body);
+    jobId = job.id; try { localStorage.setItem("finder.job", jobId); } catch (e) {}
+    render(job); poll();
+  } catch (e) { $("err").textContent = e.message; }
+  $("go").disabled = false; $("again").disabled = false;
+}
+$("go").onclick = () => start({input: $("input").value});
+$("input").addEventListener("keydown", e => { if (e.key === "Enter") $("go").click(); });
+$("againAll").onclick = () => start({all_sites: true, title: $("fTitle").value, performers: $("fPerf").value, studio: $("fStudio").value, duration: $("fLen").value, scene_id: lastWant.scene_id, creator: lastWant.creator, date: lastWant.date});
+$("again").onclick = () => start({title: $("fTitle").value, performers: $("fPerf").value, studio: $("fStudio").value, duration: $("fLen").value, scene_id: lastWant.scene_id, creator: lastWant.creator, date: lastWant.date});
+
+let lastWant = {};
+function poll() {
+  clearTimeout(timer);
+  timer = setTimeout(async () => {
+    try { const job = await api("/api/job?id=" + encodeURIComponent(jobId)); render(job); if (job.state === "running") poll(); }
+    catch (e) { $("err").textContent = e.message; }
+  }, 1500);
+}
+
+function card(s, d) {
+  const best = d.ranked[0], rest = d.ranked.slice(1);
+  let h = `<div class="card"><h2><span>${esc(s)}</span>`;
+  if (d.skipped) h += `<span class="chip">not searched</span>`;
+  else if (d.state === "waiting" || d.state === "searching") h += `<span class="chip">searching…</span>`;
+  else if (d.state === "error") h += `<span class="chip error">couldn't read</span>`;
+  else h += `<span class="chip ${d.verdict}">${{confident:"confident", possible:"possible", none:"no match"}[d.verdict]}${best ? " · " + best.score : ""}</span>`;
+  h += `</h2>`;
+  if (d.skipped) h += `<div class="body small">${esc(d.message)}</div>`;
+  else if (d.state === "waiting" || d.state === "searching") h += `<div class="body small">${esc(d.message || "waiting…")}</div>`;
+  else if (d.state === "error") h += `<div class="body small">${esc(d.message)}</div>`;
+  else if (!best) h += `<div class="body small">Nothing usable in the results (${d.total} found, ${d.left_out} left out as too short).</div>`;
+  else if (d.verdict === "none") {
+    h += `<div class="body small">No match. Closest of ${d.total} results (score ${best.score}):<br><a href="${esc(best.url)}" target="_blank" rel="noreferrer">${esc(best.title)}</a> · ${dur(best.duration)}</div>`;
+    h += `<div class="body" style="padding-top:0"><details><summary>top ${d.ranked.length} results and their reasons</summary>${d.ranked.map(c => `<div class="other">${c.thumb ? `<img loading="lazy" src="${esc(c.thumb)}" alt="">` : "<img alt=''>"}<div class="t"><a href="${esc(c.url)}" target="_blank" rel="noreferrer">${esc(c.title)}</a><div class="small">score ${c.score} · ${dur(c.duration)}</div><div class="small">${esc(c.why.join(" · "))}</div></div></div>`).join("")}</details></div>`;
+  }
+  else {
+    h += `<a href="${esc(best.url)}" target="_blank" rel="noreferrer">${best.thumb ? `<img class="thumb" loading="lazy" src="${esc(best.thumb)}" alt="">` : `<div class="thumb"></div>`}</a>`;
+    h += `<div class="body"><div class="title"><a href="${esc(best.url)}" target="_blank" rel="noreferrer">${esc(best.title)}</a></div>`;
+    h += `<div class="small">${dur(best.duration)} · found by ${best.found_by.map(i => "query " + i).join(", ")}</div>`;
+    h += `<ul class="why">${best.why.map(w => `<li>${esc(w)}</li>`).join("")}</ul>`;
+    if (rest.length) h += `<details><summary>${rest.length} other result${rest.length > 1 ? "s" : ""}</summary>${rest.map(c => `<div class="other">${c.thumb ? `<img loading="lazy" src="${esc(c.thumb)}" alt="">` : "<img alt=''>"}<div class="t"><a href="${esc(c.url)}" target="_blank" rel="noreferrer">${esc(c.title)}</a><div class="small">score ${c.score} · ${dur(c.duration)}</div><div class="small">${esc(c.why.join(" · "))}</div></div></div>`).join("")}</details>`;
+    h += `</div>`;
+  }
+  const q = d.queries.map(x => `${esc(x.q)} → ${x.error ? esc(x.error) : x.count}`).join("<br>");
+  h += `<div class="body small" style="border-top:1px solid var(--line)">${d.total || d.queries.reduce((n, x) => n + (x.count || 0), 0)} results from ${d.queries.length} search${d.queries.length === 1 ? "" : "es"}<details><summary>searches</summary>${q}</details></div></div>`;
+  return h;
+}
+
+function render(job) {
+  const w = job.want; lastWant = w;
+  $("wantPanel").hidden = false;
+  const gq = encodeURIComponent([w.title, (w.performers || [])[0]].filter(Boolean).join(" "));
+  $("glinks").innerHTML = [["Google: All", ""], ["Google: Videos", "&tbm=vid"]].map(([t, x]) => `<a href="https://www.google.com/search?q=${gq}${x}" target="_blank" rel="noopener noreferrer" title="Opens Google in a new tab with this search filled in (Google blocks searches made by scripts)">${t}</a>`).join(" · ");
+  if (document.activeElement.id !== "fTitle") $("fTitle").value = w.title;
+  if (document.activeElement.id !== "fPerf") $("fPerf").value = (w.performers || []).join(", ");
+  if (document.activeElement.id !== "fStudio") $("fStudio").value = w.studio || "";
+  if (document.activeElement.id !== "fLen") $("fLen").value = w.duration ? `${Math.floor(w.duration/60)}:${String(w.duration%60).padStart(2,"0")}` : "";
+  $("wantMeta").innerHTML = [w.date && esc(w.date), w.scene_id && ("data18 scene " + esc(w.scene_id)), (job.queries || []).length && ("searching: " + job.queries.map(q => "<b>" + esc(q) + "</b>").join(" · "))].filter(Boolean).join(" · ");
+  let h = "";
+  for (const [s, d] of Object.entries(job.sites)) h += card(s, d);
+  for (const [s, why] of Object.entries(job.unavailable || {})) h += `<div class="card off"><h2><span>${esc(s)}</span><span class="chip">not available</span></h2><div class="body small">${esc(why)}</div></div>`;
+  $("grid").innerHTML = h;
+}
+
+$("rulesToggle").onclick = async () => {
+  const box = $("rulesBox"); box.hidden = !box.hidden;
+  if (!box.hidden) $("rules").value = JSON.stringify(await api("/api/rules"), null, 2);
+};
+$("saveRules").onclick = async () => {
+  $("rulesErr").textContent = "";
+  let rules; try { rules = JSON.parse($("rules").value); } catch (e) { $("rulesErr").textContent = "That isn't valid JSON: " + e.message; return; }
+  try {
+    await api("/api/rules", {rules});
+    if (jobId) render(await api("/api/rescore", {id: jobId}));
+  } catch (e) { $("rulesErr").textContent = e.message; }
+};
+
+// opened from the data18 scraper with ?scene=<number>: fill in the link and search at once (then drop the parameter so a reload does not search again)
+const openedJob = new URLSearchParams(location.search).get("job");     // opened from the data18 scraper's "Open in Video Finder": show that search
+if (openedJob && /^[\w-]+$/.test(openedJob)) { history.replaceState(null, "", location.pathname); jobId = openedJob; try { localStorage.setItem("finder.job", jobId); } catch (e) {} }
+const openedFor = new URLSearchParams(location.search).get("scene");
+if (openedFor && /^\d{4,}$/.test(openedFor)) {
+  history.replaceState(null, "", location.pathname);
+  $("input").value = "https://www.data18.com/scenes/" + openedFor;
+  start({input: $("input").value});
+} else
+if (jobId) api("/api/job?id=" + encodeURIComponent(jobId)).then(job => { render(job); if (job.state === "running") poll(); }).catch(() => {});
+</script>
+</body>
+</html>
